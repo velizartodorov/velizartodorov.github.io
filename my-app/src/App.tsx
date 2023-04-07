@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+const profile = {
+  name: 'Velizar Todorov',
+  imageUrl: '/velizar-photo.jpg',
+  email: 'veltodorov@outlook.com',
+  imageSize: 200,
+};
+
+export default function Profile() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <>
+      <header className="header">
+        <div className="row">
+          <img
+            className="avatar"
+            src={profile.imageUrl}
+            alt={'Photo of ' + profile.name}
+            style={{
+              width: profile.imageSize,
+              height: profile.imageSize
+            }}
+          />
+           <h1>{profile.name}</h1>
+        </div>
       </header>
-    </div>
+    </>
   );
 }
-
-export default App;

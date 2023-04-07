@@ -32,7 +32,19 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
+
+.avatar {
+  border-radius: 50%;
+  margin: 10px;
+}
+
+.header {
+  margin-left: 20px;
+}
+
+.row{display:flex; flex-direction:row;}
