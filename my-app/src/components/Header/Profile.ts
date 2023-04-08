@@ -1,5 +1,5 @@
 class Profile {
-    public name = 'Velizar Todorov';
+    name = 'Velizar Todorov';
     imageUrl = '/velizar.jpg';
     imageSize = 200;
     email = 'veltodorov@outlook.com';
