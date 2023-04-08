@@ -1,9 +1,7 @@
 
-import React from 'react';
 import Table from 'react-bootstrap/Table';
 import './Header.css';
 import Profile from './Profile';
-window.React = React
 
 const Header = () => {
     return (
