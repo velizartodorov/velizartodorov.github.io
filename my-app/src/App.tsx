@@ -7,9 +7,9 @@ window.React = React
 
 export default function App() {
   return (
-    <div>
+    <>
       <Header />
       <Employments />
-    </div>
+    </>
   );
 }
