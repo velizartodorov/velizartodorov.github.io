@@ -1,10 +1,10 @@
 class Profile {
     public name = 'Velizar Todorov';
-    imageUrl = '/velizar-photo.jpg';
+    imageUrl = '/velizar.jpg';
     imageSize = 200;
     email = 'veltodorov@outlook.com';
     phone = '+32487371027';
-    public birthday = '25 July, 1994';
+    birthday = '25 July, 1994';
     residense = 'Gent, Belgium';
     drivingLicense = 'Driving license type B';
     linkedIn = 'LinkedIn';
