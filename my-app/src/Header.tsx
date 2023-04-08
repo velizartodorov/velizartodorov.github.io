@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <>
       <header className="header">
-        <Table responsive className="mx-auto">
+        <Table responsive>
           <tr>
             <td rowSpan={4}><ProfilePicture /></td>
             <td><h1>{Profile.name}</h1></td>
