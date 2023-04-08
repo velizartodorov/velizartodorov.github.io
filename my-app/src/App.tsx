@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 
 const profile = {
@@ -21,7 +22,7 @@ export default function Profile() {
               height: profile.imageSize
             }}
           />
-           <h1>{profile.name}</h1>
+          <h1>{profile.name}</h1>
         </div>
       </header>
     </>
