@@ -47,4 +47,7 @@
   margin-left: 20px;
 }
 
-.row{display:flex; flex-direction:row;}
+.row {
+  display: flex;
+  flex-direction: row;
+}
