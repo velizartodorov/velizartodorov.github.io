@@ -5,7 +5,7 @@ import './App.css';
 import Profile from './Profile';
 window.React = React
 
-export default function Header() {
+export default function App() {
   return (
     <>
       <header className="header">
