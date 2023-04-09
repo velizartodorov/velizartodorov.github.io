@@ -1,11 +1,11 @@
 
 import { useEffect } from 'react';
-import { Envelope } from 'react-bootstrap-icons';
 import Table from 'react-bootstrap/Table';
 import './Header.css';
-import Profile, { Link } from './Profile';
+import Profile from './Profile';
+import { profilePicture, icon as addIconTo, linkTo, mailTo } from './Utils';
 
-const profile = new Profile();
+export const profile = new Profile();
 
 const Header = () => {
     useEffect(() => {
@@ -20,10 +20,10 @@ function getContent() {
             <thead></thead>
             <tbody>
                 <tr>
-                    <td rowSpan={4}><ProfilePicture /></td>
+                    <td rowSpan={4}>{profilePicture(profile)}</td>
                     <td><h1>{profile.name}</h1></td>
                     <td><h2>{profile.birthday}</h2></td>
-                    <td><h2>{profile.drivingLicense}</h2></td>
+                    <td><h2>{addIconTo(profile.drivingLicense)}</h2></td>
                 </tr>
                 <tr>
                     <td><h2>{mailTo(profile.email)}</h2></td>
@@ -43,37 +43,6 @@ function getContent() {
             </tbody>
         </Table>
     </header>;
-}
-
-function mailTo(mail: string) {
-    return <a className="no-underline"
-        href={"mailto:" + mail}>
-        <a ><Envelope color="royalblue" size={40} /> </a>
-        <a className='envelope-margin no-underline'>{mail}</a>
-    </a>;
-}
-
-function ProfilePicture() {
-    return <img
-        className="avatar"
-        src={profile.imageUrl}
-        alt={'Photo of ' + profile.name}
-        style={{
-            width: profile.imageSize,
-        }}></img>
-}
-
-function linkTo(link: Link) {
-    return <a className="no-underline"
-        href={link.url}
-        target="_blank">
-        <a> <img
-            src={link.icon}
-            style={{
-                width: link.iconSize
-            }}></img></a>
-        <a className="envelope-margin no-underline"> {link.name}</a>
-    </a>
 }
 
 export default Header;
