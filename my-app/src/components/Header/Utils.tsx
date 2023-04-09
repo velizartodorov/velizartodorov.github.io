@@ -1,5 +1,6 @@
 import { Envelope } from 'react-bootstrap-icons';
-import Profile, { Link } from './Profile';
+import Profile from './Profile';
+import { Link } from "./Link";
 
 export function mailTo(mail: string) {
     return <a className="no-underline"

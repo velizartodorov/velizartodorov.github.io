@@ -35,9 +35,9 @@ function getContent() {
                     <td><h2>{linkTo(profile.blog)}</h2></td>
                 </tr>
                 <tr>
-                    <td><h2>{profile.english}</h2></td>
-                    <td><h2>{profile.dutch}</h2></td>
-                    <td><h2>{profile.bulgarian}</h2></td>
+                    <td><h2>{addIconTo(profile.english)}</h2></td>
+                    <td><h2>{linkTo(profile.dutch)}</h2></td>
+                    <td><h2>{addIconTo(profile.bulgarian)}</h2></td>
                 </tr>
             </tbody>
         </Table>
