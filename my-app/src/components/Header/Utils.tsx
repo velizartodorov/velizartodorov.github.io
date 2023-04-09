@@ -1,6 +1,15 @@
 import { Envelope } from 'react-bootstrap-icons';
 import Profile from './Profile';
 import { Link } from "./Link";
+import { useEffect } from 'react';
+import { profile } from './Header';
+
+
+export function AddHeader(name: String) {
+    useEffect(() => {
+        document.title = profile.name;
+    }, []);
+}
 
 export function mailTo(mail: string) {
     return <a className="no-underline"

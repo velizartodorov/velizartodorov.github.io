@@ -1,19 +1,16 @@
 
-import { useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import './Header.css';
 import Profile from './Profile';
-import { icon as addIconTo, callTo, linkTo, mailTo, profilePicture } from './Utils';
+import { AddHeader as addHeader, icon as addIconTo, callTo, linkTo, mailTo, profilePicture } from './Utils';
 export const profile = new Profile();
 
 const Header = () => {
-    useEffect(() => {
-        document.title = profile.name
-    }, []);
-    return getContent();
+    addHeader(profile.name);
+    return content();
 }
 
-function getContent() {
+function content() {
     return <header className="header">
         <Table responsive borderless>
             <thead></thead>
