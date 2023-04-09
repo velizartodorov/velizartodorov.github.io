@@ -8,6 +8,8 @@ class Profile {
     residense = 'Gent, Belgium';
     drivingLicense = 'Driving license type B';
     linkedIn = 'LinkedIn';
+    linkedInIcon = '/linkedin.png';
+    linkedInLink = 'https://www.linkedin.com/in/veltodorov/';
     gitHub = 'velizartodorov';
     blog = 'Personal blog';
     english = 'English (B2/C1)';

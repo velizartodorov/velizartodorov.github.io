@@ -31,7 +31,7 @@ function getContent() {
                     <td><h2>{profile.residense}</h2></td>
                 </tr>
                 <tr>
-                    <td><h2>{profile.linkedIn}</h2></td>
+                    <td><h2><LinkedIn /></h2></td>
                     <td><h2>{profile.gitHub}</h2></td>
                     <td><h2>{profile.blog}</h2></td>
                 </tr>
@@ -61,6 +61,19 @@ function ProfilePicture() {
         style={{
             width: profile.imageSize,
         }}></img>
+}
+
+function LinkedIn() {
+    return <a className="no-underline" 
+        href={profile.linkedInLink}
+        target="_blank">
+       <a> <img  
+        src={profile.linkedInIcon}
+        style={{
+            width: 40
+        }}></img></a>
+        <a className="envelope-margin no-underline"> {profile.linkedIn}</a>
+        </a>
 }
 
 export default Header;
