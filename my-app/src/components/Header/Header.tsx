@@ -28,7 +28,7 @@ function getContent() {
                 <tr>
                     <td><h2>{mailTo(profile.email)}</h2></td>
                     <td><h2>{profile.phone}</h2></td>
-                    <td><h2>{profile.residense}</h2></td>
+                    <td><h2>{linkTo(profile.residence)}</h2></td>
                 </tr>
                 <tr>
                     <td><h2>{linkTo(profile.linkedIn)}</h2></td>

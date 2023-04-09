@@ -5,7 +5,7 @@ export class Profile {
     email = 'veltodorov@outlook.com';
     phone = '+32487371027';
     birthday = '25 July, 1994';
-    residense = 'Gent, Belgium';
+    residence = new Link('Gent, Belgium', '/house.png', 45, 'https://en.wikipedia.org/wiki/Ghent');
     drivingLicense = 'Driving license type B';
     linkedIn = new Link('LinkedIn', '/linkedin.png', 40,  'https://www.linkedin.com/in/veltodorov/');
     gitHub = new Link('velizartodorov', '/github.png', 40, 'https://github.com/velizartodorov/');
