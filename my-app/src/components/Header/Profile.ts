@@ -10,7 +10,9 @@ class Profile {
     linkedIn = 'LinkedIn';
     linkedInIcon = '/linkedin.png';
     linkedInLink = 'https://www.linkedin.com/in/veltodorov/';
+    gitHubIcon = '/github.png';
     gitHub = 'velizartodorov';
+    gitHubLink = 'https://github.com/velizartodorov/';
     blog = 'Personal blog';
     english = 'English (B2/C1)';
     dutch = 'Dutch (B2)';
