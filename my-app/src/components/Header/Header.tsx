@@ -3,8 +3,7 @@ import { useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import './Header.css';
 import Profile from './Profile';
-import { profilePicture, icon as addIconTo, linkTo, mailTo } from './Utils';
-
+import { icon as addIconTo, callTo, linkTo, mailTo, profilePicture } from './Utils';
 export const profile = new Profile();
 
 const Header = () => {
@@ -22,12 +21,12 @@ function getContent() {
                 <tr>
                     <td rowSpan={4}>{profilePicture(profile)}</td>
                     <td><h1>{profile.name}</h1></td>
-                    <td><h2>{profile.birthday}</h2></td>
+                    <td><h2>{addIconTo(profile.birthday)}</h2></td>
                     <td><h2>{addIconTo(profile.drivingLicense)}</h2></td>
                 </tr>
                 <tr>
                     <td><h2>{mailTo(profile.email)}</h2></td>
-                    <td><h2>{profile.phone}</h2></td>
+                    <td><h2>{callTo(profile.phone)}</h2></td>
                     <td><h2>{linkTo(profile.residence)}</h2></td>
                 </tr>
                 <tr>

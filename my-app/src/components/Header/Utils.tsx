@@ -4,12 +4,21 @@ import Profile, { Link } from './Profile';
 export function mailTo(mail: string) {
     return <a className="no-underline"
         href={"mailto:" + mail}>
-        <a><Envelope color="royalblue" size={40} /> </a>
+        <a><Envelope color="royalblue" size={40} /></a>
         <a className='envelope-margin no-underline'>{mail}</a>
     </a>;
 }
 
-export function profilePicture(profile : Profile) {
+export function callTo(link: Link) {
+    return <a className="no-underline"
+        href={"tel:" + link.name}>
+        <a> <img src={link.icon}
+            style={{ width: link.iconSize }}></img></a>
+        <a className="envelope-margin no-underline">{link.name}</a>
+    </a>;
+}
+
+export function profilePicture(profile: Profile) {
     return <><img
         className="avatar"
         src={profile.imageUrl}
