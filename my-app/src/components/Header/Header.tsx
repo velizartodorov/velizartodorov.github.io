@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { Envelope } from 'react-bootstrap-icons';
 import Table from 'react-bootstrap/Table';
 import './Header.css';
-import Profile from './Profile';
+import Profile, { Link } from './Profile';
 
 const profile = new Profile();
 
@@ -31,9 +31,9 @@ function getContent() {
                     <td><h2>{profile.residense}</h2></td>
                 </tr>
                 <tr>
-                    <td><h2><LinkedIn /></h2></td>
-                    <td><h2><GitHub /></h2></td>
-                    <td><h2>{profile.blog}</h2></td>
+                    <td><h2>{linkTo(profile.linkedIn)}</h2></td>
+                    <td><h2>{linkTo(profile.gitHub)}</h2></td>
+                    <td><h2>{linkTo(profile.blog)}</h2></td>
                 </tr>
                 <tr>
                     <td><h2>{profile.english}</h2></td>
@@ -63,29 +63,16 @@ function ProfilePicture() {
         }}></img>
 }
 
-function LinkedIn() {
+function linkTo(link: Link) {
     return <a className="no-underline"
-        href={profile.linkedInLink}
+        href={link.url}
         target="_blank">
         <a> <img
-            src={profile.linkedInIcon}
+            src={link.icon}
             style={{
-                width: 40
+                width: link.iconSize
             }}></img></a>
-        <a className="envelope-margin no-underline"> {profile.linkedIn}</a>
-    </a>
-}
-
-function GitHub() {
-    return <a className="no-underline"
-        href={profile.gitHubLink}
-        target="_blank">
-        <a> <img
-            src={profile.gitHubIcon}
-            style={{
-                width: 45
-            }}></img></a>
-        <a className="envelope-margin no-underline"> {profile.gitHub}</a>
+        <a className="envelope-margin no-underline"> {link.name}</a>
     </a>
 }
 

@@ -1,4 +1,4 @@
-class Profile {
+export class Profile {
     name = 'Velizar Todorov';
     imageUrl = '/velizar.jpg';
     imageSize = 200;
@@ -7,16 +7,26 @@ class Profile {
     birthday = '25 July, 1994';
     residense = 'Gent, Belgium';
     drivingLicense = 'Driving license type B';
-    linkedIn = 'LinkedIn';
-    linkedInIcon = '/linkedin.png';
-    linkedInLink = 'https://www.linkedin.com/in/veltodorov/';
-    gitHubIcon = '/github.png';
-    gitHub = 'velizartodorov';
-    gitHubLink = 'https://github.com/velizartodorov/';
-    blog = 'Personal blog';
+    linkedIn = new Link('LinkedIn', '/linkedin.png', 40,  'https://www.linkedin.com/in/veltodorov/');
+    gitHub = new Link('velizartodorov', '/github.png', 40, 'https://github.com/velizartodorov/');
+    blog = new Link('Personal blog', '/blog.png', 47, 'https://willscornersite.wordpress.com/');
     english = 'English (B2/C1)';
     dutch = 'Dutch (B2)';
     bulgarian = 'Bulgarian (Mother tongue)';
 };
+
+export class Link {
+    name: string;
+    icon: string;
+    iconSize: number;
+    url: string;
+
+    constructor(name: string, icon: string,  iconSize: number, url: string) {
+        this.name = name;
+        this.icon = icon;
+        this.iconSize = iconSize;
+        this.url = url;
+    }
+}
 
 export default Profile;
