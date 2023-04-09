@@ -3,11 +3,14 @@ import { useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import './Header.css';
 import Profile from './Profile';
+import { Envelope } from 'react-bootstrap-icons';
 
 const profile = new Profile();
 
 const Header = () => {
-    setDocumentTitle();
+    useEffect(() => {
+        document.title = profile.name
+    }, []);
     return getContent();
 }
 
@@ -23,7 +26,7 @@ function getContent() {
                     <td><h2>{profile.drivingLicense}</h2></td>
                 </tr>
                 <tr>
-                    <td><h2>{profile.email}</h2></td>
+                    <td><h2>{mailTo(profile.email)}</h2></td>
                     <td><h2>{profile.phone}</h2></td>
                     <td><h2>{profile.residense}</h2></td>
                 </tr>
@@ -42,10 +45,12 @@ function getContent() {
     </header>;
 }
 
-function setDocumentTitle() {
-    useEffect(() => {
-        document.title = profile.name
-    }, []);
+function mailTo(mail: string) {
+    return <a className="no-underline"
+        href={"mailto:" + mail}>
+        <a ><Envelope color="royalblue" size={40} /> </a>
+        <a className='envelope-margin no-underline'>{mail}</a>
+    </a>;
 }
 
 function ProfilePicture() {

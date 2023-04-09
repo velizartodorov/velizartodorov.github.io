@@ -6,3 +6,12 @@
 .header {
     margin-left: 20px;
 }
+
+.envelope-margin {
+    margin-left: .0.5rem;
+}
+
+.no-underline {
+    text-decoration: none !important;
+    text-decoration: none;
+}
