@@ -37,7 +37,7 @@ export function profilePicture(profile: Profile) {
         }}></img></>;
 }
 
-export function icon(link: Link) {
+export function addIconTo(link: Link) {
     return <><a> <img
         src={link.icon}
         style={{ width: link.iconSize }}>

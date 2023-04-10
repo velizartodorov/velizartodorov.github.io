@@ -2,11 +2,11 @@
 import Table from 'react-bootstrap/Table';
 import './Header.css';
 import Profile from './Profile';
-import { AddHeader as addHeader, icon as addIconTo, callTo, linkTo, mailTo, profilePicture } from './Utils';
+import { AddHeader, addIconTo, callTo, linkTo, mailTo, profilePicture } from './Utils';
 export const profile = new Profile();
 
 const Header = () => {
-    addHeader(profile.name);
+    AddHeader(profile.name);
     return content();
 }
 
