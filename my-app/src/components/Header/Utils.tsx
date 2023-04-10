@@ -1,12 +1,11 @@
 import { useEffect } from 'react';
 import { Envelope } from 'react-bootstrap-icons';
-import { profile } from './Header';
 import { Link } from "./Link";
 import Profile from './Profile';
 
-export function AddHeader(name: String) {
+export function AddHeader(name: string) {
     useEffect(() => {
-    document.title = profile.name;
+        document.title = name;
     }, []);
 }
 
