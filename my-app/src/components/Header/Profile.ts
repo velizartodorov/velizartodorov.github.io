@@ -2,7 +2,7 @@ import { Link } from "./Link";
 
 export class Profile {
     name = 'Velizar Todorov';
-    imageUrl = '/velizar.jpg';
+    imageUrl = '/profile/velizar.jpg';
     imageSize = 200;
     email = 'veltodorov@outlook.com';
     phone = new Link('+32487371027', '/phone.png', 45, '');
