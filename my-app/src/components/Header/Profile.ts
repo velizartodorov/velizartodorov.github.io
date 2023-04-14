@@ -2,12 +2,12 @@ import { Link } from "./Link";
 
 export class Profile {
     name = 'Velizar Todorov';
-    imageUrl = '/profile/velizar.jpg';
+    imageUrl = '/header/velizar.jpg';
     imageSize = 200;
     email = 'veltodorov@outlook.com';
     phone = new Link('+32487371027', '/phone.png', 45, '');
     birthday = new Link('25 July, 1994', '/cake.png', 45, '');
-    address = new Link('Gent, Belgium', '/house.png', 45, 'https://en.wikipedia.org/wiki/Ghent');
+    address = new Link('Belgium, Gent', '/house.png', 45, 'https://en.wikipedia.org/wiki/Ghent');
     drivingLicense = new Link('Driving license type B', '/driving_license.png', 45, '');
     linkedIn = new Link('LinkedIn', '/linkedin.png', 40, 'https://www.linkedin.com/in/veltodorov/');
     gitHub = new Link('velizartodorov', '/github.png', 40, 'https://github.com/velizartodorov/');

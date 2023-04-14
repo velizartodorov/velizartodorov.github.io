@@ -10,7 +10,7 @@ const Employments = () => (
                   <Container fluid>
                      <Row>
                         <Col className="col-md-auto text-left">
-                           <h2>{employment.name}</h2>
+                           <h2>{employment.position} at {employment.company}</h2>
                         </Col>
                         <Col className="col-md-auto text-left">
                            <img src={employment.icon} style={{ width: 50 }}></img>

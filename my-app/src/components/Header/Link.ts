@@ -7,7 +7,7 @@ export class Link {
 
     constructor(name: string, icon: string, iconSize: number, url: string) {
         this.name = name;
-        this.icon = "/profile/" + icon;
+        this.icon = "/header/" + icon;
         this.iconSize = iconSize;
         this.url = url;
     }
