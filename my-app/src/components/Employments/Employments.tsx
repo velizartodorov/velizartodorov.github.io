@@ -10,7 +10,7 @@ const Employments = () => (
                <Accordion.Header>
                   <Container fluid>
                      <Row>
-                        <Col className="col-md-auto text-left">
+                        <Col className="col-4 text-left">
                            <h2>{employment.position} at {employment.company}</h2>
                         </Col>
                         <Col className="col-md-auto text-left">
