@@ -1,3 +1,5 @@
+import { GENT } from "../Constants";
+
 interface IEmployment {
     position: string;
     company: string;
@@ -11,7 +13,7 @@ export const employments: IEmployment[] = [
     {
         position: "Software Developer",
         company: 'Unified Post',
-        place: 'Gent, Belgium',
+        place: GENT,
         icon: '/employments/unified_post.png',
         period: 'April 2019 - February 2023',
         body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
@@ -19,7 +21,7 @@ export const employments: IEmployment[] = [
     {
         position: "Java Developer",
         company: 'ADM Solutions',
-        place: 'Gent, Belgium',
+        place: GENT,
         icon: '/employments/adm_solutions.jpg',
         period: 'November 2018 - March 2019',
         body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'

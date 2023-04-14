@@ -1,0 +1,1 @@
+export const GENT = 'Gent, Belgium';
