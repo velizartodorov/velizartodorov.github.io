@@ -14,7 +14,8 @@ export class Profile {
     gitHub = new Link('velizartodorov', '/github.png', 40, 'https://github.com/velizartodorov/');
     blog = new Link('Personal blog', '/blog.png', 47, 'https://willscornersite.wordpress.com/');
     english = new Link('English (B2/C1)', '/speak.png', 47, '');
-    dutch = new Link('Dutch (B2)', '/speak.png', 47, 'https://drive.google.com/file/d/1qYLbhdFkVua9-topA3Mqx25HuCwhvmys/view?usp=sharing');
+    dutch = new Link('Dutch (B2)', '/speak.png', 47, '/certificates/nederlands.pdf');
+    german = new Link('German (C1)', '/speak.png', 47, '/certificates/deutsch.pdf');
     bulgarian = new Link('Bulgarian (Mother tongue)', '/speak.png', 47, '');
 };
 

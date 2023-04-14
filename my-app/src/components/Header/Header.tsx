@@ -17,23 +17,24 @@ function content() {
             <tbody>
                 <tr>
                     <td rowSpan={4}>{profilePicture(profile)}</td>
-                    <td><h1>{profile.name}</h1></td>
+                    <td colSpan={2}><h1>{profile.name}</h1></td>
                     <td><h2>{addIconTo(profile.birthday)}</h2></td>
                     <td><h2>{addIconTo(profile.drivingLicense)}</h2></td>
                 </tr>
                 <tr>
-                    <td><h2>{mailTo(profile.email)}</h2></td>
+                    <td colSpan={2}><h2>{mailTo(profile.email)}</h2></td>
                     <td><h2>{callTo(profile.phone)}</h2></td>
                     <td><h2>{linkTo(profile.address)}</h2></td>
                 </tr>
                 <tr>
-                    <td><h2>{linkTo(profile.linkedIn)}</h2></td>
+                    <td colSpan={2}><h2>{linkTo(profile.linkedIn)}</h2></td>
                     <td><h2>{linkTo(profile.gitHub)}</h2></td>
                     <td><h2>{linkTo(profile.blog)}</h2></td>
                 </tr>
                 <tr>
                     <td><h2>{addIconTo(profile.english)}</h2></td>
                     <td><h2>{linkTo(profile.dutch)}</h2></td>
+                    <td><h2>{linkTo(profile.german)}</h2></td>
                     <td><h2>{addIconTo(profile.bulgarian)}</h2></td>
                 </tr>
             </tbody>
