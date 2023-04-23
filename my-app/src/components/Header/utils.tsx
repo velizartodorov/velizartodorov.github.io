@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Envelope } from 'react-bootstrap-icons';
 import { Link } from './link';
-import Profile from './profile';
+import { IProfile } from './profile';
 
 export function AddHeader(name: string) {
   useEffect(() => {
@@ -27,7 +27,7 @@ export function callTo(link: Link) {
   );
 }
 
-export function profilePicture(profile: Profile) {
+export function profilePicture(profile: IProfile) {
   return (
     <img
       className="avatar"
