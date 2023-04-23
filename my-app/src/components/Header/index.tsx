@@ -1,7 +1,7 @@
 import Table from 'react-bootstrap/Table';
 import { profile } from './profile.init';
 import './style.css';
-import { linkTo, mailtoLink, profilePicture, telLink, useDocumentTitle } from './utils';
+import { callTo, linkTo, mailTo, profilePicture, useDocumentTitle } from './utils';
 
 const Header = () => {
     useDocumentTitle(profile.name);
@@ -16,8 +16,8 @@ const Header = () => {
                         <td><h5>{linkTo(profile.drivingLicense)}</h5></td>
                     </tr>
                     <tr>
-                        <td colSpan={2}><h5>{mailtoLink(profile.email)}</h5></td>
-                        <td><h5>{telLink(profile.phone)}</h5></td>
+                        <td colSpan={2}><h5>{mailTo(profile.email)}</h5></td>
+                        <td><h5>{callTo(profile.phone)}</h5></td>
                         <td><h5>{linkTo(profile.address)}</h5></td>
                     </tr>
                     <tr>

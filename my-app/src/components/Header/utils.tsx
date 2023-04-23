@@ -9,7 +9,7 @@ export function useDocumentTitle(name: string) {
   }, [name]);
 }
 
-export function mailtoLink(mail: string): JSX.Element {
+export function mailTo(mail: string): JSX.Element {
   return (
     <a className="no-underline" href={`mailto:${mail}`}>
       <Envelope color="royalblue" size={40} />
@@ -18,7 +18,7 @@ export function mailtoLink(mail: string): JSX.Element {
   );
 }
 
-export function telLink(link: Link): JSX.Element {
+export function callTo(link: Link): JSX.Element {
   return (
     <a className="no-underline" href={`tel:${link.name}`}>
       <img src={link.icon} style={{ width: link.iconSize }} alt={link.name} />
