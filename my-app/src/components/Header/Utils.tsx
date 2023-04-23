@@ -1,57 +1,57 @@
 import { useEffect } from 'react';
 import { Envelope } from 'react-bootstrap-icons';
-import { Link } from "./Link";
+import { Link } from './Link';
 import Profile from './Profile';
 
 export function AddHeader(name: string) {
-    useEffect(() => {
-        document.title = name;
-    }, []);
+  useEffect(() => {
+    document.title = name;
+  }, [name]);
 }
 
 export function mailTo(mail: string) {
-    return <a className="no-underline"
-        href={"mailto:" + mail}>
-        <a><Envelope color="royalblue" size={40} /></a>
-        <a className='envelope-margin no-underline'>{mail}</a>
-    </a>;
+  return (
+    <a className="no-underline" href={`mailto:${mail}`}>
+      <Envelope color="royalblue" size={40} />
+      <span className="envelope-margin">{mail}</span>
+    </a>
+  );
 }
 
 export function callTo(link: Link) {
-    return <a className="no-underline"
-        href={"tel:" + link.name}>
-        <a> <img src={link.icon}
-            style={{ width: link.iconSize }}></img></a>
-        <a className="envelope-margin no-underline">{link.name}</a>
-    </a>;
+  return (
+    <a className="no-underline" href={`tel:${link.name}`}>
+      <img src={link.icon} style={{ width: link.iconSize }} alt={link.name} />
+      <span className="envelope-margin">{link.name}</span>
+    </a>
+  );
 }
 
 export function profilePicture(profile: Profile) {
-    return <><img
-        className="avatar"
-        src={profile.imageUrl}
-        alt={'Photo of ' + profile.name}
-        style={{
-            width: profile.imageSize,
-        }}></img></>;
+  return (
+    <img
+      className="avatar"
+      src={profile.imageUrl}
+      alt={`Photo of ${profile.name}`}
+      style={{ width: profile.imageSize }}
+    />
+  );
 }
 
 export function addIconTo(link: Link) {
-    return <><a> <img
-        src={link.icon}
-        style={{ width: link.iconSize }}>
-    </img></a><a> {link.name}</a></>;
+  return (
+    <>
+      <img src={link.icon} style={{ width: link.iconSize }} alt={link.name} />
+      <span>{link.name}</span>
+    </>
+  );
 }
 
 export function linkTo(link: Link) {
-    return <a className="no-underline"
-        href={link.url}
-        target="_blank">
-        <a> <img
-            src={link.icon}
-            style={{
-                width: link.iconSize
-            }}></img></a>
-        <a className="envelope-margin no-underline">{link.name}</a>
-    </a>;
+  return (
+    <a className="no-underline" href={link.url} target="_blank">
+      <img src={link.icon} style={{ width: link.iconSize }} alt={link.name} />
+      <span className="envelope-margin">{link.name}</span>
+    </a>
+  );
 }
