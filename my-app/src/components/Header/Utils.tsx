@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Envelope } from 'react-bootstrap-icons';
-import { Link } from './Link';
+import { Link } from './link';
 import Profile from './Profile';
 
 export function AddHeader(name: string) {

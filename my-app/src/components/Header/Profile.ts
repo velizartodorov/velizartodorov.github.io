@@ -1,5 +1,5 @@
 import { GENT } from "../Constants";
-import { Link } from "./Link";
+import { Link } from "./link";
 
 export class Profile {
     name = 'Velizar Todorov';
