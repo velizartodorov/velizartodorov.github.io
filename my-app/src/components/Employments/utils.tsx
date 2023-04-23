@@ -17,7 +17,7 @@ export function periodDifference(start: Date, end: Date): string {
     return yearMonthDiff(start, end)?.toString() || '';
 }
 
-export function formatDate(date: Date): string {
+export function monthYear(date: Date): string {
     const month = months[date.getMonth() - 1];
     const year = date.getFullYear();
     return `${month} ${year}`;
