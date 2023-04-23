@@ -5,7 +5,7 @@ import Employments from './components/Employments/Employments';
 import Header from './components/Header/Header';
 window.React = React
 
-export default function App() {
+export function App() {
   return (
     <>
       <Header />
