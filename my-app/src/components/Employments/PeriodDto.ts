@@ -9,7 +9,7 @@ export class Period {
         const formattedEndDate = formatDate(this.end);
         const periodDiff = periodDifference(this.start, this.end);
 
-        return this.start === this.end
+        return formattedStartDate === formattedEndDate
             ? `${formattedStartDate} - Present`
             : `${formattedStartDate} - ${formattedEndDate} ${periodDiff}`;
     }
