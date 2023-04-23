@@ -1,4 +1,4 @@
-import { getMonth } from "./Utils";
+import { getMonth, yearMonthDiff } from "./Utils";
 
 export class Period {
     private startDate: Date = new Date();
@@ -17,7 +17,23 @@ export class Period {
         return this.endDate;
     }
 
-    getStartDateString(): String {
+    getPeriod() {
+        return this.getPeriodString()
+            + " "
+            + this.getPeriodDifference();
+    }
+
+    private getPeriodDifference() {
+        return yearMonthDiff(this.getStartDate(), this.getEndDate());
+    }
+
+    private getPeriodString() {
+        return this.getStartDateString()
+            + " - "
+            + this.getEndDateString()
+    }
+
+    private getStartDateString(): String {
         return getMonth(this.startDate
             .getMonth())
             + " "
@@ -26,7 +42,7 @@ export class Period {
                 .toString();
     }
 
-    getEndDateString(): String {
+    private getEndDateString(): String {
         return getMonth(this.endDate
             .getMonth())
             + " "

@@ -1,6 +1,5 @@
 import { Accordion, Col, Container, Row } from "react-bootstrap";
 import { employments } from "./EmploymentsDto";
-import { yearMonthDiff } from "./Utils";
 
 const Employments = () => (
    <><h1>Employments</h1>
@@ -10,19 +9,17 @@ const Employments = () => (
                <Accordion.Header>
                   <Container fluid>
                      <Row>
-                        <Col className="col-4 text-left">
+                        <Col className="col-6 text-left">
                            <h2>{employment.position} at {employment.company}</h2>
                         </Col>
                         <Col className="col-md-auto text-left">
-                           <img src={employment.icon} style={{ width: 50 }}></img>
+                           <img src={employment.icon} alt="company icon" style={{ width: 50 }}></img>
                         </Col>
                         <Col>
                            {employment.place}
                         </Col>
                         <Col className="col-md-auto text-right">
-                           <h4>{employment.period.getStartDateString()} - {employment.period.getEndDateString()}{' '}
-                              ({yearMonthDiff(employment.period.getStartDate(), employment.period.getEndDate())})
-                           </h4>
+                           <h4>{employment.period.getPeriod()}</h4>
                         </Col>
                      </Row>
                   </Container>
