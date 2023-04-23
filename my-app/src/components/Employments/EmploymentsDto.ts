@@ -1,5 +1,5 @@
 import { GENT } from "../Constants";
-import { Period } from "./PeriodDto";
+import { Period } from "./period";
 
 interface IEmployment {
     position: string;
