@@ -12,6 +12,14 @@ interface IEmployment {
 
 export const employments: IEmployment[] = [
     {
+        position: "Java Software Crafter",
+        company: 'Continuum',
+        place: "Hybrid",
+        icon: '/employments/continuum.jpg',
+        period: new Period(new Date(2023, 5), new Date(2023, 5)),
+        body: 'Joined the Continuum tribe, consulting clients using Java based applications.'
+    },
+    {
         position: "Software Developer",
         company: 'Unified Post',
         place: GENT,
