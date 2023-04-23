@@ -32,7 +32,7 @@ export function profilePicture(profile: Profile) {
     <img
       className="avatar"
       src={profile.imageUrl}
-      alt={`Photo of ${profile.name}`}
+      alt=""
       style={{ width: profile.imageSize }}
     />
   );
@@ -49,7 +49,7 @@ export function addIconTo(link: Link) {
 
 export function linkTo(link: Link) {
   return (
-    <a className="no-underline" href={link.url} target="_blank">
+    <a className="no-underline" href={link.url} target="_blank" rel="noreferrer">
       <img src={link.icon} style={{ width: link.iconSize }} alt={link.name} />
       <span className="envelope-margin">{link.name}</span>
     </a>
