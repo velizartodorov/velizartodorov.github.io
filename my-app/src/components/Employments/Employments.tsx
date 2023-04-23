@@ -9,8 +9,8 @@ const Employments = () => (
                <Accordion.Header>
                   <Container fluid>
                      <Row>
-                        <Col className="col-6 text-left">
-                           <h2>{employment.position} at {employment.company}</h2>
+                        <Col className="col-5 text-left">
+                           <h4>{employment.position} at {employment.company}</h4>
                         </Col>
                         <Col className="col-md-auto text-left">
                            <img src={employment.icon} alt="company icon" style={{ width: 50 }}></img>
@@ -19,7 +19,7 @@ const Employments = () => (
                            {employment.place}
                         </Col>
                         <Col className="col-md-auto text-right">
-                           <h4>{employment.period.getPeriod()}</h4>
+                           <h4>{employment.period.period}</h4>
                         </Col>
                      </Row>
                   </Container>

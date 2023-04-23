@@ -1,53 +1,22 @@
-import { getMonth, yearMonthDiff } from "./Utils";
+import { formatDate, periodDifference } from "./Utils";
 
 export class Period {
-    private startDate: Date = new Date();
-    private endDate: Date = new Date();
 
-    constructor(startDate: Date, endDate: Date) {
-        this.startDate = startDate;
-        this.endDate = endDate;
+    constructor(private readonly start: Date, private readonly end: Date) { }
+
+    get period(): string {
+        return `${this.formattedStartDate} - ${this.formattedEndDate} ${this.periodDifference}`;
     }
 
-    getStartDate(): Date {
-        return this.startDate;
+    private get formattedStartDate(): string {
+        return formatDate(this.start);
     }
 
-    getEndDate(): Date {
-        return this.endDate;
+    private get formattedEndDate(): string {
+        return formatDate(this.end);
     }
 
-    getPeriod() {
-        return this.getPeriodString()
-            + " "
-            + this.getPeriodDifference();
-    }
-
-    private getPeriodDifference() {
-        return yearMonthDiff(this.getStartDate(), this.getEndDate());
-    }
-
-    private getPeriodString() {
-        return this.getStartDateString()
-            + " - "
-            + this.getEndDateString()
-    }
-
-    private getStartDateString(): String {
-        return getMonth(this.startDate
-            .getMonth())
-            + " "
-            + this.startDate
-                .getFullYear()
-                .toString();
-    }
-
-    private getEndDateString(): String {
-        return getMonth(this.endDate
-            .getMonth())
-            + " "
-            + this.endDate
-                .getFullYear()
-                .toString();
+    private get periodDifference(): string {
+        return periodDifference(this.start, this.end);
     }
 }
