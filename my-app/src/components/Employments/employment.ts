@@ -8,5 +8,3 @@ export interface IEmployment {
     period: Period;
     body: string;
 }
-
-export default IEmployment;

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Envelope } from 'react-bootstrap-icons';
 import { Link } from './link';
-import { IProfile } from './profile';
+import { Profile } from './profile';
 
 export function useDocumentTitle(name: string) {
   useEffect(() => {
@@ -27,7 +27,7 @@ export function telLink(link: Link): JSX.Element {
   );
 }
 
-export function profilePicture(profile: IProfile): JSX.Element {
+export function profilePicture(profile: Profile): JSX.Element {
   return (
     <img
       className="avatar"

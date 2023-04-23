@@ -1,7 +1,6 @@
 import { Link } from "./link";
-import { profile } from "./profile.init";
 
-export interface IProfile {
+export interface Profile {
   name: string;
   imageUrl: string;
   imageSize: number;
@@ -18,5 +17,3 @@ export interface IProfile {
   german: Link;
   bulgarian: Link;
 }
-
-export default profile;
