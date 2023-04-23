@@ -12,8 +12,5 @@ export interface Profile {
   linkedIn: Link;
   gitHub: Link;
   blog: Link;
-  english: Link;
-  dutch: Link;
-  german: Link;
-  bulgarian: Link;
+  languages: Array<Link>;
 }

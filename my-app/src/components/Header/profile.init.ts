@@ -48,28 +48,30 @@ export const profile: Profile = {
         iconSize: 47,
         url: 'https://willscornersite.wordpress.com/',
     },
-    english: {
-        name: 'English (B2/C1)',
-        icon: '/header/speak.png',
-        iconSize: 47,
-        url: '',
-    },
-    dutch: {
-        name: 'Dutch (B2)',
-        icon: '/header/speak.png',
-        iconSize: 47,
-        url: '/certificates/nederlands.pdf',
-    },
-    german: {
-        name: 'German (C1)',
-        icon: '/header/speak.png',
-        iconSize: 47,
-        url: '/certificates/deutsch.pdf',
-    },
-    bulgarian: {
-        name: 'Bulgarian (Mother tongue)',
-        icon: '/header/speak.png',
-        iconSize: 47,
-        url: '',
-    },
+    languages: [
+        {
+            name: 'English (B2/C1)',
+            icon: '/header/speak.png',
+            iconSize: 47,
+            url: '',
+        },
+        {
+            name: 'Dutch (B2)',
+            icon: '/header/speak.png',
+            iconSize: 47,
+            url: '/certificates/nederlands.pdf',
+        },
+        {
+            name: 'German (C1)',
+            icon: '/header/speak.png',
+            iconSize: 47,
+            url: '/certificates/deutsch.pdf',
+        },
+        {
+            name: 'Bulgarian (Mother tongue)',
+            icon: '/header/speak.png',
+            iconSize: 47,
+            url: '',
+        },
+    ]
 };

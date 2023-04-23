@@ -1,7 +1,7 @@
 import Table from 'react-bootstrap/Table';
-import './style.css';
-import { telLink, linkTo, mailtoLink, profilePicture, iconWithText, useDocumentTitle } from './utils';
 import { profile } from './profile.init';
+import './style.css';
+import { linkTo, mailtoLink, profilePicture, telLink, useDocumentTitle } from './utils';
 
 const Header = () => {
     useDocumentTitle(profile.name);
@@ -12,8 +12,8 @@ const Header = () => {
                     <tr>
                         <td rowSpan={4}>{profilePicture(profile)}</td>
                         <td colSpan={2}><h1>{profile.name}</h1></td>
-                        <td><h5>{iconWithText(profile.birthday)}</h5></td>
-                        <td><h5>{iconWithText(profile.drivingLicense)}</h5></td>
+                        <td><h5>{linkTo(profile.birthday)}</h5></td>
+                        <td><h5>{linkTo(profile.drivingLicense)}</h5></td>
                     </tr>
                     <tr>
                         <td colSpan={2}><h5>{mailtoLink(profile.email)}</h5></td>
@@ -26,10 +26,11 @@ const Header = () => {
                         <td><h5>{linkTo(profile.blog)}</h5></td>
                     </tr>
                     <tr>
-                        <td><h5>{iconWithText(profile.english)}</h5></td>
-                        <td><h5>{linkTo(profile.dutch)}</h5></td>
-                        <td><h5>{linkTo(profile.german)}</h5></td>
-                        <td><h5>{iconWithText(profile.bulgarian)}</h5></td>
+                        {profile.languages.map((language) => (
+                            <td key={language.name}>
+                                <h5>{linkTo(language)}</h5>
+                            </td>
+                        ))}
                     </tr>
                 </tbody>
             </Table>

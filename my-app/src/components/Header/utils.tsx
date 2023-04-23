@@ -38,20 +38,16 @@ export function profilePicture(profile: Profile): JSX.Element {
   );
 }
 
-export function iconWithText(link: Link): JSX.Element {
-  return (
-    <>
-      <img src={link.icon} style={{ width: link.iconSize }} alt={link.name} />
-      <span className="text-margin">{link.name}</span>
-    </>
-  );
-}
-
 export function linkTo(link: Link): JSX.Element {
-  return (
+  return link.url ? (
     <a className="no-underline" href={link.url} target="_blank" rel="noreferrer">
       <img src={link.icon} style={{ width: link.iconSize }} alt={link.name} />
       <span className="text-margin">{link.name}</span>
     </a>
+  ) : (
+    <>
+      <img src={link.icon} style={{ width: link.iconSize }} alt={link.name} />
+      <span className="text-margin">{link.name}</span>
+    </>
   );
 }
