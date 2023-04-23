@@ -1,4 +1,4 @@
-import { formatDate, periodDifference } from "./Utils";
+import { formatDate, periodDifference } from "./utils";
 
 export class Period {
 
