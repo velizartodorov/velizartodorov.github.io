@@ -1,10 +1,10 @@
 import Table from 'react-bootstrap/Table';
 import './style.css';
-import { AddHeader, addIconTo, callTo, linkTo, mailTo, profilePicture } from './utils';
+import { telLink, linkTo, mailtoLink, profilePicture, iconWithText, useDocumentTitle } from './utils';
 import { profile } from './profile.init';
 
 const Header = () => {
-    AddHeader(profile.name);
+    useDocumentTitle(profile.name);
     return (
         <header className="header">
             <Table responsive borderless>
@@ -12,12 +12,12 @@ const Header = () => {
                     <tr>
                         <td rowSpan={4}>{profilePicture(profile)}</td>
                         <td colSpan={2}><h1>{profile.name}</h1></td>
-                        <td><h5>{addIconTo(profile.birthday)}</h5></td>
-                        <td><h5>{addIconTo(profile.drivingLicense)}</h5></td>
+                        <td><h5>{iconWithText(profile.birthday)}</h5></td>
+                        <td><h5>{iconWithText(profile.drivingLicense)}</h5></td>
                     </tr>
                     <tr>
-                        <td colSpan={2}><h5>{mailTo(profile.email)}</h5></td>
-                        <td><h5>{callTo(profile.phone)}</h5></td>
+                        <td colSpan={2}><h5>{mailtoLink(profile.email)}</h5></td>
+                        <td><h5>{telLink(profile.phone)}</h5></td>
                         <td><h5>{linkTo(profile.address)}</h5></td>
                     </tr>
                     <tr>
@@ -26,10 +26,10 @@ const Header = () => {
                         <td><h5>{linkTo(profile.blog)}</h5></td>
                     </tr>
                     <tr>
-                        <td><h5>{addIconTo(profile.english)}</h5></td>
+                        <td><h5>{iconWithText(profile.english)}</h5></td>
                         <td><h5>{linkTo(profile.dutch)}</h5></td>
                         <td><h5>{linkTo(profile.german)}</h5></td>
-                        <td><h5>{addIconTo(profile.bulgarian)}</h5></td>
+                        <td><h5>{iconWithText(profile.bulgarian)}</h5></td>
                     </tr>
                 </tbody>
             </Table>

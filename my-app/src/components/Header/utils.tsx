@@ -3,31 +3,31 @@ import { Envelope } from 'react-bootstrap-icons';
 import { Link } from './link';
 import { IProfile } from './profile';
 
-export function AddHeader(name: string) {
+export function useDocumentTitle(name: string) {
   useEffect(() => {
     document.title = name;
   }, [name]);
 }
 
-export function mailTo(mail: string) {
+export function mailtoLink(mail: string): JSX.Element {
   return (
     <a className="no-underline" href={`mailto:${mail}`}>
       <Envelope color="royalblue" size={40} />
-      <span className="envelope-margin">{mail}</span>
+      <span className="text-margin">{mail}</span>
     </a>
   );
 }
 
-export function callTo(link: Link) {
+export function telLink(link: Link): JSX.Element {
   return (
     <a className="no-underline" href={`tel:${link.name}`}>
       <img src={link.icon} style={{ width: link.iconSize }} alt={link.name} />
-      <span className="envelope-margin">{link.name}</span>
+      <span className="text-margin">{link.name}</span>
     </a>
   );
 }
 
-export function profilePicture(profile: IProfile) {
+export function profilePicture(profile: IProfile): JSX.Element {
   return (
     <img
       className="avatar"
@@ -38,20 +38,20 @@ export function profilePicture(profile: IProfile) {
   );
 }
 
-export function addIconTo(link: Link) {
+export function iconWithText(link: Link): JSX.Element {
   return (
     <>
       <img src={link.icon} style={{ width: link.iconSize }} alt={link.name} />
-      <span>{link.name}</span>
+      <span className="text-margin">{link.name}</span>
     </>
   );
 }
 
-export function linkTo(link: Link) {
+export function linkTo(link: Link): JSX.Element {
   return (
     <a className="no-underline" href={link.url} target="_blank" rel="noreferrer">
       <img src={link.icon} style={{ width: link.iconSize }} alt={link.name} />
-      <span className="envelope-margin">{link.name}</span>
+      <span className="text-margin">{link.name}</span>
     </a>
   );
 }
