@@ -1,5 +1,5 @@
 import Table from 'react-bootstrap/Table';
-import './Header.css';
+import './style.css';
 import Profile from './Profile';
 import { AddHeader, addIconTo, callTo, linkTo, mailTo, profilePicture } from './Utils';
 
