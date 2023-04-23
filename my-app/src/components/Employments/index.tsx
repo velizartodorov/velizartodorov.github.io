@@ -1,5 +1,6 @@
 import { Accordion, Col, Container, Row } from "react-bootstrap";
 import { employments } from "./employments";
+import { display } from "./utils";
 
 const Employments = () => (
   <>
@@ -18,7 +19,7 @@ const Employments = () => (
                 </Col>
                 <Col>{employment.place}</Col>
                 <Col xs="auto" className="text-right">
-                  <h5>{employment.period.period}</h5>
+                  <h5>{display(employment.period)}</h5>
                 </Col>
               </Row>
             </Container>

@@ -1,3 +1,5 @@
+import { Period } from "./period";
+
 const months = [
     'January',
     'February',
@@ -13,14 +15,24 @@ const months = [
     'December'
 ];
 
-export function periodDifference(start: Date, end: Date): string {
-    return yearMonthDiff(start, end)?.toString() || '';
+export function display(period: Period): string {
+    const formattedStartDate = monthYear(period.start);
+    const formattedEndDate = monthYear(period.end);
+    const periodDiff = periodDifference(period);
+
+    return formattedStartDate === formattedEndDate
+        ? `${formattedStartDate} - Present`
+        : `${formattedStartDate} - ${formattedEndDate} ${periodDiff}`;
 }
 
-export function monthYear(date: Date): string {
+function monthYear(date: Date): string {
     const month = months[date.getMonth() - 1];
     const year = date.getFullYear();
     return `${month} ${year}`;
+}
+
+function periodDifference(period: Period): string {
+    return yearMonthDiff(period.start, period.end)?.toString() || '';
 }
 
 export function yearMonthDiff(startDate: Date, endDate: Date): string {
