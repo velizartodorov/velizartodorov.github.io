@@ -1,5 +1,3 @@
-import { Period } from "./PeriodDto";
-
 const months = [
     'January',
     'February',
@@ -19,12 +17,10 @@ export function periodDifference(start: Date, end: Date): string {
     return yearMonthDiff(start, end)?.toString() || '';
 }
 
-export function getMonth(month: number): String {
-    return months[month - 1];
-}
-
 export function formatDate(date: Date): string {
-    return `${getMonth(date.getMonth())} ${date.getFullYear()}`;
+    const month = months[date.getMonth() - 1];
+    const year = date.getFullYear();
+    return `${month} ${year}`;
 }
 
 export function yearMonthDiff(startDate: Date, endDate: Date): string {

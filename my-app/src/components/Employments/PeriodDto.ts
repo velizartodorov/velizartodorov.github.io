@@ -5,7 +5,9 @@ export class Period {
     constructor(private readonly start: Date, private readonly end: Date) { }
 
     get period(): string {
-        return `${this.formattedStartDate} - ${this.formattedEndDate} ${this.periodDifference}`;
+        return this.formattedStartDate === this.formattedEndDate
+            ? `${this.formattedStartDate} - Present`
+            : `${this.formattedStartDate} - ${this.formattedEndDate} ${this.periodDifference}`;
     }
 
     private get formattedStartDate(): string {
