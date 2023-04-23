@@ -5,20 +5,12 @@ export class Period {
     constructor(private readonly start: Date, private readonly end: Date) { }
 
     get period(): string {
-        return this.formattedStartDate === this.formattedEndDate
-            ? `${this.formattedStartDate} - Present`
-            : `${this.formattedStartDate} - ${this.formattedEndDate} ${this.periodDifference}`;
-    }
+        const formattedStartDate = formatDate(this.start);
+        const formattedEndDate = formatDate(this.end);
+        const periodDiff = periodDifference(this.start, this.end);
 
-    private get formattedStartDate(): string {
-        return formatDate(this.start);
-    }
-
-    private get formattedEndDate(): string {
-        return formatDate(this.end);
-    }
-
-    private get periodDifference(): string {
-        return periodDifference(this.start, this.end);
+        return this.start === this.end
+            ? `${formattedStartDate} - Present`
+            : `${formattedStartDate} - ${formattedEndDate} ${periodDiff}`;
     }
 }
