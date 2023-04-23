@@ -1,7 +1,7 @@
 import Table from 'react-bootstrap/Table';
 import './style.css';
-import Profile from './Profile';
-import { AddHeader, addIconTo, callTo, linkTo, mailTo, profilePicture } from './Utils';
+import Profile from './profile';
+import { AddHeader, addIconTo, callTo, linkTo, mailTo, profilePicture } from './utils';
 
 const profile = new Profile();
 

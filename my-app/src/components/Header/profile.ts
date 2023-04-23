@@ -1,4 +1,4 @@
-import { GENT } from "../Constants";
+import { GENT } from "../constants";
 import { Link } from "./link";
 
 export class Profile {
