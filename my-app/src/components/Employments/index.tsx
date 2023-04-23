@@ -1,5 +1,5 @@
 import { Accordion, Col, Container, Row } from "react-bootstrap";
-import { employments } from "./EmploymentsDto";
+import { employments } from "./employments";
 
 const Employments = () => (
   <>
