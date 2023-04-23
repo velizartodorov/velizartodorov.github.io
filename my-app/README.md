@@ -1,5 +1,9 @@
 # Getting Started with Create React App
 
+## Git is not tracking the case of file `.ts`
+
+Run `git config core.ignorecase false` in the console
+
 ## How to fix: npm ERR! enoent ENOENT: no such file or directory, rename
 
 1. delete `node-modules` folder
