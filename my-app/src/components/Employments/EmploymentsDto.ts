@@ -1,11 +1,12 @@
 import { GENT } from "../Constants";
+import { Period } from "./PeriodDto";
 
 interface IEmployment {
     position: string;
     company: string;
     place: string;
     icon: string;
-    period: string;
+    period: Period;
     body: string;
 }
 
@@ -15,7 +16,7 @@ export const employments: IEmployment[] = [
         company: 'Unified Post',
         place: GENT,
         icon: '/employments/unified_post.png',
-        period: 'April 2019 - February 2023',
+        period: new Period(new Date(2019, 4), new Date(2023, 2)),
         body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
     },
     {
@@ -23,7 +24,15 @@ export const employments: IEmployment[] = [
         company: 'ADM Solutions',
         place: GENT,
         icon: '/employments/adm_solutions.jpg',
-        period: 'November 2018 - March 2019',
+        period: new Period(new Date(2018, 11), new Date(2019, 3)),
+        body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+    },
+    {
+        position: "Erasmus+ C# Developer Trainee",
+        company: 'ADM Solutions',
+        place: GENT,
+        icon: '/employments/adm_solutions.jpg',
+        period: new Period(new Date(2018, 7), new Date(2018, 10)),
         body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
     },
     {
@@ -31,7 +40,7 @@ export const employments: IEmployment[] = [
         company: 'DSI Ltd.',
         place: 'Rousse, Bulgaria',
         icon: '/employments/dsi-ltd-bulgaria.png',
-        period: 'July 2017 - May 2018',
+        period: new Period(new Date(2017, 7), new Date(2018, 5)),
         body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
     }
 ]

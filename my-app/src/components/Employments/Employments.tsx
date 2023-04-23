@@ -1,6 +1,6 @@
 import { Accordion, Col, Container, Row } from "react-bootstrap";
 import { employments } from "./EmploymentsDto";
-import { monthDiff } from "./Utils";
+import { yearMonthDiff } from "./Utils";
 
 const Employments = () => (
    <><h1>Employments</h1>
@@ -20,9 +20,8 @@ const Employments = () => (
                            {employment.place}
                         </Col>
                         <Col className="col-md-auto text-right">
-                           <h4>{employment.period}{' '}
-                              ({monthDiff(new Date(2017, 4), new Date(2018, 4))}
-                              {' '}months)
+                           <h4>{employment.period.getStartDateString()} - {employment.period.getEndDateString()}{' '}
+                              ({yearMonthDiff(employment.period.getStartDate(), employment.period.getEndDate())})
                            </h4>
                         </Col>
                      </Row>

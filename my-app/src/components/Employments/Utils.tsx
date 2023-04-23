@@ -1,8 +1,26 @@
+const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+];
 
-export function monthDiff(d1: Date, d2: Date) {
-    var months;
-    months = (d2.getFullYear() - d1.getFullYear()) * 12;
-    months -= d1.getMonth();
-    months += d2.getMonth();
-    return months <= 0 ? 0 : months;
+export function getMonth(month: number): String {
+    return months[month - 1];
+}
+
+export function yearMonthDiff(startDate: Date, endDate: Date): string {
+    const monthDiff = (endDate.getFullYear() - startDate.getFullYear())
+        * 12 - startDate.getMonth() + endDate.getMonth();
+    return monthDiff >= 12
+        ? `${Math.floor(monthDiff / 12)} years, ${monthDiff % 12} months`
+        : `${monthDiff} months`;
 }
