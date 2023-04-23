@@ -1,5 +1,11 @@
 # Getting Started with Create React App
 
+## How to fix: npm ERR! enoent ENOENT: no such file or directory, rename
+
+1. delete `node-modules` folder
+2. run command `npm cache clean --force`
+3. run command `npm install`
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
