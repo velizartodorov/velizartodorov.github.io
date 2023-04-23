@@ -9,15 +9,15 @@ const Employments = () => (
         <Accordion.Item key={index} eventKey={index.toString()}>
           <Accordion.Header>
             <Container fluid>
-              <Row>
-                <Col className="col-md-auto text-left">
+              <Row className="align-items-center">
+                <Col xs="auto" className="text-left">
                   <img src={employment.icon} alt="company icon" style={{ width: 50 }} />
                 </Col>
-                <Col className="col-4 text-left">
+                <Col xs="4" className="text-left">
                   <h5>{`${employment.position} at ${employment.company}`}</h5>
                 </Col>
                 <Col>{employment.place}</Col>
-                <Col className="col-md-auto text-right">
+                <Col xs="auto" className="text-right">
                   <h5>{employment.period.period}</h5>
                 </Col>
               </Row>
