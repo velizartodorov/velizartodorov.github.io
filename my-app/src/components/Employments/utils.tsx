@@ -36,9 +36,12 @@ function periodDifference(period: Period): string {
 }
 
 export function yearMonthDiff(startDate: Date, endDate: Date): string {
-    const monthDiff = (endDate.getFullYear() - startDate.getFullYear())
-        * 12 - startDate.getMonth() + endDate.getMonth();
-    return monthDiff >= 12
-        ? `(${Math.floor(monthDiff / 12)} years, ${monthDiff % 12} months)`
-        : `(${monthDiff} months)`;
+    const monthDiff = (endDate.getFullYear() - startDate.getFullYear()) * 12
+        + (endDate.getMonth() - startDate.getMonth());
+    const yearDiff = Math.floor(monthDiff / 12);
+    const remainingMonths = monthDiff % 12;
+    const yearString = yearDiff > 0 ? `${yearDiff} years` : '';
+    const monthString = remainingMonths > 0 ? `${remainingMonths} months` : '';
+    const separator = yearString && monthString ? ', ' : '';
+    return `(${yearString}${separator}${monthString})`;
 }
