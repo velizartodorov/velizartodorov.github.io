@@ -6,5 +6,5 @@ export interface IEmployment {
     place: string;
     icon: string;
     period: Period;
-    body: string;
+    body: Array<string>;
 }
