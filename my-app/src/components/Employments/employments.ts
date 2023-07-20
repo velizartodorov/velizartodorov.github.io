@@ -5,7 +5,7 @@ export const employments: IEmployment[] = [
     {
         position: "Java Software Crafter",
         company: 'Continuum',
-        place: "Hybrid ("+GENT+")",
+        place: "Hybrid (" + GENT + ")",
         icon: '/employments/continuum.jpg',
         period: {
             start: new Date(2023, 5),
@@ -72,9 +72,18 @@ export const employments: IEmployment[] = [
             end: new Date(2018, 5)
         },
         body: [
-            'Joined the Continuum tribe, consulting clients using Java based applications',
-            'References 📌',
-            '\https://www.continuum.be/en/'
+            `• Kozelat.com/Outletpc.bg – OpenCart 2.3 (PHP 7.1/Bootstrap 3) shops – development and support`,
+            `• MiAudit – (Laravel 4.2/Bootstrap 3) – system for audit and management of cleaning companies in UK`,
+            `• Git/Unix shell, FileZilla, PuTTY remote maintenance of company servers`,
+            `• Project management system (Redmine) & web hosting administration (Digital Ocean)`,
+            `• Development methodology: Pair programming`,
+            `• Production methodology: Kanban`,
+
+            `References 📌`,
+
+            `• https://kozelat.com/`,
+            `• https://outletpc.bg/`,
+            `• https://miaudit.com/`
         ]
     }
 ];
