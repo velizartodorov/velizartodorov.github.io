@@ -57,9 +57,19 @@ export const employments: IEmployment[] = [
             end: new Date(2018, 10)
         },
         body: [
-            'Joined the Continuum tribe, consulting clients using Java based applications',
-            'References 📌',
-            '\https://www.continuum.be/en/'
+            `Technologies 🔧`,
+
+            `• Overview of C# programming concepts and approaches in .NET 4.0 and higher (Visual Studio 2015/17)`,
+            `• Design and implementation of C#-based software`,
+            `• Improving workflow and providing support functions`,
+            `• Performing tests over C#-based software components`,
+            `• Development methodology: Pair programming`,
+            `• Production methodology: Kanban`,
+
+            `References 📌`,
+
+            ` • https://erasmus-plus.ec.europa.eu/`,
+            ` • https://www.uni-ruse.bg/en`
         ]
     },
     {
