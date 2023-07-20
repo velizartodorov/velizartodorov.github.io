@@ -24,9 +24,11 @@ const Employments = () => (
               </Row>
             </Container>
           </Accordion.Header>
-          {employment.body.map((bodyItem) => (
-            <Accordion.Body>{bodyItem}</Accordion.Body>
-          ))}
+          <Accordion.Body>
+            {employment.body.map((bodyItem) => (
+              <p>{bodyItem}</p>
+            ))}
+          </Accordion.Body>
         </Accordion.Item>
       ))}
     </Accordion>
