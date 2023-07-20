@@ -72,6 +72,8 @@ export const employments: IEmployment[] = [
             end: new Date(2018, 5)
         },
         body: [
+            `Technologies 🔧`,
+
             `• Kozelat.com/Outletpc.bg – OpenCart 2.3 (PHP 7.1/Bootstrap 3) shops – development and support`,
             `• MiAudit – (Laravel 4.2/Bootstrap 3) – system for audit and management of cleaning companies in UK`,
             `• Git/Unix shell, FileZilla, PuTTY remote maintenance of company servers`,
