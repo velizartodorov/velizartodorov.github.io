@@ -11,24 +11,24 @@ const Header = () => {
                 <tbody>
                     <tr>
                         <td rowSpan={profile.languages.length}>{profilePicture(profile)}</td>
-                        <td colSpan={colSpan(profile)}><h1>{profile.name}</h1></td>
-                        <td><h5>{linkTo(profile.birthday)}</h5></td>
-                        <td><h5>{linkTo(profile.drivingLicense)}</h5></td>
+                        <td colSpan={colSpan(profile)}><h3>{profile.name}</h3></td>
+                        <td><h6>{linkTo(profile.birthday)}</h6></td>
+                        <td><h6>{linkTo(profile.drivingLicense)}</h6></td>
                     </tr>
                     <tr>
-                        <td colSpan={colSpan(profile)}><h5>{mailTo(profile.email)}</h5></td>
-                        <td><h5>{callTo(profile.phone)}</h5></td>
-                        <td><h5>{linkTo(profile.address)}</h5></td>
+                        <td colSpan={colSpan(profile)}><h6>{mailTo(profile.email)}</h6></td>
+                        <td><h6>{callTo(profile.phone)}</h6></td>
+                        <td><h6>{linkTo(profile.address)}</h6></td>
                     </tr>
                     <tr>
-                        <td colSpan={colSpan(profile)}><h5>{linkTo(profile.linkedIn)}</h5></td>
-                        <td><h5>{linkTo(profile.gitHub)}</h5></td>
-                        <td><h5>{linkTo(profile.blog)}</h5></td>
+                        <td colSpan={colSpan(profile)}><h6>{linkTo(profile.linkedIn)}</h6></td>
+                        <td><h6>{linkTo(profile.gitHub)}</h6></td>
+                        <td><h6>{linkTo(profile.blog)}</h6></td>
                     </tr>
                     <tr>
                         {profile.languages.map((language) => (
                             <td key={language.name}>
-                                <h5>{linkTo(language)}</h5>
+                                <h6>{linkTo(language)}</h6>
                             </td>
                         ))}
                     </tr>
