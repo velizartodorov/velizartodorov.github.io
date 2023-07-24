@@ -125,7 +125,6 @@ export const employments: IEmployment[] = [
         references: [
             "https://www.unifiedpost.com/",
             "https://www.banqup.com/",
-            "https://www.elo.com/en-de.html",
         ]
     },
     {
