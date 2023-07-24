@@ -3,6 +3,45 @@ import { IEmployment } from "./employment";
 
 export const employments: IEmployment[] = [
     {
+        position: "Java Software Developer",
+        company: 'Securex',
+        place: GENT,
+        icon: '/employments/securex.png',
+        period: {
+            start: new Date(2023, 7),
+            end: new Date(2023, 7)
+        },
+        body: [
+            `Description 📚`,
+            ``,
+            `Joined Securex as an external Java software developer.`,
+            ``,
+            `Technologies 🔧`,
+            ``,
+            `• Language/framework: Java 17, Spring Boot 2.6`,
+            `• API Tools: Apicurio Studio, Swagger`,
+            `• Dependency management: Gradle`,
+            `• Testing framework: Groovy-Spock`,
+            `• CI/CD: Kibana`,
+            `• Deployments: Confluence Bamboo, Azure`,
+            `• Database: Oracle`,
+            `• Application server: Apache Tomcat`,
+            `• Architecture: Microservices, Spring Cloud Gateway, Netflix Zuul API (Eureka), Load-balancers`,
+            `• Persistence: Spring Data JPA, Hibernate`,
+            `• Database management: Liquibase`,
+            `• Front-end: React, React Native (mobile app)`,
+            `• Version control: Git, BitBucket`,
+            `• IDE: IntelliJ`,
+            `• Development methodology: Pair/solo programming`,
+            `• Production methodology: Scrum with 2-week sprints, Sprint planning, Retro meetings, SafE`,
+            `• Time logging - Jira`,
+            ``,
+            `References 📌`,
+            ``,
+            `• https://www.securex.be/en`
+        ]
+    },
+    {
         position: "Java Software Crafter",
         company: 'Continuum',
         place: GENT_HYBRID,
@@ -12,9 +51,33 @@ export const employments: IEmployment[] = [
             end: new Date(2023, 5)
         },
         body: [
-            'Joined the Continuum tribe, consulting clients using Java based applications',
-            'References 📌',
-            'https://www.continuum.be/en/'
+            `Description 📚`,
+            ``,
+            `Joined the Continuum tribe, consulting clients using Java based applications.`,
+            ``,
+            `Technologies 🔧`,
+            ``,
+            `• Language/framework: Java 17, Spring Boot 2.6`,
+            `• API Tools: Apicurio Studio, Swagger`,
+            `• Dependency management: Gradle`,
+            `• Testing framework: Groovy-Spock`,
+            `• CI/CD: Kibana`,
+            `• Deployments: Confluence Bamboo, Azure`,
+            `• Database: Oracle`,
+            `• Application server: Apache Tomcat`,
+            `• Architecture: Microservices, Spring Cloud Gateway, Netflix Zuul API (Eureka), Load-balancers`,
+            `• Persistence: Spring Data JPA, Hibernate`,
+            `• Database management: Liquibase`,
+            `• Front-end: React, React Native (mobile app)`,
+            `• Version control: Git, BitBucket`,
+            `• IDE: IntelliJ`,
+            `• Development methodology: Pair/solo programming`,
+            `• Production methodology: Scrum with 2-week sprints, Sprint planning, Retro meetings, SafE`,
+            `• Time logging - Jira`,
+            ``,
+            `References 📌`,
+            ``,
+            `• https://www.continuum.be/en/`
         ]
     },
     {
@@ -27,6 +90,8 @@ export const employments: IEmployment[] = [
             end: new Date(2023, 4)
         },
         body: [
+            `Description 📚`,
+            ``,
             `• ADMS was acquired by Unified Post. Working on the Integration Portal, 
             configuration app for connecting 3rd party apps to the Unified Post flows`,
             `• Setting-up JIRA flow + Bitbucket integration, Git Gitflow`,
@@ -67,6 +132,8 @@ export const employments: IEmployment[] = [
             end: new Date(2019, 3)
         },
         body: [
+            `Description 📚`,
+            ``,
             `• Integrating, developing and improving automatized invoice/dossier flows with external services:`,
             `   ◦ BillToBox (BanqUp), ELO and accountancy packages`,
             `• Documenting and schematizing the flow using UML diagrams`,
@@ -106,7 +173,7 @@ export const employments: IEmployment[] = [
             end: new Date(2018, 10)
         },
         body: [
-            `Technologies 🔧`,
+            `Description 📚`,
             ``,
             `• Overview of C# programming concepts and approaches in .NET 4.0 and higher (Visual Studio 2015/17)`,
             `• Design and implementation of C#-based software`,
@@ -117,8 +184,8 @@ export const employments: IEmployment[] = [
             ``,
             `References 📌`,
             ``,
-            ` • https://erasmus-plus.ec.europa.eu/`,
-            ` • https://www.uni-ruse.bg/en`
+            `• https://erasmus-plus.ec.europa.eu/`,
+            `• https://www.uni-ruse.bg/en`
         ]
     },
     {
@@ -131,7 +198,7 @@ export const employments: IEmployment[] = [
             end: new Date(2018, 5)
         },
         body: [
-            `Technologies 🔧`,
+            `Description 📚`,
             ``,
             `• Kozelat.com/Outletpc.bg – OpenCart 2.3 (PHP 7.1/Bootstrap 3) shops – development and support`,
             `• MiAudit – (Laravel 4.2/Bootstrap 3) – system for audit and management of cleaning companies in UK`,
