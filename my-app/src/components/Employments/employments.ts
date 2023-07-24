@@ -40,12 +40,12 @@ export const employments: IEmployment[] = [
             ``,
         ],
         references: [
-            "https://www.securex.be/en"
+            { key: "Securex", value: "https://www.securex.be/en" }
         ]
     },
     {
         position: "Java Software Crafter",
-        company: 'Continuum',
+        company: 'Continuum Consulting NV',
         place: GENT_HYBRID,
         icon: '/employments/continuum.jpg',
         period: {
@@ -81,7 +81,7 @@ export const employments: IEmployment[] = [
             ``,
         ],
         references: [
-            "https://www.continuum.be/en/"
+            { key: "Continuum Consulting NV", value: "https://www.continuum.be/en/" }
         ]
     },
     {
@@ -123,8 +123,8 @@ export const employments: IEmployment[] = [
             ``,
         ],
         references: [
-            "https://www.unifiedpost.com/",
-            "https://www.banqup.com/",
+            { key: "Unifiedpost", value: "https://www.unifiedpost.com/" },
+            { key: "Banqup", value: "https://www.banqup.com/" }
         ]
     },
     {
@@ -165,8 +165,8 @@ export const employments: IEmployment[] = [
             ``,
         ],
         references: [
-            "https://web.archive.org/web/20181111090144/https://adm-solutions.eu/nl/",
-            "https://www.elo.com/en-de.html",
+            { key: "ADM Solutions", value: "https://web.archive.org/web/20181111090144/https://adm-solutions.eu/nl/" },
+            { key: "ELO", value: "https://www.elo.com/en-de.html" }
         ]
     },
     {
@@ -192,8 +192,10 @@ export const employments: IEmployment[] = [
             ``,
         ],
         references: [
-            "https://erasmus-plus.ec.europa.eu/",
-            "https://www.uni-ruse.bg/en"
+            { key: "Erasmus +", value: "https://erasmus-plus.ec.europa.eu/" },
+            { key: "Universiy of Ruse", value: "https://www.uni-ruse.bg/en" },
+            { key: "BIKEMA information", value: "http://fetch.ecs.uni-ruse.bg/?cmd=gsProfile&user=FERNAND" },
+            { key: "Lotuswebtec.com", value: "https://www.lotuswebtec.com/en/" }
         ]
     },
     {
@@ -219,9 +221,10 @@ export const employments: IEmployment[] = [
             ``,
         ],
         references: [
-            "https://kozelat.com/",
-            "https://outletpc.bg/",
-            "https://miaudit.com/"
+            { key: "DSI Ltd - Developing Software Innovations", value: "https://dsi.bg/en/" },
+            { key: "Kozelat.com", value: "https://kozelat.com/" },
+            { key: "Outletpc.bg", value: "https://outletpc.bg/" },
+            { key: "MiAudit", value: "https://miaudit.com/" }
         ]
     }
 ];
