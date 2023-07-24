@@ -1,11 +1,11 @@
-import { GENT } from "../constants";
+import { GENT, GENT_HYBRID, ROUSSE } from "../places";
 import { IEmployment } from "./employment";
 
 export const employments: IEmployment[] = [
     {
         position: "Java Software Crafter",
         company: 'Continuum',
-        place: "Hybrid (" + GENT + ")",
+        place: GENT_HYBRID,
         icon: '/employments/continuum.jpg',
         period: {
             start: new Date(2023, 5),
@@ -27,9 +27,34 @@ export const employments: IEmployment[] = [
             end: new Date(2023, 4)
         },
         body: [
-            'Joined the Continuum tribe, consulting clients using Java based applications',
-            'References 📌',
-            '\https://www.continuum.be/en/'
+            `• ADMS was acquired by Unified Post. Working on the Integration Portal, 
+            configuration app for connecting 3rd party apps to the Unified Post flows`,
+            `• Setting-up JIRA flow + Bitbucket integration, Git Gitflow`,
+            `• Working on accountancy simulation app using multi-tenancy architecture (Spring Boot)`,
+            `• Documenting and schematizing the flow using C4 diagrams, updating README-s`,
+            ``,
+            `Technologies 🔧`,
+            ``,
+            `• Language/framework: Java 8/11, Spring Boot 2.6.7, Project Reactor`,
+            `• API tool: Swagger`,
+            `• Dependency management: Maven, Gradle`,
+            `• Testing framework: JUnit 4/5, Mockito`,
+            `• CI/CD: Bitbucket pipelines`,
+            `• Database: PostgreSQL`,
+            `• Application server: Apache Tomcat 8`,
+            `• Architecture: Microservices`,
+            `• Persistence: Spring Data JPA, Hibernate`,
+            `• Database management: Liquibase, Flyway`,
+            `• Front-end: Angular 12`,
+            `• IDE: IntelliJ, VS Code, DBeaver`,
+            `• Diagram schematization and documentation: Draw.io, C4 Structurizr, Markdown`,
+            `• Production methodology: Kanban & Scrum`,
+            ``,
+            `References 📌`,
+            ``,
+            `• https://www.unifiedpost.com/`,
+            `• https://www.banqup.com/`,
+            `• https://www.elo.com/en-de.html`,
         ]
     },
     {
@@ -42,9 +67,33 @@ export const employments: IEmployment[] = [
             end: new Date(2019, 3)
         },
         body: [
-            'Joined the Continuum tribe, consulting clients using Java based applications',
-            'References 📌',
-            '\https://www.continuum.be/en/'
+            `• Integrating, developing and improving automatized invoice/dossier flows with external services:`,
+            `   ◦ BillToBox (BanqUp), ELO and accountancy packages`,
+            `• Documenting and schematizing the flow using UML diagrams`,
+            `• Migrating Java applications from SVN to Git`,
+            ``,
+            `Technologies 🔧`,
+            ``,
+            `• Language: Java 8`,
+            `• Testing framework: JUnit 4`,
+            `• Database: Microsoft SQL Server 2008-2012`,
+            `• Application server: Apache Tomcat 8`,
+            `• OS: Windows Server 2008-2012`,
+            `• External API: ELO API`,
+            `• Persistence: Java Database Connectivity (JDBC)`,
+            `• Architecture: Java Servlet`,
+            `• Front-end: Java Server Pages (JSP) + jQuerry/Ajax`,
+            `• Version Control: SVN/Git, BitBucket`,
+            `• IDE: Eclipse`,
+            `• Diagram schematization: Draw.io, MS Visio`,
+            `• Development methodology: Pair programming`,
+            `• Production methodology: Kanban`,
+            ``,
+            `References 📌`,
+            ``,
+            `• https://www.unifiedpost.com/`,
+            `• https://www.banqup.com/`,
+            `• https://www.elo.com/en-de.html`,
         ]
     },
     {
@@ -58,16 +107,16 @@ export const employments: IEmployment[] = [
         },
         body: [
             `Technologies 🔧`,
-
+            ``,
             `• Overview of C# programming concepts and approaches in .NET 4.0 and higher (Visual Studio 2015/17)`,
             `• Design and implementation of C#-based software`,
             `• Improving workflow and providing support functions`,
             `• Performing tests over C#-based software components`,
             `• Development methodology: Pair programming`,
             `• Production methodology: Kanban`,
-
+            ``,
             `References 📌`,
-
+            ``,
             ` • https://erasmus-plus.ec.europa.eu/`,
             ` • https://www.uni-ruse.bg/en`
         ]
@@ -75,7 +124,7 @@ export const employments: IEmployment[] = [
     {
         position: "Full-Stack Developer",
         company: 'DSI Ltd.',
-        place: 'Rousse, Bulgaria',
+        place: ROUSSE,
         icon: '/employments/dsi.png',
         period: {
             start: new Date(2017, 7),
@@ -83,16 +132,16 @@ export const employments: IEmployment[] = [
         },
         body: [
             `Technologies 🔧`,
-
+            ``,
             `• Kozelat.com/Outletpc.bg – OpenCart 2.3 (PHP 7.1/Bootstrap 3) shops – development and support`,
             `• MiAudit – (Laravel 4.2/Bootstrap 3) – system for audit and management of cleaning companies in UK`,
             `• Git/Unix shell, FileZilla, PuTTY remote maintenance of company servers`,
             `• Project management system (Redmine) & web hosting administration (Digital Ocean)`,
             `• Development methodology: Pair programming`,
             `• Production methodology: Kanban`,
-
+            ``,
             `References 📌`,
-
+            ``,
             `• https://kozelat.com/`,
             `• https://outletpc.bg/`,
             `• https://miaudit.com/`

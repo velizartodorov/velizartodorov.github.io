@@ -1,4 +1,4 @@
-import { GENT } from "../constants";
+import { GENT } from "../places";
 import { Profile } from "./profile";
 
 export const profile: Profile = {
