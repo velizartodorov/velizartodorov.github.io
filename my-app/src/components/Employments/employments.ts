@@ -38,7 +38,9 @@ export const employments: IEmployment[] = [
             ``,
             `References 📌`,
             ``,
-            `• https://www.securex.be/en`
+        ],
+        references: [
+            "https://www.securex.be/en"
         ]
     },
     {
@@ -77,7 +79,9 @@ export const employments: IEmployment[] = [
             ``,
             `References 📌`,
             ``,
-            `• https://www.continuum.be/en/`
+        ],
+        references: [
+            "https://www.continuum.be/en/"
         ]
     },
     {
@@ -117,9 +121,11 @@ export const employments: IEmployment[] = [
             ``,
             `References 📌`,
             ``,
-            `• https://www.unifiedpost.com/`,
-            `• https://www.banqup.com/`,
-            `• https://www.elo.com/en-de.html`,
+        ],
+        references: [
+            "https://www.unifiedpost.com/",
+            "https://www.banqup.com/",
+            "https://www.elo.com/en-de.html",
         ]
     },
     {
@@ -158,9 +164,11 @@ export const employments: IEmployment[] = [
             ``,
             `References 📌`,
             ``,
-            `• https://www.unifiedpost.com/`,
-            `• https://www.banqup.com/`,
-            `• https://www.elo.com/en-de.html`,
+        ],
+        references: [
+            "https://www.unifiedpost.com/",
+            "https://www.banqup.com/",
+            "https://www.elo.com/en-de.html",
         ]
     },
     {
@@ -184,8 +192,10 @@ export const employments: IEmployment[] = [
             ``,
             `References 📌`,
             ``,
-            `• https://erasmus-plus.ec.europa.eu/`,
-            `• https://www.uni-ruse.bg/en`
+        ],
+        references: [
+            "https://erasmus-plus.ec.europa.eu/",
+            "https://www.uni-ruse.bg/en"
         ]
     },
     {
@@ -209,9 +219,11 @@ export const employments: IEmployment[] = [
             ``,
             `References 📌`,
             ``,
-            `• https://kozelat.com/`,
-            `• https://outletpc.bg/`,
-            `• https://miaudit.com/`
+        ],
+        references: [
+            "https://kozelat.com/",
+            "https://outletpc.bg/",
+            "https://miaudit.com/"
         ]
     }
 ];

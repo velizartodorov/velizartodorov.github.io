@@ -7,4 +7,5 @@ export interface IEmployment {
     icon: string;
     period: Period;
     body: Array<string>;
+    references: Array<string>;
 }
