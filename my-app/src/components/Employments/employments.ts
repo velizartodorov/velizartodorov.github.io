@@ -192,7 +192,7 @@ export const employments: IEmployment[] = [
             ``,
         ],
         references: [
-            { key: "Erasmus +", value: "https://erasmus-plus.ec.europa.eu/" },
+            { key: "Erasmus+", value: "https://erasmus-plus.ec.europa.eu/" },
             { key: "Universiy of Ruse", value: "https://www.uni-ruse.bg/en" },
             { key: "BIKEMA information", value: "http://fetch.ecs.uni-ruse.bg/?cmd=gsProfile&user=FERNAND" },
             { key: "Lotuswebtec.com", value: "https://www.lotuswebtec.com/en/" }
