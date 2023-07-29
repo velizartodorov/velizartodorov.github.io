@@ -73,7 +73,7 @@ export const employments: IEmployment[] = [
             `• Database: PostgreSQL, Amazon DynamoDB (serverless, key-value NoSQL database)`,
             `• Application server: Apache Tomcat 8`,
             `• Architecture: Microservices, Client-server`,
-            `• Persistence: Spring Data JPA, Hibernate, R2dbc Repository (Project Reactor)`,
+            `• Persistence: Spring Data JPA, Hibernate, Spring Data R2DBC`,
             `• Database management: Flyway`,
             `• Front-end: Angular 2`,
             `• Version control: Git, Github`,
