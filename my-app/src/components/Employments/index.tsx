@@ -29,9 +29,9 @@ const Employments = () => (
               <a>{bodyItem}<br></br></a>
             ))}
             {employment.references.map((link) => (
-              <div key={link.key}>
+              <div key={link.id}>
                 <span>&#8226; </span>
-                <a href={link.value}>{link.key}</a><br />
+                <a href={link.href}>{link.value}</a><br />
               </div>
             ))}
           </Accordion.Body>

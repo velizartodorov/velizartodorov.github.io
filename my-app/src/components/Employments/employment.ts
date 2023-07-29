@@ -11,6 +11,7 @@ export interface IEmployment {
 }
 
 export interface Reference {
-    key: string;
+    id: number;
     value: string;
+    href: string;
 }

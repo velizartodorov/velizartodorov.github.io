@@ -40,7 +40,7 @@ export const employments: IEmployment[] = [
             ``,
         ],
         references: [
-            { key: "Securex", value: "https://www.securex.be/en" }
+            { id: 0, value: "Securex", href: "https://www.securex.be/en" }
         ]
     },
     {
@@ -81,7 +81,7 @@ export const employments: IEmployment[] = [
             ``,
         ],
         references: [
-            { key: "Continuum Consulting NV", value: "https://www.continuum.be/en/" }
+            { id: 0, value: "Continuum Consulting NV", href: "https://www.continuum.be/en/" }
         ]
     },
     {
@@ -124,8 +124,8 @@ export const employments: IEmployment[] = [
             ``,
         ],
         references: [
-            { key: "Unifiedpost", value: "https://www.unifiedpost.com/" },
-            { key: "Banqup", value: "https://www.banqup.com/" }
+            { id: 0, value: "Unifiedpost", href: "https://www.unifiedpost.com/" },
+            { id: 1, value: "Banqup", href: "https://www.banqup.com/" }
         ]
     },
     {
@@ -166,8 +166,8 @@ export const employments: IEmployment[] = [
             ``,
         ],
         references: [
-            { key: "ADM Solutions", value: "https://web.archive.org/web/20181111090144/https://adm-solutions.eu/nl/" },
-            { key: "ELO", value: "https://www.elo.com/en-de.html" }
+            { id: 0, value: "ADM Solutions", href: "https://web.archive.org/web/20181111090144/https://adm-solutions.eu/nl/" },
+            { id: 1, value: "ELO", href: "https://www.elo.com/en-de.html" }
         ]
     },
     {
@@ -193,10 +193,10 @@ export const employments: IEmployment[] = [
             ``,
         ],
         references: [
-            { key: "Erasmus+", value: "https://erasmus-plus.ec.europa.eu/" },
-            { key: "Universiy of Ruse", value: "https://www.uni-ruse.bg/en" },
-            { key: "BIKEMA information", value: "http://fetch.ecs.uni-ruse.bg/?cmd=gsProfile&user=FERNAND" },
-            { key: "Lotuswebtec.com", value: "https://www.lotuswebtec.com/en/" }
+            { id: 0, value: "Erasmus+", href: "https://erasmus-plus.ec.europa.eu/" },
+            { id: 1, value: "Universiy of Ruse", href: "https://www.uni-ruse.bg/en" },
+            { id: 2, value: "BIKEMA information", href: "http://fetch.ecs.uni-ruse.bg/?cmd=gsProfile&user=FERNAND" },
+            { id: 3, value: "Lotuswebtec.com", href: "https://www.lotuswebtec.com/en/" }
         ]
     },
     {
@@ -222,10 +222,10 @@ export const employments: IEmployment[] = [
             ``,
         ],
         references: [
-            { key: "DSI Ltd - Developing Software Innovations", value: "https://dsi.bg/en/" },
-            { key: "Kozelat.com", value: "https://kozelat.com/" },
-            { key: "Outletpc.bg", value: "https://outletpc.bg/" },
-            { key: "MiAudit", value: "https://miaudit.com/" }
+            { id: 0, value: "DSI Ltd - Developing Software Innovations", href: "https://dsi.bg/en/" },
+            { id: 1, value: "Kozelat.com", href: "https://kozelat.com/" },
+            { id: 2, value: "Outletpc.bg", href: "https://outletpc.bg/" },
+            { id: 3, value: "MiAudit", href: "https://miaudit.com/" }
         ]
     }
 ];
