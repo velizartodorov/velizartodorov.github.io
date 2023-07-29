@@ -247,10 +247,10 @@ export const employments: IEmployment[] = [
         body: [
             `Description 📚`,
             ``,
-            `• fixing PC-s, laptops, mobile phones, tables`,
-            `• changing hardware components`,
+            `• software and hardware fixing PC-s, laptops, mobile phones, tables`,
+            `• changing, cleaning and maintaining hardware components of computer configurations`,
             `• software reinstallation, backup and maintance`,
-            `• creating hardware parts list based on customer requirements`,
+            `• creating hardware parts list for PC configuration based on customer requirements`,
             ``,
             `References 📌`,
             ``,
