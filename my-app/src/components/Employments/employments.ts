@@ -19,7 +19,7 @@ export const employments: IEmployment[] = [
             ``,
             `Technologies 🔧`,
             ``,
-            `• Language/framework: Java 17, Spring Boot 2.6`,
+            `• Language/framework: Java 11/17, Spring Boot 2.6`,
             `• API Tools: Apicurio Studio, Swagger`,
             `• Dependency management: Gradle`,
             `• Testing framework: Groovy-Spock`,
