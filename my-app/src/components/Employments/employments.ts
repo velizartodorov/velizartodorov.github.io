@@ -178,9 +178,9 @@ export const employments: IEmployment[] = [
     },
     {
         position: "Erasmus+ C# Developer Trainee",
-        company: 'ADM Solutions',
+        company: 'BIKEMA',
         place: GENT,
-        icon: '/employments/adm_solutions.jpg',
+        icon: '/employments/bikema_small.png',
         period: {
             start: new Date(2018, 7),
             end: new Date(2018, 10)
