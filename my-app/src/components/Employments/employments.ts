@@ -75,7 +75,7 @@ export const employments: IEmployment[] = [
             `• Architecture: Microservices, Client-server`,
             `• Persistence: Spring Data JPA, Hibernate, Spring Data R2DBC`,
             `• Database management: Flyway`,
-            `• Front-end: Angular 2`,
+            `• Front-end: Angular 12`,
             `• Version control: Git, Github`,
             `• IDE: IntelliJ, VS Code`,
             `• Diagram schematization and documentation: Mermaid.js`,
