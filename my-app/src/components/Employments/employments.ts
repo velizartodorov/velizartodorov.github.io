@@ -1,4 +1,4 @@
-import { GENT, GENT_HYBRID, ROUSSE } from "../places";
+import { ELENA, GENT, GENT_HYBRID, ROUSSE } from "../places";
 import { IEmployment } from "./employment";
 
 export const employments: IEmployment[] = [
@@ -233,6 +233,30 @@ export const employments: IEmployment[] = [
             { id: 1, value: "Kozelat.com", href: "https://kozelat.com/" },
             { id: 2, value: "Outletpc.bg", href: "https://outletpc.bg/" },
             { id: 3, value: "MiAudit", href: "https://miaudit.com/" }
+        ]
+    },
+    {
+        position: "Computer Technican Trainee",
+        company: 'Telnet',
+        place: ELENA,
+        icon: '/employments/telnet.png',
+        period: {
+            start: new Date(2015, 7),
+            end: new Date(2015, 9)
+        },
+        body: [
+            `Description 📚`,
+            ``,
+            `• fixing PC-s, laptops, mobile phones, tables`,
+            `• changing hardware components`,
+            `• software reinstallation, backup and maintance`,
+            `• creating hardware parts list based on customer requirements`,
+            ``,
+            `References 📌`,
+            ``,
+        ],
+        references: [
+            { id: 0, value: "Telnet", href: "https://telnet.bg/en/pc/home/p1/.html" },
         ]
     }
 ];
