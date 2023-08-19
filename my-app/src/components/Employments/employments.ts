@@ -25,7 +25,7 @@ export const employments: IEmployment[] = [
             `• Testing framework: Groovy-Spock`,
             `• CI/CD: Kibana`,
             `• Deployments: Atlassian Bamboo, Azure`,
-            `• Database: Oracle`,
+            `• Database: Oracle, Microsoft SQL Server`,
             `• Application server: Apache Tomcat`,
             `• Architecture: Distributed microservices, Spring Cloud Gateway, Netflix Zuul API (Eureka)`,
             `• Persistence: Spring Data JPA, Hibernate`,
