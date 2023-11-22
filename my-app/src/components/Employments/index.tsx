@@ -1,6 +1,7 @@
 import { Accordion, Col, Container, Row } from "react-bootstrap";
 import { employments } from "./employments";
 import { display } from "./utils";
+import { v4 as uuidv4 } from 'uuid';
 
 const Employments = () => (
   <>
@@ -26,7 +27,7 @@ const Employments = () => (
           </Accordion.Header>
           <Accordion.Body>
             {employment.body.map((bodyItem) => (
-              <a>{bodyItem}<br></br></a>
+              <span key={uuidv4()}>{bodyItem}<br></br></span>
             ))}
             {employment.references.map((link) => (
               <div key={link.id}>
