@@ -20,9 +20,13 @@ export function display(period: Period): string {
     const formattedEndDate = monthYear(period.end);
     const periodDiff = periodDifference(period);
 
-    return formattedStartDate === formattedEndDate
-        ? `${formattedStartDate} - Present`
+    return formattedEndDate === monthYear(currentDate())
+        ? `${formattedStartDate} - Present ${periodDiff}`
         : `${formattedStartDate} - ${formattedEndDate} ${periodDiff}`;
+}
+
+export function currentDate(): Date {
+    return new Date(new Date().getFullYear(), new Date().getMonth());
 }
 
 function monthYear(date: Date): string {

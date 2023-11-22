@@ -1,5 +1,6 @@
 import { ELENA, GENT, GENT_HYBRID, ROUSSE } from "../places";
 import { IEmployment } from "./employment";
+import { currentDate } from "./utils";
 
 export const employments: IEmployment[] = [
     {
@@ -9,7 +10,7 @@ export const employments: IEmployment[] = [
         icon: '/employments/continuum.jpg',
         period: {
             start: new Date(2023, 5),
-            end: new Date(2023, 5)
+            end: currentDate()
         },
         body: [
             `Description 📚`,
@@ -46,7 +47,7 @@ export const employments: IEmployment[] = [
             ``,
         ],
         references: [
-            { id: 0, value: "Continuum Consulting NV", href: "https://www.continuum.be/en/" }
+            { value: "Continuum Consulting NV", href: "https://www.continuum.be/en/" }
         ]
     },
     {
@@ -89,7 +90,7 @@ export const employments: IEmployment[] = [
             ``,
         ],
         references: [
-            { id: 0, value: "Securex", href: "https://www.securex.be/en" }
+            { value: "Securex", href: "https://www.securex.be/en" }
         ]
     },
     {
@@ -133,8 +134,8 @@ export const employments: IEmployment[] = [
             ``,
         ],
         references: [
-            { id: 0, value: "Unifiedpost", href: "https://www.unifiedpost.com/" },
-            { id: 1, value: "Banqup", href: "https://www.banqup.com/" }
+            { value: "Unifiedpost", href: "https://www.unifiedpost.com/" },
+            { value: "Banqup", href: "https://www.banqup.com/" }
         ]
     },
     {
@@ -177,8 +178,8 @@ export const employments: IEmployment[] = [
             ``,
         ],
         references: [
-            { id: 0, value: "ADM Solutions", href: "https://web.archive.org/web/20181111090144/https://adm-solutions.eu/nl/" },
-            { id: 1, value: "ELO", href: "https://www.elo.com/en-de.html" }
+            { value: "ADM Solutions", href: "https://web.archive.org/web/20181111090144/https://adm-solutions.eu/nl/" },
+            { value: "ELO", href: "https://www.elo.com/en-de.html" }
         ]
     },
     {
@@ -204,10 +205,10 @@ export const employments: IEmployment[] = [
             ``,
         ],
         references: [
-            { id: 0, value: "Erasmus+", href: "https://erasmus-plus.ec.europa.eu/" },
-            { id: 1, value: "Universiy of Ruse", href: "https://www.uni-ruse.bg/en" },
-            { id: 2, value: "BIKEMA information", href: "http://fetch.ecs.uni-ruse.bg/?cmd=gsProfile&user=FERNAND" },
-            { id: 3, value: "Lotuswebtec.com", href: "https://www.lotuswebtec.com/en/" }
+            { value: "Erasmus+", href: "https://erasmus-plus.ec.europa.eu/" },
+            { value: "Universiy of Ruse", href: "https://www.uni-ruse.bg/en" },
+            { value: "BIKEMA information", href: "http://fetch.ecs.uni-ruse.bg/?cmd=gsProfile&user=FERNAND" },
+            { value: "Lotuswebtec.com", href: "https://www.lotuswebtec.com/en/" }
         ]
     },
     {
@@ -233,10 +234,10 @@ export const employments: IEmployment[] = [
             ``,
         ],
         references: [
-            { id: 0, value: "DSI Ltd - Developing Software Innovations", href: "https://dsi.bg/en/" },
-            { id: 1, value: "Kozelat.com", href: "https://kozelat.com/" },
-            { id: 2, value: "Outletpc.bg", href: "https://outletpc.bg/" },
-            { id: 3, value: "MiAudit", href: "https://miaudit.com/" }
+            { value: "DSI Ltd - Developing Software Innovations", href: "https://dsi.bg/en/" },
+            { value: "Kozelat.com", href: "https://kozelat.com/" },
+            { value: "Outletpc.bg", href: "https://outletpc.bg/" },
+            { value: "MiAudit", href: "https://miaudit.com/" }
         ]
     },
     {
@@ -260,7 +261,7 @@ export const employments: IEmployment[] = [
             ``,
         ],
         references: [
-            { id: 0, value: "Telnet", href: "https://telnet.bg/en/pc/home/p1/.html" },
+            { value: "Telnet", href: "https://telnet.bg/en/pc/home/p1/.html" },
         ]
     }
 ];

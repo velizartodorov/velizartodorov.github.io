@@ -30,7 +30,7 @@ const Employments = () => (
               <span key={uuidv4()}>{bodyItem}<br></br></span>
             ))}
             {employment.references.map((link) => (
-              <div key={link.id}>
+              <div key={uuidv4()}>
                 <span>&#8226; </span>
                 <a href={link.href}>{link.value}</a><br />
               </div>

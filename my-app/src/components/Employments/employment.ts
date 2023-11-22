@@ -1,3 +1,4 @@
+import { Reference } from "./Reference";
 import { Period } from "./period";
 
 export interface IEmployment {
@@ -8,10 +9,4 @@ export interface IEmployment {
     period: Period;
     body: Array<string>;
     references: Array<Reference>;
-}
-
-export interface Reference {
-    id: number;
-    value: string;
-    href: string;
 }
