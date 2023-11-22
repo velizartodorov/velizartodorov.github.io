@@ -26,9 +26,16 @@ export function display(period: Period): string {
 }
 
 function monthYear(date: Date): string {
-    const month = months[date.getMonth() - 1];
-    const year = date.getFullYear();
-    return `${month} ${year}`;
+    let month = date.getMonth() - 1;
+    let year = date.getFullYear();
+
+    if (month === -1) {
+        month = 11; // Set to December
+        year -= 1; // Decrement the year for January
+    }
+
+    const previousMonth = months[month];
+    return `${previousMonth} ${year}`;
 }
 
 function periodDifference(period: Period): string {

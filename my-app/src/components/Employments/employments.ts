@@ -9,7 +9,7 @@ export const employments: IEmployment[] = [
         icon: '/employments/securex.png',
         period: {
             start: new Date(2023, 7),
-            end: new Date(2023, 7)
+            end: new Date(2023, 12)
         },
         body: [
             `Description 📚`,
