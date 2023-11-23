@@ -15,6 +15,10 @@ const months = [
     'December'
 ];
 
+export function bullet(): string {
+    return '\u2022';
+}
+
 export function display(period: Period): string {
     const formattedStartDate = monthYear(period.start);
     const formattedEndDate = monthYear(period.end);

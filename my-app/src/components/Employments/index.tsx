@@ -1,7 +1,7 @@
 import { Accordion, Col, Container, Row } from "react-bootstrap";
-import { employments } from "./employments";
-import { display } from "./utils";
 import { v4 as uuidv4 } from 'uuid';
+import { employments } from "./employments";
+import { display, bullet as bullet } from "./utils";
 
 const Employments = () => (
   <>
@@ -31,7 +31,7 @@ const Employments = () => (
             ))}
             {employment.references.map((link) => (
               <div key={uuidv4()}>
-                <span>&#8226; </span>
+                <span>{bullet()} </span>
                 <a href={link.href}>{link.value}</a><br />
               </div>
             ))}
