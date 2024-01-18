@@ -3,7 +3,7 @@ import { Profile } from "./profile";
 
 export const profile: Profile = {
     name: 'Velizar Todorov',
-    imageUrl: '/header/velizar.jpg',
+    imageUrl: '/header/velizar.png',
     imageSize: 200,
     email: 'veltodorov@outlook.com',
     phone: {
