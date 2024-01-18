@@ -83,7 +83,7 @@ export const employments: IEmployment[] = [
             `• IDE: IntelliJ, VS Code, DbVisualizer Pro 11.0.5`,
             `• Development methodology: Pair/solo programming`,
             `• Production methodology: Scrum with 2-week sprints (planning, retros), SAFe (Scaled agile framework)`,
-            `• Time logging - Jira`,
+            `• Time logging: Jira`,
             ``,
             `References 📌`,
             ``,
