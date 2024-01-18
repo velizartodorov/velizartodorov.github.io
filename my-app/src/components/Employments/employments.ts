@@ -1,6 +1,5 @@
 import { ELENA, GENT, GENT_HYBRID, ROUSSE } from "../places";
 import { IEmployment } from "./employment";
-import { currentDate } from "./utils";
 
 export const employments: IEmployment[] = [
     {
@@ -9,8 +8,8 @@ export const employments: IEmployment[] = [
         place: GENT_HYBRID,
         icon: '/employments/continuum.jpg',
         period: {
-            start: new Date(2023, 5),
-            end: currentDate()
+            start: new Date(2023, 4),
+            end: new Date(2024, 0)
         },
         body: [
             `Description 📚`,
@@ -40,7 +39,7 @@ export const employments: IEmployment[] = [
             `• IDE: IntelliJ, VS Code`,
             `• Diagram schematization and documentation: Mermaid.js`,
             `• Development methodology: Pair/solo programming`,
-            `• Time logging - Teamleader`,
+            `• Time logging: Teamleader`,
             `• Production methodology: Kanban`,
             ``,
             `References 📌`,
@@ -56,8 +55,8 @@ export const employments: IEmployment[] = [
         place: GENT,
         icon: '/employments/securex.png',
         period: {
-            start: new Date(2023, 7),
-            end: new Date(2023, 12)
+            start: new Date(2023, 6),
+            end: new Date(2023, 11)
         },
         body: [
             `Description 📚`,
@@ -99,8 +98,8 @@ export const employments: IEmployment[] = [
         place: GENT,
         icon: '/employments/unified_post.png',
         period: {
-            start: new Date(2019, 4),
-            end: new Date(2023, 4)
+            start: new Date(2019, 3),
+            end: new Date(2023, 3)
         },
         body: [
             `Description 📚`,
@@ -144,8 +143,8 @@ export const employments: IEmployment[] = [
         place: GENT,
         icon: '/employments/adm_solutions.jpg',
         period: {
-            start: new Date(2018, 11),
-            end: new Date(2019, 3)
+            start: new Date(2018, 10),
+            end: new Date(2019, 2)
         },
         body: [
             `Description 📚`,
@@ -188,8 +187,8 @@ export const employments: IEmployment[] = [
         place: GENT,
         icon: '/employments/bikema_small.png',
         period: {
-            start: new Date(2018, 7),
-            end: new Date(2018, 10)
+            start: new Date(2018, 6),
+            end: new Date(2018, 9)
         },
         body: [
             `Description 📚`,
@@ -217,8 +216,8 @@ export const employments: IEmployment[] = [
         place: ROUSSE,
         icon: '/employments/dsi.png',
         period: {
-            start: new Date(2017, 7),
-            end: new Date(2018, 5)
+            start: new Date(2017, 6),
+            end: new Date(2018, 4)
         },
         body: [
             `Description 📚`,
@@ -246,8 +245,8 @@ export const employments: IEmployment[] = [
         place: ELENA,
         icon: '/employments/telnet.png',
         period: {
-            start: new Date(2015, 7),
-            end: new Date(2015, 9)
+            start: new Date(2015, 6),
+            end: new Date(2015, 8)
         },
         body: [
             `Description 📚`,

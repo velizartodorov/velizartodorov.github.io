@@ -30,24 +30,19 @@ export function display(period: Period): string {
 }
 
 export function currentDate(): Date {
-    return new Date(new Date().getFullYear(), new Date().getMonth());
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth(), now.getDate());
 }
 
 function monthYear(date: Date): string {
-    let month = date.getMonth() - 1;
+    let month = date.getMonth();
     let year = date.getFullYear();
-
-    if (month === -1) {
-        month = 11; // Set to December
-        year -= 1; // Decrement the year for January
-    }
-
-    const previousMonth = months[month];
-    return `${previousMonth} ${year}`;
+    return `${months[month]} ${year}`;
 }
 
 function periodDifference(period: Period): string {
-    return yearMonthDiff(period.start, period.end)?.toString() || '';
+    const diff = yearMonthDiff(period.start, period.end);
+    return diff ? `${diff}` : '';
 }
 
 export function yearMonthDiff(startDate: Date, endDate: Date): string {
