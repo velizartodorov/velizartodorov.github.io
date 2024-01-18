@@ -96,7 +96,7 @@ export const employments: IEmployment[] = [
         position: "Software Developer",
         company: 'Unified Post',
         place: GENT,
-        icon: '/employments/unified_post.png',
+        icon: '/employments/unified_post.jpeg',
         period: {
             start: new Date(2019, 3),
             end: new Date(2023, 3)
