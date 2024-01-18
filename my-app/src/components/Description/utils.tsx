@@ -5,5 +5,5 @@ export function currentDate(): Date {
 
 export function yearsDiff(startDate: Date, endDate: Date): string {
     const yearDiff = endDate.getFullYear() - startDate.getFullYear();
-    return `${yearDiff} years`;
+    return `${yearDiff}`;
 }

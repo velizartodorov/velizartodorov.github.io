@@ -8,7 +8,7 @@ const Introduction = () => (
       <Card.Header><h2>Introduction</h2></Card.Header>
       <Card.Body>
         <Card.Text>
-          I am software developer with {yearsDiff(new Date(2017, 6), currentDate())} experience in the industry. My experience is mainly in the Java technological stack, but my interests are also aimed towards the front-end. I'm also interested in setting-up correct Gitflows, so that the whole software team can function properly.
+          As a software developer with {yearsDiff(new Date(2017, 6), currentDate())} years of experience in the industry, my passion lies in the Java technological stack. However, I have also gained expertise in front-end frameworks such as Angular. In addition to my daily development tasks, I prioritise following best practices, documenting project flow, extracting and translating business requirements into technical ones. Additionally, I am committed to monitoring version control systems and fostering effective team collaboration.
         </Card.Text>
       </Card.Body>
     </Card>
