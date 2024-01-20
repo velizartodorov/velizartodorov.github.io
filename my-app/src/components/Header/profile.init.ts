@@ -62,7 +62,7 @@ export const profile: Profile = {
             url: '/certificates/nederlands.pdf',
         },
         {
-            name: 'German (C1)',
+            name: 'German',
             icon: '/header/speak.png',
             iconSize: 47,
             url: '/certificates/deutsch.pdf',
