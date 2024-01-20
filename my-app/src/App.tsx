@@ -1,11 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import './App.css';
-import Header from './components/Header/header';
-import Employments from './components/Employments/employments';
-import Education from './components/Education/education';
-import Footer from './components/Footer/footer';
-import Introduction from './components/Introduction/introduction';
+import Header from './components/header/header';
+import Employments from './components/employments/employments';
+import Education from './components/education/education';
+import Footer from './components/footer/footer';
+import Introduction from './components/introduction/introduction';
 window.React = React
 
 export function App() {
