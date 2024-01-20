@@ -1,15 +1,15 @@
-import { Card } from "react-bootstrap";
+import { Accordion, Card } from 'react-bootstrap';
 import { introduction } from "./utils";
 
 const Introduction = () => (
-  <>
-    <Card>
-      <Card.Header><h2>Introduction 👋</h2></Card.Header>
-      <Card.Body>
-        <Card.Text>{introduction}</Card.Text>
-      </Card.Body>
-    </Card>
-  </>
+  <Accordion defaultActiveKey="0">
+    <Accordion.Item eventKey="0">
+      <Card>
+        <Accordion.Header><h2>Introduction 👋</h2></Accordion.Header>
+        <Accordion.Body>{introduction}</Accordion.Body>
+      </Card>
+    </Accordion.Item>
+  </Accordion>
 );
 
 export default Introduction;
