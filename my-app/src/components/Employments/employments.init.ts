@@ -205,7 +205,7 @@ export const employments: IEmployment[] = [
         ],
         references: [
             { value: "Erasmus+", href: "https://erasmus-plus.ec.europa.eu/" },
-            { value: "Universiy of Ruse", href: "https://www.uni-ruse.bg/en" },
+            { value: "University of Ruse", href: "https://www.uni-ruse.bg/en" },
             { value: "BIKEMA information", href: "http://fetch.ecs.uni-ruse.bg/?cmd=gsProfile&user=FERNAND" },
             { value: "Lotuswebtec.com", href: "https://www.lotuswebtec.com/en/" }
         ]

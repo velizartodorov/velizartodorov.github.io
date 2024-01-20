@@ -4,6 +4,7 @@ import './App.css';
 import Header from './components/Header/header';
 import Introduction from './components/Introduction/introduction';
 import Employments from './components/Employments/employments';
+import Education from './components/Education/education';
 window.React = React
 
 export function App() {
@@ -12,6 +13,7 @@ export function App() {
       <Header />
       <Introduction />
       <Employments />
+      <Education />
     </>
   );
 }
