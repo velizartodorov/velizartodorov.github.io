@@ -15,7 +15,8 @@ export const educations: IEducation[] = [
             `References 📌`,
         ],
         references: [
-            { value: "Dutch second language - level 2 (B2)", href: "https://www.vlaanderen.be/opleidingsdatabank/nederlands-tweede-taal-richtgraad-2" },
+            { value: "Educational certificate - Dutch second language - Level 2 (B2)", href: "/certificates/nederlands.pdf" },
+            { value: "Dutch second language - Level 2 (B2) information", href: "https://www.vlaanderen.be/opleidingsdatabank/nederlands-tweede-taal-richtgraad-2" }
         ]
     },
     {
@@ -63,8 +64,9 @@ export const educations: IEducation[] = [
             `References 📌`,
         ],
         references: [
-            { value: "English language profile", href: "https://ezikovavt.com/%D1%87%D1%83%D0%B6%D0%B4%D0%B8-%D0%B5%D0%B7%D0%B8%D1%86%D0%B8/english/" },
+            { value: "ZfA - Deutsches Sprachdiplom (DSD)", href: "/certificates/deutsch.pdf" },
             { value: "German language profile", href: "https://ezikovavt.com/%D1%87%D1%83%D0%B6%D0%B4%D0%B8-%D0%B5%D0%B7%D0%B8%D1%86%D0%B8/german/" },
+            { value: "English language profile", href: "https://ezikovavt.com/%D1%87%D1%83%D0%B6%D0%B4%D0%B8-%D0%B5%D0%B7%D0%B8%D1%86%D0%B8/english/" },
         ]
     },
 ];
