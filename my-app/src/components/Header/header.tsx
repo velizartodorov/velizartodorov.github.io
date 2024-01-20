@@ -11,7 +11,7 @@ const Header = () => {
                 <tbody>
                     <tr>
                         <td rowSpan={profile.languages.length}>{profilePicture(profile)}</td>
-                        <td colSpan={colSpan(profile)}><h3>{profile.name}</h3></td>
+                        <td colSpan={colSpan(profile)}><h1>{profile.name}</h1></td>
                         <td><h6>{linkTo(profile.birthday)}</h6></td>
                         <td><h6>{linkTo(profile.drivingLicense)}</h6></td>
                     </tr>
