@@ -4,11 +4,9 @@ import { introduction } from "./utils";
 const Introduction = () => (
   <>
     <Card>
-      <Card.Header><h2>Introduction</h2></Card.Header>
+      <Card.Header><h2>Introduction 👋</h2></Card.Header>
       <Card.Body>
-        <Card.Text>
-          {introduction}
-        </Card.Text>
+        <Card.Text>{introduction}</Card.Text>
       </Card.Body>
     </Card>
   </>

@@ -6,7 +6,7 @@ import { display, bullet as bullet } from "./utils";
 const Employments = () => (
   <>
     <Card>
-      <Card.Header><h2>Employments</h2></Card.Header>
+      <Card.Header><h2>Employments 💼</h2></Card.Header>
       <Card.Body>
         <Accordion>
           {employments.map((employment, index) => (

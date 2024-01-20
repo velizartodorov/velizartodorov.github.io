@@ -1,6 +1,6 @@
 import { Accordion, Card, Col, Container, Row } from "react-bootstrap";
 import { v4 as uuidv4 } from 'uuid';
-import { employments as educations } from "./employments.init";
+import { educations as educations } from "./educations.init";
 import { display, bullet as bullet } from "./utils";
 
 const Education = () => (
@@ -15,9 +15,9 @@ const Education = () => (
                 <Container fluid>
                   <Row className="align-items-center">
                     <Col xs="auto" className="text-left">
-                      <img src={education.icon} alt="company icon" style={{ width: 50 }} />
+                      <img src={education.icon} alt="education icon" style={{ width: 30 }} />
                     </Col>
-                    <Col xs="6" className="text-left">
+                    <Col xs="7" className="text-left">
                       <h5>{`${education.occupation} at ${education.institution}`}</h5>
                     </Col>
                     <Col>{education.place}</Col>
