@@ -241,7 +241,7 @@ export const employments: IEmployment[] = [
     },
     {
         position: "Computer Technican Trainee",
-        company: 'Telnet',
+        company: 'Telnet Ltd.',
         place: ELENA,
         icon: '/employments/telnet.png',
         period: {
