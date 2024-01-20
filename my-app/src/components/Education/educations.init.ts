@@ -1,4 +1,4 @@
-import { GENT, ROUSSE, VELIKO_TARNOVO } from "../places";
+import { GENT, ROUSSE, UNVERSITY_RUSE, VELIKO_TARNOVO } from "../places";
 import { IEducation } from "./education.init";
 
 export const educations: IEducation[] = [
@@ -20,7 +20,7 @@ export const educations: IEducation[] = [
     },
     {
         occupation: "Software Engineering (Master's degree)",
-        institution: 'University of Rousse',
+        institution: UNVERSITY_RUSE,
         place: ROUSSE,
         icon: '/education/university_ruse.png',
         period: {
@@ -31,12 +31,12 @@ export const educations: IEducation[] = [
             `References 📌`,
         ],
         references: [
-            { value: "University of Ruse", href: "https://www.uni-ruse.bg/en" },
+            { value: UNVERSITY_RUSE, href: "https://www.uni-ruse.bg/en" },
         ]
     },
     {
         occupation: "Computer Engineering (Bachelor's degree)",
-        institution: 'University of Rousse',
+        institution: UNVERSITY_RUSE,
         place: ROUSSE,
         icon: '/education/university_ruse.png',
         period: {
@@ -47,7 +47,7 @@ export const educations: IEducation[] = [
             `References 📌`,
         ],
         references: [
-            { value: "University of Ruse", href: "https://www.uni-ruse.bg/en" },
+            { value: UNVERSITY_RUSE, href: "https://www.uni-ruse.bg/en" },
         ]
     },
     {
