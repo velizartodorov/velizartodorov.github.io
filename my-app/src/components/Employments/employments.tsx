@@ -1,7 +1,7 @@
 import { Accordion, Card, Col, Container, Row } from "react-bootstrap";
 import { v4 as uuidv4 } from 'uuid';
 import { employments } from "./employments.init";
-import { display, bullet as bullet } from "./utils";
+import { display, bullet } from "./utils";
 
 const Employments = () => (
   <>
