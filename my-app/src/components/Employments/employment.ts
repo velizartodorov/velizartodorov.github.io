@@ -1,5 +1,5 @@
-import { Reference } from "./Reference";
 import { Period } from "./period";
+import { Reference } from "./reference";
 
 export interface IEmployment {
     position: string;
