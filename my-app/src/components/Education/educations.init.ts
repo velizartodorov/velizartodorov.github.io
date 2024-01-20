@@ -15,7 +15,7 @@ export const educations: IEducation[] = [
             `References 📌`,
         ],
         references: [
-            { value: "Dutch seccond language - level 2 (B2)", href: "https://www.vlaanderen.be/opleidingsdatabank/nederlands-tweede-taal-richtgraad-2" },
+            { value: "Dutch second language - level 2 (B2)", href: "https://www.vlaanderen.be/opleidingsdatabank/nederlands-tweede-taal-richtgraad-2" },
         ]
     },
     {
