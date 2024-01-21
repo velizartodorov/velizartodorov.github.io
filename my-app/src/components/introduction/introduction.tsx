@@ -1,5 +1,5 @@
 import { Accordion, Card } from 'react-bootstrap';
-import { introduction } from "./utils";
+import { introduction } from './utils';
 
 const Introduction = () => (
   <Accordion defaultActiveKey="0">
