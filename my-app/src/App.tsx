@@ -6,6 +6,7 @@ import Employments from './components/employments/employments';
 import Education from './components/education/education';
 import Footer from './components/footer/footer';
 import Introduction from './components/introduction/introduction';
+import LicensesCertifications from './components/licenses_certification/licenses_certifications';
 window.React = React
 
 export function App() {
@@ -14,6 +15,7 @@ export function App() {
       <Header />
       <Introduction />
       <Employments />
+      <LicensesCertifications />
       <Education />
       <Footer />
     </>
