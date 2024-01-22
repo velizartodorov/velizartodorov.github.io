@@ -1,4 +1,7 @@
-import { Accordion, Card } from 'react-bootstrap';
+import { Accordion, Card, Col, Container, Row } from 'react-bootstrap';
+import { licenses } from './licenses.init';
+import './style.css';
+import { monthYear } from './utils';
 
 const LicensesCertifications = () => (
   <Accordion defaultActiveKey="1">
@@ -6,7 +9,33 @@ const LicensesCertifications = () => (
       <Card>
         <Accordion.Header><h2>Licenses & certifications 🔖</h2></Accordion.Header>
         <Accordion.Body>
-        <Card><h4>Employments</h4></Card>
+          {licenses.map((license, index) => (
+            <Card>
+              <Container fluid>
+                <Row key={index} className="align-items-center accordion-button collapsed"
+                  href={license.link}
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  <Col xs="auto" className="text-left">
+                    <a href={license.link} target="_blank" rel="noopener noreferrer">
+                      <img src={license.icon} alt="education icon" style={{ width: 30 }} />
+                    </a>
+                  </Col>
+                  <Col xs="5" className="text-left">
+                    <a href={license.link} target="_blank" rel="noopener noreferrer">
+                      <h5>{`${license.name}`}</h5>
+                    </a>
+                  </Col>
+                  <Col>
+                      {license.institution}
+                  </Col>
+                  <Col xs="auto" className="text-right">
+                      <h5>{`${monthYear(license.date)}`}</h5>
+                  </Col>
+                </Row>
+              </Container>
+            </Card>
+          ))}
         </Accordion.Body>
       </Card>
     </Accordion.Item>

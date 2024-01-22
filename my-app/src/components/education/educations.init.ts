@@ -8,8 +8,8 @@ export const educations: IEducation[] = [
         place: GENT,
         icon: '/education/cvo_gent.png',
         period: {
-            start: new Date(2020, 6),
-            end: new Date(2019, 0)
+            start: new Date(2019, 0),
+            end: new Date(2020, 6)
         },
         body: [
             `References 📌`,
