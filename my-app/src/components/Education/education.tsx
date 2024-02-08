@@ -8,7 +8,7 @@ const Education = () => (
     <Accordion defaultActiveKey="1">
       <Accordion.Item eventKey="1">
         <Card>
-          <Accordion.Header><h2>Education 🦉</h2></Accordion.Header>
+          <Accordion.Header><h3>Education 🦉</h3></Accordion.Header>
           <Accordion.Body>
             <Accordion>
               {educations.map((education, index) => (

@@ -8,7 +8,7 @@ const Employments = () => (
     <Accordion defaultActiveKey="0">
       <Accordion.Item eventKey="0">
         <Card>
-          <Accordion.Header><h2>Employments 💼</h2></Accordion.Header>
+          <Accordion.Header><h3>Employments 💼</h3></Accordion.Header>
           <Accordion.Body>
             <Accordion>
               {employments.map((employment, index) => (
@@ -17,7 +17,7 @@ const Employments = () => (
                     <Container fluid>
                       <Row className="align-items-center">
                         <Col xs="auto" className="text-left">
-                          <img src={employment.icon} alt="company icon" style={{ width: 50 }} />
+                          <img src={employment.icon} alt="company icon" style={{ width: 30 }} />
                         </Col>
                         <Col xs="5" className="text-left">
                           <h5>{`${employment.position} at ${employment.company}`}</h5>

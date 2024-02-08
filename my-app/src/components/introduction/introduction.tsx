@@ -5,7 +5,7 @@ const Introduction = () => (
   <Accordion defaultActiveKey="0">
     <Accordion.Item eventKey="0">
       <Card>
-        <Accordion.Header><h2>Introduction 👋</h2></Accordion.Header>
+        <Accordion.Header><h3>Introduction 👋</h3></Accordion.Header>
         <Accordion.Body>{introduction}</Accordion.Body>
       </Card>
     </Accordion.Item>

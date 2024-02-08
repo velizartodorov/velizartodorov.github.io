@@ -7,7 +7,7 @@ const LicensesCertifications = () => (
   <Accordion defaultActiveKey="1">
     <Accordion.Item eventKey="1">
       <Card>
-        <Accordion.Header><h2>Licenses & certifications 🔖</h2></Accordion.Header>
+        <Accordion.Header><h3>Licenses & certifications 🔖</h3></Accordion.Header>
         <Accordion.Body>
           {licenses.map((license, index) => (
             <Card>
