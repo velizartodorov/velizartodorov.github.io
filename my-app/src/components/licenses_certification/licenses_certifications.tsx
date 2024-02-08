@@ -9,10 +9,10 @@ const LicensesCertifications = () => (
       <Card>
         <Accordion.Header><h3>Licenses & certifications 🔖</h3></Accordion.Header>
         <Accordion.Body>
-          {licenses.map((license, index) => (
-            <Card>
+          {licenses.map((license) => (
+            <Card key={license.link}>
               <Container fluid>
-                <Row key={index} className="align-items-center accordion-button collapsed"
+                <Row className="align-items-center accordion-button collapsed"
                   href={license.link}
                   target="_blank"
                   rel="noopener noreferrer">
@@ -27,10 +27,10 @@ const LicensesCertifications = () => (
                     </a>
                   </Col>
                   <Col>
-                      {license.institution}
+                    {license.institution}
                   </Col>
                   <Col xs="auto" className="text-right">
-                      <h5>{`${monthYear(license.date)}`}</h5>
+                    <h5>{`${monthYear(license.date)}`}</h5>
                   </Col>
                 </Row>
               </Container>
