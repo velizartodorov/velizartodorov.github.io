@@ -4,7 +4,7 @@ import './style.css';
 import { monthYear } from './utils';
 
 const LicensesCertifications = () => (
-  <Accordion defaultActiveKey="1">
+  <Accordion defaultActiveKey="1" className="mt-4">
     <Accordion.Item eventKey="1">
       <Card>
         <Accordion.Header><h3>Licenses & certifications 🔖</h3></Accordion.Header>

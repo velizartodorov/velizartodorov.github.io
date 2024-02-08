@@ -5,7 +5,7 @@ import { bullet, display } from "./utils";
 
 const Employments = () => (
   <>
-    <Accordion defaultActiveKey="0">
+    <Accordion defaultActiveKey="0" className="mt-4">
       <Accordion.Item eventKey="0">
         <Card>
           <Accordion.Header><h3>Employments 💼</h3></Accordion.Header>
