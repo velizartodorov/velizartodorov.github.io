@@ -5,10 +5,10 @@ import { bullet, display } from "./utils";
 
 const Employments = () => (
   <>
-    <Accordion defaultActiveKey="0" className="mt-4 mx-3">
+    <Accordion defaultActiveKey="0" className="mt-3 mx-3">
       <Accordion.Item eventKey="0">
         <Card>
-          <Accordion.Header><h3>Employments 💼</h3></Accordion.Header>
+          <Accordion.Header><h4>Employments 💼</h4></Accordion.Header>
           <Accordion.Body>
             <Accordion>
               {employments.map((employment, index) => (

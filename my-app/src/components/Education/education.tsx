@@ -5,10 +5,10 @@ import { display, bullet } from "./utils";
 
 const Education = () => (
   <>
-    <Accordion defaultActiveKey="1" className="mt-4 mx-3">
+    <Accordion defaultActiveKey="1" className="mt-3 mx-3">
       <Accordion.Item eventKey="1">
         <Card>
-          <Accordion.Header><h3>Education 🦉</h3></Accordion.Header>
+          <Accordion.Header><h4>Education 🦉</h4></Accordion.Header>
           <Accordion.Body>
             <Accordion>
               {educations.map((education, index) => (

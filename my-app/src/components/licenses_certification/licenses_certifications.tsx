@@ -4,10 +4,10 @@ import './style.css';
 import { monthYear } from './utils';
 
 const LicensesCertifications = () => (
-  <Accordion defaultActiveKey="1" className="mt-4 mx-3">
+  <Accordion defaultActiveKey="1" className="mt-3 mx-3">
     <Accordion.Item eventKey="1">
       <Card>
-        <Accordion.Header><h3>Licenses & certifications 🔖</h3></Accordion.Header>
+        <Accordion.Header><h4>Licenses & certifications 🔖</h4></Accordion.Header>
         <Accordion.Body>
           {licenses.map((license) => (
             <Card key={license.link}>
@@ -21,7 +21,7 @@ const LicensesCertifications = () => (
                       <img src={license.icon} alt="education icon" style={{ width: 30 }} />
                     </a>
                   </Col>
-                  <Col xs="7" className="text-left">
+                  <Col xs="5" className="text-left">
                     <a href={license.link} target="_blank" rel="noopener noreferrer">
                       <h5>{`${license.name}`}</h5>
                     </a>
