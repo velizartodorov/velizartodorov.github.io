@@ -7,7 +7,9 @@ const LicensesCertifications = () => (
   <Accordion defaultActiveKey="1" className="mt-3 mx-3">
     <Accordion.Item eventKey="1">
       <Card>
-        <Accordion.Header><h4>Licenses & certifications 🔖</h4></Accordion.Header>
+        <Accordion.Header>
+          <h4>Licenses & certifications 🔖</h4>
+        </Accordion.Header>
         <Accordion.Body>
           {licenses.map((license) => (
             <Card key={license.link}>
@@ -17,18 +19,22 @@ const LicensesCertifications = () => (
                   target="_blank"
                   rel="noopener noreferrer">
                   <Col xs="auto" className="text-left">
-                    <a href={license.link} target="_blank" rel="noopener noreferrer">
-                      <img src={license.icon} alt="education icon" className='w-30' />
+                    <a href={license.link}
+                      target="_blank"
+                      rel="noopener noreferrer">
+                      <img src={license.icon}
+                        alt="education icon"
+                        className='w-30' />
                     </a>
                   </Col>
                   <Col xs="5" className="text-left">
-                    <a href={license.link} target="_blank" rel="noopener noreferrer">
+                    <a href={license.link}
+                      target="_blank"
+                      rel="noopener noreferrer">
                       <h5>{`${license.name}`}</h5>
                     </a>
                   </Col>
-                  <Col>
-                    {license.institution}
-                  </Col>
+                  <Col> {license.institution}</Col>
                   <Col xs="auto" className="text-right">
                     <h5>{`${monthYear(license.date)}`}</h5>
                   </Col>
