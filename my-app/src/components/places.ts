@@ -1,4 +1,5 @@
 export const GENT_HYBRID = 'Gent, Belgium (Hybrid)';
+export const GENT_CONTRACT = 'Gent, Belgium (Contract)';
 export const GENT = 'Gent, Belgium';
 export const ROUSSE = 'Rousse, Bulgaria';
 export const UNVERSITY_RUSE = 'University of Rousse';

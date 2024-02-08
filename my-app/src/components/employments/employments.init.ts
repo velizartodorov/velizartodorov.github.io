@@ -1,4 +1,4 @@
-import { ELENA, GENT, GENT_HYBRID, ROUSSE } from "../places";
+import { ELENA, GENT, GENT_CONTRACT, GENT_HYBRID, ROUSSE } from "../places";
 import { IEmployment } from "./employment";
 
 export const employments: IEmployment[] = [
@@ -52,7 +52,7 @@ export const employments: IEmployment[] = [
     {
         position: "Java Developer",
         company: 'Securex',
-        place: GENT,
+        place: GENT_CONTRACT,
         icon: '/employments/securex.png',
         period: {
             start: new Date(2023, 6),

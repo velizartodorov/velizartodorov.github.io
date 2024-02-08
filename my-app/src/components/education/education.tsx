@@ -5,7 +5,7 @@ import { display, bullet } from "./utils";
 
 const Education = () => (
   <>
-    <Accordion defaultActiveKey="1" className="mt-4">
+    <Accordion defaultActiveKey="1" className="mt-4 mx-3">
       <Accordion.Item eventKey="1">
         <Card>
           <Accordion.Header><h3>Education 🦉</h3></Accordion.Header>
