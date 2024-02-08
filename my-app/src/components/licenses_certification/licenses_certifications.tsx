@@ -12,13 +12,13 @@ const LicensesCertifications = () => (
           {licenses.map((license) => (
             <Card key={license.link}>
               <Container fluid>
-                <Row className="align-items-center accordion-button collapsed"
+                <Row className="align-items-center accordion-button collapsed p-2"
                   href={license.link}
                   target="_blank"
                   rel="noopener noreferrer">
                   <Col xs="auto" className="text-left">
                     <a href={license.link} target="_blank" rel="noopener noreferrer">
-                      <img src={license.icon} alt="education icon" style={{ width: 30 }} />
+                      <img src={license.icon} alt="education icon" className='w-30' />
                     </a>
                   </Col>
                   <Col xs="5" className="text-left">

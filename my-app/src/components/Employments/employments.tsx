@@ -17,7 +17,7 @@ const Employments = () => (
                     <Container fluid>
                       <Row className="align-items-center">
                         <Col xs="auto" className="text-left">
-                          <img src={employment.icon} alt="company icon" style={{ width: 30 }} />
+                          <img src={employment.icon} alt="company icon" className='w-30' />
                         </Col>
                         <Col xs="5" className="text-left">
                           <h5>{`${employment.position} at ${employment.company}`}</h5>

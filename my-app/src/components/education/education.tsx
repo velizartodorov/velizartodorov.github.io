@@ -1,6 +1,7 @@
 import { Accordion, Card, Col, Container, Row } from "react-bootstrap";
 import { v4 as uuidv4 } from 'uuid';
 import { educations } from "./educations.init";
+import './style.css'
 import { display, bullet } from "./utils";
 
 const Education = () => (
@@ -17,7 +18,9 @@ const Education = () => (
                     <Container fluid>
                       <Row className="align-items-center">
                         <Col xs="auto" className="text-left">
-                          <img src={education.icon} alt="education icon" style={{ width: 30 }} />
+                          <img src={education.icon}
+                            alt="education icon"
+                            className="w-30"/>
                         </Col>
                         <Col xs="7" className="text-left">
                           <h5>{`${education.occupation} at ${education.institution}`}</h5>
