@@ -256,11 +256,14 @@ export const employments: IEmployment[] = [
             `• software reinstallation, backup and maintance`,
             `• creating hardware parts list for PC configuration based on customer requirements`,
             ``,
+            `The company has already been acquired by the largest telecom in Bulgaria – Vivacom (2024). 💡`,
+            ``,
             `References 📌`,
             ``,
         ],
         references: [
             { value: "Telnet", href: "https://telnet.bg/en/pc/home/p1/.html" },
+            { value: "Vivacom", href: "https://www.vivacom.bg/bg/telnet" },
         ]
     }
 ];
