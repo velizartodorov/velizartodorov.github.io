@@ -89,7 +89,8 @@ export const employments: IEmployment[] = [
             ``,
         ],
         references: [
-            { value: "Securex", href: "https://www.securex.be/en" }
+            { value: "Securex", href: "https://www.securex.be/en" },
+            { value: "BeWell application", href: "https://www.securex.be/nl/personeelsbeleid/welzijn-op-het-werk" }
         ]
     },
     {
