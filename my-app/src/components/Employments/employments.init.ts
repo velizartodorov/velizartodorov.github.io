@@ -240,7 +240,7 @@ export const employments: IEmployment[] = [
         ]
     },
     {
-        position: "Computer Technican Trainee",
+        position: "Computer Repair Technician",
         company: 'Telnet Ltd.',
         place: ELENA,
         icon: '/employments/telnet.png',
