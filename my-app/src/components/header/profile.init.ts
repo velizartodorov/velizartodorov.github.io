@@ -27,7 +27,7 @@ export const profile: Profile = {
     drivingLicense: {
         name: 'Driving license type B',
         icon: '/header/driving_license.png',
-        iconSize: 45,
+        iconSize: 60,
         url: '',
     },
     linkedIn: {
