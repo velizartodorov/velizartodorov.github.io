@@ -150,8 +150,7 @@ export const employments: IEmployment[] = [
         body: [
             `Description 📚`,
             ``,
-            `• Integrating, developing and improving automatized invoice/dossier flows with external services:`,
-            `   ◦ BillToBox (BanqUp), ELO and accountancy packages`,
+            `• Integrating, developing and improving automatized invoice/dossier flows with external services such as BillToBox (BanqUp), ELO and accountancy packages`,
             `• Documenting and schematizing the flow using UML diagrams`,
             `• Working on InvoiceFlow, monolitic application which distributes invoices towards different accountancy packages like Expert-M, Adsolut, ExactOnline, BoCount, Wings Online and also persists them in a document management system called ELO`,
             `• Working on DossierFlow, monolitic application which reads information about user dossiers from Adsolut and imports them in ELO`,
