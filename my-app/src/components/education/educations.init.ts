@@ -65,7 +65,7 @@ export const educations: IEducation[] = [
         ],
         references: [
             { value: "ZfA - Deutsches Sprachdiplom (DSD)", href: "/certificates/deutsch.pdf" },
-            { value: "German language profile", href: "https://ezikovavt.com/%D1%87%D1%83%D0%B6%D0%B4%D0%B8-%D0%B5%D0%B7%D0%B8%D1%86%D0%B8/german/" },
+            { value: "German language profile", href: "https://ezikovavt.com/%D1%87%D1%83%D0%B6%D0%B4%D0%B8-%D0%B5%D0%B7%D0%B8%D1%86%D0%B8/deutsch/" },
             { value: "English language profile", href: "https://ezikovavt.com/%D1%87%D1%83%D0%B6%D0%B4%D0%B8-%D0%B5%D0%B7%D0%B8%D1%86%D0%B8/english/" },
         ]
     },
