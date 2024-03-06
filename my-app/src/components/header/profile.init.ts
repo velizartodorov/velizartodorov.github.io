@@ -50,13 +50,13 @@ export const profile: Profile = {
     },
     languages: [
         {
-            name: 'English (B2/C1)',
+            name: 'English',
             icon: '/header/speak.png',
             iconSize: 47,
             url: '',
         },
         {
-            name: 'Dutch (B2)',
+            name: 'Dutch',
             icon: '/header/speak.png',
             iconSize: 47,
             url: '/certificates/nederlands.pdf',
