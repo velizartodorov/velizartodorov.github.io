@@ -52,6 +52,6 @@ export function linkTo(link: Link): JSX.Element {
   );
 }
 
-export function getColSpan(profile: Profile): number | undefined {
+export function colSpan(profile: Profile): number | undefined {
   return Math.ceil(profile.languages.length / 2);
 }

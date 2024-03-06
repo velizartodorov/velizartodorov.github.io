@@ -1,35 +1,34 @@
 import Table from 'react-bootstrap/Table';
 import { profile } from './profile.init';
 import './style.css';
-import { callTo, getColSpan as colSpan, linkTo, mailTo, profilePicture, useDocumentTitle } from './utils';
+import * as utils from './utils';
 
 const Header = () => {
-    useDocumentTitle(profile.name);
+    utils.useDocumentTitle(profile.name);
     return (
         <header className="header">
             <Table responsive borderless>
                 <tbody>
                     <tr>
-                        <td rowSpan={profile.languages.length}>{profilePicture(profile)}</td>
-                        <td colSpan={colSpan(profile)}><h2>{profile.name}</h2></td>
-                        <td><h6>{linkTo(profile.birthday)}</h6></td>
-                        <td><h6>{linkTo(profile.drivingLicense)}</h6></td>
+                        <td rowSpan={4}>{utils.profilePicture(profile)}</td>
+                        <td><h2>{profile.name}</h2></td>
+                        <td> {utils.linkTo(profile.birthday)}</td>
+                        <td> {utils.linkTo(profile.drivingLicense)}</td>
                     </tr>
                     <tr>
-                        <td colSpan={colSpan(profile)}><h6>{mailTo(profile.email)}</h6></td>
-                        <td><h6>{callTo(profile.phone)}</h6></td>
-                        <td><h6>{linkTo(profile.address)}</h6></td>
+                        <td>{utils.mailTo(profile.email)}</td>
+                        <td>{utils.callTo(profile.phone)}</td>
+                        <td>{utils.linkTo(profile.address)}</td>
                     </tr>
                     <tr>
-                        <td colSpan={colSpan(profile)}><h6>{linkTo(profile.linkedIn)}</h6></td>
-                        <td><h6>{linkTo(profile.gitHub)}</h6></td>
-                        <td><h6>{linkTo(profile.blog)}</h6></td>
+                        <td>{utils.linkTo(profile.linkedIn)}</td>
+                        <td>{utils.linkTo(profile.gitHub)}</td>
+                        <td>{utils.linkTo(profile.blog)}</td>
                     </tr>
                     <tr>
-                        <td colSpan={2}><h6></h6></td>
                         {profile.languages.map((language) => (
                             <td key={language.name}>
-                                <h6>{linkTo(language)}</h6>
+                                {utils.linkTo(language)}
                             </td>
                         ))}
                     </tr>
