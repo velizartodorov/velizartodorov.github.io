@@ -26,6 +26,7 @@ const Header = () => {
                         <td><h6>{linkTo(profile.blog)}</h6></td>
                     </tr>
                     <tr>
+                        <td colSpan={2}><h6></h6></td>
                         {profile.languages.map((language) => (
                             <td key={language.name}>
                                 <h6>{linkTo(language)}</h6>
