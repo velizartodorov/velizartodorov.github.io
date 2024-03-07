@@ -1,4 +1,4 @@
-import { ELENA, GENT, GENT_CONTRACT, HASSELT_REMOTE, RUSE } from "../common/utils";
+import { ELENA, GHENT, GHENT_CONTRACT, HASSELT_REMOTE, RUSE } from "../common/utils";
 import { IEmployment } from "./employment";
 
 export const employments: IEmployment[] = [
@@ -53,7 +53,7 @@ export const employments: IEmployment[] = [
     {
         position: "Java Developer",
         company: 'Securex',
-        place: GENT_CONTRACT,
+        place: GHENT_CONTRACT,
         icon: '/employments/securex.png',
         period: {
             start: new Date(2023, 6),
@@ -97,7 +97,7 @@ export const employments: IEmployment[] = [
     {
         position: "Software Developer",
         company: 'Unified Post',
-        place: GENT,
+        place: GHENT,
         icon: '/employments/unified_post.jpeg',
         period: {
             start: new Date(2019, 3),
@@ -143,7 +143,7 @@ export const employments: IEmployment[] = [
     {
         position: "Java Developer",
         company: 'ADM Solutions',
-        place: GENT,
+        place: GHENT,
         icon: '/employments/adm_solutions.jpg',
         period: {
             start: new Date(2018, 10),
@@ -186,7 +186,7 @@ export const employments: IEmployment[] = [
     {
         position: "Erasmus+ C# Developer Trainee",
         company: 'BIKEMA',
-        place: GENT,
+        place: GHENT,
         icon: '/employments/bikema_small.png',
         period: {
             start: new Date(2018, 6),

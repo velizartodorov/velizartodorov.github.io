@@ -16,8 +16,8 @@ const months = [
 ];
 
 export const HASSELT_REMOTE = 'Hasselt, Belgium (Remote)';
-export const GENT_CONTRACT = 'Gent, Belgium (Contract)';
-export const GENT = 'Gent, Belgium';
+export const GHENT_CONTRACT = 'Ghent, Belgium (Contract)';
+export const GHENT = 'Ghent, Belgium';
 export const RUSE = 'Rousse, Bulgaria';
 export const UNVERSITY_RUSE = 'University of Rousse';
 export const VELIKO_TARNOVO = 'Veliko Tarnovo, Bulgaria';

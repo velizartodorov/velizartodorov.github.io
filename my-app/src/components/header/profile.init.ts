@@ -1,4 +1,4 @@
-import { GENT } from "../common/utils";
+import { GHENT } from "../common/utils";
 import { Profile } from "./profile";
 
 export const profile: Profile = {
@@ -19,7 +19,7 @@ export const profile: Profile = {
         url: '',
     },
     address: {
-        name: GENT,
+        name: GHENT,
         icon: '/header/house.png',
         iconSize: 45,
         url: 'https://maps.app.goo.gl/Lz9CWt9u64AkSTE97',

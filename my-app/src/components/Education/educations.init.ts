@@ -1,11 +1,11 @@
-import { GENT, RUSE, UNVERSITY_RUSE, VELIKO_TARNOVO } from "../common/utils";
+import { GHENT, RUSE, UNVERSITY_RUSE, VELIKO_TARNOVO } from "../common/utils";
 import { IEducation } from "./education.init";
 
 export const educations: IEducation[] = [
     {
         occupation: "Dutch/Flemmish Language & Literature",
         institution: 'Het Perspectief PCVO',
-        place: GENT,
+        place: GHENT,
         icon: '/education/cvo_gent.png',
         period: {
             start: new Date(2019, 0),
