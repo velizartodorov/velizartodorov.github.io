@@ -1,5 +1,5 @@
 import { Accordion, Card, Col, Container, Row } from 'react-bootstrap';
-import { licenses } from './licenses.init';
+import { licensesCertifications } from './licenses_certrifications.init';
 import './licenses_certifications.css';
 import { monthYear } from '../common/utils';
 
@@ -11,7 +11,7 @@ const LicensesCertifications = () => (
           <h4>Licenses & certifications 🔖</h4>
         </Accordion.Header>
         <Accordion.Body>
-          {licenses.map((license) => (
+          {licensesCertifications.map((license) => (
             <Card key={license.link}>
               <Container fluid>
                 <Row className="align-items-center accordion-button collapsed p-2"

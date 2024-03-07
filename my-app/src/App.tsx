@@ -5,7 +5,7 @@ import Employments from './components/employments/employments';
 import Education from './components/education/education';
 import Footer from './components/footer/footer';
 import Introduction from './components/introduction/introduction';
-import LicensesCertifications from './components/licenses_certification/licenses_certifications';
+import LicensesCertifications from './components/licenses_certifications/licenses_certifications';
 import Header from './components/header/header';
 window.React = React
 

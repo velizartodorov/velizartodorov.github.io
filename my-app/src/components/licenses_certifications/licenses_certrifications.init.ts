@@ -1,12 +1,12 @@
-import { ILicense } from "./license";
+import {  LicenseCertification } from "./license_certification";
 
-export const licenses: ILicense[] = [
+export const licensesCertifications: LicenseCertification[] = [
     {
         icon: '/education/cvo_gent.png',
         name: 'Nederlands - tweede taal - richtgraad 2',
         institution: 'Het Perspectief PCVO',
         field: 'Dutch/Flemish Language and Literature',
-        link: 'certificates/nederlands.pdf',
+        link: 'licenses_cetifications/nederlands.pdf',
         date: new Date(2020, 6)
     },
     {
@@ -14,7 +14,7 @@ export const licenses: ILicense[] = [
         name: 'Opleidingskwalifikatiegraad - Masters',
         institution: 'NARIC-Vlaanderen',
         field: 'Dutch/Flemish Language and Literature',
-        link: 'certificates/opleidingskwalifikatiegraad - masters.pdf',
+        link: 'licenses_cetifications/opleidingskwalifikatiegraad - masters.pdf',
         date: new Date(2018, 6)
     },
     {
