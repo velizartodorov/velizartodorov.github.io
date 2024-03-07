@@ -1,4 +1,4 @@
-import { GENT } from "../common/places";
+import { GENT } from "../common/utils";
 import { Profile } from "./profile";
 
 export const profile: Profile = {

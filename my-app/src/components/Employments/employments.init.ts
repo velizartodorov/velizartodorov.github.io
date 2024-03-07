@@ -1,4 +1,4 @@
-import { ELENA, GENT, GENT_CONTRACT, GENT_HYBRID, ROUSSE } from "../common/places";
+import { ELENA, GENT, GENT_CONTRACT, GENT_HYBRID, RUSE } from "../common/utils";
 import { IEmployment } from "./employment";
 
 export const employments: IEmployment[] = [
@@ -213,7 +213,7 @@ export const employments: IEmployment[] = [
     {
         position: "Full-Stack Developer",
         company: 'DSI Ltd.',
-        place: ROUSSE,
+        place: RUSE,
         icon: '/employments/dsi.png',
         period: {
             start: new Date(2017, 6),

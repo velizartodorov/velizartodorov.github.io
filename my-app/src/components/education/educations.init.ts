@@ -1,4 +1,4 @@
-import { GENT, ROUSSE, UNVERSITY_RUSE, VELIKO_TARNOVO } from "../common/places";
+import { GENT, RUSE, UNVERSITY_RUSE, VELIKO_TARNOVO } from "../common/utils";
 import { IEducation } from "./education.init";
 
 export const educations: IEducation[] = [
@@ -22,7 +22,7 @@ export const educations: IEducation[] = [
     {
         occupation: "Software Engineering (Master's degree)",
         institution: UNVERSITY_RUSE,
-        place: ROUSSE,
+        place: RUSE,
         icon: '/education/university_ruse.png',
         period: {
             start: new Date(2017, 8),
@@ -38,7 +38,7 @@ export const educations: IEducation[] = [
     {
         occupation: "Computer Engineering (Bachelor's degree)",
         institution: UNVERSITY_RUSE,
-        place: ROUSSE,
+        place: RUSE,
         icon: '/education/university_ruse.png',
         period: {
             start: new Date(2013, 8),
