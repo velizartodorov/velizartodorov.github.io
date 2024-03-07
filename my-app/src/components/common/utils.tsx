@@ -39,17 +39,17 @@ export function monthYear(date: Date): string {
 }
 
 export function periodDifference(period: Period): string {
-    const diff = yearMonthDiff(period.start, period.end);
+    const diff = yearMonthDiff(period);
     return diff ? `${diff}` : '';
 }
 
-export function yearsDiff(startDate: Date, endDate: Date): number {
-    return endDate.getFullYear() - startDate.getFullYear();
+export function yearsDiff(period: Period): number {
+    return period.end.getFullYear() - period.start.getFullYear();
 }
 
-export function yearMonthDiff(startDate: Date, endDate: Date): string {
-    const monthDiff = (endDate.getFullYear() - startDate.getFullYear()) * 12
-        + (endDate.getMonth() - startDate.getMonth());
+export function yearMonthDiff(period: Period): string {
+    const monthDiff = (period.end.getFullYear() - period.start.getFullYear()) * 12
+        + (period.end.getMonth() - period.start.getMonth());
     const yearDiff = Math.floor(monthDiff / 12);
     const remainingMonths = monthDiff % 12;
     const yearString = yearDiff > 0 ? `${yearDiff} years` : '';
