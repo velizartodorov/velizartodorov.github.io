@@ -15,12 +15,11 @@ const LicensesCertifications = () => (
             <Card key={license.link}>
               <Container fluid>
                 <Row className="align-items-center accordion-button collapsed p-2"
-                  href={license.link}
                   target="_blank"
                   rel="noopener noreferrer">
                   <Col xs="auto" className="text-left">
-                    <a href={license.link}
-                      target="_blank"
+                    <a href={`licenses_certifications/${license.link}`}
+                     target="_blank"
                       rel="noopener noreferrer">
                       <img src={license.icon}
                         alt="education icon"
@@ -28,7 +27,7 @@ const LicensesCertifications = () => (
                     </a>
                   </Col>
                   <Col xs="5" className="text-left">
-                    <a href={license.link}
+                    <a href={`licenses_certifications/${license.link}`}
                       target="_blank"
                       rel="noopener noreferrer">
                       <h5>{`${license.name}`}</h5>
