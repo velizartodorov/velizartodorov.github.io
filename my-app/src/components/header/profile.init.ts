@@ -22,7 +22,7 @@ export const profile: Profile = {
         name: GENT,
         icon: '/header/house.png',
         iconSize: 45,
-        url: 'https://en.wikipedia.org/wiki/Ghent',
+        url: 'https://maps.app.goo.gl/Lz9CWt9u64AkSTE97',
     },
     drivingLicense: {
         name: 'Driving license type B',
