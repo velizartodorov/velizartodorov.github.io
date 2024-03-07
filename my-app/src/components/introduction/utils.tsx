@@ -1,5 +1,5 @@
 import { yearsDiff } from "../common/utils";
-import { Period } from "../education/period";
+import { Period } from "../common/period";
 import { employments } from "../employments/employments.init";
 
 export const introduction = "As a software developer with "

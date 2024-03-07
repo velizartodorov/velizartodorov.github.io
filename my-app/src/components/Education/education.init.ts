@@ -1,5 +1,5 @@
-import { Period } from "./period";
-import { Reference } from "./reference";
+import { Period } from "../common/period";
+import { Reference } from "../common/reference";
 
 export interface IEducation {
     occupation: string;

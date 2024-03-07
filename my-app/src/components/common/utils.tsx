@@ -1,4 +1,4 @@
-import { Period } from "../employments/period";
+import { Period } from "./period";
 
 const months = [
     'January', 'February', 'March', 'April', 'May', 'June',

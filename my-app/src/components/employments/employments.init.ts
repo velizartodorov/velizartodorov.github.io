@@ -1,7 +1,7 @@
 import { ELENA, GHENT, GHENT_CONTRACT, HASSELT_REMOTE, RUSE } from "../common/utils";
-import { IEmployment } from "./employment";
+import { Employment } from "./employment";
 
-export const employments: IEmployment[] = [
+export const employments: Employment[] = [
     {
         position: "Java Software Crafter",
         company: 'Continuum Consulting NV',

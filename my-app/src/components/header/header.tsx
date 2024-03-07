@@ -1,34 +1,34 @@
 import Table from 'react-bootstrap/Table';
 import { profile } from './profile.init';
 import './header.css';
-import * as utils from './utils';
+import { useDocumentTitle, profilePicture, linkTo, mailTo, callTo } from './utils';
 
 const Header = () => {
-    utils.useDocumentTitle(profile.name);
+    useDocumentTitle(profile.name);
     return (
         <header className="header">
             <Table responsive borderless>
                 <tbody>
                     <tr>
-                        <td rowSpan={4}>{utils.profilePicture(profile)}</td>
+                        <td rowSpan={4}>{profilePicture(profile)}</td>
                         <td><h2>{profile.name}</h2></td>
-                        <td> {utils.linkTo(profile.birthday)}</td>
-                        <td> {utils.linkTo(profile.drivingLicense)}</td>
+                        <td> {linkTo(profile.birthday)}</td>
+                        <td> {linkTo(profile.drivingLicense)}</td>
                     </tr>
                     <tr>
-                        <td>{utils.mailTo(profile.email)}</td>
-                        <td>{utils.callTo(profile.phone)}</td>
-                        <td>{utils.linkTo(profile.address)}</td>
+                        <td>{mailTo(profile.email)}</td>
+                        <td>{callTo(profile.phone)}</td>
+                        <td>{linkTo(profile.address)}</td>
                     </tr>
                     <tr>
-                        <td>{utils.linkTo(profile.linkedIn)}</td>
-                        <td>{utils.linkTo(profile.gitHub)}</td>
-                        <td>{utils.linkTo(profile.blog)}</td>
+                        <td>{linkTo(profile.linkedIn)}</td>
+                        <td>{linkTo(profile.gitHub)}</td>
+                        <td>{linkTo(profile.blog)}</td>
                     </tr>
                     <tr>
                         {profile.languages.map((language) => (
                             <td key={language.name}>
-                                {utils.linkTo(language)}
+                                {linkTo(language)}
                             </td>
                         ))}
                     </tr>

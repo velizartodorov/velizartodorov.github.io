@@ -1,5 +1,5 @@
 import { currentDate, monthYear } from "../common/utils";
-import { Period } from "./period";
+import { Period } from "../common/period";
 
 export function display(period: Period): string {
     const formattedStartDate = monthYear(period.start);
