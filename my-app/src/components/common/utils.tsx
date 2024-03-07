@@ -1,4 +1,4 @@
-import { Period } from "./period";
+import { Period } from "../employments/period";
 
 const months = [
     'January',
@@ -34,15 +34,20 @@ export function currentDate(): Date {
     return new Date(now.getFullYear(), now.getMonth(), now.getDate());
 }
 
-function monthYear(date: Date): string {
+export function monthYear(date: Date): string {
     let month = date.getMonth();
     let year = date.getFullYear();
     return `${months[month]} ${year}`;
 }
 
-function periodDifference(period: Period): string {
+export function periodDifference(period: Period): string {
     const diff = yearMonthDiff(period.start, period.end);
     return diff ? `${diff}` : '';
+}
+
+export function yearsDiff(startDate: Date, endDate: Date): number {
+    const yearDiff = endDate.getFullYear() - startDate.getFullYear();
+    return yearDiff;
 }
 
 export function yearMonthDiff(startDate: Date, endDate: Date): string {

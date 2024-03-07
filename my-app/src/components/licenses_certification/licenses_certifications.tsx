@@ -1,7 +1,7 @@
 import { Accordion, Card, Col, Container, Row } from 'react-bootstrap';
 import { licenses } from './licenses.init';
 import './licenses_certifications.css';
-import { monthYear } from './utils';
+import { monthYear } from '../common/utils';
 
 const LicensesCertifications = () => (
   <Accordion defaultActiveKey="1" className="mt-3 mx-3">

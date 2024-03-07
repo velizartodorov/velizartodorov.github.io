@@ -1,4 +1,4 @@
-import { ELENA, GENT, GENT_CONTRACT, GENT_HYBRID, ROUSSE } from "../places";
+import { ELENA, GENT, GENT_CONTRACT, GENT_HYBRID, ROUSSE } from "../common/places";
 import { IEmployment } from "./employment";
 
 export const employments: IEmployment[] = [

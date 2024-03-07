@@ -2,7 +2,8 @@ import { Accordion, Card, Col, Container, Row } from "react-bootstrap";
 import { v4 as uuidv4 } from 'uuid';
 import { educations } from "./educations.init";
 import './education.css'
-import { display, bullet } from "./utils";
+import { display } from "./utils";
+import { bullet } from "../common/utils";
 
 const Education = () => (
   <>

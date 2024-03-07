@@ -1,4 +1,4 @@
-import { GENT, ROUSSE, UNVERSITY_RUSE, VELIKO_TARNOVO } from "../places";
+import { GENT, ROUSSE, UNVERSITY_RUSE, VELIKO_TARNOVO } from "../common/places";
 import { IEducation } from "./education.init";
 
 export const educations: IEducation[] = [
