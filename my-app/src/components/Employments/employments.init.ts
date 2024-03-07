@@ -36,7 +36,7 @@ export const employments: IEmployment[] = [
             `• Database management: Flyway`,
             `• Identity/access management: KeyCloak (0Auth 2.0)`,
             `• Front-end: Angular 12`,
-            `• Version control: Git, Github`,
+            `• Version control: Git, GitHub`,
             `• IDE: IntelliJ, VS Code`,
             `• Diagram schematization and documentation: Mermaid.js`,
             `• Development methodology: Pair/solo programming`,
