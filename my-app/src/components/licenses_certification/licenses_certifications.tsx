@@ -1,6 +1,6 @@
 import { Accordion, Card, Col, Container, Row } from 'react-bootstrap';
 import { licenses } from './licenses.init';
-import './style.css';
+import './licenses_certifications.css';
 import { monthYear } from './utils';
 
 const LicensesCertifications = () => (

@@ -1,6 +1,6 @@
 import Table from 'react-bootstrap/Table';
 import { profile } from './profile.init';
-import './style.css';
+import './header.css';
 import * as utils from './utils';
 
 const Header = () => {

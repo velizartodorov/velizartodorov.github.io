@@ -1,5 +1,5 @@
 import { Accordion, Card } from 'react-bootstrap';
-import './style.css';
+import './introduction.css';
 import { introduction } from './utils';
 
 const Introduction = () => (
