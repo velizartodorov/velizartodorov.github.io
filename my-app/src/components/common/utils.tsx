@@ -1,18 +1,8 @@
 import { Period } from "../employments/period";
 
 const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
 ];
 
 export const HASSELT_REMOTE = 'Hasselt, Belgium (Remote)';
@@ -43,8 +33,8 @@ export function currentDate(): Date {
 }
 
 export function monthYear(date: Date): string {
-    let month = date.getMonth();
-    let year = date.getFullYear();
+    const month = date.getMonth();
+    const year = date.getFullYear();
     return `${months[month]} ${year}`;
 }
 
@@ -54,8 +44,7 @@ export function periodDifference(period: Period): string {
 }
 
 export function yearsDiff(startDate: Date, endDate: Date): number {
-    const yearDiff = endDate.getFullYear() - startDate.getFullYear();
-    return yearDiff;
+    return endDate.getFullYear() - startDate.getFullYear();
 }
 
 export function yearMonthDiff(startDate: Date, endDate: Date): string {
