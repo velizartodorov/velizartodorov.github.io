@@ -15,7 +15,7 @@ const months = [
     'December'
 ];
 
-export const GENT_HYBRID = 'Gent, Belgium (Hybrid)';
+export const HASSELT_REMOTE = 'Hasselt, Belgium (Remote)';
 export const GENT_CONTRACT = 'Gent, Belgium (Contract)';
 export const GENT = 'Gent, Belgium';
 export const RUSE = 'Rousse, Bulgaria';

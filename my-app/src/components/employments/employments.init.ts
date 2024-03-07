@@ -1,11 +1,11 @@
-import { ELENA, GENT, GENT_CONTRACT, GENT_HYBRID, RUSE } from "../common/utils";
+import { ELENA, GENT, GENT_CONTRACT, HASSELT_REMOTE, RUSE } from "../common/utils";
 import { IEmployment } from "./employment";
 
 export const employments: IEmployment[] = [
     {
         position: "Java Software Crafter",
         company: 'Continuum Consulting NV',
-        place: GENT_HYBRID,
+        place: HASSELT_REMOTE,
         icon: '/employments/continuum.jpg',
         period: {
             start: new Date(2023, 4),
