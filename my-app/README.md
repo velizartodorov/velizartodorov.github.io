@@ -19,6 +19,7 @@ That's it. Have fun! 😎 🎉
 Tasks that still need to be finished:
 
 * fix accordion clickables
+* add projects component
 * create design for mobile interface
 * create deployment process
 * publish portfolio on GitHub
