@@ -59,7 +59,7 @@ export const profile: Profile = {
             name: 'Dutch',
             icon: '/header/speak.png',
             iconSize: 47,
-            url: '/certificates/nederlands.pdf',
+            url: '/licenses_certifications/nederlands.pdf',
         },
         {
             name: 'Bulgarian (Native)',
