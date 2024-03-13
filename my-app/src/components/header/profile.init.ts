@@ -62,7 +62,7 @@ export const profile: Profile = {
             url: '/certificates/nederlands.pdf',
         },
         {
-            name: 'Bulgarian (Mother tongue)',
+            name: 'Bulgarian (Native)',
             icon: '/header/speak.png',
             iconSize: 47,
             url: '',
