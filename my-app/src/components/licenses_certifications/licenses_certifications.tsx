@@ -16,10 +16,11 @@ const LicensesCertifications = () => (
               <Container fluid>
                 <Row className="align-items-center accordion-button collapsed p-2"
                   target="_blank"
+                  id='accordion-button'
                   rel="noopener noreferrer">
                   <Col xs="auto" className="text-left">
                     <a href={`licenses_certifications/${license.link}`}
-                     target="_blank"
+                      target="_blank"
                       rel="noopener noreferrer">
                       <img src={license.icon}
                         alt="education icon"

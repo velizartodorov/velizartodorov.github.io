@@ -1,9 +1,10 @@
-.accordion-button::after {
+#accordion-button::after {
     background-image: initial;
     width: 0;
 }
 
-.accordion-button:not(.collapsed)::after {
+
+#accordion-button::after(.collapsed)::after {
     background-image: initial;
     width: 0;
 }
