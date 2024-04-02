@@ -13,6 +13,10 @@ export const UNVERSITY_RUSE = 'University of Rousse';
 export const VELIKO_TARNOVO = 'Veliko Tarnovo, Bulgaria';
 export const ELENA = 'Elena, Bulgaria';
 
+export const SERVICE = 'Service';
+export const PRODUCT = 'Product';
+export const COSULTANCY = 'Consultancy';
+
 export function bullet(): string {
     return '\u2022';
 }
