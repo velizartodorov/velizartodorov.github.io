@@ -3,6 +3,54 @@ import { Employment } from "./employment";
 
 export const employments: Employment[] = [
     {
+        position: "Full-Stack Developer",
+        company: 'Docbyte N.V.',
+        place: GHENT,
+        icon: '/employments/docbyte.jpg',
+        period: {
+            start: new Date(2024, 3),
+            end: new Date(2024, 3)
+        },
+        body: [
+            `Description 📚`,
+            ``,
+            `
+            Docbyte is a leading organization that provides intelligent technologies 
+            to various knowledge worker organizations, from banks and insurers to any enterprise
+            in the field of information security, preservation, and document processing
+            Their platform helps to automate document processes and preserve digital information, 
+            enabling the clients to prepare for a fully digital future.`, 
+            ``,
+            `Technologies 🔧`,
+            ``,
+            `• Language/framework: Java 11, Quarkus`,
+            `• API Tools: AWS API Gateway`,
+            `• Dependency management: Maven`,
+            `• Containerization: none`,
+            `• Testing framework: JUnit 4`,
+            `• Deployments: AWS Lambda deployment packages`,
+            `• Database: AWS DynamoDB`,
+            `• Database management: AWS Management Console`,
+            `• Application server: Serverless 😉`,
+            `• Architecture: Serverless`,
+            `• Identity/access management: AWS Identity and Access Management (IAM)`,
+            `• Front-end: Angular 12`,
+            `• Version control: Git, AWS CodeCommit`,
+            `• IDE: IntelliJ, VS Code`,
+            `• Diagram schematization and documentation: draw.io`,
+            `• Development methodology: Pair/solo programming`,
+            `• Task management: JIRA`,
+            `• Time logging: JIRA Tempo`,
+            `• Production methodology: Scrum, sprints of two weeks`,
+            ``,
+            `References 📌`,
+            ``,
+        ],
+        references: [
+            { value: "Docbyte N.V.", href: "https://www.docbyte.com/" }
+        ]
+    },
+    {
         position: "Java Software Crafter",
         company: 'Continuum Consulting NV',
         place: HASSELT_REMOTE,
