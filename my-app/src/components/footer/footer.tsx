@@ -1,8 +1,8 @@
-import React from 'react';
+import { currentYear } from './utils';
 
 const Footer = () => (
   <div className="text-center mt-2 mb-2">
-    Powered by Velizar Todorov {(new Date().getFullYear())} ®
+    Powered by Velizar Todorov {currentYear()} ®
   </div>
 );
 
