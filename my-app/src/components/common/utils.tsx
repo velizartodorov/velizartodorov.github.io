@@ -1,5 +1,3 @@
-import { Period } from "./period";
-
 const months = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
@@ -21,7 +19,6 @@ export function bullet(): string {
     return '\u2022';
 }
 
-
 export function currentDate(): Date {
     const now = new Date();
     return new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -31,20 +28,4 @@ export function monthYear(date: Date): string {
     const month = date.getMonth();
     const year = date.getFullYear();
     return `${months[month]} ${year}`;
-}
-
-export function periodDifference(period: Period): string {
-    const diff = yearMonthDiff(period);
-    return diff ? `${diff}` : '';
-}
-
-export function yearMonthDiff(period: Period): string {
-    const monthDiff = (period.end.getFullYear() - period.start.getFullYear()) * 12
-        + (period.end.getMonth() - period.start.getMonth());
-    const yearDiff = Math.floor(monthDiff / 12);
-    const remainingMonths = monthDiff % 12;
-    const yearString = yearDiff > 0 ? `${yearDiff} years` : '';
-    const monthString = remainingMonths > 0 ? `${remainingMonths} months` : '';
-    const separator = yearString && monthString ? ', ' : '';
-    return `(${yearString}${separator}${monthString})`;
 }
