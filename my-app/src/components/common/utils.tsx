@@ -47,10 +47,6 @@ export function periodDifference(period: Period): string {
     return diff ? `${diff}` : '';
 }
 
-export function yearsDiff(period: Period): number {
-    return period.end.getFullYear() - period.start.getFullYear();
-}
-
 export function yearMonthDiff(period: Period): string {
     const monthDiff = (period.end.getFullYear() - period.start.getFullYear()) * 12
         + (period.end.getMonth() - period.start.getMonth());
