@@ -21,15 +21,6 @@ export function bullet(): string {
     return '\u2022';
 }
 
-export function display(period: Period): string {
-    const formattedStartDate = monthYear(period.start);
-    const formattedEndDate = monthYear(period.end);
-    const periodDiff = periodDifference(period);
-
-    return formattedEndDate === monthYear(currentDate())
-        ? `${formattedStartDate} - Present ${!periodDiff ? periodDiff : ''}`
-        : `${formattedStartDate} - ${formattedEndDate} ${periodDiff}`;
-}
 
 export function currentDate(): Date {
     const now = new Date();
