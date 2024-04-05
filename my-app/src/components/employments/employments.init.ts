@@ -23,7 +23,7 @@ export const employments: Employment[] = [
             ``,
             `Description 📚`,
             ``,
-            `• Applying ISO 27001/ISO 9001 certifications in the ecosysteem of Docbyte`,
+            `• Applying ISO 27001/9001 certifications in the ecosystem of Docbyte`,
             `• Migrating legacy on-premise apps towards cloud serverless AWS Lambda solution`,
             ``,
             `Technologies - Cloud Solution 🔧`,
