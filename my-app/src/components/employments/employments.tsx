@@ -33,7 +33,9 @@ const Employments = () => (
                     </Container>
                   </Accordion.Header>
                   <Accordion.Body>
-                    {employment.body.map((bodyItem) => (
+                  Company type: {employment.type} 🏢
+                  <br></br><br></br>
+                    {employment.description.map((bodyItem) => (
                       <span key={uuidv4()}>{bodyItem}<br></br></span>
                     ))}
                     {employment.references.map((link) => (

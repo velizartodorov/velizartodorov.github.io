@@ -1,19 +1,19 @@
-import { ELENA, GHENT, GHENT_CONTRACT, HASSELT_REMOTE, RUSE } from "../common/utils";
+import { ELENA, GHENT, GHENT_CONTRACT, HASSELT_REMOTE, RUSE, currentDate } from "../common/utils";
+import { Type } from "./type";
 import { Employment } from "./employment";
 
 export const employments: Employment[] = [
     {
         position: "Full-Stack Developer",
         company: 'Docbyte N.V.',
+        type: Type.Service,
         place: GHENT,
         icon: '/employments/docbyte.jpg',
         period: {
             start: new Date(2024, 3),
-            end: new Date(2024, 3)
+            end: currentDate()
         },
-        body: [
-            `Company 🏢`,
-            ``,
+        description: [
             `
             Docbyte is a leading organization that provides intelligent technologies 
             to various knowledge worker organizations, from banks and insurers to any enterprise
@@ -72,13 +72,14 @@ export const employments: Employment[] = [
     {
         position: "Java Software Crafter",
         company: 'Continuum Consulting NV',
+        type: Type.Consultancy,
         place: HASSELT_REMOTE,
         icon: '/employments/continuum.jpg',
         period: {
             start: new Date(2023, 4),
             end: new Date(2024, 0)
         },
-        body: [
+        description: [
             `Description 📚`,
             ``,
             `Joined the Continuum tribe, consulting clients using Java based applications.`,
@@ -120,13 +121,14 @@ export const employments: Employment[] = [
     {
         position: "Java Developer",
         company: 'Securex',
+        type: Type.Product,
         place: GHENT_CONTRACT,
         icon: '/employments/securex.png',
         period: {
             start: new Date(2023, 6),
             end: new Date(2023, 11)
         },
-        body: [
+        description: [
             `Description 📚`,
             ``,
             `Joined Securex as an external Java software developer. 
@@ -164,13 +166,14 @@ export const employments: Employment[] = [
     {
         position: "Software Developer",
         company: 'Unified Post',
+        type: Type.Product,
         place: GHENT,
         icon: '/employments/unified_post.jpeg',
         period: {
             start: new Date(2019, 3),
             end: new Date(2023, 3)
         },
-        body: [
+        description: [
             `Description 📚`,
             ``,
             `• ADMS was acquired by Unified Post. Working on the Integration Portal, 
@@ -210,13 +213,14 @@ export const employments: Employment[] = [
     {
         position: "Java Developer",
         company: 'ADM Solutions',
+        type: Type.Product,
         place: GHENT,
         icon: '/employments/adm_solutions.jpg',
         period: {
             start: new Date(2018, 10),
             end: new Date(2019, 2)
         },
-        body: [
+        description: [
             `Description 📚`,
             ``,
             `• Integrating, developing and improving automatized invoice/dossier flows with external services such as BillToBox (BanqUp), ELO and accountancy packages`,
@@ -253,13 +257,14 @@ export const employments: Employment[] = [
     {
         position: "Erasmus+ C# Developer Trainee",
         company: 'BIKEMA',
+        type: Type.ResearchAndDevelopment,
         place: GHENT,
         icon: '/employments/bikema_small.png',
         period: {
             start: new Date(2018, 6),
             end: new Date(2018, 9)
         },
-        body: [
+        description: [
             `Description 📚`,
             ``,
             `• Overview of C# programming concepts and approaches in .NET 4.0 and higher (Visual Studio 2015/17)`,
@@ -281,6 +286,7 @@ export const employments: Employment[] = [
     },
     {
         position: "Full-Stack Developer",
+        type: Type.Startup,
         company: 'DSI Ltd.',
         place: RUSE,
         icon: '/employments/dsi.png',
@@ -288,7 +294,7 @@ export const employments: Employment[] = [
             start: new Date(2017, 6),
             end: new Date(2018, 4)
         },
-        body: [
+        description: [
             `Description 📚`,
             ``,
             `• Kozelat.com/Outletpc.bg – OpenCart 2.3 (PHP 7.1/Bootstrap 3) shops – development and support`,
@@ -310,6 +316,7 @@ export const employments: Employment[] = [
     },
     {
         position: "Computer Repair Technician",
+        type: Type.Service,
         company: 'Telnet Ltd.',
         place: ELENA,
         icon: '/employments/telnet.png',
@@ -317,7 +324,7 @@ export const employments: Employment[] = [
             start: new Date(2015, 6),
             end: new Date(2015, 8)
         },
-        body: [
+        description: [
             `Description 📚`,
             ``,
             `• software and hardware fixing PC-s, laptops, mobile phones, tables`,
