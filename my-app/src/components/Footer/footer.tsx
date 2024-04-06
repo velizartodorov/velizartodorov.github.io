@@ -1,8 +1,8 @@
 import { currentYear } from './utils';
-
+import { profile } from './../header/profile.init';
 const Footer = () => (
   <div className="text-center mt-2 mb-2">
-    Powered by Velizar Todorov {currentYear()} ®
+    Powered by {profile.name} ® {currentYear()} 🚀
   </div>
 );
 
