@@ -19,7 +19,7 @@ export const employments: Employment[] = [
             to various knowledge worker organizations, from banks and insurers to any enterprise
             in the field of information security, preservation, and document processing
             Their platform helps to automate document processes and preserve digital information, 
-            enabling the clients to prepare for a fully digital future.`, 
+            enabling the clients to prepare for a fully digital future.`,
             ``,
             `Description 📚`,
             ``,
@@ -31,6 +31,7 @@ export const employments: Employment[] = [
             ``,
             `• Language/framework: Java 17 (Quarkus framework), Python 3`,
             `• API Tools: AWS API Gateway`,
+            `• PDF Manipulation library: Aspopse`,
             `• Dependency management: Maven`,
             `• Containerization: none`,
             `• Testing framework: JUnit 4`,
@@ -67,7 +68,8 @@ export const employments: Employment[] = [
             ``,
         ],
         references: [
-            { value: "Docbyte N.V.", href: "https://www.docbyte.com/" }
+            { value: "Docbyte N.V.", href: "https://www.docbyte.com/" },
+            { value: "Aspose.PDF for Java", href: "https://releases.aspose.com/pdf/java/" }
         ]
     },
     {
