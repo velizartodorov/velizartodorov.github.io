@@ -69,7 +69,7 @@ export const employments: Employment[] = [
         ],
         references: [
             { value: "Docbyte N.V.", href: "https://www.docbyte.com/" },
-            { value: "Aspose.PDF for Java", href: "https://releases.aspose.com/pdf/java/" }
+            { value: "Aspose.PDF | Java PDF Document Processing Class Library", href: "https://releases.aspose.com/pdf/java/" }
         ]
     },
     {
