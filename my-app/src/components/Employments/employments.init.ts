@@ -46,7 +46,7 @@ export const employments: Employment[] = [
             `• Application server: Serverless 😉`,
             `• Architecture: Serverless, microservices`,
             `• Identity/access management: KeyCloak`,
-            `• OCR: Google AI`,
+            `• OCR: Google AI, Amazon Textract, Native OCR`,
             `• Front-end: Angular 12`,
             `• Version control: Git, AWS CodeCommit`,
             `• IDE: IntelliJ, VS Code, PyCharm`,
