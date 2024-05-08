@@ -150,6 +150,7 @@ export const employments: Employment[] = [
             `• Database: Oracle, Microsoft SQL Server`,
             `• Application server: Apache Tomcat`,
             `• Architecture: Distributed microservices, Spring Cloud Gateway, Netflix Zuul API (Eureka)`,
+            `• Message queues/notifications:  Amazon Simple Queue Service (SQS) / Amazon Simple Notification Service (SNS)`,
             `• Persistence: Spring Data JPA, Hibernate`,
             `• Database management: Liquibase`,
             `• Front-end: React, React Native (mobile app)`,
