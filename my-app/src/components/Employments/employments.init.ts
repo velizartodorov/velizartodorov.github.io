@@ -5,7 +5,7 @@ import { Employment } from "./employment";
 export const employments: Employment[] = [
     {
         position: "Full-Stack Developer",
-        company: 'Docbyte N.V.',
+        company: 'Docbyte',
         type: Type.Service,
         place: GHENT,
         icon: '/employments/docbyte.jpg',
@@ -17,16 +17,16 @@ export const employments: Employment[] = [
             `
             Docbyte is a leading organization that provides intelligent technologies 
             to various knowledge worker organizations, from banks and insurers to any enterprise
-            in the field of information security, preservation, and document processing
+            in the field of information security, preservation, and document processing.
             Their platform helps to automate document processes and preserve digital information, 
             enabling the clients to prepare for a fully digital future.`,
             ``,
             `Description 📚`,
             ``,
-            `• Applying ISO 27001/9001 certifications in the ecosystem of Docbyte`,
             `• Migrating legacy on-premise apps towards cloud serverless AWS Lambda solution`,
             `• Integrating Amazon Textract as an OCR solution for the cloud infrastructure`,
             `• Documenting the flow in C4 architectural diagram`,
+            `• Following ISO 27001/9001 standards in the ecosystem of Docbyte`,
             ``,
             `Technologies - Cloud Solution 🔧`,
             ``,
