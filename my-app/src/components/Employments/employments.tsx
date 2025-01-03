@@ -9,7 +9,9 @@ const Employments = () => (
     <Accordion defaultActiveKey="0" className="mt-3 mx-3">
       <Accordion.Item eventKey="0">
         <Card>
-          <Accordion.Header><h4>Employments 💼</h4></Accordion.Header>
+          <Accordion.Header>
+            <h4 className="px-2">Employments 💼</h4>
+          </Accordion.Header>
           <Accordion.Body>
             <Accordion>
               {employments.map((employment, index) => (
@@ -33,8 +35,8 @@ const Employments = () => (
                     </Container>
                   </Accordion.Header>
                   <Accordion.Body>
-                  Company type: {employment.type} 🏢
-                  <br></br><br></br>
+                    Company type: {employment.type} 🏢
+                    <br></br><br></br>
                     {employment.description.map((bodyItem) => (
                       <span key={uuidv4()}>{bodyItem}<br></br></span>
                     ))}

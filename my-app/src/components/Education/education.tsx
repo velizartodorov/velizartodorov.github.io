@@ -10,7 +10,9 @@ const Education = () => (
     <Accordion defaultActiveKey="1" className="mt-3 mx-3">
       <Accordion.Item eventKey="1">
         <Card>
-          <Accordion.Header><h4>Education 🦉</h4></Accordion.Header>
+          <Accordion.Header>
+            <h4 className="px-2">Education 🦉</h4>
+          </Accordion.Header>
           <Accordion.Body>
             <Accordion>
               {educations.map((education, index) => (
@@ -21,7 +23,7 @@ const Education = () => (
                         <Col xs="auto" className="text-left">
                           <img src={education.icon}
                             alt="education icon"
-                            className="w-30"/>
+                            className="w-30" />
                         </Col>
                         <Col xs="7" className="text-left">
                           <h5>{`${education.occupation} at ${education.institution}`}</h5>

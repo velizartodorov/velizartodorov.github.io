@@ -8,7 +8,7 @@ const LicensesCertifications = () => (
     <Accordion.Item eventKey="1">
       <Card>
         <Accordion.Header>
-          <h4>Licenses & certifications 🔖</h4>
+          <h4 className="px-2">Licenses & certifications 🔖</h4>
         </Accordion.Header>
         <Accordion.Body>
           {licensesCertifications.map((license) => (
