@@ -1,12 +1,34 @@
 import { Period } from "../common/period";
 import { employments } from "../employments/employments.init";
 
-export const introduction = `As a software developer with ${totalYears()} years of experience in the industry, my passion lies in the Java technological stack. However, I have also gained expertise in front-end frameworks such as Angular. In addition to my daily development tasks, I prioritize following best practices, documenting project flow, extracting and translating business requirements into technical ones. Additionally, I am committed to monitoring version control systems and fostering effective team collaboration.`;
-
-function totalYears(): number {
+export function totalYears(): number {
     return getEmployments().reduce((totalYears, period) => {
         return totalYears + yearsDifference(period);
     }, 0);
+}
+
+export function totalTime(): string {
+    const totalPeriod = getEmployments().reduce(
+        (total, period) => {
+            const diff = exactDateDifference(period.start, period.end);
+            total.years += diff.years;
+            total.months += diff.months;
+            total.days += diff.days;
+
+            if (total.days >= 30) {
+                total.months += Math.floor(total.days / 30);
+                total.days %= 30;
+            }
+            if (total.months >= 12) {
+                total.years += Math.floor(total.months / 12);
+                total.months %= 12;
+            }
+            return total;
+        },
+        { years: 0, months: 0, days: 0 }
+    );
+
+    return `${totalPeriod.years} years, ${totalPeriod.months} months, and ${totalPeriod.days} days`;
 }
 
 function getEmployments(): Period[] {
@@ -16,6 +38,26 @@ function getEmployments(): Period[] {
     }));
 }
 
-export function yearsDifference(period: Period): number {
+function yearsDifference(period: Period): number {
     return period.end.getFullYear() - period.start.getFullYear();
+}
+
+function exactDateDifference(start: Date, end: Date) {
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+
+    let years = endDate.getFullYear() - startDate.getFullYear();
+    let months = endDate.getMonth() - startDate.getMonth();
+    let days = endDate.getDate() - startDate.getDate();
+
+    if (days < 0) {
+        months -= 1;
+        days += new Date(endDate.getFullYear(), endDate.getMonth(), 0).getDate();
+    }
+    if (months < 0) {
+        years -= 1;
+        months += 12;
+    }
+
+    return { years, months, days };
 }
