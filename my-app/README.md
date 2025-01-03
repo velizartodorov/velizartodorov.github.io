@@ -1,4 +1,4 @@
-# Velizar's portfiolo 👨‍💼
+# Velizar's portfolio 👨‍💼
 
 React-based single page web application representing Velizar's portfolio.
 
@@ -18,7 +18,7 @@ That's it. Have fun! 😎 🎉
 
 Tasks that still need to be finished:
 
-* fix accordion clickables
+* fix accordion clickable
 * add projects component
 * create design for mobile interface
 * create deployment process

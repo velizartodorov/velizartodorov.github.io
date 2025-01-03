@@ -1,9 +1,9 @@
-import { GHENT, RUSE, UNVERSITY_RUSE } from "../../common/utils";
+import { GHENT, RUSE, UNIVERSITY_RUSE } from "../../common/utils";
 import { IEducation } from "../education.init";
 
 export const bachelor: IEducation = {
     occupation: "Computer Engineering (Bachelor's degree)",
-    institution: UNVERSITY_RUSE,
+    institution: UNIVERSITY_RUSE,
     place: RUSE,
     icon: '/education/university_ruse.png',
     period: {
@@ -15,6 +15,6 @@ export const bachelor: IEducation = {
         ``
     ],
     references: [
-        { value: UNVERSITY_RUSE, href: "https://www.uni-ruse.bg/en" },
+        { value: UNIVERSITY_RUSE, href: "https://www.uni-ruse.bg/en" },
     ]
 }
