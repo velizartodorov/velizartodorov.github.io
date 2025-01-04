@@ -16,11 +16,10 @@ That's it. Have fun! 😎 🎉
 
 ## TO DO 📌
 
-Tasks that still need to be finished:
-
-* fix accordion clickable
+* fix accordion clickable ✅
 * add projects component
 * create design for mobile interface
 * create deployment process
 * publish portfolio on GitHub
 * add languages section and remove languages from header
+* add accordions arrows in the beginning
