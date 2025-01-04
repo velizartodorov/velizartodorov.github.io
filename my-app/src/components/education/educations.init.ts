@@ -1,4 +1,3 @@
-import { VELIKO_TARNOVO } from "../common/utils";
 import { IEducation } from "./education.init";
 import { bachelor } from "./education/bachelor";
 import { dutch } from "./education/dutch";

@@ -1,4 +1,4 @@
-import { GHENT, RUSE, UNIVERSITY_RUSE } from "../../common/utils";
+import { RUSE, UNIVERSITY_RUSE } from "../../common/utils";
 import { IEducation } from "../education.init";
 
 export const bachelor: IEducation = {
