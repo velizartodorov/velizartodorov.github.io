@@ -1,14 +1,15 @@
 import { Period } from "../common/period";
 import { employments } from "../employments/employments.init";
+import { telnet } from "../employments/employments/telnet";
 
 export function totalYears(): number {
-    return getEmployments().reduce((totalYears, period) => {
+    return getSofwareEmployments().reduce((totalYears, period) => {
         return totalYears + yearsDifference(period);
     }, 0);
 }
 
 export function totalTime(): string {
-    const totalPeriod = getEmployments().reduce(
+    const totalPeriod = getSofwareEmployments().reduce(
         (total, period) => {
             const diff = exactDateDifference(period.start, period.end);
             total.years += diff.years;
@@ -31,8 +32,10 @@ export function totalTime(): string {
     return `${totalPeriod.years} years, ${totalPeriod.months} months, and ${totalPeriod.days} days`;
 }
 
-function getEmployments(): Period[] {
-    return employments.map((employment) => ({
+function getSofwareEmployments(): Period[] {
+    return employments
+    .filter((employment) => employment.company !== telnet.company)
+    .map((employment) => ({
         start: employment.period.start,
         end: employment.period.end,
     }));
