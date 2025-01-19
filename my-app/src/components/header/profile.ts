@@ -4,7 +4,7 @@ export interface Profile {
   name: string;
   imageUrl: string;
   imageSize: number;
-  email: string;
+  email: Link;
   phone: Link;
   birthday: Link;
   address: Link;

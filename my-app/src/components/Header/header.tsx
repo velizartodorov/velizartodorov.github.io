@@ -1,34 +1,39 @@
 import Table from 'react-bootstrap/Table';
-import { profile } from './profile.init';
+import ProfileAttribute from '../common/LinkSection';
 import './header.css';
-import { useDocumentTitle, profilePicture, linkTo, mailTo, callTo } from './utils';
+import { profile } from './profile.init';
 
 const Header = () => {
-    useDocumentTitle(profile.name);
     return (
         <header className="header">
             <Table responsive borderless>
                 <tbody>
                     <tr>
-                        <td rowSpan={4}>{profilePicture(profile)}</td>
+                        <td rowSpan={4}>
+                            <img
+                                className="avatar"
+                                src={profile.imageUrl}
+                                alt=""
+                                style={{ width: profile.imageSize }}
+                            /></td>
                         <td><h2>{profile.name}</h2></td>
-                        <td> {linkTo(profile.birthday)}</td>
-                        <td> {linkTo(profile.drivingLicense)}</td>
+                        <td><ProfileAttribute link={profile.birthday} /></td>
+                        <td><ProfileAttribute link={profile.drivingLicense} /></td>
                     </tr>
                     <tr>
-                        <td>{mailTo(profile.email)}</td>
-                        <td>{callTo(profile.phone)}</td>
-                        <td>{linkTo(profile.address)}</td>
+                        <td><ProfileAttribute link={profile.email} /></td>
+                        <td><ProfileAttribute link={profile.phone} /></td>
+                        <td><ProfileAttribute link={profile.address} /></td>
                     </tr>
                     <tr>
-                        <td>{linkTo(profile.linkedIn)}</td>
-                        <td>{linkTo(profile.gitHub)}</td>
-                        <td>{linkTo(profile.blog)}</td>
+                        <td><ProfileAttribute link={profile.linkedIn} /></td>
+                        <td><ProfileAttribute link={profile.gitHub} /></td>
+                        <td><ProfileAttribute link={profile.blog} /></td>
                     </tr>
                     <tr>
                         {profile.languages.map((language) => (
-                            <td key={language.name}>
-                                {linkTo(language)}
+                            <td key={language.label}>
+                                {<ProfileAttribute link={language} />}
                             </td>
                         ))}
                     </tr>

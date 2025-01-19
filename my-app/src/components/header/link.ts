@@ -1,6 +1,7 @@
 export interface Link {
-    name: string;
+    label: string;
     icon: string;
-    iconSize: number;
-    url: string;
+    width: number;
+    url?: string;
+    href?: string;
 }
