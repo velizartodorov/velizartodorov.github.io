@@ -15,18 +15,20 @@ export const docbyte: Employment =
     },
     description: [
         `
-            Docbyte is a leading organization that provides intelligent technologies 
+            Docbyte is a leading organization that provides intelligent technologies
             to various knowledge worker organizations, from banks and insurers to any enterprise
             in the field of information security, preservation, and document processing.
-            Their platform helps to automate document processes and preserve digital information, 
+            Their platform helps to automate document processes and preserve digital information,
             enabling the clients to prepare for a fully digital future.`,
         ``,
         `Description 📚`,
         ``,
+        `• Accident management - solving incident/bug tickets and acting as a mediator between engineering and service desk`,
         `• Migrating legacy on-premise apps towards cloud serverless AWS Lambda solution`,
         `• Integrating Amazon Textract as an OCR solution for the cloud infrastructure`,
         `• Documenting the flow in C4 architectural diagram`,
-        `• Following ISO 27001/9001 standards in the ecosystem of Docbyte`,
+        `• Following ISO 27001/9001/QTSP standards in the ecosystem of Docbyte`,
+        `• Leading the daily meetings, when team lead was not available`,
         ``,
         `Technologies - Cloud Solution 🔧`,
         ``,
