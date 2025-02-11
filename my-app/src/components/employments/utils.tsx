@@ -7,7 +7,7 @@ export function display(period: Period): string {
     const periodDiff = periodDifference(period);
 
     return formattedEndDate === monthYear(currentDate())
-        ? `${formattedStartDate} - Present ${!periodDiff ? periodDiff : ''}`
+        ? `${formattedStartDate} - Present ${yearMonthDiff(period)}`
         : `${formattedStartDate} - ${formattedEndDate} ${periodDiff}`;
 }
 
