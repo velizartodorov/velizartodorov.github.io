@@ -23,7 +23,7 @@ That's it. Have fun! 😎 🎉
 * publish portfolio on GitHub
 * add languages section and remove languages from header
 * add accordions arrows in the beginning
-
+* add letters of reference ⚠️ (DSI/ADMS/UP)
 * common comonents -> Introduction
 * put pictures in `assets`
 * main section -> Header
