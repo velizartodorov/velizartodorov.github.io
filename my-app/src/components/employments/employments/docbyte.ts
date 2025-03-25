@@ -11,7 +11,7 @@ export const docbyte: Employment =
     icon: '/employments/docbyte.jpg',
     period: {
         start: new Date(2024, 3),
-        end: currentDate()
+        end: new Date(2025, 2)
     },
     description: [
         `
