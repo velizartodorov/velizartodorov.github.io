@@ -13,7 +13,7 @@ window.React = React
 export function App() {
   useEffect(() => {
     document.title = profile.name;
-  }, [profile.name]);
+  }, []);
   return (
     <>
       <Header />
