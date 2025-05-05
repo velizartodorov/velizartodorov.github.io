@@ -1,2 +1,39 @@
-# portfolio
-my_own_portfolio
+# Velizar's portfolio 👨‍💼
+
+React-based single page web application representing Velizar's portfolio.
+
+## How to start? 🤔
+
+In project directory, run in terminal:
+
+```js
+npm start
+```
+
+Go to <http://localhost:3000/>.
+
+That's it. Have fun! 😎 🎉
+
+## TO DO 📌
+
+* fix accordion clickable ✅
+* add projects component
+* create design for mobile interface
+* create deployment process
+* publish portfolio on GitHub
+* add languages section and remove languages from header
+* add accordions arrows in the beginning
+* add letters of reference ⚠️ (DSI/ADMS/UP)
+* common comonents -> Introduction
+* put pictures in `assets`
+* main section -> Header
+* all interfaces in one folder
+* cake is not aligned
+* design -> name at the top and all the rest below
+* component for the profile with link.url default value 47
+* * i18n -> localize(`${profile.name}`);
+* make icons as SVG
+* `profile.init.ts` rename to -> `profiledata.ts`
+* useDocumentTitle -> move ✅
+* `assets` folder in `public`
+* `licenses_certifications` -> `licenses-certifications`
