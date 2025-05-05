@@ -1,4 +1,4 @@
-import { currentDate, GHENT } from "../../common/utils";
+import { GHENT } from "../../common/utils";
 import { Employment } from "../employment";
 import { Type } from "../type";
 
