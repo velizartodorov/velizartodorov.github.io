@@ -19,7 +19,7 @@ const LicensesCertifications = () => (
                   id='accordion-button'
                   rel="noopener noreferrer">
                   <Col xs="auto" className="text-left">
-                    <a href={`licenses_certifications/${license.link}`}
+                    <a href={`portfolio/licenses_certifications/${license.link}`}
                       target="_blank"
                       rel="noopener noreferrer">
                       <img src={license.icon}
@@ -28,7 +28,7 @@ const LicensesCertifications = () => (
                     </a>
                   </Col>
                   <Col xs="5" className="text-left">
-                    <a href={`licenses_certifications/${license.link}`}
+                    <a href={`portfolio/licenses_certifications/${license.link}`}
                       target="_blank"
                       rel="noopener noreferrer">
                       <h5>{`${license.name}`}</h5>

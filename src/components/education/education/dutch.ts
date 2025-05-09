@@ -5,7 +5,7 @@ export const dutch: IEducation = {
     occupation: "Dutch/Flemmish Language & Literature",
     institution: 'Het Perspectief PCVO',
     place: GHENT,
-    icon: '/education/cvo_gent.png',
+    icon: 'portfolio/education/cvo_gent.png',
     period: {
         start: new Date(2019, 0),
         end: new Date(2020, 6)

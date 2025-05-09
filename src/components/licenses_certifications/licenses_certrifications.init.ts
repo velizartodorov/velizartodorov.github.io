@@ -2,7 +2,7 @@ import {  LicenseCertification } from "./license_certification";
 
 export const licensesCertifications: LicenseCertification[] = [
     {
-        icon: '/education/cvo_gent.png',
+        icon: 'portfolio/education/cvo_gent.png',
         name: 'Nederlands - tweede taal - richtgraad 2',
         institution: 'Het Perspectief PCVO',
         field: 'Dutch/Flemish Language and Literature',
@@ -10,7 +10,7 @@ export const licensesCertifications: LicenseCertification[] = [
         date: new Date(2020, 6)
     },
     {
-        icon: '/education/naric.svg',
+        icon: 'portfolio/education/naric.svg',
         name: 'Opleidingskwalifikatiegraad - Masters',
         institution: 'NARIC-Vlaanderen',
         field: 'Dutch/Flemish Language and Literature',
@@ -18,7 +18,7 @@ export const licensesCertifications: LicenseCertification[] = [
         date: new Date(2018, 6)
     },
     {
-        icon: '/education/deutsches-sprachdiplom.jpg',
+        icon: 'portfolio/education/deutsches-sprachdiplom.jpg',
         name: 'Deutsches Sprachdiplom (DSD)',
         institution: 'Kulturministerkonferenz Deutschland',
         field: 'German Language and Literature',

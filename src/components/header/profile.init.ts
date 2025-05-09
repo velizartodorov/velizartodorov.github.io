@@ -67,8 +67,8 @@ export const profile: Profile = {
             label: 'Dutch',
             icon: 'portfolio/header/speak.png',
             width: 47,
-            href: '/licenses_certifications/nederlands.pdf',
-            url: '/licenses_certifications/nederlands.pdf',
+            href: 'portfolio/licenses_certifications/nederlands.pdf',
+            url: 'portfolio/licenses_certifications/nederlands.pdf',
         },
         {
             label: 'Bulgarian (Native)',

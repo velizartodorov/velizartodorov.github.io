@@ -8,7 +8,7 @@ export const continuum: Employment =
     company: 'Continuum Consulting NV',
     type: Type.Consultancy,
     place: HASSELT_REMOTE,
-    icon: '/employments/continuum.jpg',
+    icon: 'portfolio/employments/continuum.jpg',
     period: {
         start: new Date(2023, 4),
         end: new Date(2024, 0)

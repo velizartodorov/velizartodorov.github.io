@@ -5,7 +5,7 @@ export const masters: IEducation = {
     occupation: "Software Engineering (Master's degree)",
     institution: UNIVERSITY_RUSE,
     place: RUSE,
-    icon: '/education/university_ruse.png',
+    icon: 'portfolio/education/university_ruse.png',
     period: {
         start: new Date(2017, 8),
         end: new Date(2018, 6)

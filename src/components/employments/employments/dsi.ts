@@ -8,7 +8,7 @@ export const desi: Employment =
     type: Type.Startup,
     company: 'DSI Ltd.',
     place: RUSE,
-    icon: '/employments/dsi.png',
+    icon: 'portfolio/employments/dsi.png',
     period: {
         start: new Date(2017, 6),
         end: new Date(2018, 4)

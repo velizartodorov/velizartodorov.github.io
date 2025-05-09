@@ -8,7 +8,7 @@ export const docbyte: Employment =
     company: 'Docbyte',
     type: Type.Service,
     place: GHENT,
-    icon: '/employments/docbyte.jpg',
+    icon: 'portfolio/employments/docbyte.jpg',
     period: {
         start: new Date(2024, 3),
         end: new Date(2025, 2)

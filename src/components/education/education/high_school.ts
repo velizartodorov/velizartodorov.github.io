@@ -5,7 +5,7 @@ export const high_school: IEducation = {
     occupation: "German & English language",
     institution: "Language High school “Prof. Dr. Assen Zlatarov”",
     place: VELIKO_TARNOVO,
-    icon: '/education/assen_zlatarov_language_school.jpg',
+    icon: 'portfolio/education/assen_zlatarov_language_school.jpg',
     period: {
         start: new Date(2008, 8),
         end: new Date(2013, 4)

@@ -8,7 +8,7 @@ export const unified_post: Employment =
     company: 'Unified Post',
     type: Type.Product,
     place: GHENT,
-    icon: '/employments/unified_post.jpeg',
+    icon: 'portfolio/employments/unified_post.jpeg',
     period: {
         start: new Date(2019, 3),
         end: new Date(2023, 3)
