@@ -12,6 +12,7 @@ export const dutch: IEducation = {
     },
     body: [
         `References 📌`,
+        ``
     ],
     references: [
         { value: "Dutch second language - Level 2 (B2) information", href: "https://www.vlaanderen.be/opleidingsdatabank/nederlands-tweede-taal-richtgraad-2" }
