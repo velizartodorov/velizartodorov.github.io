@@ -12,7 +12,7 @@ const LicensesCertifications = () => (
         </Accordion.Header>
         <Accordion.Body>
           {licensesCertifications.map((license) => (
-            <Card key={license.link}>
+            <Card>
               <Container fluid>
                 <Row className="align-items-center accordion-button collapsed p-2"
                   target="_blank"
