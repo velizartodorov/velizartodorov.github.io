@@ -8,7 +8,7 @@ export const telnet: Employment =
     type: Type.Service,
     company: 'Telnet Ltd.',
     place: ELENA,
-    icon: 'portfolio/employments/telnet.png',
+    icon: 'employments/telnet.png',
     period: {
         start: new Date(2015, 6),
         end: new Date(2015, 8)
