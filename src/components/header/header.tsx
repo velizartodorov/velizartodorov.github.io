@@ -1,5 +1,5 @@
 import Table from 'react-bootstrap/Table';
-import ProfileAttribute from '../common/LinkSection';
+import ProfileAttribute from '../common/profile_attribute';
 import './header.css';
 import { profile } from './profile.init';
 
