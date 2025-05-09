@@ -2,7 +2,7 @@ import {  LicenseCertification } from "./license_certification";
 
 export const licensesCertifications: LicenseCertification[] = [
     {
-        icon: 'portfolio/education/cvo_gent.png',
+        icon: 'education/cvo_gent.png',
         name: 'Nederlands - tweede taal - richtgraad 2',
         institution: 'Het Perspectief PCVO',
         field: 'Dutch/Flemish Language and Literature',
