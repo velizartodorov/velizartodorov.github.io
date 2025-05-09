@@ -2,7 +2,7 @@ import { GHENT } from "../../common/utils";
 import { IEducation } from "../education.init";
 
 export const dutch: IEducation = {
-    occupation: "Dutch/Flemmish Language & Literature",
+    occupation: "Dutch second language",
     institution: 'Het Perspectief PCVO',
     place: GHENT,
     icon: '/education/cvo_gent.png',
