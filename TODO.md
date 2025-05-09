@@ -3,7 +3,7 @@
 * fix accordion clickable ✅
 * add projects component
 * create design for mobile interface
-* create deployment process
+* create deployment process ✅
 * publish portfolio on GitHub
 * add languages section and remove languages from header
 * add accordions arrows in the beginning
