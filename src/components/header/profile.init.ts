@@ -14,33 +14,33 @@ export const profile: Profile = {
     },
     address: {
         label: GHENT,
-        icon: 'portfolio/header/house.png',
+        icon: 'header/house.png',
         width: 45,
         href: 'https://maps.app.goo.gl/Lz9CWt9u64AkSTE97',
         url: 'https://maps.app.goo.gl/Lz9CWt9u64AkSTE97',
     },
     drivingLicense: {
         label: 'Driving license type B',
-        icon: 'portfolio/header/driving_license.png',
+        icon: 'header/driving_license.png',
         width: 60,
     },
     linkedIn: {
         label: 'LinkedIn',
-        icon: 'portfolio/header/linkedin.png',
+        icon: 'header/linkedin.png',
         width: 40,
         href: 'https://www.linkedin.com/in/veltodorov/',
         url: 'https://www.linkedin.com/in/veltodorov/',
     },
     gitHub: {
         label: 'velizartodorov',
-        icon: 'portfolio/header/github.png',
+        icon: 'header/github.png',
         width: 40,
         href: 'https://github.com/velizartodorov/',
         url: 'https://github.com/velizartodorov/',
     },
     blog: {
         label: 'Personal blog',
-        icon: 'portfolio/header/blog.png',
+        icon: 'header/blog.png',
         width: 47,
         href: 'https://willscornersite.wordpress.com/',
         url: 'https://willscornersite.wordpress.com/',
@@ -48,17 +48,17 @@ export const profile: Profile = {
     languages: [
         {
             label: 'English',
-            icon: 'portfolio/header/speak.png',
+            icon: 'header/speak.png',
             width: 47,
         },
         {
             label: 'Dutch',
-            icon: 'portfolio/header/speak.png',
+            icon: 'header/speak.png',
             width: 47,
         },
         {
             label: 'Bulgarian (Native)',
-            icon: 'portfolio/header/speak.png',
+            icon: 'header/speak.png',
             width: 47,
         },
     ]
