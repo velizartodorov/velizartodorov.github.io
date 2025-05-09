@@ -20,7 +20,7 @@ const Employments = () => (
                     <Container fluid>
                       <Row className="align-items-center">
                         <Col xs="auto" className="text-left">
-                          <img src={employment.icon}
+                          <img src={process.env.PUBLIC_URL + employment.icon}
                             alt="company icon"
                             className='w-30' />
                         </Col>

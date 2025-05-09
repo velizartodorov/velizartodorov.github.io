@@ -4,6 +4,7 @@ import './header.css';
 import { profile } from './profile.init';
 
 const Header = () => {
+    const imageUrl = process.env.PUBLIC_URL + profile.imageUrl
     return (
         <header className="header">
             <Table responsive borderless>
@@ -12,7 +13,7 @@ const Header = () => {
                         <td rowSpan={5}>
                             <img
                                 className="avatar"
-                                src={profile.imageUrl}
+                                src={imageUrl}
                                 alt=""
                                 style={{ width: profile.imageSize }}
                             /></td>

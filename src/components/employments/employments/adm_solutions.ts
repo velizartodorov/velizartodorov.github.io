@@ -8,7 +8,7 @@ export const adm_solutions: Employment =
     company: 'ADM Solutions',
     type: Type.Product,
     place: GHENT,
-    icon: 'employments/adm_solutions.jpg',
+    icon: '/employments/adm_solutions.jpg',
     period: {
         start: new Date(2018, 10),
         end: new Date(2019, 2)

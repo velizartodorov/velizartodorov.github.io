@@ -21,7 +21,7 @@ const LicensesCertifications = () => (
                   <Col xs="auto" href='' className="text-left">
                     <span
                       rel="noopener noreferrer">
-                      <img src={license.icon}
+                      <img src={process.env.PUBLIC_URL + license.icon}
                         alt="education icon"
                         className='w-30' />
                     </span>

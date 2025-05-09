@@ -8,7 +8,7 @@ export const securex: Employment =
     company: 'Securex',
     type: Type.Product,
     place: GHENT_CONTRACT,
-    icon: 'employments/securex.png',
+    icon: '/employments/securex.png',
     period: {
         start: new Date(2023, 6),
         end: new Date(2023, 11)

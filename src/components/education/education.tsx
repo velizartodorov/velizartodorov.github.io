@@ -21,7 +21,7 @@ const Education = () => (
                     <Container fluid>
                       <Row className="align-items-center">
                         <Col xs="auto" className="text-left">
-                          <img src={education.icon}
+                          <img src={process.env.PUBLIC_URL + education.icon}
                             alt="education icon"
                             className="w-30" />
                         </Col>
