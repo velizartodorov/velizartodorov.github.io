@@ -9,7 +9,7 @@ export const profile: Profile = {
         label: 'veltodorov@outlook.com',
         href: "mailto:veltodorov@outlook.com",
         url: "mailto:veltodorov@outlook.com",
-        icon: "portfolio/header/mail.png",
+        icon: "header/mail.png",
         width: 40
     },
     address: {
