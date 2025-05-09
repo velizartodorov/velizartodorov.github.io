@@ -1,7 +1,8 @@
 import { Accordion, Card, Col, Container, Row } from 'react-bootstrap';
-import { licensesCertifications } from './licenses_certrifications.init';
-import './licenses_certifications.css';
 import { monthYear } from '../common/utils';
+import './licenses_certifications.css';
+import { licensesCertifications } from './licenses_certrifications.init';
+import { v4 as uuidv4 } from 'uuid';
 
 const LicensesCertifications = () => (
   <Accordion defaultActiveKey="1" className="mt-3 mx-3">
@@ -12,7 +13,7 @@ const LicensesCertifications = () => (
         </Accordion.Header>
         <Accordion.Body>
           {licensesCertifications.map((license) => (
-            <Card>
+            <Card key={uuidv4()}>
               <Container fluid>
                 <Row className="align-items-center accordion-button collapsed p-2"
                   target="_blank"
