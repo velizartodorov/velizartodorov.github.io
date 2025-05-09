@@ -9,7 +9,7 @@ const Header = () => {
             <Table responsive borderless>
                 <tbody>
                     <tr>
-                        <td rowSpan={4}>
+                        <td rowSpan={5}>
                             <img
                                 className="avatar"
                                 src={profile.imageUrl}
@@ -17,15 +17,9 @@ const Header = () => {
                                 style={{ width: profile.imageSize }}
                             /></td>
                         <td><h2>{profile.name}</h2></td>
-                        <td><ProfileAttribute link={profile.birthday} /></td>
-                        <td><ProfileAttribute link={profile.drivingLicense} /></td>
                     </tr>
                     <tr>
                         <td><ProfileAttribute link={profile.email} /></td>
-                        <td><ProfileAttribute link={profile.phone} /></td>
-                        <td><ProfileAttribute link={profile.address} /></td>
-                    </tr>
-                    <tr>
                         <td><ProfileAttribute link={profile.linkedIn} /></td>
                         <td><ProfileAttribute link={profile.gitHub} /></td>
                         <td><ProfileAttribute link={profile.blog} /></td>
@@ -36,6 +30,7 @@ const Header = () => {
                                 {<ProfileAttribute link={language} />}
                             </td>
                         ))}
+                        <td><ProfileAttribute link={profile.address} /></td>
                     </tr>
                 </tbody>
             </Table>

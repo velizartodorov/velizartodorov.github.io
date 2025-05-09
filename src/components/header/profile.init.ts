@@ -12,18 +12,6 @@ export const profile: Profile = {
         icon: "portfolio/header/mail.png",
         width: 40
     },
-    phone: {
-        label: '+32487371027',
-        href: `tel:+32487371027`,
-        url: `tel:+32487371027`,
-        icon: 'portfolio/header/phone.png',
-        width: 45,
-    },
-    birthday: {
-        label: '25 July, 1994',
-        icon: 'portfolio/header/cake.png',
-        width: 45,
-    },
     address: {
         label: GHENT,
         icon: 'portfolio/header/house.png',
@@ -67,8 +55,6 @@ export const profile: Profile = {
             label: 'Dutch',
             icon: 'portfolio/header/speak.png',
             width: 47,
-            href: 'portfolio/licenses_certifications/nederlands.pdf',
-            url: 'portfolio/licenses_certifications/nederlands.pdf',
         },
         {
             label: 'Bulgarian (Native)',

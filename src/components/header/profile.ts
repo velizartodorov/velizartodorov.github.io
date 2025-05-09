@@ -5,8 +5,6 @@ export interface Profile {
   imageUrl: string;
   imageSize: number;
   email: Link;
-  phone: Link;
-  birthday: Link;
   address: Link;
   drivingLicense: Link;
   linkedIn: Link;
