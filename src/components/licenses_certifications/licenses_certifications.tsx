@@ -18,21 +18,19 @@ const LicensesCertifications = () => (
                   target="_blank"
                   id='accordion-button'
                   rel="noopener noreferrer">
-                  <Col xs="auto" className="text-left">
-                    <a
-                      target="_blank"
+                  <Col xs="auto" href='' className="text-left">
+                    <span
                       rel="noopener noreferrer">
                       <img src={license.icon}
                         alt="education icon"
                         className='w-30' />
-                    </a>
+                    </span>
                   </Col>
                   <Col xs="5" className="text-left">
-                    <a
-                      target="_blank"
+                    <span
                       rel="noopener noreferrer">
                       <h5>{`${license.name}`}</h5>
-                    </a>
+                    </span>
                   </Col>
                   <Col> {license.institution}</Col>
                   <Col xs="auto" className="text-right">
