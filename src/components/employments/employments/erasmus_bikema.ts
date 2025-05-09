@@ -8,7 +8,7 @@ export const erasmus_bikema: Employment =
     company: 'BIKEMA',
     type: Type.ResearchAndDevelopment,
     place: GHENT,
-    icon: 'portfolio/employments/bikema_small.png',
+    icon: 'employments/bikema_small.png',
     period: {
         start: new Date(2018, 6),
         end: new Date(2018, 9)
