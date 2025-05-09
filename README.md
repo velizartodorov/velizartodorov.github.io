@@ -1,8 +1,10 @@
 # Velizar's portfolio 👨‍💼
 
-React-based single page web application representing Velizar's portfolio.
+React-based single page web application representing Velizar's portfolio:
 
-## How to start? 🤔
+<https://velizartodorov.github.io/>
+
+## How to start locally? 🤔
 
 In project directory, run in terminal:
 
