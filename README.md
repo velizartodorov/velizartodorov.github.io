@@ -33,8 +33,9 @@ That's it. Have fun! 😎 🎉
 This job is run by the `github-pages` bot and performs the actual publishing of the site.
 
 So:
-✅ The `deployment.yml` pushes built assets to `gh-pages`.
-✅ GitHub Pages detects that push and runs its own internal deploy step (`pages-build-deployment`).
+
+* The `deployment.yml` pushes built assets to `gh-pages`.
+* GitHub Pages detects that push and runs its own internal deploy step (`pages-build-deployment`).
 
 Example:
 
