@@ -5,9 +5,8 @@ export const profile: Profile = {
     name: 'Velizar Todorov',
     imageUrl: '/header/velizar.png',
     imageSize: 220,
-    email:{
+    email: {
         label: 'veltodorov@outlook.com',
-        href: "mailto:veltodorov@outlook.com",
         url: "mailto:veltodorov@outlook.com",
         icon: "/header/mail.png",
         width: 40
@@ -16,7 +15,6 @@ export const profile: Profile = {
         label: GHENT,
         icon: '/header/house.png',
         width: 45,
-        href: 'https://maps.app.goo.gl/Lz9CWt9u64AkSTE97',
         url: 'https://maps.app.goo.gl/Lz9CWt9u64AkSTE97',
     },
     drivingLicense: {
@@ -28,21 +26,18 @@ export const profile: Profile = {
         label: 'LinkedIn',
         icon: '/header/linkedin.png',
         width: 40,
-        href: 'https://www.linkedin.com/in/veltodorov/',
         url: 'https://www.linkedin.com/in/veltodorov/',
     },
     gitHub: {
         label: 'velizartodorov',
         icon: '/header/github.png',
         width: 40,
-        href: 'https://github.com/velizartodorov/',
         url: 'https://github.com/velizartodorov/',
     },
     blog: {
         label: 'Personal blog',
         icon: '/header/blog.png',
         width: 47,
-        href: 'https://willscornersite.wordpress.com/',
         url: 'https://willscornersite.wordpress.com/',
     },
     languages: [
