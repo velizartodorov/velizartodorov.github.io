@@ -4,7 +4,7 @@
 * add projects component
 * create design for mobile interface
 * create deployment process ✅
-* publish portfolio on GitHub
+* publish portfolio on GitHub ✅
 * add languages section and remove languages from header
 * add accordions arrows in the beginning
 * add letters of reference ⚠️ (DSI/ADMS/UP)
