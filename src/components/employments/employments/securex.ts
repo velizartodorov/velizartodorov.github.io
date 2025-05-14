@@ -16,8 +16,11 @@ export const securex: Employment =
     description: [
         `Description 📚`,
         ``,
-        `Joined Securex as an external Java software developer. 
-            Worked on an internal application (Wellbeing), related to sending surveys and assessments to the employees and employers of a company, so that both can receive reports and further help for their medical status.`,
+        `Joined Securex as an external Java software developer.`,
+        ``,
+        `• Joined the Continuum tribe working as a consultant for the social-secretariate “Securex”`,
+        `• Worked on an application collecting surveys from employes about their medical status – “BeWell”`,
+        `• Supported an application for gathering input information from starting entrepreneurs – “GO-Start”`,
         ``,
         `Technologies 🔧`,
         ``,
@@ -46,6 +49,7 @@ export const securex: Employment =
     ],
     references: [
         { value: "Securex", href: "https://www.securex.be/en" },
-        { value: "BeWell application", href: "https://www.securex.be/nl/personeelsbeleid/welzijn-op-het-werk" }
+        { value: "BeWell application", href: "https://www.securex.be/nl/personeelsbeleid/welzijn-op-het-werk" },
+        { value: "GO Start", href: "https://www.go-start.be/gostart4/public/home.htm" }
     ]
 };
