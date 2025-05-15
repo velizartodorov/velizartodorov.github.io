@@ -4,4 +4,5 @@ export interface LicenseCertification {
     field: string;
     date: Date;
     icon: string;
+    link?: string;
 }

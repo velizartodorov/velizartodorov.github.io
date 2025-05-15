@@ -12,35 +12,40 @@ const LicensesCertifications = () => (
           <h4 className="px-2">Licenses & certifications 🔖</h4>
         </Accordion.Header>
         <Accordion.Body>
-          {licensesCertifications.map((license) => (
-            <Card key={uuidv4()}>
-              <Container fluid>
-                <Row className="align-items-center accordion-button collapsed p-2"
-                  target="_blank"
-                  id='accordion-button'
-                  rel="noopener noreferrer">
-                  <Col xs="auto" href='' className="text-left">
-                    <span
-                      rel="noopener noreferrer">
-                      <img src={process.env.PUBLIC_URL + license.icon}
+          {licensesCertifications.map((license) => {
+            const hasLink = license.link && license.link.trim() !== '';
+            const Wrapper = hasLink ? 'a' : 'div';
+            return (
+              <Card key={uuidv4()}>
+                <Container fluid>
+                  <Row
+                    as={Wrapper}
+                    href={hasLink ? license.link : undefined}
+                    target={hasLink ? "_blank" : undefined}
+                    rel={hasLink ? "noopener noreferrer" : undefined}
+                    className="align-items-center accordion-button collapsed p-2"
+                    id="accordion-button"
+                  >
+                    <Col xs="auto" className="text-left">
+                      <img
+                        src={process.env.PUBLIC_URL + license.icon}
+                        height="25"
                         alt="education icon"
-                        className='w-30' />
-                    </span>
-                  </Col>
-                  <Col xs="5" className="text-left">
-                    <span
-                      rel="noopener noreferrer">
-                      <h5>{`${license.name}`}</h5>
-                    </span>
-                  </Col>
-                  <Col> {license.institution}</Col>
-                  <Col xs="auto" className="text-right">
-                    <h5>{`${monthYear(license.date)}`}</h5>
-                  </Col>
-                </Row>
-              </Container>
-            </Card>
-          ))}
+                        className="w-30"
+                      />
+                    </Col>
+                    <Col xs="5" className="text-left">
+                      <h5>{license.name}</h5>
+                    </Col>
+                    <Col>{license.institution}</Col>
+                    <Col xs="auto" className="text-right">
+                      <h5>{monthYear(license.date)}</h5>
+                    </Col>
+                  </Row>
+                </Container>
+              </Card>
+            );
+          })}
         </Accordion.Body>
       </Card>
     </Accordion.Item>
