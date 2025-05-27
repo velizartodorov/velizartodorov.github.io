@@ -2,13 +2,13 @@ import { GHENT } from "../../common/utils";
 import { Employment } from "../employment";
 import { Type } from "../type";
 
-export const erasmus_bikema: Employment =
+export const erasmus_adm_solutions: Employment =
 {
     position: "Erasmus+ C# Developer Trainee",
-    company: 'BIKEMA',
+    company: 'ADM Solutions',
     type: Type.ResearchAndDevelopment,
     place: GHENT,
-    icon: '/employments/bikema_small.png',
+    icon: '/employments/adm_solutions.jpg',
     period: {
         start: new Date(2018, 6),
         end: new Date(2018, 9)
@@ -35,9 +35,8 @@ export const erasmus_bikema: Employment =
         ``,
     ],
     references: [
+        { value: "ADM Solutions", href: "https://web.archive.org/web/20181111090144/https://adm-solutions.eu/nl/" },
         { value: "Erasmus+", href: "https://erasmus-plus.ec.europa.eu/" },
         { value: "University of Ruse", href: "https://www.uni-ruse.bg/en" },
-        { value: "BIKEMA information", href: "http://fetch.ecs.uni-ruse.bg/?cmd=gsProfile&user=FERNAND" },
-        { value: "Lotuswebtec.com", href: "https://www.lotuswebtec.com/en/" }
     ]
 }
