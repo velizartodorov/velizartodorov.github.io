@@ -17,6 +17,7 @@ export const desi: Employment =
         `Description 📚`,
         ``,
         `• Kozelat.com/Outletpc.bg – OpenCart 2.3 (PHP 7.1/Bootstrap 3) shops – development and support`,
+        `• Maintaining cron jobs for product import in the shops from external suppliers`,
         `• MiAudit – (Laravel 4.2/Bootstrap 3) – system for audit and management of cleaning companies in UK`,
         `• Git/Unix shell, FileZilla, PuTTY remote maintenance of company servers`,
         `• Project management system (Redmine) & web hosting administration (Digital Ocean)`,
