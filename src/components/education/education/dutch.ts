@@ -8,7 +8,7 @@ export const dutch: IEducation = {
     icon: '/education/cvo_gent.png',
     period: {
         start: new Date(2019, 0),
-        end: new Date(2020, 6)
+        end: new Date(2021, 4)
     },
     body: [
         `References 📌`,

@@ -14,7 +14,7 @@ export const licensesCertifications: LicenseCertification[] = [
         name: 'Nederlands - tweede taal - richtgraad 2',
         institution: 'Het Perspectief PCVO',
         field: 'Dutch/Flemish Language and Literature',
-        date: new Date(2020, 6)
+        date: new Date(2021, 4)
     },
     {
         icon: '/education/naric.svg',
