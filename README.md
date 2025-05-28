@@ -40,3 +40,5 @@ So:
 Example:
 
 ![cicd](assets/cicd.png)
+
+Added Dependabot for automatic update of dependencies via PR.
