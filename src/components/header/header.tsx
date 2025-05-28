@@ -7,15 +7,11 @@ const Header = () => {
     const imageUrl = process.env.PUBLIC_URL + profile.imageUrl
     return (
         <header className="header">
-            <Table responsive borderless>
+            <Table responsive borderless className="profile-table">
                 <tbody>
                     <tr>
                         <td rowSpan={3} className="avatar-td">
-                            <img
-                                className="avatar"
-                                src={imageUrl}
-                                alt=""
-                            />
+                            <img className="avatar" src={imageUrl} alt="" />
                         </td>
                         <td><h2>{profile.name}</h2></td>
                     </tr>
@@ -28,7 +24,7 @@ const Header = () => {
                     <tr>
                         {profile.languages.map((language) => (
                             <td key={language.label}>
-                                {<ProfileAttribute link={language} />}
+                                <ProfileAttribute link={language} />
                             </td>
                         ))}
                         <td><ProfileAttribute link={profile.address} /></td>
