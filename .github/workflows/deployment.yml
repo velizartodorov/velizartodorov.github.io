@@ -1,4 +1,6 @@
-name: Deploy React App to GitHub Pages
+# .github/workflows/deploy-to-docs.yml
+
+name: Build React App to /docs for GitHub Pages
 
 on:
   push:
@@ -6,7 +8,7 @@ on:
       - master
 
 jobs:
-  deploy:
+  build-and-commit:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,8 +26,15 @@ jobs:
       - name: Build the app
         run: npm run build
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+      - name: Replace /docs with new build
+        run: |
+          rm -rf docs
+          mv build docs
+
+      - name: Commit and push docs/
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs
+          git commit -m "Update GitHub Pages site [skip ci]" || echo "No changes to commit"
+          git push
