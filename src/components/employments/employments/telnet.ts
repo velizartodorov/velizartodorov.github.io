@@ -35,7 +35,6 @@ export const telnet: Employment =
         ``,
     ],
     references: [
-        { value: "Telnet", href: "https://telnet.bg/en/pc/home/p1/.html" },
-        { value: "Vivacom", href: "https://www.vivacom.bg/bg/telnet" },
+        { value: "Vivacom", href: "https://www.vivacom.bg/bg/telnet" }
     ]
 };
