@@ -15,7 +15,7 @@ export const high_school: IEducation = {
         ``
     ],
     references: [
-        { value: "ZfA - Deutsches Sprachdiplom (DSD)", href: "/licenses_certifications/deutsch.pdf" },
+        { value: "ZfA - Deutsches Sprachdiplom (DSD)", href: "https://www.kmk.org/themen/deutsches-sprachdiplom-dsd.html" },
         { value: "German language profile", href: "https://ezikovavt.com/%D1%87%D1%83%D0%B6%D0%B4%D0%B8-%D0%B5%D0%B7%D0%B8%D1%86%D0%B8/deutsch/" },
         { value: "English language profile", href: "https://ezikovavt.com/%D1%87%D1%83%D0%B6%D0%B4%D0%B8-%D0%B5%D0%B7%D0%B8%D1%86%D0%B8/english/" },
     ]
