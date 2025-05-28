@@ -4,7 +4,7 @@ import { Type } from "../type";
 
 export const erasmus_adm_solutions: Employment =
 {
-    position: "Erasmus+ C# Developer Trainee",
+    position: "Erasmus+ .NET Developer Trainee",
     company: 'ADM Solutions',
     type: Type.ResearchAndDevelopment,
     place: GHENT,
