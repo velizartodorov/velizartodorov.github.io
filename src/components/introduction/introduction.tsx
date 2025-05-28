@@ -3,7 +3,7 @@ import './introduction.css';
 import { totalTime, totalYears } from './utils';
 
 const Introduction = () => (
-  <Accordion defaultActiveKey="0" className='mx-3'>
+  <Accordion defaultActiveKey="0" className='mx-4'>
     <Accordion.Item eventKey="0">
       <Card>
         <Accordion.Header>

@@ -1,3 +1,3 @@
 export function currentYear(): React.ReactNode {
-    return new Date().getFullYear();
-  }
+  return new Date().getFullYear();
+}

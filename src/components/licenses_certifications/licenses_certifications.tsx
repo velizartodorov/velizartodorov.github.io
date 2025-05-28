@@ -5,7 +5,7 @@ import { licensesCertifications } from './licenses_certrifications.init';
 import { v4 as uuidv4 } from 'uuid';
 
 const LicensesCertifications = () => (
-  <Accordion defaultActiveKey="1" className="mt-3 mx-3">
+  <Accordion defaultActiveKey="1" className="mt-4 mx-4">
     <Accordion.Item eventKey="1">
       <Card>
         <Accordion.Header>
