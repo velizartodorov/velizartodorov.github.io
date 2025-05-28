@@ -1,9 +1,18 @@
+.avatar-td {
+    width: 1px;
+    white-space: nowrap;
+}
+
 .avatar {
     border-radius: 50%;
     margin: 10px;
+    height: 200px;
+    width: auto;
+    display: block;
 }
 
 .header {
+    margin-top: 20px;
     margin-left: 20px;
 }
 

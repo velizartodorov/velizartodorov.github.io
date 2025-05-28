@@ -10,13 +10,13 @@ const Header = () => {
             <Table responsive borderless>
                 <tbody>
                     <tr>
-                        <td rowSpan={5}>
+                        <td rowSpan={3} className="avatar-td">
                             <img
                                 className="avatar"
                                 src={imageUrl}
                                 alt=""
-                                style={{ width: profile.imageSize }}
-                            /></td>
+                            />
+                        </td>
                         <td><h2>{profile.name}</h2></td>
                     </tr>
                     <tr>
