@@ -1,8 +1,7 @@
 version: 2
 updates:
-  - package-ecosystem: "npm" # Use "yarn" if your project uses yarn.lock instead of package-lock.json
-    directory: "/"           # Root directory where your package.json is located
+  - package-ecosystem: "npm"
+    directory: "/"
     schedule:
-      interval: "daily"      # Options: "daily", "weekly", "monthly"
-    commit-message:
-      prefix: "deps"
+      interval: "daily"
+    rebase-strategy: "auto"
