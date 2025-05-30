@@ -34,11 +34,11 @@ const LicensesCertifications = () => (
                         className="w-30"
                       />
                     </Col>
-                    <Col xs="5" className="text-left">
-                      <h5>{license.name}</h5>
+                    <Col xs={9} md={5} className="text-left">
+                      <h5 className='license-font'>{license.name}</h5>
                     </Col>
-                    <Col>{license.institution}</Col>
-                    <Col xs="auto" className="text-right">
+                    <Col className="d-none d-sm-block">{license.institution}</Col>
+                    <Col xs="auto" className="text-right d-none d-sm-block">
                       <h5>{monthYear(license.date)}</h5>
                     </Col>
                   </Row>
