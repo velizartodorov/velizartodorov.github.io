@@ -10,10 +10,10 @@ const ProfileAttribute: React.FC<{ link: Link }> = ({ link }) => {
             <span className="text-margin">{link.label}</span>
         </a>
     ) : (
-        <>
+        <a>
             <img src={iconSrc} style={{ width: link.width }} alt={link.label} />
             <span className="text-margin">{link.label}</span>
-        </>
+        </a>
     );
 };
 

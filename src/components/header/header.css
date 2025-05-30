@@ -33,13 +33,23 @@
 
 @media (max-width: 576px) {
     .profile-table td {
-        display: block;
         width: 100%;
+        text-align: center;
+        font-size: medium;
+        display: flex;
+        justify-content: center;
+        padding: 1%;
+    }
+
+    .profile-table td>a {
+        width: 70%;
+        text-align: start;
+        display: block;
     }
 
     .profile-table tr {
         display: block;
-        width: 100%;
+        text-align: center;
     }
 
     .avatar-td {
