@@ -25,11 +25,11 @@ const Education = () => (
                             alt="education icon"
                             className="w-30" />
                         </Col>
-                        <Col xs="7" className="text-left">
-                          <h5>{`${education.occupation} at ${education.institution}`}</h5>
+                        <Col xs={9} md={7} className="text-left">
+                          <h5 className="education-font">{`${education.occupation} at ${education.institution}`}</h5>
                         </Col>
-                        <Col>{education.place}</Col>
-                        <Col xs="auto" className="text-right">
+                        <Col className="d-none d-sm-block">{education.place}</Col>
+                        <Col xs="auto" className="text-right d-none d-sm-block">
                           <h5>{display(education.period)}</h5>
                         </Col>
                       </Row>
