@@ -1,4 +1,4 @@
-import { Accordion, Card, Col, Container, Row } from 'react-bootstrap';
+import { Accordion, Card, ListGroup, Row, Col } from 'react-bootstrap';
 import { monthYear } from '../common/utils';
 import './licenses_certifications.css';
 import { licensesCertifications } from './licenses_certrifications.init';
@@ -7,47 +7,51 @@ import { v4 as uuidv4 } from 'uuid';
 const LicensesCertifications = () => (
   <Accordion defaultActiveKey="1" className="mt-4 mx-4">
     <Accordion.Item eventKey="1">
-      <Card>
-        <Accordion.Header>
-          <h4 className="px-2">Licenses & certifications 🔖</h4>
-        </Accordion.Header>
-        <Accordion.Body>
-          {licensesCertifications.map((license) => {
-            const hasLink = license.link && license.link.trim() !== '';
-            const Wrapper = hasLink ? 'a' : 'div';
-            return (
-              <Card key={uuidv4()}>
-                <Container fluid>
-                  <Row
-                    as={Wrapper}
-                    href={hasLink ? license.link : undefined}
-                    target={hasLink ? "_blank" : undefined}
-                    rel={hasLink ? "noopener noreferrer" : undefined}
-                    className="align-items-center accordion-button collapsed p-2"
-                    id="accordion-button"
-                  >
-                    <Col xs="auto" className="text-left">
+      <Accordion.Header>
+        <h4 className="px-2">Licenses & certifications 🔖</h4>
+      </Accordion.Header>
+      <Accordion.Body>
+        <Card>
+          <ListGroup variant="flush">
+            {licensesCertifications.map((license) => {
+              const hasLink = license.link?.trim();
+              const Wrapper = hasLink ? 'a' : 'div';
+              return (
+                <ListGroup.Item
+                  as={Wrapper}
+                  key={uuidv4()}
+                  href={hasLink || undefined}
+                  rel={hasLink ? 'noopener noreferrer' : undefined}
+                  className="p-2"
+                >
+                  <Row className="align-items-center md-ps-2">
+                    <Col xs={12} md={5}
+                      className="d-flex align-items-center mb-2 mb-md-0 md-ps-4">
                       <img
                         src={process.env.PUBLIC_URL + license.icon}
                         height="25"
-                        alt="education icon"
-                        className="w-30"
+                        alt="license icon"
+                        className="me-3 flex-shrink-0"
                       />
+                      <h5 className="license-font mb-0 md-ps-2">
+                        {license.name}
+                      </h5>
                     </Col>
-                    <Col xs={9} md={5} className="text-left license-col">
-                      <h5 className='license-font'>{license.name}</h5>
+                    <Col xs={12} md={4}
+                      className="text-left mb-2 ps-5 mb-md-0 d-none d-sm-block">
+                      {license.institution}
                     </Col>
-                    <Col className="d-none d-sm-block">{license.institution}</Col>
-                    <Col xs="auto" className="text-right d-none d-sm-block">
-                      <h5>{monthYear(license.date)}</h5>
+                    <Col xs={12} md={3}
+                      className="text-end d-none d-sm-block pe-5">
+                      <h5 >{monthYear(license.date)}</h5>
                     </Col>
                   </Row>
-                </Container>
-              </Card>
-            );
-          })}
-        </Accordion.Body>
-      </Card>
+                </ListGroup.Item>
+              );
+            })}
+          </ListGroup>
+        </Card>
+      </Accordion.Body>
     </Accordion.Item>
   </Accordion>
 );
