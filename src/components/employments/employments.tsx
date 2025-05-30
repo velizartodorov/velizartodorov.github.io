@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { employments } from "./employments.init";
 import { bullet } from "../common/utils";
 import { display } from "./utils";
+import './employments.css';
 
 const Employments = () => (
   <>
@@ -24,12 +25,18 @@ const Employments = () => (
                             alt="company icon"
                             className='w-30' />
                         </Col>
-                        <Col xs="5" className="text-left">
-                          <h5>{`${employment.position} at ${employment.company}`}</h5>
+                        <Col xs={9} md={5} className="text-left">
+                          <h5 className="employment-font">
+                            {`${employment.position} at ${employment.company}`}
+                          </h5>
                         </Col>
-                        <Col>{employment.place}</Col>
-                        <Col xs="auto" className="text-right">
-                          <h5>{display(employment.period)}</h5>
+                        <Col className="d-none d-sm-block d-md-block">
+                          {employment.place}
+                        </Col>
+                        <Col xs="auto" className="d-none d-sm-block text-right">
+                          <h5 className="employment-font">
+                            {display(employment.period)}
+                          </h5>
                         </Col>
                       </Row>
                     </Container>

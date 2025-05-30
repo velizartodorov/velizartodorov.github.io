@@ -1,0 +1,11 @@
+.employment-font {
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+@media (max-width: 576px) {
+    .employment-font {
+        font-size: 1rem;
+        font-weight: 400; 
+    }
+}
