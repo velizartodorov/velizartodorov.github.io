@@ -31,10 +31,16 @@ export function useCurrentYear(): {
       }
     }
 
-    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
-    setTimeZone(tz);
+    fetchYearFromAPI();
+  }, []);
 
-    fetch(`https://timeapi.io/api/Time/current/zone?timeZone=${encodeURIComponent(tz)}`)
+  return { year, timeZone };
+
+  function fetchYearFromAPI() {
+    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+    setTimeZone(timeZone);
+
+    fetch(`https://timeapi.io/api/Time/current/zone?timeZone=${encodeURIComponent(timeZone)}`)
       .then(res => {
         if (!res.ok) throw new Error('Failed to fetch time');
         return res.json();
@@ -45,7 +51,7 @@ export function useCurrentYear(): {
 
         const cacheData: CacheData = {
           year: fetchedYear,
-          timeZone: tz,
+          timeZone: timeZone,
           fetchedAt: Date.now(),
         };
         localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData));
@@ -54,7 +60,5 @@ export function useCurrentYear(): {
         // fallback
         setYear(new Date().getFullYear());
       });
-  }, []);
-
-  return { year, timeZone };
+  }
 }
