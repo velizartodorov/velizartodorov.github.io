@@ -4,7 +4,7 @@ import './footer.css';
 
 const Footer = () => (
   <div className="text-center mt-2 mb-3 footer-font">
-    Powered by {profile.name} ® {currentYear()} 😉🚀 .
+    Powered by {profile.name} ® {currentYear()} 😉🚀
   </div>
 );
 
