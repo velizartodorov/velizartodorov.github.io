@@ -23,7 +23,8 @@ const Header = () => {
                     </tr>
                     <tr>
                         {profile.languages.map((language) => (
-                            <td className="d-none d-sm-table-cell" key={language.label}>
+                            <td className="d-none d-sm-table-cell"
+                                key={language.label}>
                                 <ProfileAttribute link={language} />
                             </td>
                         ))}
