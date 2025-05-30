@@ -9,8 +9,7 @@ on:
       - master
 
 jobs:
-  build-pr:
-    if: github.event_name == 'pull_request'
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -21,40 +20,28 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Clean install dependencies
-        run: |
-          rm -rf node_modules package-lock.json
-          npm install
-
-      - name: Build the app
-        run: npm run build
-
-  build-and-deploy:
-    if: github.event_name == 'push'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Cache node modules
+        uses: actions/cache@v3
         with:
-          node-version: '22'
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
-      - name: Clean install dependencies
-        run: |
-          rm -rf node_modules package-lock.json
-          npm install
+      - name: Install dependencies
+        run: npm ci
 
       - name: Build the app
         run: npm run build
 
       - name: Replace /docs with new build
+        if: github.event_name == 'push'
         run: |
           rm -rf docs
           mv build docs
 
       - name: Commit and push docs/
+        if: github.event_name == 'push'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
