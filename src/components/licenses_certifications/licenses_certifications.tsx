@@ -22,26 +22,25 @@ const LicensesCertifications = () => (
                   key={uuidv4()}
                   href={hasLink || undefined}
                   rel={hasLink ? 'noopener noreferrer' : undefined}
-                  className="p-2"
+                  className="p-10 list-group-item"
                 >
-                  <Row className="align-items-center md-ps-2">
-                    <Col xs={12} md={5}
-                      className="d-flex align-items-center mb-2 mb-md-0 md-ps-4">
-                      <img
-                        src={process.env.PUBLIC_URL + license.icon}
+                  <Row className="align-items-center">
+                    <Col xs="auto" className="text-left license-icon">
+                      <img src={process.env.PUBLIC_URL + license.icon}
                         height="25"
                         alt="license icon"
-                        className="me-3 flex-shrink-0"
-                      />
-                      <h5 className="license-font mb-0 md-ps-2">
+                        className='w-30' />
+                    </Col>
+                    <Col xs={9} md={5} className="text-left">
+                      <h5 className="license-font mb-0">
                         {license.name}
                       </h5>
                     </Col>
-                    <Col xs={12} md={4}
-                      className="text-left mb-2 ps-5 mb-md-0 d-none d-sm-block">
+                    <Col
+                      className="text-left d-none d-sm-block ps-0">
                       {license.institution}
                     </Col>
-                    <Col xs={12} md={3}
+                    <Col xs="auto"
                       className="text-end d-none d-sm-block pe-5">
                       <h5 >{monthYear(license.date)}</h5>
                     </Col>
