@@ -3,7 +3,7 @@ import { profile } from './../header/profile.init';
 import './footer.css';
 
 const Footer = () => (
-  <div className="text-center mt-2 mb-3 footer-font">
+  <div className="text-center mt-2 mb-2 footer-font">
     Powered by {profile.name} ® {currentYear()} 😉🚀
   </div>
 );

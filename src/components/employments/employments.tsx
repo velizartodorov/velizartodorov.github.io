@@ -7,7 +7,7 @@ import './employments.css';
 
 const Employments = () => (
   <>
-    <Accordion defaultActiveKey="0" className="mt-4 mx-4">
+    <Accordion defaultActiveKey="0" className="mt-3 mx-4">
       <Accordion.Item eventKey="0">
         <Card>
           <Accordion.Header>
