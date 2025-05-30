@@ -21,9 +21,9 @@ const Header = () => {
                         <td><ProfileAttribute link={profile.gitHub} /></td>
                         <td><ProfileAttribute link={profile.blog} /></td>
                     </tr>
-                    <tr>
+                    <tr >
                         {profile.languages.map((language) => (
-                            <td key={language.label}>
+                            <td className="d-none d-sm-block" key={language.label}>
                                 <ProfileAttribute link={language} />
                             </td>
                         ))}
