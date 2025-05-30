@@ -27,7 +27,9 @@ const Header = () => {
                                 <ProfileAttribute link={language} />
                             </td>
                         ))}
-                        <td><ProfileAttribute link={profile.address} /></td>
+                        <td className="d-none d-sm-table-cell">
+                            <ProfileAttribute link={profile.address} />
+                        </td>
                     </tr>
                 </tbody>
             </Table>
