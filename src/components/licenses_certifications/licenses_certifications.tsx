@@ -8,7 +8,7 @@ const LicensesCertifications = () => (
   <Accordion defaultActiveKey="1" className="mt-4 mx-4">
     <Accordion.Item eventKey="1">
       <Accordion.Header>
-        <h4 className="px-2">Licenses & certifications 🔖</h4>
+        <h4 className="px-2 license-heading">Licenses & certifications 🔖</h4>
       </Accordion.Header>
       <Accordion.Body>
         <Card>
