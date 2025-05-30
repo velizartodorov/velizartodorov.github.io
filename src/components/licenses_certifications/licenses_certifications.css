@@ -1,14 +1,13 @@
 @media (max-width: 576px) {
-
     .license-heading {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
     }
 
     .license-font {
         font-size: 1rem;
         font-weight: 400;
-        margin-bottom: 0px;
-        padding: 0px;
+        margin-bottom: 0;
+        padding: 0;
     }
 
     .license-icon {
@@ -18,13 +17,28 @@
     .list-group-item {
         padding-left: 1rem !important;
     }
+}
 
+@media (max-width: 400px) {
+    .license-heading {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 376px) {
+    .license-heading {
+        font-size: 1.2rem;
+    }
 }
 
 @media (max-width: 345px) {
-
     .license-heading {
         font-size: 1.1rem;
     }
+}
 
+@media (max-width: 320px) {
+    .license-heading {
+        font-size: 1.0rem;
+    }
 }
