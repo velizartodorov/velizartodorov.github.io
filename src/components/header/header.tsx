@@ -6,7 +6,7 @@ import { profile } from './profile.init';
 const Header = () => {
     const imageUrl = process.env.PUBLIC_URL + profile.imageUrl
     return (
-        <header className="header">
+        <header className="mt-3 ms-0 ms-md-4">
             <Table responsive borderless className="profile-table">
                 <tbody>
                     <tr>
