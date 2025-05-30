@@ -28,3 +28,27 @@
     width: 240px;
     white-space: nowrap;
 }
+
+/* responsive mobile devices CSS */
+
+@media (max-width: 576px) {
+    .profile-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .profile-table tr {
+        display: block;
+        width: 100%;
+    }
+
+    .avatar-td {
+        display: block;
+        text-align: center;
+        width: 100%;
+    }
+
+    .avatar {
+        margin: 0 auto;
+    }
+}
