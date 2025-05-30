@@ -11,7 +11,7 @@ const Education = () => (
       <Accordion.Item eventKey="1">
         <Card>
           <Accordion.Header>
-            <h4 className="px-2">Education 🦉</h4>
+            <h4 className="px-2 mb-1">Education 🦉</h4>
           </Accordion.Header>
           <Accordion.Body>
             <Accordion>

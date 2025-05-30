@@ -7,7 +7,7 @@ const Header = () => {
     const imageUrl = process.env.PUBLIC_URL + profile.imageUrl
     return (
         <header className="mt-3 ms-0 ms-md-4">
-            <Table responsive borderless className="profile-table">
+            <Table responsive borderless className="profile-table mb-2">
                 <tbody>
                     <tr>
                         <td rowSpan={3} className="avatar-td">
