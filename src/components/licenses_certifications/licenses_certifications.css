@@ -1,12 +1,14 @@
 #accordion-button::after {
     background-image: initial;
     width: 0;
+    display: none;
 }
 
 
 #accordion-button::after(.collapsed)::after {
     background-image: initial;
     width: 0;
+    display: none;
 }
 
 .accordion-header h4 {
@@ -16,6 +18,11 @@
 @media (max-width: 576px) {
     .accordion-header h4 {
         font-size: 1.2rem;
+    }
+
+    .container-fluid,
+    license-col {
+        padding: 0px;
     }
 
     .license-font {

@@ -34,7 +34,7 @@ const LicensesCertifications = () => (
                         className="w-30"
                       />
                     </Col>
-                    <Col xs={9} md={5} className="text-left">
+                    <Col xs={9} md={5} className="text-left license-col">
                       <h5 className='license-font'>{license.name}</h5>
                     </Col>
                     <Col className="d-none d-sm-block">{license.institution}</Col>
