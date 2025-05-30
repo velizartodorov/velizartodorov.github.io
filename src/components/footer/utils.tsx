@@ -27,31 +27,32 @@ export function useCurrentYear(): {
           return;
         }
       } catch {
+        // Ignore parsing error, fetch fresh
       }
     }
 
-    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Etc/UTC';
-    setTimeZone(timeZone);
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+    setTimeZone(tz);
 
-    fetch(`https://worldtimeapi.org/api/timezone/${encodeURIComponent(timeZone)}`)
+    fetch(`https://timeapi.io/api/Time/current/zone?timeZone=${encodeURIComponent(tz)}`)
       .then(res => {
         if (!res.ok) throw new Error('Failed to fetch time');
         return res.json();
       })
       .then(data => {
-        const serverDate = new Date(data.datetime);
-        const fetchedYear = serverDate.getFullYear();
+        const fetchedYear = data.year;
         setYear(fetchedYear);
+
         const cacheData: CacheData = {
           year: fetchedYear,
-          timeZone: timeZone,
+          timeZone: tz,
           fetchedAt: Date.now(),
         };
         localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData));
       })
       .catch(() => {
-        const fallbackYear = new Date().getFullYear();
-        setYear(fallbackYear);
+        // fallback
+        setYear(new Date().getFullYear());
       });
   }, []);
 
