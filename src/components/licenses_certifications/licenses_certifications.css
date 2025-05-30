@@ -8,3 +8,13 @@
     background-image: initial;
     width: 0;
 }
+
+.accordion-header h4 {
+    font-size: 1.5rem;
+}
+
+@media (max-width: 576px) {
+    .accordion-header h4 {
+        font-size: 1.2rem;
+    }
+}
