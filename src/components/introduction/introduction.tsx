@@ -1,5 +1,4 @@
 import { Accordion, Card } from 'react-bootstrap';
-import './introduction.css';
 import { totalTime, totalYears } from './utils';
 
 const Introduction = () => (
