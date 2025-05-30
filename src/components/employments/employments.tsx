@@ -23,7 +23,7 @@ const Employments = () => (
                         <Col xs="auto" className="text-left">
                           <img src={process.env.PUBLIC_URL + employment.icon}
                             alt="company icon"
-                            className='w-30' />
+                            width="30" />
                         </Col>
                         <Col xs={9} md={5} className="text-left">
                           <h5 className="employment-font">

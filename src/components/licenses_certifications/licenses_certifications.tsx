@@ -29,7 +29,7 @@ const LicensesCertifications = () => (
                       <img src={process.env.PUBLIC_URL + license.icon}
                         height="25"
                         alt="license icon"
-                        className='w-30' />
+                        width="30" />
                     </Col>
                     <Col xs={9} md={5} className="text-left">
                       <h5 className="license-font mb-0">

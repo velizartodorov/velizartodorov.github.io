@@ -23,7 +23,7 @@ const Education = () => (
                         <Col xs="auto" className="text-left">
                           <img src={process.env.PUBLIC_URL + education.icon}
                             alt="education icon"
-                            className="w-30" />
+                            width="30" />
                         </Col>
                         <Col xs={9} md={7} className="text-left">
                           <h5 className="education-font">{`${education.occupation} at ${education.institution}`}</h5>
