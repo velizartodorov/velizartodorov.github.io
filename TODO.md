@@ -21,3 +21,4 @@
 * useDocumentTitle -> move ✅
 * `assets` folder in `public`
 * `licenses_certifications` -> `licenses-certifications`
+* remove from the code `PUBLIC_URL` calls like `process.env.PUBLIC_URL + employment.icon`
