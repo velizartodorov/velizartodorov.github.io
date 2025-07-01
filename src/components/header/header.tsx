@@ -13,7 +13,7 @@ const Header = () => {
                         <td rowSpan={3} className="avatar-td">
                             <img className="avatar" src={imageUrl} alt="" />
                         </td>
-                        <td><h2>{profile.name}</h2></td>
+                        <td colSpan={4}><h2>{profile.name}</h2></td>
                     </tr>
                     <tr>
                         <td><ProfileAttribute link={profile.email} /></td>
