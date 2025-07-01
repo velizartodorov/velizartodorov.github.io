@@ -1,8 +1,8 @@
 import Table from 'react-bootstrap/Table';
 import ProfileAttribute from '../common/profile_attribute';
+import { getImageUrl } from '../common/utils';
 import './header.css';
 import { profile } from './profile.init';
-import { getImageUrl } from '../common/utils';
 
 const Header = () => {
     return (
@@ -39,4 +39,3 @@ const Header = () => {
 };
 
 export default Header;
-
