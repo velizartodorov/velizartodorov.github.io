@@ -31,4 +31,4 @@ Example:
 
 ### Dependabot 🤖
 
-`dependabot.yml` will make sure that bumping of library happens on a regular basis by Dpe with automatic opening of a PR.
+`dependabot.yml` will make sure that bumping of library happens on a regular basis by Dependabot with automatic opening of a PR.
