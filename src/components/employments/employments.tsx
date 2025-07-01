@@ -1,7 +1,7 @@
 import { Accordion, Card, Col, Container, Row } from "react-bootstrap";
 import { v4 as uuidv4 } from 'uuid';
 import { employments } from "./employments.init";
-import { bullet } from "../common/utils";
+import { bullet, getImageUrl } from "../common/utils";
 import { display } from "./utils";
 import './employments.css';
 
@@ -21,7 +21,7 @@ const Employments = () => (
                     <Container fluid>
                       <Row className="align-items-center">
                         <Col xs="auto" className="text-left">
-                          <img src={process.env.PUBLIC_URL + employment.icon}
+                          <img src={getImageUrl(employment.icon)}
                             alt="company icon"
                             width="30" />
                         </Col>

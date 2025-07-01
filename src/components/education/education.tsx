@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { educations } from "./educations.init";
 import './education.css'
 import { display } from "./utils";
-import { bullet } from "../common/utils";
+import { bullet, getImageUrl } from "../common/utils";
 
 const Education = () => (
   <>
@@ -21,7 +21,7 @@ const Education = () => (
                     <Container fluid>
                       <Row className="align-items-center">
                         <Col xs="auto" className="text-left">
-                          <img src={process.env.PUBLIC_URL + education.icon}
+                          <img src={getImageUrl(education.icon)}
                             alt="education icon"
                             width="30" />
                         </Col>

@@ -29,3 +29,7 @@ export function monthYear(date: Date): string {
     const year = date.getFullYear();
     return `${months[month]} ${year}`;
 }
+
+export function getImageUrl(imageUrl: string) {
+    return process.env.PUBLIC_URL + imageUrl;
+}

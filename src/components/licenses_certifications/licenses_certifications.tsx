@@ -1,8 +1,8 @@
-import { Accordion, Card, ListGroup, Row, Col } from 'react-bootstrap';
-import { monthYear } from '../common/utils';
+import { Accordion, Card, Col, ListGroup, Row } from 'react-bootstrap';
+import { v4 as uuidv4 } from 'uuid';
+import { getImageUrl, monthYear } from '../common/utils';
 import './licenses_certifications.css';
 import { licensesCertifications } from './licenses_certrifications.init';
-import { v4 as uuidv4 } from 'uuid';
 
 const LicensesCertifications = () => (
   <Accordion defaultActiveKey="1" className="mt-3 mx-4">
@@ -28,7 +28,7 @@ const LicensesCertifications = () => (
                 >
                   <Row className="align-items-center">
                     <Col xs="auto" className="text-left license-icon">
-                      <img src={process.env.PUBLIC_URL + license.icon}
+                      <img src={getImageUrl(license.icon)}
                         height="25"
                         alt="license icon"
                         width="30" />
