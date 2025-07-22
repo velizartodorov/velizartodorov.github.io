@@ -1,3 +1,19 @@
+.license-item {
+    transition: background 0.2s;
+    border-radius: 8px;
+}
+
+.license-item:hover, .license-item:focus {
+    background: #f5f5f5;
+    text-decoration: none;
+}
+
+.license-icon img {
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
 @media (max-width: 576px) {
     .license-heading {
         font-size: 1.4rem;

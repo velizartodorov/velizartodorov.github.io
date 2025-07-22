@@ -1,8 +1,8 @@
-import { Accordion, Card, Col, ListGroup, Row } from 'react-bootstrap';
+import { Accordion, Card, ListGroup } from 'react-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
-import { getImageUrl, monthYear } from '../common/utils';
 import './licenses_certifications.css';
 import { licensesCertifications } from './licenses_certrifications.init';
+import LicenseItem from './license_item';
 
 const LicensesCertifications = () => (
   <Accordion defaultActiveKey="1" className="mt-3 mx-4">
@@ -15,41 +15,9 @@ const LicensesCertifications = () => (
       <Accordion.Body>
         <Card>
           <ListGroup variant="flush">
-            {licensesCertifications.map((license) => {
-              const hasLink = license.link?.trim();
-              const Wrapper = hasLink ? 'a' : 'div';
-              return (
-                <ListGroup.Item
-                  as={Wrapper}
-                  key={uuidv4()}
-                  href={hasLink || undefined}
-                  rel={hasLink ? 'noopener noreferrer' : undefined}
-                  className="p-10 list-group-item"
-                >
-                  <Row className="align-items-center">
-                    <Col xs="auto" className="text-left license-icon">
-                      <img src={getImageUrl(license.icon)}
-                        height="25"
-                        alt="license icon"
-                        width="30" />
-                    </Col>
-                    <Col xs={9} md={5} className="text-left">
-                      <h5 className="license-font mb-0">
-                        {license.name}
-                      </h5>
-                    </Col>
-                    <Col
-                      className="text-left d-none d-sm-block ps-0">
-                      {license.institution}
-                    </Col>
-                    <Col xs="auto"
-                      className="text-end d-none d-sm-block pe-5">
-                      <h5 >{monthYear(license.date)}</h5>
-                    </Col>
-                  </Row>
-                </ListGroup.Item>
-              );
-            })}
+            {licensesCertifications.map((license) => (
+              <LicenseItem license={license} key={license.name + license.institution} />
+            ))}
           </ListGroup>
         </Card>
       </Accordion.Body>
