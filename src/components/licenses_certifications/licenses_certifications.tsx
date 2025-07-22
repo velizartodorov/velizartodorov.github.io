@@ -1,5 +1,4 @@
 import { Accordion, Card, ListGroup } from 'react-bootstrap';
-import { v4 as uuidv4 } from 'uuid';
 import './licenses_certifications.css';
 import { licensesCertifications } from './licenses_certrifications.init';
 import LicenseItem from './license_item';
