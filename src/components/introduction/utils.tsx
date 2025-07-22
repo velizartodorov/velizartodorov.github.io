@@ -1,6 +1,13 @@
+import React from 'react';
 import { Period } from "../common/period";
 import { employments } from "../employments/employments.init";
 import { telnet } from "../employments/employments/telnet";
+
+export let introductionBody = (
+    <>
+        As a software developer with {totalYears()} years of experience ({totalTime()} 😅) in the industry, my passion lies in the Java technological stack. However, I have also gained expertise in front-end frameworks such as Angular. In addition to my daily development tasks, I prioritize following best practices, documenting project flow, extracting and translating business requirements into technical ones. Additionally, I am committed to monitoring version control systems and fostering effective team collaboration.
+    </>
+);
 
 export function totalYears(): number {
     return getSofwareEmployments().reduce((totalYears, period) => {
@@ -34,11 +41,11 @@ export function totalTime(): string {
 
 function getSofwareEmployments(): Period[] {
     return employments
-    .filter((employment) => employment.company !== telnet.company)
-    .map((employment) => ({
-        start: employment.period.start,
-        end: employment.period.end,
-    }));
+        .filter((employment) => employment.company !== telnet.company)
+        .map((employment) => ({
+            start: employment.period.start,
+            end: employment.period.end,
+        }));
 }
 
 function yearsDifference(period: Period): number {
