@@ -1,6 +1,3 @@
-
-
-
 import AccordionWrapper from '../common/accordion_wrapper';
 import { SectionProps } from '../common/section_props';
 import EmploymentItem from './employment_item';
