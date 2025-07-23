@@ -1,28 +1,29 @@
 import { Col, ListGroup, Row } from 'react-bootstrap';
 import { getImageUrl, monthYear } from '../common/utils';
 import { LicenseCertification } from './license_certification';
+import React from 'react';
 
 const LicenseItem: React.FC<{ license: LicenseCertification }> = ({ license }) => {
-  const hasLink = license.link?.trim();
-  const Wrapper: any = hasLink ? 'a' : 'div';
+  const hasLink = Boolean(license.link?.trim());
+
   return (
     <ListGroup.Item
-      as={Wrapper}
-      href={hasLink || undefined}
+      as={hasLink ? 'a' : 'div'}
+      href={hasLink ? license.link : undefined}
       rel={hasLink ? 'noopener noreferrer' : undefined}
       className="p-10 list-group-item license-item"
     >
       <Row className="align-items-center">
         <Col xs="auto" className="text-left license-icon">
-          <img src={getImageUrl(license.icon)}
+          <img
+            src={getImageUrl(license.icon)}
             height="25"
+            width="30"
             alt="license icon"
-            width="30" />
+          />
         </Col>
         <Col xs={9} md={5} className="text-left">
-          <h5 className="license-font mb-0">
-            {license.name}
-          </h5>
+          <h5 className="license-font mb-0">{license.name}</h5>
         </Col>
         <Col className="text-left d-none d-sm-block ps-0">
           {license.institution}
