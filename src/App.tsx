@@ -9,16 +9,14 @@ import {
 
 import './App.css';
 
+import { LanguageContext, LanguageSelector } from './components/common/language_selector';
 import Education from './components/education/education';
-import enEducation from './components/education/education/education.en.json';
-import nlEducation from './components/education/education/education.nl.json';
 import Employments from './components/employments/employments';
 import Footer from './components/footer/footer';
 import Header from './components/header/header';
-import { profile } from './components/header/profile.init';
+import getProfile from './components/header/profile.init';
 import Introduction from './components/introduction/introduction';
 import LicensesCertifications from './components/licenses_certifications/licenses_certifications';
-import { LanguageSelector, LanguageContext } from './components/common/language_selector';
 
 window.React = React;
 
@@ -26,7 +24,7 @@ export function App() {
   const [language, setLanguage] = React.useState<'en' | 'nl'>('en');
 
   useEffect(() => {
-    document.title = profile.name;
+    document.title = getProfile(language).name;
   }, []);
 
   return (

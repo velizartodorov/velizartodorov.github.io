@@ -2,9 +2,14 @@ import Table from 'react-bootstrap/Table';
 import ProfileItem from './profile_item';
 import { getImageUrl } from '../common/utils';
 import './header.css';
-import { profile } from './profile.init';
+import getProfile from './profile.init';
+import { useContext } from 'react';
+import { LanguageContext } from '../common/language_selector';
+import { Link } from './link';
 
 const Header: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
+    const { language } = useContext(LanguageContext);
+    const profile = getProfile(language);
     return (
         <header className="mt-3 ms-0 ms-md-4">
             <Table responsive borderless className="profile-table mb-2">
@@ -23,7 +28,7 @@ const Header: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
                         <td><ProfileItem link={profile.blog} /></td>
                     </tr>
                     <tr>
-                        {profile.languages.map((language) => (
+                        {profile.languages.map((language: Link) => (
                             <td className="d-none d-sm-table-cell"
                                 key={language.label}>
                                 <ProfileItem link={language} />
