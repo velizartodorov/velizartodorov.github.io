@@ -412,6 +412,43 @@
                     "href": "https://miaudit.com/"
                 }
             ]
+        },
+        "telnet": {
+            "position": "Computerreparatie Technicus",
+            "company": "Telnet Ltd.",
+            "place": "Elena, Bulgarije",
+            "description": [
+                "Beschrijving 📚",
+                "",
+                "• Software- en hardwareherstel van pc's, laptops, mobiele telefoons, tablets",
+                "• Vervangen, schoonmaken en onderhouden van hardwarecomponenten van computerconfiguraties",
+                "• Software herinstallatie, back-up en onderhoud",
+                "• Opstellen van hardware-onderdelenlijst voor pc-configuratie op basis van klantwensen",
+                "",
+                "Het bedrijf is inmiddels overgenomen door de grootste telecom in Bulgarije – Vivacom (2024). 💡",
+                "",
+                "Domeinexpertise 🌐",
+                "",
+                "• IT-support & reparatie – praktische ervaring met het repareren van consumenten- en kantoorhardware zoals pc's, laptops, telefoons en tablets",
+                "• Hardwareonderhoud – uitvoeren van upgrades, diagnostiek en componentniveau servicing op computersystemen",
+                "• Software-installatie & troubleshooting – herinstalleren van besturingssystemen, beheren van back-ups en oplossen van systeemproblemen",
+                "• Maatwerk pc-configuratie – selecteren van hardwarecomponenten en bouwen van systemen op maat voor klanten",
+                "• Klantenservice – direct contact met klanten om technische behoeften te inventariseren en passende oplossingen te bieden",
+                "",
+                "Referenties 📌",
+                ""
+            ],
+            "icon": "/employments/telnet.png",
+            "period": {
+                "start": "2015-07-01",
+                "end": "2015-09-01"
+            },
+            "references": [
+                {
+                    "value": "Vivacom",
+                    "href": "https://www.vivacom.bg/bg/telnet"
+                }
+            ]
         }
     }
 }
