@@ -3,7 +3,9 @@ import { Col, ListGroup, Row } from 'react-bootstrap';
 import { getImageUrl, monthYear } from '../common/utils';
 import { LicenseCertification } from './license_certification';
 
-const LicenseItem: FC<{ item: LicenseCertification; index: number }> = ({ item, index }) => {
+const LicenseCertificationItem: FC<{
+  item: LicenseCertification; index: number
+}> = ({ item }) => {
   const hasLink = Boolean(item.link?.trim());
 
   return (
@@ -36,4 +38,4 @@ const LicenseItem: FC<{ item: LicenseCertification; index: number }> = ({ item, 
   );
 };
 
-export default LicenseItem;
+export default LicenseCertificationItem;

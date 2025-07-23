@@ -1,7 +1,7 @@
 import { Accordion, Card, ListGroup } from 'react-bootstrap';
 import './licenses_certifications.css';
 import { licensesCertifications } from './licenses_certrifications.init';
-import LicenseItem from './license_item';
+import LicenseCertificationItem from './license_certification_item';
 
 const LicensesCertifications = () => (
   <Accordion defaultActiveKey="1" className="mt-3 mx-4">
@@ -15,7 +15,7 @@ const LicensesCertifications = () => (
         <Card>
           <ListGroup variant="flush">
                   {licensesCertifications.map((item, index) => (
-                    <LicenseItem item={item} index={index} key={index} />
+                    <LicenseCertificationItem item={item} index={index} key={index} />
                   ))}
           </ListGroup>
         </Card>
