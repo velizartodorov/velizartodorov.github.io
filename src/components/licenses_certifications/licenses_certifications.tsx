@@ -5,8 +5,8 @@ import { SectionProps } from '../common/section_props';
 import LicenseCertificationItem from './license_certification_item';
 import './licenses_certifications.css';
 import { licensesCertifications } from './licenses_certrifications.init';
-import enLang from './licenses_certifications.en.lang.json';
-import nlLang from './licenses_certifications.nl.lang.json';
+import enLang from './licenses_certifications.en.json';
+import nlLang from './licenses_certifications.nl.json';
 import { useContext } from 'react';
 import { LanguageContext } from '../common/language_selector';
 

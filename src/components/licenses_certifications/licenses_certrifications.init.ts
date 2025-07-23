@@ -1,5 +1,5 @@
 import { LicenseCertification } from "./license_certification";
-import enData from "./licenses_certifications.en.lang.json";
+import enData from "./licenses_certifications.en.json";
 
 export const licensesCertifications: LicenseCertification[] = (enData.data as any[]).map(item => ({
     ...item,
