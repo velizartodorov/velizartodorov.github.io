@@ -2,7 +2,8 @@ import { ReactNode } from 'react';
 
 export interface Properties {
   title: string;
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
   eventKey?: string;
+  language?: 'en' | 'nl';
 }
