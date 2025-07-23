@@ -28,7 +28,7 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
                             </h5>
                         </Col>
                         <Col className="d-none d-sm-block d-md-block">
-                            {item.place}
+                            {langEmployment.place}
                         </Col>
                         <Col xs="auto" className="d-none d-sm-block text-right">
                             <h5 className="employment-font">

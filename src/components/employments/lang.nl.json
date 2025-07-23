@@ -1,3 +1,417 @@
 {
-    "title": "Werkervaring 💼"
+    "title": "Werkervaringen 💼",
+    "employments": {
+        "docbyte": {
+            "position": "Full-Stack Developer",
+            "company": "Docbyte",
+            "place": "Gent, België",
+            "description": [
+                "Docbyte is een toonaangevende organisatie die intelligente technologieën levert aan diverse kenniswerkers, van banken en verzekeraars tot elke onderneming op het gebied van informatiebeveiliging, archivering en documentverwerking.",
+                "Hun platform helpt bij het automatiseren van documentprocessen en het bewaren van digitale informatie, zodat klanten zich kunnen voorbereiden op een volledig digitale toekomst.",
+                "",
+                "Beschrijving 📚",
+                "",
+                "• Incidentbeheer - oplossen van incidenten/bugtickets en optreden als bemiddelaar tussen engineering en servicedesk",
+                "• Migreren van legacy on-premise apps naar cloud serverless AWS Lambda-oplossing",
+                "• Integratie van Amazon Textract als OCR-oplossing voor de cloudinfrastructuur",
+                "• Documenteren van de flow in C4-architectuurdiagram",
+                "• Werken volgens ISO 27001/9001/QTSP-standaarden binnen het ecosysteem van Docbyte",
+                "• Leiden van de dagelijkse meetings bij afwezigheid van de teamlead",
+                "",
+                "Technologieën - Cloudoplossing 🔧",
+                "",
+                "• Taal: Java 17, Python 3",
+                "• Framework: Quarkus",
+                "• Services: AWS Lambda/AWS Step Functions/SNS/SQS",
+                "• API Tools: AWS API Gateway",
+                "• Dependency management: Maven",
+                "• Testframework: Quarkus Test Framework JUnit 4",
+                "• Opslag: Amazon S3",
+                "• Eventbus: Amazon EventBridge",
+                "• Artifact repository: AWS CodeArtifact",
+                "• Deployments: AWS CodePipeline",
+                "• Build: AWS CodeBuild",
+                "• Database: AWS DynamoDB, Amazon RDS, PostgreSQL",
+                "• Databasebeheer: AWS Management Console",
+                "• Applicatieserver: AWS SAM (Serverless Application Model)",
+                "• Architectuur: Serverless, microservices",
+                "• Identiteit/toegangsbeheer: KeyCloak, AWS IAM",
+                "• OCR: Google AI, Amazon Textract, Native OCR",
+                "• Front-end: Angular 12",
+                "• IDE: IntelliJ, VS Code, PyCharm",
+                "• Diagrammen en documentatie: draw.io",
+                "• Ontwikkelmethode: Pair/solo programming",
+                "• Taakbeheer: JIRA",
+                "• Tijdregistratie: JIRA Tempo",
+                "• Productiemethode: Scrum, sprints van twee weken",
+                "",
+                "Technologieën - Legacy on-premise oplossing 🔧",
+                "",
+                "• Taal/framework: .NET 4.5 / OpenText Captiva",
+                "• OCR: Google AI",
+                "• Database: Microsoft SQL Server, PostgreSQL",
+                "• Ecosysteem: Microsoft services / batchverwerking",
+                "• Versiebeheer: Git / BitBucket",
+                "",
+                "Domeinexpertise 🌐",
+                "",
+                "• Intelligent Document Processing (IDP) – ervaring met high-volume, AI-ondersteunde documentcaptatie en classificatie",
+                "• Documentbeheer – diepgaande betrokkenheid bij documentlevenscyclusworkflows, van opname tot opslag en compliance",
+                "• Compliance-centrische systemen – werk volgens ISO 27001, ISO 9001 en QTSP-standaarden",
+                "• Modernisering van legacy-systemen – transformatie van on-premise .NET-platforms naar moderne serverless AWS-architecturen",
+                "• Enterprise Content & Records Management – ervaring met OpenText Captiva en gerelateerde ECM-platforms",
+                "",
+                "Referenties 📌",
+                ""
+            ],
+            "icon": "/employments/docbyte.jpg",
+            "period": {
+                "start": "2024-04-01",
+                "end": "2025-03-01"
+            },
+            "references": [
+                {
+                    "value": "Amazon Textract",
+                    "href": "https://aws.amazon.com/textract/"
+                },
+                {
+                    "value": "Aspose.PDF | Java PDF Document Processing Class Library",
+                    "href": "https://releases.aspose.com/pdf/java/"
+                },
+                {
+                    "value": "Docbyte N.V.",
+                    "href": "https://www.docbyte.com/"
+                }
+            ]
+        },
+        "continuum": {
+            "position": "Java Software Crafter",
+            "place": "Hasselt, België (Remote)",
+            "company": "Continuum Consulting NV",
+            "description": [
+                "Beschrijving 📚",
+                "",
+                "Toegetreden tot de Continuum-tribe, consultancy voor klanten met Java-gebaseerde applicaties.",
+                "",
+                "• R&D aan interne tools zoals E-Tribe Tool en HR Interview Tool",
+                "• Experimenteren met Docker, Kubernetes en migratie van Elastic BeanStalk naar Kubernetes",
+                "• Documentatie bijwerken",
+                "",
+                "Technologieën 🔧",
+                "",
+                "• Taal/framework: Java 17, Spring Boot 2.6.7",
+                "• API Tools: Swagger",
+                "• Dependency management: Gradle",
+                "• Containerisatie: Docker",
+                "• DevOps: Elastic BeanStalk",
+                "• Testframework: JUnit 4",
+                "• Deployments: Confluence Bamboo, Azure",
+                "• Database: PostgreSQL, Amazon DynamoDB (serverless, key-value NoSQL database)",
+                "• Applicatieserver: Apache Tomcat 8",
+                "• Architectuur: Microservices, client-server",
+                "• Persistentie: Spring Data JPA/R2DBC, Hibernate",
+                "• Databasebeheer: Flyway",
+                "• Identiteit/toegangsbeheer: KeyCloak (OAuth 2.0)",
+                "• Front-end: Angular 12",
+                "• Versiebeheer: Git, GitHub",
+                "• IDE: IntelliJ, VS Code",
+                "• Diagrammen en documentatie: Mermaid.js",
+                "• Ontwikkelmethode: Pair/solo programming",
+                "• Tijdregistratie: Teamleader",
+                "• Productiemethode: Kanban",
+                "",
+                "Domeinexpertise 🌐",
+                "",
+                "• Interne tooling & automatisering – R&D aan productiviteitsplatforms zoals interview- en HR-tools",
+                "• Enterprise applicatieontwikkeling – werken aan modulaire Java/Spring Boot microservices in consultancysetting",
+                "• DevOps enablement – experimenteren met Docker en Kubernetes voor infrastructuurmodernisering",
+                "• Cloudmigratiestrategie – evaluatie van migratiepaden van Elastic Beanstalk naar Kubernetes-infrastructuur",
+                "• Agile delivery – werken in een Kanban-team voor continue verbetering en taakgerichte flow",
+                "",
+                "Referenties 📌",
+                ""
+            ],
+            "icon": "/employments/continuum.jpg",
+            "period": {
+                "start": "2023-05-01",
+                "end": "2024-01-01"
+            },
+            "references": [
+                {
+                    "value": "Continuum Consulting NV",
+                    "href": "https://www.continuum.be/en/"
+                }
+            ]
+        },
+        "securex": {
+            "position": "Java Developer",
+            "company": "Securex",
+            "place": "Gent, België (Contract)",
+            "description": [
+                "Beschrijving 📚",
+                "",
+                "Gestart als externe Java softwareontwikkelaar bij Securex.",
+                "",
+                "• Lid van de Continuum-tribe als consultant voor het sociaal secretariaat Securex",
+                "• Werken aan een applicatie voor het verzamelen van medische enquêtes van werknemers – ‘BeWell’",
+                "• Ondersteunen van een applicatie voor het verzamelen van informatie van startende ondernemers – ‘GO-Start’",
+                "",
+                "Technologieën 🔧",
+                "",
+                "• Taal/framework: Java 11/17, Spring Boot 2.6",
+                "• API Tools: Apicurio Studio, Swagger",
+                "• Dependency management: Gradle",
+                "• Testframework: Groovy-Spock",
+                "• CI/CD: Atlassian Bamboo",
+                "• Datamonitoring: Elastic Kibana",
+                "• Deployments: Azure",
+                "• Database: Oracle, Microsoft SQL Server",
+                "• Applicatieserver: Apache Tomcat",
+                "• Architectuur: Gedistribueerde microservices, Spring Cloud Gateway, Netflix Zuul API (Eureka)",
+                "• Message queues/notifications: Amazon SQS / SNS",
+                "• Persistentie: Spring Data JPA, Hibernate",
+                "• Databasebeheer: Liquibase",
+                "• Front-end: React, React Native (mobiele app)",
+                "• Versiebeheer: Git, BitBucket",
+                "• IDE: IntelliJ, VS Code, DbVisualizer Pro 11.0.5",
+                "• Ontwikkelmethode: Pair/solo programming",
+                "• Productiemethode: Scrum met 2-weekse sprints (planning, retros), SAFe (Scaled agile framework)",
+                "• Tijdregistratie: Jira",
+                "",
+                "Domeinexpertise 🌐",
+                "",
+                "• HR & welzijnsoplossingen – bijdragen aan de ontwikkeling van ‘BeWell’, een medische enquête-tool voor werknemers",
+                "• Ondernemerschapsondersteuning – bijdragen aan ‘GO-Start’, een platform voor startende ondernemers",
+                "• Publieke sector & sociaal secretariaat – softwareontwikkeling voor HR-compliance, payroll en administratieve workflows",
+                "• Scaled agile delivery – werken binnen SAFe voor grote projecten",
+                "• Data privacy & compliance – werken in omgevingen met focus op veilige verwerking van persoonsgegevens",
+                "",
+                "Referenties 📌",
+                ""
+            ],
+            "icon": "/employments/securex.png",
+            "period": {
+                "start": "2023-07-01",
+                "end": "2023-12-01"
+            },
+            "references": [
+                {
+                    "value": "Securex",
+                    "href": "https://www.securex.be/en"
+                }
+            ]
+        },
+        "unified_post": {
+            "position": "Software Developer",
+            "company": "Unified Post",
+            "place": "Gent, België",
+            "description": [
+                "Beschrijving 📚",
+                "",
+                "• ADMS werd overgenomen door Unified Post",
+                "• Werken aan het Integration Portal, een configuratie-app voor het koppelen van externe apps aan Unified Post-flows",
+                "• Opzetten van JIRA-flow + Bitbucket-integratie, Git Gitflow",
+                "• Werken aan een accountancy-simulatie-app met multi-tenancy architectuur (Spring Boot)",
+                "• Documenteren en schematiseren van de flow met C4-diagrammen, README's bijwerken",
+                "• TestRail-cases aanmaken",
+                "",
+                "Technologieën 🔧",
+                "",
+                "• Taal/framework: Java 8/11, Spring Boot 2.6.7, Project Reactor",
+                "• API tool: Swagger",
+                "• Dependency management: Maven, Gradle",
+                "• Testframework/tools: JUnit 4/5, Mockito, TestRails (testcases), Selenium",
+                "• CI/CD: BitBucket Pipelines",
+                "• Database: PostgreSQL",
+                "• Applicatieserver: Apache Tomcat 8",
+                "• Architectuur: Microservices",
+                "• Persistentie: Spring Data JPA, Hibernate",
+                "• Caching: Redis",
+                "• Databasebeheer: Liquibase, Flyway",
+                "• Identiteit/toegangsbeheer: KeyCloak (OAuth 2.0)",
+                "• Front-end: Angular 12",
+                "• IDE: IntelliJ, VS Code, DBeaver",
+                "• Diagrammen en documentatie: Draw.io, C4 Structurizr, Markdown",
+                "• Productiemethode: Kanban & Scrum",
+                "",
+                "Domeinexpertise 🌐",
+                "",
+                "• FinTech-integratie – bijdragen aan tools die externe apps koppelen aan Unified Post's financiële verwerkingsinfrastructuur",
+                "• Multi-tenant applicatieontwerp – ontwikkeling van een accountancy-simulatie-app die meerdere klantcontexten veilig ondersteunt",
+                "• DevOps en tooling-optimalisatie – opzetten van JIRA-Bitbucket-workflows en standaardiseren van Git Gitflow branching-strategie",
+                "• Kwaliteitsborging & documentatie – opstellen van C4-diagrammen, TestRail-testcases en gestructureerde technische documentatie",
+                "• Agile productlevering – werken in hybride Scrum- en Kanban-omgevingen over gedistribueerde microservice-architectuur",
+                "",
+                "Referenties 📌",
+                ""
+            ],
+            "icon": "/employments/unified_post.jpeg",
+            "period": {
+                "start": "2019-04-01",
+                "end": "2023-04-01"
+            },
+            "references": [
+                {
+                    "value": "Unifiedpost",
+                    "href": "https://www.unifiedpost.com/"
+                },
+                {
+                    "value": "Banqup",
+                    "href": "https://www.banqup.com/"
+                }
+            ]
+        },
+        "adm_solutions": {
+            "position": "Java Developer",
+            "company": "ADM Solutions",
+            "place": "Gent, België",
+            "description": [
+                "Beschrijving 📚",
+                "",
+                "• Integreren, ontwikkelen en verbeteren van geautomatiseerde factuur-/dossierstromen met externe diensten zoals BillToBox (BanqUp), ELO en accountancy pakketten",
+                "• Documenteren en schematiseren van de flow met UML-diagrammen",
+                "• Werken aan InvoiceFlow, een monolithische applicatie die facturen distribueert naar verschillende accountancy pakketten zoals Expert-M, Adsolut, ExactOnline, BoCount, Wings Online en deze ook opslaat in een document management systeem genaamd ELO",
+                "• Werken aan DossierFlow, een monolithische applicatie die informatie over gebruikersdossiers uit Adsolut leest en importeert in ELO",
+                "• Java-applicaties migreren van SVN naar Git",
+                "",
+                "Technologieën 🔧",
+                "",
+                "• Taal: Java 8",
+                "• Testframework: JUnit 4",
+                "• Database: Microsoft SQL Server 2008-2012",
+                "• Applicatieserver: Apache Tomcat 8",
+                "• OS: Windows Server 2008-2012",
+                "• Externe API: ELO API",
+                "• Persistentie: Java Database Connectivity (JDBC)",
+                "• Architectuur: Java Servlet",
+                "• Front-end: Java Server Pages (JSP) + jQuery/Ajax",
+                "• Versiebeheer: SVN/Git, BitBucket",
+                "• IDE: Eclipse",
+                "• Diagrammen en documentatie: Draw.io, MS Visio",
+                "• Ontwikkelmethode: Pair programming",
+                "• Productiemethode: Kanban",
+                "",
+                "Domeinexpertise 🌐",
+                "",
+                "• Document- & factuurverwerking – ontwikkeling van automatiseringsstromen voor factuur- en dossierbeheer met integratie van ELO en accountancyplatforms",
+                "• Koppeling met boekhoudsoftware – implementatie van connectors voor financiële systemen zoals Expert-M, Adsolut, BoCount, Wings Online en ExactOnline",
+                "• Enterprise documentbeheer – gebruik van ELO API voor het opslaan en ophalen van gestructureerde content uit externe applicaties",
+                "• Legacy-systeemonderhoud – onderhouden en verbeteren van monolithische Java Servlet-applicaties op Windows Server-infrastructuur",
+                "• Modernisering van versiebeheer – migratie van Java-projecten van SVN naar Git volgens moderne standaarden",
+                "",
+                "Referenties 📌",
+                ""
+            ],
+            "icon": "/employments/adm_solutions.jpg",
+            "period": {
+                "start": "2018-11-01",
+                "end": "2019-03-01"
+            },
+            "references": [
+                {
+                    "value": "ADM Solutions",
+                    "href": "https://web.archive.org/web/20181111090144/https://adm-solutions.eu/nl/"
+                },
+                {
+                    "value": "ELO",
+                    "href": "https://www.elo.com/en-de.html"
+                }
+            ]
+        },
+        "erasmus_adm_solutions": {
+            "position": "Erasmus+ .NET Developer Stagiair",
+            "company": "ADM Solutions",
+            "place": "Gent, België",
+            "description": [
+                "Beschrijving 📚",
+                "",
+                "• Overzicht van C# programmeerconcepten en benaderingen in .NET 4.0 en hoger (Visual Studio 2015/17)",
+                "• Ontwerp en implementatie van C#-gebaseerde software",
+                "• Verbeteren van workflow en bieden van ondersteunende functies",
+                "• Uitvoeren van tests op C#-gebaseerde softwarecomponenten",
+                "• Ontwikkelmethode: Pair programming",
+                "• Productiemethode: Kanban",
+                "",
+                "Domeinexpertise 🌐",
+                "",
+                "• Academische R&D-samenwerking – deelname aan internationale onderzoeksprojecten via Erasmus+ en academische partnerschappen",
+                "• Softwareontwerp & implementatie – praktische ervaring met het ontwerpen en coderen van C#-applicaties met .NET Framework 4.0+",
+                "• Code testen & valideren – valideren van aangepaste componenten via functionele en modulaire teststrategieën",
+                "• Workflowoptimalisatie – ondersteuning van teamproductiviteit door het verbeteren van interne tooling en ontwikkeltrajecten",
+                "• Technische communicatie – bijdragen aan samenwerkingsprojecten met meerdere belanghebbenden in universiteit en private sector",
+                "",
+                "Referenties 📌",
+                ""
+            ],
+            "icon": "/employments/adm_solutions.jpg",
+            "period": {
+                "start": "2018-07-01",
+                "end": "2018-10-01"
+            },
+            "references": [
+                {
+                    "value": "ADM Solutions",
+                    "href": "https://web.archive.org/web/20181111090144/https://adm-solutions.eu/nl/"
+                },
+                {
+                    "value": "Erasmus+",
+                    "href": "https://erasmus-plus.ec.europa.eu/"
+                },
+                {
+                    "value": "University of Ruse",
+                    "href": "https://www.uni-ruse.bg/en"
+                }
+            ]
+        },
+        "dsi": {
+            "position": "Full-Stack Developer",
+            "company": "DSI Ltd.",
+            "place": "Rousse, Bulgarije",
+            "description": [
+                "Beschrijving 📚",
+                "",
+                "• Kozelat.com/Outletpc.bg – OpenCart 2.3 (PHP 7.1/Bootstrap 3) webshops – ontwikkeling en support",
+                "• Onderhouden van cronjobs voor productimport in de webshops van externe leveranciers",
+                "• MiAudit – (Laravel 4.2/Bootstrap 3) – systeem voor audit en beheer van schoonmaakbedrijven in het VK",
+                "• Git/Unix shell, FileZilla, PuTTY voor remote onderhoud van bedrijfsservers",
+                "• Projectmanagementsysteem (Redmine) & webhostingbeheer (Digital Ocean)",
+                "• Ontwikkelmethode: Pair programming",
+                "• Productiemethode: Kanban",
+                "",
+                "Domeinexpertise 🌐",
+                "",
+                "• E-commerce ontwikkeling – onderhouden en aanpassen van online winkels met OpenCart en Laravel frameworks",
+                "• Backoffice-systemen – bouwen en ondersteunen van maatwerkplatforms voor audit en beheer van schoonmaakdiensten (MiAudit VK)",
+                "• Webserver- & hostingbeheer – uitvoeren van shell-based onderhoud en deploys via SSH-tools (PuTTY, FileZilla)",
+                "• Versiebeheer & samenwerking – gebruik van Git en Redmine voor teamcoördinatie en issue tracking",
+                "• Agile samenwerking – werken in iteratieve cycli volgens Kanban-praktijken met peer development",
+                "",
+                "Referenties 📌",
+                ""
+            ],
+            "icon": "/employments/dsi.png",
+            "period": {
+                "start": "2017-07-01",
+                "end": "2018-05-01"
+            },
+            "references": [
+                {
+                    "value": "DSI Ltd - Developing Software Innovations",
+                    "href": "https://dsi.bg/en/"
+                },
+                {
+                    "value": "Kozelat.com",
+                    "href": "https://kozelat.com/"
+                },
+                {
+                    "value": "Outletpc.bg",
+                    "href": "https://outletpc.bg/"
+                },
+                {
+                    "value": "MiAudit",
+                    "href": "https://miaudit.com/"
+                }
+            ]
+        }
+    }
 }
