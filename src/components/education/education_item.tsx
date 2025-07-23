@@ -1,10 +1,13 @@
-import { Accordion, Col, Container, Row } from "react-bootstrap";
-import { v4 as uuidv4 } from 'uuid';
-import { display } from "./utils";
-import { bullet, getImageUrl } from "../common/utils";
-import { IEducation } from "./education.init";
 
-const EducationItem = ({ education, index }: { education: IEducation; index: number }) => (
+
+import { Accordion, Col, Container, Row } from 'react-bootstrap';
+import { getImageUrl, bullet } from '../common/utils';
+import { display } from './utils';
+import { v4 as uuidv4 } from 'uuid';
+
+import { FC } from 'react';
+
+const EducationItem: FC<{ education: any; index: number }> = ({ education, index }) => (
   <Accordion.Item eventKey={index.toString()}>
     <Accordion.Header>
       <Container fluid>
@@ -25,13 +28,13 @@ const EducationItem = ({ education, index }: { education: IEducation; index: num
       </Container>
     </Accordion.Header>
     <Accordion.Body>
-      {education.body.map((bodyItem) => (
+      {education.body.map((bodyItem: any) => (
         <span key={uuidv4()}>
           {bodyItem}
           <br />
         </span>
       ))}
-      {education.references.map((link) => (
+      {education.references.map((link: any) => (
         <div key={uuidv4()}>
           <span>{bullet()} </span>
           <a href={link.href}>{link.value}</a>
