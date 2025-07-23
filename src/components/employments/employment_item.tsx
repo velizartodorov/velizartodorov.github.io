@@ -7,8 +7,8 @@ import enData from './lang.en.json';
 import nlData from './lang.nl.json';
 import { LanguageContext } from '../common/language_selector';
 import { useDisplayPeriod } from './utils';
-import enPeriod from '../common/lang.period.en.json';
-import nlPeriod from '../common/lang.period.nl.json';
+import enCommon from '../common/common.en.json';
+import nlCommon from '../common/common.nl.json';
 
 
 const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> = ({ item, index, eventKey }) => {
@@ -18,7 +18,7 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
     const employmentKey = employmentKeys[index];
     const langEmployment = data.employments[employmentKey as keyof typeof data.employments] || item;
     const { display } = useDisplayPeriod();
-    const periodLang = language === 'nl' ? nlPeriod.period : enPeriod.period;
+    const commonLang = language === 'nl' ? nlCommon.period : enCommon.period;
     return (
         <Accordion.Item eventKey={eventKey}>
             <Accordion.Header>
@@ -29,7 +29,7 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
                         </Col>
                         <Col xs={9} md={5} className="text-left">
                             <h5 className="employment-font">
-                                {`${langEmployment.position} ${periodLang.at} ${langEmployment.company}`}
+                                {`${langEmployment.position} ${commonLang.at} ${langEmployment.company}`}
                             </h5>
                         </Col>
                         <Col className="d-none d-sm-block d-md-block">

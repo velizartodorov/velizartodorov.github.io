@@ -1,5 +1,5 @@
-import enPeriod from './lang.period.en.json';
-import nlPeriod from './lang.period.nl.json';
+import enCommon from './common.en.json';
+import nlCommon from './common.nl.json';
 
 export const HASSELT_REMOTE = 'Hasselt, Belgium (Remote)';
 export const GHENT_CONTRACT = 'Ghent, Belgium (Contract)';
@@ -23,7 +23,7 @@ export function currentDate(): Date {
 }
 
 export function monthYear(date: Date, lang: 'en' | 'nl' = 'en'): string {
-    const months = lang === 'nl' ? nlPeriod.months : enPeriod.months;
+    const months = lang === 'nl' ? nlCommon.months : enCommon.months;
     const month = date.getMonth();
     const year = date.getFullYear();
     return `${months[month]} ${year}`;

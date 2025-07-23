@@ -6,13 +6,13 @@ import { IEducation } from './education.init';
 import { Reference } from '../common/reference';
 import { display } from './utils';
 import { LanguageContext } from '../common/language_selector';
-import enPeriod from '../common/lang.period.en.json';
-import nlPeriod from '../common/lang.period.nl.json';
+import enCommon from '../common/common.en.json';
+import nlCommon from '../common/common.nl.json';
 
 const EducationItem: FC<{ item: IEducation; index: number }> = ({ item, index }) => {
   const { language } = useContext(LanguageContext);
-  const periodLang = language === 'nl' ? nlPeriod : enPeriod;
-  const at = periodLang.period.at;
+  const commonLang = language === 'nl' ? nlCommon : enCommon;
+  const atWord = commonLang.period.at;
   return (
     <Accordion.Item eventKey={index.toString()}>
       <Accordion.Header>
@@ -23,7 +23,7 @@ const EducationItem: FC<{ item: IEducation; index: number }> = ({ item, index })
             </Col>
             <Col xs={9} md={7} className="text-left">
               <h5 className="education-font">
-                {`${item.occupation} ${at} ${item.institution}`}
+                {`${item.occupation} ${atWord} ${item.institution}`}
               </h5>
             </Col>
             <Col className="d-none d-sm-block">{item.place}</Col>

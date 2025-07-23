@@ -2,8 +2,8 @@ import { FC, useContext } from 'react';
 import { Col, ListGroup, Row } from 'react-bootstrap';
 import { getImageUrl } from '../common/utils';
 import { LicenseCertification } from './license_certification';
-import enPeriod from '../common/lang.period.en.json';
-import nlPeriod from '../common/lang.period.nl.json';
+import enCommon from '../common/common.en.json';
+import nlCommon from '../common/common.nl.json';
 import { LanguageContext } from '../common/language_selector';
 
 const LicenseCertificationItem: FC<{
@@ -11,7 +11,7 @@ const LicenseCertificationItem: FC<{
 }> = ({ item }) => {
   const hasLink = Boolean(item.link?.trim());
   const { language } = useContext(LanguageContext);
-  const months = language === 'nl' ? nlPeriod.months : enPeriod.months;
+  const months = language === 'nl' ? nlCommon.months : enCommon.months;
   const date = item.date instanceof Date ? item.date : new Date(item.date);
   const month = date.getMonth();
   const year = date.getFullYear();

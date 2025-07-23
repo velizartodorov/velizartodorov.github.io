@@ -1,8 +1,8 @@
 
 import { useContext } from "react";
 import { LanguageContext } from '../common/language_selector';
-import enPeriod from '../common/lang.period.en.json';
-import nlPeriod from '../common/lang.period.nl.json';
+import enCommon from '../common/common.en.json';
+import nlCommon from '../common/common.nl.json';
 
 import { Period } from "../common/period";
 import { employments } from "../employments/employments.init";
@@ -29,7 +29,7 @@ export function interpolate(str: string, vars: Record<string, string | number>) 
 
 export function useTotalTime(): string {
     const { language } = useContext(LanguageContext);
-    const periodLang = language === 'nl' ? nlPeriod.period : enPeriod.period;
+    const commonLang = language === 'nl' ? nlCommon.period : enCommon.period;
 
     const totalPeriod = getSofwareEmployments().reduce(
         (total: { years: number; months: number; days: number }, period: Period) => {
@@ -51,9 +51,9 @@ export function useTotalTime(): string {
         { years: 0, months: 0, days: 0 }
     );
 
-    return `${totalPeriod.years} ${totalPeriod.years === 1 ? periodLang.year : periodLang.years}, ` +
-        `${totalPeriod.months} ${totalPeriod.months === 1 ? periodLang.month : periodLang.months}, ` +
-        `${periodLang.and} ${totalPeriod.days} ${totalPeriod.days === 1 ? periodLang.day : periodLang.days}`;
+    return `${totalPeriod.years} ${totalPeriod.years === 1 ? commonLang.year : commonLang.years}, ` +
+        `${totalPeriod.months} ${totalPeriod.months === 1 ? commonLang.month : commonLang.months}, ` +
+        `${commonLang.and} ${totalPeriod.days} ${totalPeriod.days === 1 ? commonLang.day : commonLang.days}`;
 }
 
 

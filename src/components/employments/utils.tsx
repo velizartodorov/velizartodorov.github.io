@@ -1,7 +1,7 @@
 import { Period } from "../common/period";
 import { currentDate } from "../common/utils";
-import enPeriod from '../common/lang.period.en.json';
-import nlPeriod from '../common/lang.period.nl.json';
+import enCommon from '../common/common.en.json';
+import nlCommon from '../common/common.nl.json';
 
 import { useContext } from "react";
 import { LanguageContext } from '../common/language_selector';
@@ -10,7 +10,7 @@ export function useDisplayPeriod() {
     const { language } = useContext(LanguageContext);
 
     function getPeriodLangObj() {
-        return language === 'nl' ? nlPeriod : enPeriod;
+        return language === 'nl' ? nlCommon : enCommon;
     }
 
     function monthYear(date: Date): string {
