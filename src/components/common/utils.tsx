@@ -1,6 +1,12 @@
-const months = [
+
+const monthsEN = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
+];
+
+const monthsNL = [
+    'januari', 'februari', 'maart', 'april', 'mei', 'juni',
+    'juli', 'augustus', 'september', 'oktober', 'november', 'december'
 ];
 
 export const HASSELT_REMOTE = 'Hasselt, Belgium (Remote)';
@@ -24,9 +30,10 @@ export function currentDate(): Date {
     return new Date(now.getFullYear(), now.getMonth(), now.getDate());
 }
 
-export function monthYear(date: Date): string {
+export function monthYear(date: Date, lang: 'en' | 'nl' = 'en'): string {
     const month = date.getMonth();
     const year = date.getFullYear();
+    const months = lang === 'nl' ? monthsNL : monthsEN;
     return `${months[month]} ${year}`;
 }
 

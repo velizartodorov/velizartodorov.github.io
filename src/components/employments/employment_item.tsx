@@ -1,11 +1,12 @@
 import { FC, useContext } from 'react';
 import { Accordion, Col, Container, Row } from "react-bootstrap";
+
 import { bullet, getImageUrl } from "../common/utils";
-import { display } from "./utils";
 import { Employment } from "./employment";
 import enData from './lang.en.json';
 import nlData from './lang.nl.json';
 import { LanguageContext } from '../common/language_selector';
+import { useDisplayPeriod } from './utils';
 
 
 const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> = ({ item, index, eventKey }) => {
@@ -14,6 +15,7 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
     const employmentKeys = Object.keys(data.employments);
     const employmentKey = employmentKeys[index];
     const langEmployment = data.employments[employmentKey as keyof typeof data.employments] || item;
+    const { display } = useDisplayPeriod();
     return (
         <Accordion.Item eventKey={eventKey}>
             <Accordion.Header>
