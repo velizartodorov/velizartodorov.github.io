@@ -4,7 +4,7 @@ import { bullet, getImageUrl } from "../common/utils";
 import { display } from "./utils";
 import { Employment } from "./employment";
 
-const EmploymentItem = ({ employment, eventKey }: { employment: Employment; eventKey: string }) => (
+const EmploymentItem: React.FC<{ employment: Employment; eventKey: string }> = ({ employment, eventKey }) => (
   <Accordion.Item eventKey={eventKey}>
     <Accordion.Header>
       <Container fluid>
