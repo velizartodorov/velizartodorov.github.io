@@ -1,12 +1,21 @@
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import { Col, ListGroup, Row } from 'react-bootstrap';
-import { getImageUrl, monthYear } from '../common/utils';
+import { getImageUrl } from '../common/utils';
 import { LicenseCertification } from './license_certification';
+import enPeriod from '../common/lang.period.en.json';
+import nlPeriod from '../common/lang.period.nl.json';
+import { LanguageContext } from '../common/language_selector';
 
 const LicenseCertificationItem: FC<{
   item: LicenseCertification; index: number
 }> = ({ item }) => {
   const hasLink = Boolean(item.link?.trim());
+  const { language } = useContext(LanguageContext);
+  const months = language === 'nl' ? nlPeriod.months : enPeriod.months;
+  const date = item.date instanceof Date ? item.date : new Date(item.date);
+  const month = date.getMonth();
+  const year = date.getFullYear();
+  const monthYearStr = `${months[month]} ${year}`;
 
   return (
     <ListGroup.Item
@@ -31,7 +40,7 @@ const LicenseCertificationItem: FC<{
           {item.institution}
         </Col>
         <Col xs="auto" className="text-end d-none d-sm-block pe-5">
-          <h5>{monthYear(item.date)}</h5>
+          <h5>{monthYearStr}</h5>
         </Col>
       </Row>
     </ListGroup.Item>
