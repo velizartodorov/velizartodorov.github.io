@@ -1,13 +1,5 @@
-
-const monthsEN = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
-];
-
-const monthsNL = [
-    'januari', 'februari', 'maart', 'april', 'mei', 'juni',
-    'juli', 'augustus', 'september', 'oktober', 'november', 'december'
-];
+import enPeriod from './lang.period.en.json';
+import nlPeriod from './lang.period.nl.json';
 
 export const HASSELT_REMOTE = 'Hasselt, Belgium (Remote)';
 export const GHENT_CONTRACT = 'Ghent, Belgium (Contract)';
@@ -31,9 +23,9 @@ export function currentDate(): Date {
 }
 
 export function monthYear(date: Date, lang: 'en' | 'nl' = 'en'): string {
+    const months = lang === 'nl' ? nlPeriod.months : enPeriod.months;
     const month = date.getMonth();
     const year = date.getFullYear();
-    const months = lang === 'nl' ? monthsNL : monthsEN;
     return `${months[month]} ${year}`;
 }
 

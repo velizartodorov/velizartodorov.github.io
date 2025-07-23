@@ -19,6 +19,9 @@
         "month": "maand",
         "months": "maanden",
         "present": "heden",
-        "at": "bij"
+        "at": "bij",
+        "and": "en",
+        "day": "dag",
+        "days": "dagen"
     }
 }

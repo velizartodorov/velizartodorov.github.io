@@ -19,6 +19,9 @@
         "month": "month",
         "months": "months",
         "present": "Present",
-        "at": "at"
+        "at": "at",
+        "and": "and",
+        "day": "day",
+        "days": "days"
     }
 }
