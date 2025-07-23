@@ -5,5 +5,5 @@ export interface Properties {
   children?: ReactNode;
   className?: string;
   eventKey?: string;
-  language?: 'en' | 'nl';
+  language?: string;
 }
