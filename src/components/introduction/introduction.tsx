@@ -1,7 +1,7 @@
 
 import AccordionWrapper from '../common/accordion_wrapper';
-import enData from './lang.en.json';
-import nlData from './lang.nl.json';
+import enData from './introduction.en.json';
+import nlData from './introduction.nl.json';
 import { interpolate } from './utils';
 import { Properties } from '../common/properties';
 import { totalYears, useTotalTime } from './utils';
