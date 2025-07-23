@@ -12,8 +12,8 @@ const Employments = () => (
         </Accordion.Header>
         <Accordion.Body>
           <Accordion>
-            {employments.map((employment, idx) => (
-              <EmploymentItem employment={employment} eventKey={String(idx)} key={employment.company + employment.position} />
+            {employments.map((employment, id) => (
+              <EmploymentItem employment={employment} eventKey={String(id)} key={id} />
             ))}
           </Accordion>
         </Accordion.Body>
