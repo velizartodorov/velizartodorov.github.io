@@ -6,12 +6,7 @@ import { parsePeriod } from "../common/utils";
 
 export function getEducations(lang: 'en' | 'nl'): IEducation[] {
     const data = lang === 'nl' ? nlData : enData;
-    return [
-        data.dutch,
-        data.masters,
-        data.bachelor,
-        data.high_school,
-    ].map(e => ({
+    return data.data.map((e: any) => ({
         ...e,
         period: parsePeriod(e.period)
     }));

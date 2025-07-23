@@ -10,6 +10,8 @@ import {
 import './App.css';
 
 import Education from './components/education/education';
+import enEducation from './components/education/education/education.en.json';
+import nlEducation from './components/education/education/education.nl.json';
 import Employments from './components/employments/employments';
 import Footer from './components/footer/footer';
 import Header from './components/header/header';
@@ -41,7 +43,8 @@ export function App() {
                 <Introduction className="mx-4" eventKey="0" />
                 <Employments className="mt-3 mx-4" eventKey="0" />
                 <LicensesCertifications className="mt-3 mx-4" eventKey="1" />
-                <Education title="Education 🦉" className="mt-3 mx-4" eventKey="1" />
+                <Education className="mt-3 mx-4" eventKey="1"
+                />
               </>
             }
           />
