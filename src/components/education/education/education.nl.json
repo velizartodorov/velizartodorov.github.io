@@ -1,7 +1,7 @@
 {
     "bachelor": {
         "occupation": "Computer Engineering (Bachelor diploma)",
-        "institution": "Universiteit van Ruse",
+        "institution": "Universiteit van Rousse",
         "place": "Rousse, Bulgarije",
         "icon": "/education/university_ruse.png",
         "period": {
@@ -14,7 +14,7 @@
         ],
         "references": [
             {
-                "value": "Universiteit van Ruse",
+                "value": "Universiteit van Rousse",
                 "href": "https://www.uni-ruse.bg/en"
             }
         ]
@@ -69,7 +69,7 @@
     },
     "masters": {
         "occupation": "Software Engineering (Master diploma)",
-        "institution": "Universiteit van Ruse",
+        "institution": "Universiteit van Rousse",
         "place": "Rousse, Bulgarije",
         "icon": "/education/university_ruse.png",
         "period": {
