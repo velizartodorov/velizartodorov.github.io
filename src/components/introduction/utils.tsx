@@ -1,21 +1,30 @@
 
 import { Period } from "../common/period";
 import { employments } from "../employments/employments.init";
-import { telnet } from "../employments/employments/telnet";
+
+function getSofwareEmployments(): Period[] {
+    const telnetEmployment = employments.find(e => e.company.toLowerCase().includes('telnet'));
+    return employments
+        .filter((employment) => employment.company !== (telnetEmployment?.company ?? ''))
+        .map((employment) => ({
+            start: employment.period.start,
+            end: employment.period.end,
+        }));
+}
 
 export function totalYears(): number {
-    return getSofwareEmployments().reduce((totalYears, period) => {
+    return getSofwareEmployments().reduce((totalYears: number, period: Period) => {
         return totalYears + yearsDifference(period);
     }, 0);
 }
 
 export function interpolate(str: string, vars: Record<string, string | number>) {
-  return str.replace(/\{(\w+)\}/g, (_, k) => vars[k] !== undefined ? String(vars[k]) : `{${k}}`);
+    return str.replace(/\{(\w+)\}/g, (_, k) => vars[k] !== undefined ? String(vars[k]) : `{${k}}`);
 }
 
 export function totalTime(): string {
     const totalPeriod = getSofwareEmployments().reduce(
-        (total, period) => {
+        (total: { years: number; months: number; days: number }, period: Period) => {
             const diff = exactDateDifference(period.start, period.end);
             total.years += diff.years;
             total.months += diff.months;
@@ -37,14 +46,6 @@ export function totalTime(): string {
     return `${totalPeriod.years} years, ${totalPeriod.months} months, and ${totalPeriod.days} days`;
 }
 
-function getSofwareEmployments(): Period[] {
-    return employments
-        .filter((employment) => employment.company !== telnet.company)
-        .map((employment) => ({
-            start: employment.period.start,
-            end: employment.period.end,
-        }));
-}
 
 function yearsDifference(period: Period): number {
     return period.end.getFullYear() - period.start.getFullYear();

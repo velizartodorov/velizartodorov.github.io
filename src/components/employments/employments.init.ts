@@ -1,20 +1,26 @@
 import { Employment } from "./employment";
-import { adm_solutions } from "./employments/adm_solutions";
-import { continuum } from "./employments/continuum";
-import { docbyte } from "./employments/docbyte";
-import { desi as dsi } from "./employments/dsi";
-import { erasmus_adm_solutions } from "./employments/erasmus_adm_solutions";
-import { securex } from "./employments/securex";
-import { telnet } from "./employments/telnet";
-import { unified_post } from "./employments/unified_post";
+import { Type } from "./type";
+import enData from "./lang.en.json";
 
-export const employments: Employment[] = [
-    docbyte,
-    continuum,
-    securex,
-    unified_post,
-    adm_solutions,
-    erasmus_adm_solutions,
-    dsi,
-    telnet
-];
+// Helper to map string to Type enum
+const typeMap = {
+  Startup: Type.Startup,
+  Service: Type.Service,
+  Consultancy: Type.Consultancy,
+  Product: Type.Product,
+  "Research & Development": Type.ResearchAndDevelopment
+};
+
+// Map the JSON structure to the Employment type
+export const employments: Employment[] = Object.values(enData.employments).map((e: any) => ({
+  position: e.position,
+  company: e.company,
+  type: typeMap[e.type as keyof typeof typeMap],
+  place: e.place,
+  icon: e.icon,
+  period: e.period && e.period.start && e.period.end
+    ? { start: new Date(e.period.start), end: new Date(e.period.end) }
+    : { start: new Date(), end: new Date() }, // fallback to now if missing
+  description: e.description,
+  references: e.references || [],
+}));
