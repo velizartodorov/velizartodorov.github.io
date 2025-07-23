@@ -27,33 +27,50 @@ export function interpolate(str: string, vars: Record<string, string | number>) 
     return str.replace(/\{(\w+)\}/g, (_, k) => vars[k] !== undefined ? String(vars[k]) : `{${k}}`);
 }
 
+function mergePeriods(periods: { start: Date; end: Date }[]): { start: Date; end: Date }[] {
+    if (periods.length === 0) return [];
+    const sorted = periods.slice().sort((a, b) => a.start.getTime() - b.start.getTime());
+    const merged: { start: Date; end: Date }[] = [sorted[0]];
+    for (let i = 1; i < sorted.length; i++) {
+        const last = merged[merged.length - 1];
+        const current = sorted[i];
+        if (last.end < current.start) {
+            merged.push({ ...current });
+        } else {
+            last.end = new Date(Math.max(last.end.getTime(), current.end.getTime()));
+        }
+    }
+    return merged;
+}
+
+function sumPeriods(periods: { start: Date; end: Date }[]) {
+    let totalYears = 0, totalMonths = 0, totalDays = 0;
+    for (const period of periods) {
+        const diff = exactDateDifference(period.start, period.end);
+        totalYears += diff.years;
+        totalMonths += diff.months;
+        totalDays += diff.days;
+    }
+    if (totalDays >= 30) {
+        totalMonths += Math.floor(totalDays / 30);
+        totalDays %= 30;
+    }
+    if (totalMonths >= 12) {
+        totalYears += Math.floor(totalMonths / 12);
+        totalMonths %= 12;
+    }
+    return { totalYears, totalMonths, totalDays };
+}
+
 export function useTotalTime(): string {
     const { language } = useContext(LanguageContext);
     const commonLang = language === 'nl' ? nlCommon.period : enCommon.period;
-
-    const totalPeriod = getSofwareEmployments().reduce(
-        (total: { years: number; months: number; days: number }, period: Period) => {
-            const diff = exactDateDifference(period.start, period.end);
-            total.years += diff.years;
-            total.months += diff.months;
-            total.days += diff.days;
-
-            if (total.days >= 30) {
-                total.months += Math.floor(total.days / 30);
-                total.days %= 30;
-            }
-            if (total.months >= 12) {
-                total.years += Math.floor(total.months / 12);
-                total.months %= 12;
-            }
-            return total;
-        },
-        { years: 0, months: 0, days: 0 }
-    );
-
-    return `${totalPeriod.years} ${totalPeriod.years === 1 ? commonLang.year : commonLang.years}, ` +
-        `${totalPeriod.months} ${totalPeriod.months === 1 ? commonLang.month : commonLang.months}, ` +
-        `${commonLang.and} ${totalPeriod.days} ${totalPeriod.days === 1 ? commonLang.day : commonLang.days}`;
+    const periods = getSofwareEmployments().map(p => ({ start: new Date(p.start), end: new Date(p.end) }));
+    const merged = mergePeriods(periods);
+    const { totalYears, totalMonths, totalDays } = sumPeriods(merged);
+    return `${totalYears} ${totalYears === 1 ? commonLang.year : commonLang.years}, ` +
+        `${totalMonths} ${totalMonths === 1 ? commonLang.month : commonLang.months}, ` +
+        `${commonLang.and} ${totalDays} ${totalDays === 1 ? commonLang.day : commonLang.days}`;
 }
 
 
