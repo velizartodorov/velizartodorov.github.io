@@ -4,6 +4,7 @@
         "docbyte": {
             "position": "Full-Stack Developer",
             "company": "Docbyte",
+            "place": "Ghent, Belgium",
             "description": [
                 "Docbyte is a leading organization that provides intelligent technologies to various knowledge worker organizations, from banks and insurers to any enterprise in the field of information security, preservation, and document processing.",
                 "Their platform helps to automate document processes and preserve digital information, enabling the clients to prepare for a fully digital future.",
@@ -44,14 +45,48 @@
                 "• Time logging: JIRA Tempo",
                 "• Production methodology: Scrum, sprints of two weeks",
                 "",
-                "Technologies - Legacy on-premise solution \uD83D\uDD27"
+                "Technologies - Legacy on-premise solution \uD83D\uDD27",
+                "",
+                "• Language/framework: .NET 4.5 / OpenText Captiva",
+                "• OCR: Google AI",
+                "• Database: Microsoft SQL Server, PostgreSQL",
+                "• Ecosystem: Microsoft services / batch processing",
+                "• Version control: Git / BitBucket",
+                "",
+                "Domain Expertise \uD83C\uDF10",
+                "",
+                "• Intelligent Document Processing (IDP) – experience with high-volume, AI-enhanced document capture and classification",
+                "• Document Management – deep involvement in document lifecycle workflows, from ingestion to storage and compliance",
+                "• Compliance-Centric Systems – work aligned with ISO 27001, ISO 9001, and QTSP standards",
+                "• Legacy System Modernization – transforming on-premise .NET-based platforms to modern serverless AWS architectures",
+                "• Enterprise Content & Records Management – exposure to OpenText Captiva and related ECM platforms",
+                "",
+                "References \uD83D\uDCCC",
+                ""
             ],
             "icon": "/employments/docbyte.jpg",
-            "period": { "start": "2024-04-01", "end": "2025-03-01" },
-            "references": []
+            "period": {
+                "start": "2024-04-01",
+                "end": "2025-03-01"
+            },
+            "references": [
+                {
+                    "value": "Amazon Textract",
+                    "href": "https://aws.amazon.com/textract/"
+                },
+                {
+                    "value": "Aspose.PDF | Java PDF Document Processing Class Library",
+                    "href": "https://releases.aspose.com/pdf/java/"
+                },
+                {
+                    "value": "Docbyte N.V.",
+                    "href": "https://www.docbyte.com/"
+                }
+            ]
         },
         "continuum": {
             "position": "Java Software Crafter",
+            "place": "Hasselt, Belgium (Remote)",
             "company": "Continuum Consulting NV",
             "description": [
                 "Description \uD83D\uDCDA",
@@ -97,7 +132,10 @@
                 ""
             ],
             "icon": "/employments/continuum.jpg",
-            "period": { "start": "2023-05-01", "end": "2024-01-01" },
+            "period": {
+                "start": "2023-05-01",
+                "end": "2024-01-01"
+            },
             "references": [
                 {
                     "value": "Continuum Consulting NV",
@@ -108,6 +146,7 @@
         "securex": {
             "position": "Java Developer",
             "company": "Securex",
+            "place": "Ghent, Belgium (Contract)",
             "description": [
                 "Description \uD83D\uDCDA",
                 "",
@@ -151,7 +190,10 @@
                 ""
             ],
             "icon": "/employments/securex.png",
-            "period": { "start": "2023-07-01", "end": "2023-12-01" },
+            "period": {
+                "start": "2023-07-01",
+                "end": "2023-12-01"
+            },
             "references": [
                 {
                     "value": "Securex",
@@ -162,6 +204,7 @@
         "unified_post": {
             "position": "Software Developer",
             "company": "Unified Post",
+            "place": "Ghent, Belgium",
             "description": [
                 "Description \uD83D\uDCDA",
                 "",
@@ -203,7 +246,10 @@
                 ""
             ],
             "icon": "/employments/unified_post.jpeg",
-            "period": { "start": "2019-04-01", "end": "2023-04-01" },
+            "period": {
+                "start": "2019-04-01",
+                "end": "2023-04-01"
+            },
             "references": [
                 {
                     "value": "Unifiedpost",
@@ -218,6 +264,7 @@
         "adm_solutions": {
             "position": "Java Developer",
             "company": "ADM Solutions",
+            "place": "Ghent, Belgium",
             "description": [
                 "Description \uD83D\uDCDA",
                 "",
@@ -256,7 +303,10 @@
                 ""
             ],
             "icon": "/employments/adm_solutions.jpg",
-            "period": { "start": "2018-11-01", "end": "2019-03-01" },
+            "period": {
+                "start": "2018-11-01",
+                "end": "2019-03-01"
+            },
             "references": [
                 {
                     "value": "ADM Solutions",
@@ -271,6 +321,7 @@
         "erasmus_adm_solutions": {
             "position": "Erasmus+ .NET Developer Trainee",
             "company": "ADM Solutions",
+            "place": "Ghent, Belgium",
             "description": [
                 "Description \uD83D\uDCDA",
                 "",
@@ -293,7 +344,10 @@
                 ""
             ],
             "icon": "/employments/adm_solutions.jpg",
-            "period": { "start": "2018-07-01", "end": "2018-10-01" },
+            "period": {
+                "start": "2018-07-01",
+                "end": "2018-10-01"
+            },
             "references": [
                 {
                     "value": "ADM Solutions",
@@ -312,6 +366,7 @@
         "dsi": {
             "position": "Full-Stack Developer",
             "company": "DSI Ltd.",
+            "place": "Rousse, Bulgaria",
             "description": [
                 "Description \uD83D\uDCDA",
                 "",
@@ -335,7 +390,10 @@
                 ""
             ],
             "icon": "/employments/dsi.png",
-            "period": { "start": "2017-07-01", "end": "2018-05-01" },
+            "period": {
+                "start": "2017-07-01",
+                "end": "2018-05-01"
+            },
             "references": [
                 {
                     "value": "DSI Ltd - Developing Software Innovations",
@@ -358,6 +416,7 @@
         "telnet": {
             "position": "Computer Repair Technician",
             "company": "Telnet Ltd.",
+            "place": "Elena, Bulgaria",
             "description": [
                 "Description \uD83D\uDCDA",
                 "",
@@ -380,7 +439,10 @@
                 ""
             ],
             "icon": "/employments/telnet.png",
-            "period": { "start": "2015-07-01", "end": "2015-09-01" },
+            "period": {
+                "start": "2015-07-01",
+                "end": "2015-09-01"
+            },
             "references": [
                 {
                     "value": "Vivacom",
