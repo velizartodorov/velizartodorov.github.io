@@ -2,7 +2,7 @@
 import { IEducation } from "./education.init";
 import enData from "./education/education.en.json";
 import nlData from "./education/education.nl.json";
-import { parsePeriod } from "../common/utils";
+import { parsePeriod } from "./utils";
 
 export function getEducations(lang: 'en' | 'nl'): IEducation[] {
     const data = lang === 'nl' ? nlData : enData;
