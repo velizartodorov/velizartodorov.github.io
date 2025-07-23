@@ -1,13 +1,24 @@
 {
-  "months": [
-    "januari", "februari", "maart", "april", "mei", "juni",
-    "juli", "augustus", "september", "oktober", "november", "december"
-  ],
-  "period": {
-    "year": "jaar",
-    "years": "jaar",
-    "month": "maand",
-    "months": "maanden",
-    "present": "heden"
-  }
+    "months": [
+        "januari",
+        "februari",
+        "maart",
+        "april",
+        "mei",
+        "juni",
+        "juli",
+        "augustus",
+        "september",
+        "oktober",
+        "november",
+        "december"
+    ],
+    "period": {
+        "year": "jaar",
+        "years": "jaar",
+        "month": "maand",
+        "months": "maanden",
+        "present": "heden",
+        "at": "bij"
+    }
 }
