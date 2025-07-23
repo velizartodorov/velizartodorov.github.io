@@ -39,8 +39,8 @@ export function App() {
             path="/"
             element={
               <>
-                <Introduction title="Introduction 👋" className="mx-4" eventKey="0" />
-                <Employments title="Employments 💼" className="mt-3 mx-4" eventKey="0" />
+                <Introduction className="mx-4" eventKey="0" />
+                <Employments className="mt-3 mx-4" eventKey="0" />
                 <LicensesCertifications title="Licenses & certifications 🔖" className="mt-3 mx-4" eventKey="1" />
                 <Education title="Education 🦉" className="mt-3 mx-4" eventKey="1" />
               </>

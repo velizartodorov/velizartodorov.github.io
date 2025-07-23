@@ -8,12 +8,12 @@ import { totalYears, totalTime } from './utils';
 import { useContext } from 'react';
 import { LanguageContext } from '../common/language_selector';
 
-const Introduction = ({ title, className, eventKey }: Properties) => {
+const Introduction = ({ className, eventKey }: Properties) => {
   const { language } = useContext(LanguageContext);
   const data = language === 'nl' ? nlData : enData;
   const body = interpolate(data.body, { totalYears: totalYears(), totalTime: totalTime() });
   return (
-    <AccordionWrapper title={title} eventKey={eventKey} className={className}>
+    <AccordionWrapper title={data.title} eventKey={eventKey} className={className}>
       {body}
     </AccordionWrapper>
   );
