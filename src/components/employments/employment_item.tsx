@@ -3,8 +3,8 @@ import { Accordion, Col, Container, Row } from "react-bootstrap";
 
 import { bullet, getImageUrl } from "../common/utils";
 import { Employment } from "./employment";
-import enData from './lang.en.json';
-import nlData from './lang.nl.json';
+import enData from './employments.en.json';
+import nlData from './employments.nl.json';
 import { LanguageContext } from '../common/language_selector';
 import { useDisplayPeriod } from './utils';
 import enCommon from '../common/common.en.json';
