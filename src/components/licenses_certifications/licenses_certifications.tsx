@@ -14,8 +14,8 @@ const LicensesCertifications = () => (
       <Accordion.Body>
         <Card>
           <ListGroup variant="flush">
-            {licensesCertifications.map((license, key) => (
-              <LicenseItem license={license} key={key} />
+            {licensesCertifications.map((license, id) => (
+              <LicenseItem license={license} key={id} />
             ))}
           </ListGroup>
         </Card>
