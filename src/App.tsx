@@ -12,6 +12,7 @@ import './App.css';
 import Footer from './components/footer/footer';
 import Header from './components/header/header';
 import { profile } from './components/header/profile.init';
+import LanguageSelector from './components/common/language_selector';
 
 
 import Introduction from './components/introduction/introduction';
@@ -22,12 +23,17 @@ import Education from './components/education/education';
 window.React = React;
 
 export function App() {
+  const [language, setLanguage] = React.useState<'en' | 'nl'>('en');
+
   useEffect(() => {
     document.title = profile.name;
   }, []);
 
   return (
     <Router basename="/">
+      <div className="d-flex justify-content-end p-2">
+        <LanguageSelector value={language} onChange={setLanguage} />
+      </div>
       <Header />
       <Routes>
         <Route
