@@ -1,0 +1,44 @@
+.language-selector-switch.form-check,
+.language-selector-switch.form-switch {
+    padding-left: 0 !important;
+}
+
+.language-selector-switch {
+    gap: 2px;
+    min-width: 120px;
+}
+
+.language-selector-label {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    height: 28px;
+}
+
+.language-selector-label.en {
+    margin-right: 50px;
+}
+
+.language-selector-label.nl {
+    margin-left: 10px;
+}
+
+.language-selector-label.inactive {
+    opacity: 0.4;
+}
+
+.language-selector-label.active {
+    opacity: 1;
+}
+
+.language-selector-input {
+    cursor: pointer;
+    width: 44px;
+    height: 26px;
+    min-height: 26px;
+    min-width: 44px;
+    margin-left: 0;
+    margin-right: 0;
+}

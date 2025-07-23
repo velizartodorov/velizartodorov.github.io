@@ -30,10 +30,9 @@ export function App() {
   return (
     <LanguageContext.Provider value={{ language }}>
       <Router basename="/">
-        <div className="d-flex justify-content-end p-2">
+        <Header>
           <LanguageSelector value={language} onChange={setLanguage} />
-        </div>
-        <Header />
+        </Header>
         <Routes>
           <Route
             path="/"

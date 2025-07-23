@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Dropdown } from 'react-bootstrap';
+import './language_selector.css';
 
 export const LanguageContext = React.createContext<{ language: 'en' | 'nl' }>({ language: 'en' });
 
@@ -9,28 +8,25 @@ interface LanguageSelectorProps {
     onChange: (lang: 'en' | 'nl') => void;
 }
 
-const languages = [
-    { code: 'en', label: 'English' },
-    { code: 'nl', label: 'Nederlands' },
-];
-
 export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ value, onChange }) => {
+    const isEnglish = value === 'en';
     return (
-        <Dropdown>
-            <Dropdown.Toggle variant="secondary" id="language-selector">
-                {languages.find(l => l.code === value)?.label || 'Select Language'}
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-                {languages.map(lang => (
-                    <Dropdown.Item
-                        key={lang.code}
-                        active={lang.code === value}
-                        onClick={() => onChange(lang.code as 'en' | 'nl')}
-                    >
-                        {lang.label}
-                    </Dropdown.Item>
-                ))}
-            </Dropdown.Menu>
-        </Dropdown>
+        <div className="form-check form-switch d-flex align-items-center language-selector-switch">
+            <span
+                className={`language-selector-label en ${isEnglish ? 'active' : 'inactive'}`}
+            >EN</span>
+            <input
+                className="form-check-input language-selector-input"
+                type="checkbox"
+                id="lang-switch"
+                checked={!isEnglish}
+                onChange={() => onChange(isEnglish ? 'nl' : 'en')}
+                aria-label={isEnglish ? 'Switch to Dutch' : 'Switch to English'}
+            />
+            <span
+                className={`language-selector-label nl ${!isEnglish ? 'active' : 'inactive'}`}
+            >NL</span>
+        </div>
     );
 };
+
