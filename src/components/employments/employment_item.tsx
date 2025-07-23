@@ -31,14 +31,14 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
         <Accordion.Body>
             Company type: {item.type} 🏢
             <br /><br />
-            {item.description.map((bodyItem: string) => (
-                <span key={index + '-' + bodyItem}>
+            {item.description.map((bodyItem: string, descIdx: number) => (
+                <span key={index + '-' + descIdx}>
                     {bodyItem}
                     <br />
                 </span>
             ))}
-            {item.references.map((link) => (
-                <div key={link.href}>
+            {item.references.map((link, refIdx) => (
+                <div key={link.href + '-' + refIdx}>
                     <span>{bullet()} </span>
                     <a href={link.href}>{link.value}</a>
                     <br />
