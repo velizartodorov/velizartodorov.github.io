@@ -32,3 +32,10 @@ export function monthYear(date: Date, lang: 'en' | 'nl' = 'en'): string {
 export function getImageUrl(imageUrl: string) {
     return process.env.PUBLIC_URL + imageUrl;
 }
+
+export function parsePeriod(period: any) {
+    return {
+        start: period.start ? new Date(period.start) : new Date(0),
+        end: period.end ? new Date(period.end) : new Date(0),
+    };
+}

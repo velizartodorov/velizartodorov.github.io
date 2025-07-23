@@ -1,0 +1,90 @@
+{
+    "bachelor": {
+        "occupation": "Computer Engineering (Bachelor diploma)",
+        "institution": "Universiteit van Ruse",
+        "place": "Rousse, Bulgarije",
+        "icon": "/education/university_ruse.png",
+        "period": {
+            "start": "2013-09-01",
+            "end": "2017-07-01"
+        },
+        "body": [
+            "Referenties 📌",
+            ""
+        ],
+        "references": [
+            {
+                "value": "Universiteit van Ruse",
+                "href": "https://www.uni-ruse.bg/en"
+            }
+        ]
+    },
+    "dutch": {
+        "occupation": "Nederlands als tweede taal",
+        "institution": "Het Perspectief PCVO",
+        "place": "Gent, België",
+        "icon": "/education/cvo_gent.png",
+        "period": {
+            "start": "2019-01-01",
+            "end": "2021-05-01"
+        },
+        "body": [
+            "Referenties 📌",
+            ""
+        ],
+        "references": [
+            {
+                "value": "Nederlands tweede taal - Niveau 2 (B2) informatie",
+                "href": "https://www.vlaanderen.be/opleidingsdatabank/nederlands-tweede-taal-richtgraad-2"
+            }
+        ]
+    },
+    "high_school": {
+        "occupation": "Duitse & Engelse taal",
+        "institution": "Taalmiddelbare school “Prof. Dr. Assen Zlatarov”",
+        "place": "Veliko Tarnovo, Bulgarije",
+        "icon": "/education/assen_zlatarov_language_school.jpg",
+        "period": {
+            "start": "2008-09-01",
+            "end": "2013-05-01"
+        },
+        "body": [
+            "Referenties 📌",
+            ""
+        ],
+        "references": [
+            {
+                "value": "ZfA - Deutsches Sprachdiplom (DSD)",
+                "href": "https://www.kmk.org/themen/deutsches-sprachdiplom-dsd.html"
+            },
+            {
+                "value": "Duitse taalprofiel",
+                "href": "https://ezikovavt.com/%D1%87%D1%83%D0%B6%D0%B4%D0%B8-%D0%B5%D0%B7%D0%B8%D1%86%D0%B8/deutsch/"
+            },
+            {
+                "value": "Engelse taalprofiel",
+                "href": "https://ezikovavt.com/%D1%87%D1%83%D0%B6%D0%B4%D0%B8-%D0%B5%D0%B7%D0%B8%D1%86%D0%B8/english/"
+            }
+        ]
+    },
+    "masters": {
+        "occupation": "Software Engineering (Master diploma)",
+        "institution": "Universiteit van Ruse",
+        "place": "Rousse, Bulgarije",
+        "icon": "/education/university_ruse.png",
+        "period": {
+            "start": "2017-09-01",
+            "end": "2018-07-01"
+        },
+        "body": [
+            "Referenties 📌",
+            ""
+        ],
+        "references": [
+            {
+                "value": "Universiteit van Ruse",
+                "href": "https://www.uni-ruse.bg/en"
+            }
+        ]
+    }
+}
