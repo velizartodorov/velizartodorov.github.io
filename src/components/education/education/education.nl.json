@@ -2,26 +2,6 @@
     "title": "Opleiding 🦉",
     "data": [
         {
-            "occupation": "Computer Engineering (Bachelor diploma)",
-            "institution": "Universiteit van Rousse",
-            "place": "Rousse, Bulgarije",
-            "icon": "/education/university_ruse.png",
-            "period": {
-                "start": "2013-09-01",
-                "end": "2017-07-01"
-            },
-            "body": [
-                "Referenties 📌",
-                ""
-            ],
-            "references": [
-                {
-                    "value": "Universiteit van Rousse",
-                    "href": "https://www.uni-ruse.bg/en"
-                }
-            ]
-        },
-        {
             "occupation": "Nederlands als tweede taal",
             "institution": "Het Perspectief PCVO",
             "place": "Gent, België",
@@ -38,6 +18,46 @@
                 {
                     "value": "Nederlands tweede taal - Niveau 2 (B2) informatie",
                     "href": "https://www.vlaanderen.be/opleidingsdatabank/nederlands-tweede-taal-richtgraad-2"
+                }
+            ]
+        },
+        {
+            "occupation": "Software Engineering (Master diploma)",
+            "institution": "Universiteit van Rousse",
+            "place": "Rousse, Bulgarije",
+            "icon": "/education/university_ruse.png",
+            "period": {
+                "start": "2017-09-01",
+                "end": "2018-07-01"
+            },
+            "body": [
+                "Referenties 📌",
+                ""
+            ],
+            "references": [
+                {
+                    "value": "Universiteit van Ruse",
+                    "href": "https://www.uni-ruse.bg/en"
+                }
+            ]
+        },
+        {
+            "occupation": "Computer Engineering (Bachelor diploma)",
+            "institution": "Universiteit van Rousse",
+            "place": "Rousse, Bulgarije",
+            "icon": "/education/university_ruse.png",
+            "period": {
+                "start": "2013-09-01",
+                "end": "2017-07-01"
+            },
+            "body": [
+                "Referenties 📌",
+                ""
+            ],
+            "references": [
+                {
+                    "value": "Universiteit van Rousse",
+                    "href": "https://www.uni-ruse.bg/en"
                 }
             ]
         },
@@ -66,26 +86,6 @@
                 {
                     "value": "Engelse taalprofiel",
                     "href": "https://ezikovavt.com/%D1%87%D1%83%D0%B6%D0%B4%D0%B8-%D0%B5%D0%B7%D0%B8%D1%86%D0%B8/english/"
-                }
-            ]
-        },
-        {
-            "occupation": "Software Engineering (Master diploma)",
-            "institution": "Universiteit van Rousse",
-            "place": "Rousse, Bulgarije",
-            "icon": "/education/university_ruse.png",
-            "period": {
-                "start": "2017-09-01",
-                "end": "2018-07-01"
-            },
-            "body": [
-                "Referenties 📌",
-                ""
-            ],
-            "references": [
-                {
-                    "value": "Universiteit van Ruse",
-                    "href": "https://www.uni-ruse.bg/en"
                 }
             ]
         }
