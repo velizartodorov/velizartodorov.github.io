@@ -12,8 +12,8 @@ const Education = () => (
         </Accordion.Header>
         <Accordion.Body>
           <Accordion>
-            {educations.map((education, index) => (
-              <EducationItem key={index} education={education} index={index} />
+            {educations.map((item, index) => (
+              <EducationItem item={item} index={index} key={index} />
             ))}
           </Accordion>
         </Accordion.Body>
