@@ -1,25 +1,18 @@
-import { Accordion, Card } from "react-bootstrap";
-import { employments } from "./employments.init";
-import './employments.css';
-import EmploymentItem from "./employment_item";
 
-const Employments = () => (
-  <Accordion defaultActiveKey="0" className="mt-3 mx-4">
-    <Accordion.Item eventKey="0">
-      <Card>
-        <Accordion.Header>
-          <h4 className="px-2 mb-1">Employments 💼</h4>
-        </Accordion.Header>
-        <Accordion.Body>
-          <Accordion>
-            {employments.map((item, index) => (
-              <EmploymentItem item={item} index={index} eventKey={String(index)} key={index} />
-            ))}
-          </Accordion>
-        </Accordion.Body>
-      </Card>
-    </Accordion.Item>
-  </Accordion>
+
+
+import AccordionWrapper from '../common/accordion_wrapper';
+import { SectionProps } from '../common/section_props';
+import EmploymentItem from './employment_item';
+import './employments.css';
+import { employments } from './employments.init';
+
+const Employments = ({ title, className, eventKey }: SectionProps) => (
+  <AccordionWrapper title={title} eventKey={eventKey} className={className}>
+    {employments.map((item, index) => (
+      <EmploymentItem item={item} index={index} eventKey={String(index)} key={index} />
+    ))}
+  </AccordionWrapper>
 );
 
 export default Employments;

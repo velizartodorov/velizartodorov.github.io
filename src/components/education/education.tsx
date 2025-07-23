@@ -1,25 +1,15 @@
-import { Accordion, Card } from "react-bootstrap";
-import { educations } from "./educations.init";
+import AccordionWrapper from '../common/accordion_wrapper';
+import { SectionProps } from '../common/section_props';
+import { educations } from './educations.init';
 import './education.css';
-import EducationItem from "./education_item";
+import EducationItem from './education_item';
 
-const Education = () => (
-  <Accordion defaultActiveKey="1" className="mt-3 mx-4">
-    <Accordion.Item eventKey="1">
-      <Card>
-        <Accordion.Header>
-          <h4 className="px-2 mb-1">Education 🦉</h4>
-        </Accordion.Header>
-        <Accordion.Body>
-          <Accordion>
-            {educations.map((item, index) => (
-              <EducationItem item={item} index={index} key={index} />
-            ))}
-          </Accordion>
-        </Accordion.Body>
-      </Card>
-    </Accordion.Item>
-  </Accordion>
+const Education = ({ title, className, eventKey }: SectionProps) => (
+  <AccordionWrapper title={title} eventKey={eventKey} className={className}>
+    {educations.map((item, index) => (
+      <EducationItem item={item} index={index} key={index} />
+    ))}
+  </AccordionWrapper>
 );
 
 export default Education;
