@@ -5,12 +5,12 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Reference } from '../common/reference';
 import { IEducation } from './education.init';
-import { display } from './utils';
+import { useDisplayPeriod } from './utils';
 
 const EducationItem: FC<{ item: IEducation; index: number }> = ({ item, index }) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const atWord = t('common:period.at');
-  const language = i18n.language as 'en' | 'nl';
+  const displayPeriod = useDisplayPeriod();
   return (
     <Accordion.Item eventKey={index.toString()}>
       <Accordion.Header>
@@ -26,7 +26,7 @@ const EducationItem: FC<{ item: IEducation; index: number }> = ({ item, index })
             </Col>
             <Col className="d-none d-sm-block">{item.place}</Col>
             <Col xs="auto" className="text-right d-none d-sm-block">
-              <h5>{display(item.period, language)}</h5>
+              <h5>{displayPeriod(item.period)}</h5>
             </Col>
           </Row>
         </Container>

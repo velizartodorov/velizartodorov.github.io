@@ -1,22 +1,30 @@
+
+import { useTranslation } from 'react-i18next';
 import { Period } from "../common/period";
 import { currentDate } from "../common/utils";
-import enCommon from '../common/common.en.json';
-import nlCommon from '../common/common.nl.json';
 
-export function display(period: Period, lang: 'en' | 'nl'): string {
-    const formattedStartDate = monthYear(period.start, lang);
-    const formattedEndDate = monthYear(period.end, lang);
-
-    return formattedEndDate === monthYear(currentDate(), lang)
-        ? `${formattedStartDate} - ${lang === 'nl' ? 'heden' : 'Present'}`
-        : `${formattedStartDate} - ${formattedEndDate}`;
+export function useDisplayPeriod(): (period: Period) => string {
+    const { t } = useTranslation();
+    const getMonthYear = useMonthYear();
+    return (period: Period) => {
+        const formattedStartDate = getMonthYear(period.start);
+        const formattedEndDate = getMonthYear(period.end);
+        const present = t('common:present') || 'Present';
+        const conjunction = '-';
+        return formattedEndDate === getMonthYear(currentDate())
+            ? `${formattedStartDate} ${conjunction} ${present}`
+            : `${formattedStartDate} ${conjunction} ${formattedEndDate}`;
+    };
 }
 
-export function monthYear(date: Date, lang: 'en' | 'nl' = 'en'): string {
-    const months = lang === 'nl' ? nlCommon.months : enCommon.months;
-    const month = date.getMonth();
-    const year = date.getFullYear();
-    return `${months[month]} ${year}`;
+export function useMonthYear(): (date: Date) => string {
+    const { t } = useTranslation();
+    return (date: Date) => {
+        const months = t('common:months', { returnObjects: true }) as string[];
+        const month = date.getMonth();
+        const year = date.getFullYear();
+        return `${months[month]} ${year}`;
+    };
 }
 
 export function parsePeriod(period: any) {
