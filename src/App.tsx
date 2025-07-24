@@ -40,9 +40,9 @@ export function App() {
             element={
               <>
                 <Introduction className="mx-4" eventKey="0" />
-                <Employments className="mt-3 mx-4" eventKey="0" />
-                <LicensesCertifications className="mt-3 mx-4" eventKey="1" />
-                <Education className="mt-3 mx-4" eventKey="1" />
+                <Employments className="mt-3 mx-4" eventKey="1" />
+                <LicensesCertifications className="mt-3 mx-4" eventKey="2" />
+                <Education className="mt-3 mx-4" eventKey="3" />
               </>
             }
           />
