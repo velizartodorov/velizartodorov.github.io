@@ -1,10 +1,8 @@
-
 import { FC } from 'react';
 import { Col, ListGroup, Row } from 'react-bootstrap';
 import { getImageUrl } from '../common/utils';
 import { LicenseCertification } from './license_certification';
 import { useTranslation } from 'react-i18next';
-
 
 const LicenseCertificationItem: FC<{
   item: LicenseCertification; index: number

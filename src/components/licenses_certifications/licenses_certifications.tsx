@@ -5,11 +5,11 @@ import AccordionWrapper from '../common/accordion_wrapper';
 import { SectionProps } from '../common/section_props';
 import LicenseCertificationItem from './license_certification_item';
 import './licenses_certifications.css';
-import { licensesCertifications } from './licenses_certrifications.init';
-
+import { useLicensesCertifications } from './licenses_certrifications.init';
 
 const LicensesCertifications = ({ className, eventKey }: SectionProps) => {
   const { t } = useTranslation();
+  const licensesCertifications = useLicensesCertifications();
   return (
     <AccordionWrapper title={t('licenses:title')} eventKey={eventKey} className={className}>
       <ListGroup variant="flush">

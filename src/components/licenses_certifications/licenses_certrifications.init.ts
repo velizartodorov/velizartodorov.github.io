@@ -1,7 +1,15 @@
 import { LicenseCertification } from "./license_certification";
-import enData from "./licenses_certifications.en.json";
+import { useTranslation } from 'react-i18next';
 
-export const licensesCertifications: LicenseCertification[] = (enData.data as any[]).map(item => ({
-    ...item,
-    date: item.date ? new Date(item.date) : undefined
-}));
+export function useLicensesCertifications(): LicenseCertification[] {
+    const { t } = useTranslation();
+    const data = t('licenses:list', { returnObjects: true }) as any[];
+    return data.map((item: any) => ({
+        name: item.name ?? '',
+        institution: item.institution ?? '',
+        field: item.field ?? '',
+        date: item.date ? new Date(item.date) : new Date(0),
+        icon: item.icon ?? '',
+        link: item.link ?? '',
+    }));
+}
