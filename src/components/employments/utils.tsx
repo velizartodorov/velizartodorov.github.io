@@ -1,29 +1,20 @@
+
+import { useTranslation } from 'react-i18next';
 import { Period } from "../common/period";
 import { currentDate } from "../common/utils";
-import enCommon from '../common/common.en.json';
-import nlCommon from '../common/common.nl.json';
-
-import { useContext } from "react";
-import { LanguageContext } from '../common/language_selector';
 
 export function useDisplayPeriod() {
-    const { language } = useContext(LanguageContext);
-
-    function getPeriodLangObj() {
-        return language === 'nl' ? nlCommon : enCommon;
-    }
+    const { t } = useTranslation();
 
     function monthYear(date: Date): string {
-        const langObj = getPeriodLangObj();
-        const months = langObj.months;
+        const months = t('common:months', { returnObjects: true }) as string[];
         const month = date.getMonth();
         const year = date.getFullYear();
         return `${months[month]} ${year}`;
     }
 
     function yearMonthDiff(period: Period): string {
-        const langObj = getPeriodLangObj();
-        const periodLang = langObj.period;
+        const periodLang = t('common:period', { returnObjects: true }) as Record<string, string>;
         const monthDiff = (period.end.getFullYear() - period.start.getFullYear()) * 12
             + (period.end.getMonth() - period.start.getMonth());
         const yearDiff = Math.floor(monthDiff / 12);
@@ -46,8 +37,7 @@ export function useDisplayPeriod() {
     }
 
     function display(period: Period): string {
-        const langObj = getPeriodLangObj();
-        const periodLang = langObj.period;
+        const periodLang = t('common:period', { returnObjects: true }) as Record<string, string>;
         const formattedStartDate = monthYear(period.start);
         const formattedEndDate = monthYear(period.end);
         const periodDiff = periodDifference(period);
