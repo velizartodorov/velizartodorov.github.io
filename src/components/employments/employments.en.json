@@ -1,7 +1,7 @@
 {
     "title": "Employments \uD83D\uDCBC",
-    "employments": {
-        "docbyte": {
+    "list": [
+        {
             "position": "Full-Stack Developer",
             "company": "Docbyte",
             "place": "Ghent, Belgium",
@@ -84,7 +84,7 @@
                 }
             ]
         },
-        "continuum": {
+        {
             "position": "Java Software Crafter",
             "place": "Hasselt, Belgium (Remote)",
             "company": "Continuum Consulting NV",
@@ -143,7 +143,7 @@
                 }
             ]
         },
-        "securex": {
+        {
             "position": "Java Developer",
             "company": "Securex",
             "place": "Ghent, Belgium (Contract)",
@@ -201,7 +201,7 @@
                 }
             ]
         },
-        "unified_post": {
+        {
             "position": "Software Developer",
             "company": "Unified Post",
             "place": "Ghent, Belgium",
@@ -261,7 +261,7 @@
                 }
             ]
         },
-        "adm_solutions": {
+        {
             "position": "Java Developer",
             "company": "ADM Solutions",
             "place": "Ghent, Belgium",
@@ -318,7 +318,7 @@
                 }
             ]
         },
-        "erasmus_adm_solutions": {
+        {
             "position": "Erasmus+ .NET Developer Trainee",
             "company": "ADM Solutions",
             "place": "Ghent, Belgium",
@@ -363,7 +363,7 @@
                 }
             ]
         },
-        "dsi": {
+        {
             "position": "Full-Stack Developer",
             "company": "DSI Ltd.",
             "place": "Rousse, Bulgaria",
@@ -413,7 +413,7 @@
                 }
             ]
         },
-        "telnet": {
+        {
             "position": "Computer Repair Technician",
             "company": "Telnet Ltd.",
             "place": "Elena, Bulgaria",
@@ -450,5 +450,5 @@
                 }
             ]
         }
-    }
+    ]
 }

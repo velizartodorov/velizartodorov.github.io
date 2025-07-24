@@ -1,26 +1,35 @@
-
 import { useContext } from "react";
 import { LanguageContext } from '../common/language_selector';
 import enCommon from '../common/common.en.json';
 import nlCommon from '../common/common.nl.json';
-
 import { Period } from "../common/period";
-import { employments } from "../employments/employments.init";
+import { useEmployments } from "../employments/employments.init";
 
-function getSofwareEmployments(): Period[] {
+
+export function useIntroductionStats() {
+    const employments = useEmployments();
     const telnetEmployment = employments.find(e => e.company.toLowerCase().includes('telnet'));
-    return employments
+    const softwareEmployments = employments
         .filter((employment) => employment.company !== (telnetEmployment?.company ?? ''))
         .map((employment) => ({
             start: employment.period.start,
             end: employment.period.end,
         }));
-}
 
-export function totalYears(): number {
-    return getSofwareEmployments().reduce((totalYears: number, period: Period) => {
-        return totalYears + yearsDifference(period);
+    const totalYears = softwareEmployments.reduce((total: number, period: Period) => {
+        return total + yearsDifference(period);
     }, 0);
+
+    const { language } = useContext(LanguageContext);
+    const commonLang = language === 'nl' ? nlCommon.period : enCommon.period;
+    const periods = softwareEmployments.map(p => ({ start: new Date(p.start), end: new Date(p.end) }));
+    const merged = mergePeriods(periods);
+    const { totalYears: sumYears, totalMonths, totalDays } = sumPeriods(merged);
+    const totalTime = `${sumYears} ${sumYears === 1 ? commonLang.year : commonLang.years}, ` +
+        `${totalMonths} ${totalMonths === 1 ? commonLang.month : commonLang.months}, ` +
+        `${commonLang.and} ${totalDays} ${totalDays === 1 ? commonLang.day : commonLang.days}`;
+
+    return { softwareEmployments, totalYears, totalTime };
 }
 
 export function interpolate(str: string, vars: Record<string, string | number>) {
@@ -60,17 +69,6 @@ function sumPeriods(periods: { start: Date; end: Date }[]) {
         totalMonths %= 12;
     }
     return { totalYears, totalMonths, totalDays };
-}
-
-export function useTotalTime(): string {
-    const { language } = useContext(LanguageContext);
-    const commonLang = language === 'nl' ? nlCommon.period : enCommon.period;
-    const periods = getSofwareEmployments().map(p => ({ start: new Date(p.start), end: new Date(p.end) }));
-    const merged = mergePeriods(periods);
-    const { totalYears, totalMonths, totalDays } = sumPeriods(merged);
-    return `${totalYears} ${totalYears === 1 ? commonLang.year : commonLang.years}, ` +
-        `${totalMonths} ${totalMonths === 1 ? commonLang.month : commonLang.months}, ` +
-        `${commonLang.and} ${totalDays} ${totalDays === 1 ? commonLang.day : commonLang.days}`;
 }
 
 

@@ -1,7 +1,7 @@
 {
     "title": "Werkervaring 💼",
-    "employments": {
-        "docbyte": {
+    "list": [
+        {
             "position": "Full-Stack Developer",
             "company": "Docbyte",
             "place": "Gent, België",
@@ -84,7 +84,7 @@
                 }
             ]
         },
-        "continuum": {
+        {
             "position": "Java Software Crafter",
             "place": "Hasselt, België (Remote)",
             "company": "Continuum Consulting NV",
@@ -143,7 +143,7 @@
                 }
             ]
         },
-        "securex": {
+        {
             "position": "Java Developer",
             "company": "Securex",
             "place": "Gent, België (Contract)",
@@ -201,7 +201,7 @@
                 }
             ]
         },
-        "unified_post": {
+        {
             "position": "Software Developer",
             "company": "Unified Post",
             "place": "Gent, België",
@@ -261,7 +261,7 @@
                 }
             ]
         },
-        "adm_solutions": {
+        {
             "position": "Java Developer",
             "company": "ADM Solutions",
             "place": "Gent, België",
@@ -318,7 +318,7 @@
                 }
             ]
         },
-        "erasmus_adm_solutions": {
+        {
             "position": "Erasmus+ .NET Developer Stagiair",
             "company": "ADM Solutions",
             "place": "Gent, België",
@@ -363,7 +363,7 @@
                 }
             ]
         },
-        "dsi": {
+        {
             "position": "Full-Stack Developer",
             "company": "DSI Ltd.",
             "place": "Rousse, Bulgarije",
@@ -413,7 +413,7 @@
                 }
             ]
         },
-        "telnet": {
+        {
             "position": "Computerreparatie Technicus",
             "company": "Telnet Ltd.",
             "place": "Elena, Bulgarije",
@@ -450,5 +450,5 @@
                 }
             ]
         }
-    }
+    ]
 }

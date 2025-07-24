@@ -6,13 +6,8 @@ import { bullet, getImageUrl } from "../common/utils";
 import { Employment } from "./employment";
 import { useDisplayPeriod } from './utils';
 
-
 const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> = ({ item, index, eventKey }) => {
     const { t } = useTranslation();
-    const data = t('employments', { ns: 'employments', returnObjects: true }) as Record<string, any>;
-    const employmentKeys = Object.keys(data);
-    const employmentKey = employmentKeys[index];
-    const employment = (data && data[employmentKey]) ? data[employmentKey] : item;
     const { display } = useDisplayPeriod();
     const atWord = t('common:period.at');
     return (
@@ -21,21 +16,21 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
                 <Container fluid>
                     <Row className="align-items-center">
                         <Col xs="auto" className="text-left">
-                            <img src={getImageUrl(employment.icon)} alt="company icon" width="30" />
+                            <img src={getImageUrl(item.icon)} alt="company icon" width="30" />
                         </Col>
                         <Col xs={9} md={5} className="text-left">
                             <h5 className="employment-font">
-                                {`${employment.position} ${atWord} ${employment.company}`}
+                                {`${item.position} ${atWord} ${item.company}`}
                             </h5>
                         </Col>
                         <Col className="d-none d-sm-block d-md-block">
-                            {employment.place}
+                            {item.place}
                         </Col>
                         <Col xs="auto" className="d-none d-sm-block text-right">
                             <h5 className="employment-font">
                                 {display({
-                                    start: new Date(employment.period.start),
-                                    end: new Date(employment.period.end)
+                                    start: new Date(item.period.start),
+                                    end: new Date(item.period.end)
                                 })}
                             </h5>
                         </Col>
@@ -43,13 +38,13 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
                 </Container>
             </Accordion.Header>
             <Accordion.Body>
-                {employment.description?.map((bodyItem: string, descIdx: number) => (
+                {item.description?.map((bodyItem: string, descIdx: number) => (
                     <span key={index + '-' + descIdx}>
                         {bodyItem}
                         <br />
                     </span>
                 ))}
-                {employment.references?.map((link: any, refIdx: number) => (
+                {item.references?.map((link: any, refIdx: number) => (
                     <div key={link.href + '-' + refIdx}>
                         <span>{bullet()} </span>
                         <a href={link.href}>{link.value}</a>
