@@ -4,6 +4,7 @@
         {
             "position": "Full-Stack Developer",
             "company": "Docbyte",
+            "type": "Service",
             "place": "Ghent, Belgium",
             "description": [
                 "Docbyte is a leading organization that provides intelligent technologies to various knowledge worker organizations, from banks and insurers to any enterprise in the field of information security, preservation, and document processing.",
@@ -88,6 +89,7 @@
             "position": "Java Software Crafter",
             "place": "Hasselt, Belgium (Remote)",
             "company": "Continuum Consulting NV",
+            "type": "Consultancy",
             "description": [
                 "Description \uD83D\uDCDA",
                 "",
@@ -146,6 +148,7 @@
         {
             "position": "Java Developer",
             "company": "Securex",
+            "type": "Product",
             "place": "Ghent, Belgium (Contract)",
             "description": [
                 "Description \uD83D\uDCDA",
@@ -204,6 +207,7 @@
         {
             "position": "Software Developer",
             "company": "Unified Post",
+            "type": "Product",
             "place": "Ghent, Belgium",
             "description": [
                 "Description \uD83D\uDCDA",
@@ -264,6 +268,7 @@
         {
             "position": "Java Developer",
             "company": "ADM Solutions",
+            "type": "Product",
             "place": "Ghent, Belgium",
             "description": [
                 "Description \uD83D\uDCDA",
@@ -321,6 +326,7 @@
         {
             "position": "Erasmus+ .NET Developer Trainee",
             "company": "ADM Solutions",
+            "type": "Research & Development",
             "place": "Ghent, Belgium",
             "description": [
                 "Description \uD83D\uDCDA",
@@ -366,6 +372,7 @@
         {
             "position": "Full-Stack Developer",
             "company": "DSI Ltd.",
+            "type": "Startup",
             "place": "Rousse, Bulgaria",
             "description": [
                 "Description \uD83D\uDCDA",
@@ -416,6 +423,7 @@
         {
             "position": "Computer Repair Technician",
             "company": "Telnet Ltd.",
+            "type": "Service",
             "place": "Elena, Bulgaria",
             "description": [
                 "Description \uD83D\uDCDA",

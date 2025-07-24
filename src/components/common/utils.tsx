@@ -1,7 +1,3 @@
-export const SERVICE = 'Service';
-export const PRODUCT = 'Product';
-export const CONSULTANCY = 'Consultancy';
-
 export function bullet(): string {
     return '\u2022';
 }

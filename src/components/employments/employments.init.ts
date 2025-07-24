@@ -1,15 +1,6 @@
 
-import { Employment } from "./employment";
-import { Type } from "./type";
 import { useTranslation } from 'react-i18next';
-
-const typeMap = {
-  Startup: Type.Startup,
-  Service: Type.Service,
-  Consultancy: Type.Consultancy,
-  Product: Type.Product,
-  "Research & Development": Type.ResearchAndDevelopment
-};
+import { Employment } from "./employment";
 
 export function useEmployments(): Employment[] {
   const { t } = useTranslation();
@@ -17,7 +8,7 @@ export function useEmployments(): Employment[] {
   return data.map((e: any) => ({
     position: e.position,
     company: e.company,
-    type: typeMap[e.type as keyof typeof typeMap],
+    type: e.type ?? '',
     place: e.place,
     icon: e.icon,
     period:

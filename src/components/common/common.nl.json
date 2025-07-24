@@ -24,5 +24,6 @@
         "day": "dag",
         "days": "dagen"
     },
-    "poweredBy": "Aangedreven door"
+    "poweredBy": "Aangedreven door",
+    "companyType": "Bedrijfstype"
 }

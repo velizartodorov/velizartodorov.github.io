@@ -9,7 +9,7 @@ import { useDisplayPeriod } from './utils';
 const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> = ({ item, index, eventKey }) => {
     const { t } = useTranslation();
     const { display } = useDisplayPeriod();
-    const atWord = t('common:period.at');
+    const at = t('common:period.at');
     return (
         <Accordion.Item eventKey={eventKey}>
             <Accordion.Header>
@@ -20,7 +20,7 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
                         </Col>
                         <Col xs={9} md={5} className="text-left">
                             <h5 className="employment-font">
-                                {`${item.position} ${atWord} ${item.company}`}
+                                {`${item.position} ${at} ${item.company}`}
                             </h5>
                         </Col>
                         <Col className="d-none d-sm-block d-md-block">
@@ -38,6 +38,9 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
                 </Container>
             </Accordion.Header>
             <Accordion.Body>
+                <div className="mb-3">
+                    {`🏢 ${t('common:companyType')}: ${item.type}`}
+                </div>
                 {item.description?.map((bodyItem: string, descIdx: number) => (
                     <span key={index + '-' + descIdx}>
                         {bodyItem}

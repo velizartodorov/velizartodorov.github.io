@@ -24,5 +24,6 @@
         "day": "day",
         "days": "days"
     },
-    "poweredBy": "Powered by"
+    "poweredBy": "Powered by",
+    "companyType": "Company type"
 }
