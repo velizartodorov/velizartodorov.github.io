@@ -16,19 +16,19 @@ import Education from './components/education/education';
 import Employments from './components/employments/employments';
 import Footer from './components/footer/footer';
 import Header from './components/header/header';
-import getProfile from './components/header/profile.init';
 import Introduction from './components/introduction/introduction';
 import LicensesCertifications from './components/licenses_certifications/licenses_certifications';
-
+import { useProfile } from './components/header/profile.init';
 
 window.React = React;
 
 export function App() {
   const [language, setLanguage] = React.useState<'en' | 'nl'>(i18n.language as 'en' | 'nl');
 
+  const name = useProfile().name;
   useEffect(() => {
     i18n.changeLanguage(language);
-    document.title = getProfile(language).name;
+    document.title = name;
   }, [language]);
 
   return (
