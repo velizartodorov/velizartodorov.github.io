@@ -15,13 +15,11 @@ export function useIntroductionStats() {
             end: employment.period.end,
         }));
 
-    const totalYears = softwareEmployments.reduce((total: number, period: Period) => {
-        return total + yearsDifference(period);
-    }, 0);
-
     const periods = softwareEmployments.map(p => ({ start: new Date(p.start), end: new Date(p.end) }));
     const merged = mergePeriods(periods);
     const { totalYears: sumYears, totalMonths, totalDays } = sumPeriods(merged);
+    const totalYears = sumYears;
+
     const yearLabel = t(`common:period.${sumYears === 1 ? 'year' : 'years'}`);
     const monthLabel = t(`common:period.${totalMonths === 1 ? 'month' : 'months'}`);
     const dayLabel = t(`common:period.${totalDays === 1 ? 'day' : 'days'}`);
