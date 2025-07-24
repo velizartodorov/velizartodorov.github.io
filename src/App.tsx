@@ -9,7 +9,9 @@ import {
 
 import './App.css';
 
-import { LanguageContext, LanguageSelector } from './components/common/language_selector';
+import { I18nextProvider } from 'react-i18next';
+import i18n from './i18n';
+import { LanguageSelector } from './components/common/language_selector';
 import Education from './components/education/education';
 import Employments from './components/employments/employments';
 import Footer from './components/footer/footer';
@@ -18,17 +20,19 @@ import getProfile from './components/header/profile.init';
 import Introduction from './components/introduction/introduction';
 import LicensesCertifications from './components/licenses_certifications/licenses_certifications';
 
+
 window.React = React;
 
 export function App() {
-  const [language, setLanguage] = React.useState<'en' | 'nl'>('en');
+  const [language, setLanguage] = React.useState<'en' | 'nl'>(i18n.language as 'en' | 'nl');
 
   useEffect(() => {
+    i18n.changeLanguage(language);
     document.title = getProfile(language).name;
-  }, []);
+  }, [language]);
 
   return (
-    <LanguageContext.Provider value={{ language }}>
+    <I18nextProvider i18n={i18n}>
       <Router basename="/">
         <Header>
           <LanguageSelector value={language} onChange={setLanguage} />
@@ -50,6 +54,6 @@ export function App() {
         </Routes>
         <Footer />
       </Router>
-    </LanguageContext.Provider>
+    </I18nextProvider>
   );
 }

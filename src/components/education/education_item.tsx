@@ -1,18 +1,16 @@
 import { Accordion, Col, Container, Row } from 'react-bootstrap';
 import { bullet, getImageUrl } from '../common/utils';
 
-import { FC, useContext } from 'react';
-import { IEducation } from './education.init';
+import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Reference } from '../common/reference';
+import { IEducation } from './education.init';
 import { display } from './utils';
-import { LanguageContext } from '../common/language_selector';
-import enCommon from '../common/common.en.json';
-import nlCommon from '../common/common.nl.json';
 
 const EducationItem: FC<{ item: IEducation; index: number }> = ({ item, index }) => {
-  const { language } = useContext(LanguageContext);
-  const commonLang = language === 'nl' ? nlCommon : enCommon;
-  const atWord = commonLang.period.at;
+  const { t, i18n } = useTranslation();
+  const atWord = t('common:period.at');
+  const language = i18n.language as 'en' | 'nl';
   return (
     <Accordion.Item eventKey={index.toString()}>
       <Accordion.Header>

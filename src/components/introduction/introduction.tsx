@@ -1,20 +1,18 @@
 
+import { useTranslation } from 'react-i18next';
 import AccordionWrapper from '../common/accordion_wrapper';
-import enData from './introduction.en.json';
-import nlData from './introduction.nl.json';
-import { interpolate } from './utils';
 import { Properties } from '../common/properties';
-import { totalYears, useTotalTime } from './utils';
-import { useContext } from 'react';
-import { LanguageContext } from '../common/language_selector';
+import { interpolate, totalYears, useTotalTime } from './utils';
 
 const Introduction = ({ className, eventKey }: Properties) => {
-  const { language } = useContext(LanguageContext);
-  const data = language === 'nl' ? nlData : enData;
+  const { t } = useTranslation();
   const totalTime = useTotalTime();
-  const body = interpolate(data.body, { totalYears: totalYears(), totalTime });
+  const bodyRaw = t('introduction:body', { returnObjects: true });
+  const body = Array.isArray(bodyRaw)
+    ? interpolate(bodyRaw.join(' '), { totalYears: totalYears(), totalTime })
+    : interpolate(String(bodyRaw), { totalYears: totalYears(), totalTime });
   return (
-    <AccordionWrapper title={data.title} eventKey={eventKey} className={className}>
+    <AccordionWrapper title={t('introduction:title')} eventKey={eventKey} className={className}>
       {body}
     </AccordionWrapper>
   );
