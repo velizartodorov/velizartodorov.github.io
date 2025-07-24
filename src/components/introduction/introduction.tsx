@@ -1,5 +1,3 @@
-
-
 import { useTranslation } from 'react-i18next';
 import AccordionWrapper from '../common/accordion_wrapper';
 import { Properties } from '../common/properties';
@@ -13,7 +11,10 @@ const Introduction = ({ className, eventKey }: Properties) => {
     ? interpolate(bodyRaw.join(' '), { totalTime, totalYears })
     : interpolate(String(bodyRaw), { totalTime, totalYears });
   return (
-    <AccordionWrapper title={t('introduction:title')} eventKey={eventKey} className={className}>
+    <AccordionWrapper
+      title={t('introduction:title')}
+      eventKey={eventKey}
+      className={className}>
       {body}
     </AccordionWrapper>
   );
