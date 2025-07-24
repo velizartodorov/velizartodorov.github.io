@@ -1,30 +1,32 @@
-
 import { $SpecialObject } from 'i18next/typescript/helpers';
 import { useTranslation } from 'react-i18next';
-import { Period } from "../common/period";
 import { useEmployments } from "../employments/employments.init";
 
 export function useIntroductionStats() {
     const { t } = useTranslation();
     const employments = useEmployments();
-    const telnetEmployment = employments.find(e => e.company.toLowerCase().includes('telnet'));
+
+    const telnetEmployment = employments.find(e =>
+        e.company.toLowerCase().includes('telnet')
+    );
+
     const softwareEmployments = employments
-        .filter((employment) => employment.company !== (telnetEmployment?.company ?? ''))
-        .map((employment) => ({
-            start: employment.period.start,
-            end: employment.period.end,
+        .filter(e => e.company !== (telnetEmployment?.company ?? ''))
+        .map(e => ({
+            start: new Date(e.period.start),
+            end: new Date(e.period.end),
         }));
 
-    const periods = softwareEmployments.map(p => ({ start: new Date(p.start), end: new Date(p.end) }));
-    const merged = mergePeriods(periods);
-    const { totalYears: sumYears, totalMonths, totalDays } = sumPeriods(merged);
-    const totalYears = sumYears;
+    const mergedPeriods = mergeOverlappingPeriods(softwareEmployments);
+    const { years, months, days } = sumDateDifferences(mergedPeriods);
 
-    const yearLabel = t(`common:period.${sumYears === 1 ? 'year' : 'years'}`);
-    const monthLabel = t(`common:period.${totalMonths === 1 ? 'month' : 'months'}`);
-    const dayLabel = t(`common:period.${totalDays === 1 ? 'day' : 'days'}`);
+    const totalYears = years;
+    const yearLabel = t(`common:period.${years === 1 ? 'year' : 'years'}`);
+    const monthLabel = t(`common:period.${months === 1 ? 'month' : 'months'}`);
+    const dayLabel = t(`common:period.${days === 1 ? 'day' : 'days'}`);
     const andLabel = t('common:period.and');
-    const totalTime = `${sumYears} ${yearLabel}, ${totalMonths} ${monthLabel}, ${andLabel} ${totalDays} ${dayLabel}`;
+
+    const totalTime = `${years} ${yearLabel}, ${months} ${monthLabel}, ${andLabel} ${days} ${dayLabel}`;
 
     return { softwareEmployments, totalYears, totalTime };
 }
@@ -36,34 +38,42 @@ export function useFormatBody(bodyRaw: $SpecialObject) {
         : interpolate(String(bodyRaw), { totalTime, totalYears });
 }
 
-export function interpolate(str: string, vars: Record<string, string | number>) {
-    return str.replace(/\{(\w+)\}/g, (_, k) => vars[k] !== undefined ? String(vars[k]) : `{${k}}`);
+function interpolate(template: string, vars: Record<string, string | number>) {
+    return template.replace(/\{(\w+)\}/g, (_, key) =>
+        vars[key] !== undefined ? String(vars[key]) : `{${key}}`
+    );
 }
 
-function mergePeriods(periods: { start: Date; end: Date }[]): { start: Date; end: Date }[] {
+function mergeOverlappingPeriods(periods: { start: Date; end: Date }[]): { start: Date; end: Date }[] {
     if (periods.length === 0) return [];
+
     const sorted = periods.slice().sort((a, b) => a.start.getTime() - b.start.getTime());
     const merged: { start: Date; end: Date }[] = [sorted[0]];
+
     for (let i = 1; i < sorted.length; i++) {
         const last = merged[merged.length - 1];
         const current = sorted[i];
+
         if (last.end < current.start) {
             merged.push({ ...current });
         } else {
             last.end = new Date(Math.max(last.end.getTime(), current.end.getTime()));
         }
     }
+
     return merged;
 }
 
-function sumPeriods(periods: { start: Date; end: Date }[]) {
+function sumDateDifferences(periods: { start: Date; end: Date }[]) {
     let totalYears = 0, totalMonths = 0, totalDays = 0;
-    for (const period of periods) {
-        const diff = exactDateDifference(period.start, period.end);
+
+    for (const { start, end } of periods) {
+        const diff = getExactDateDifference(start, end);
         totalYears += diff.years;
         totalMonths += diff.months;
         totalDays += diff.days;
     }
+
     if (totalDays >= 30) {
         totalMonths += Math.floor(totalDays / 30);
         totalDays %= 30;
@@ -72,25 +82,19 @@ function sumPeriods(periods: { start: Date; end: Date }[]) {
         totalYears += Math.floor(totalMonths / 12);
         totalMonths %= 12;
     }
-    return { totalYears, totalMonths, totalDays };
+
+    return { years: totalYears, months: totalMonths, days: totalDays };
 }
 
-
-function yearsDifference(period: Period): number {
-    return period.end.getFullYear() - period.start.getFullYear();
-}
-
-function exactDateDifference(start: Date, end: Date) {
-    const startDate = new Date(start);
-    const endDate = new Date(end);
-
-    let years = endDate.getFullYear() - startDate.getFullYear();
-    let months = endDate.getMonth() - startDate.getMonth();
-    let days = endDate.getDate() - startDate.getDate();
+function getExactDateDifference(start: Date, end: Date) {
+    let years = end.getFullYear() - start.getFullYear();
+    let months = end.getMonth() - start.getMonth();
+    let days = end.getDate() - start.getDate();
 
     if (days < 0) {
         months -= 1;
-        days += new Date(endDate.getFullYear(), endDate.getMonth(), 0).getDate();
+        const previousMonth = new Date(end.getFullYear(), end.getMonth(), 0);
+        days += previousMonth.getDate();
     }
     if (months < 0) {
         years -= 1;
