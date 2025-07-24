@@ -40,7 +40,7 @@ const EducationItem: FC<{ item: IEducation; index: number }> = ({ item, index })
         ))}
         {item.references.map((link: Reference) => (
           <div key={link.href}>
-            <span>{bullet()} </span>
+            <span>{bullet} </span>
             <a href={link.href}>{link.value}</a>
           </div>
         ))}

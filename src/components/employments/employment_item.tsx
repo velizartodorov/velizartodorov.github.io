@@ -49,7 +49,7 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
                 ))}
                 {item.references?.map((link: any, refIdx: number) => (
                     <div key={link.href + '-' + refIdx}>
-                        <span>{bullet()} </span>
+                        <span>{bullet} </span>
                         <a href={link.href}>{link.value}</a>
                         <br />
                     </div>

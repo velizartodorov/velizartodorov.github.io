@@ -1,6 +1,4 @@
-export function bullet(): string {
-    return '\u2022';
-}
+export const bullet = '\u2022';
 
 export function currentDate(): Date {
     const now = new Date();
