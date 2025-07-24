@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Col, ListGroup, Row } from 'react-bootstrap';
-import { getImageUrl } from '../common/utils';
+
 import { LicenseCertification } from './license_certification';
 import { useTranslation } from 'react-i18next';
 
@@ -25,7 +25,7 @@ const LicenseCertificationItem: FC<{
       <Row className="align-items-center">
         <Col xs="auto" className="text-left license-icon">
           <img
-            src={getImageUrl(item.icon)}
+            src={item.icon}
             height="25"
             width="30"
             alt="license icon"

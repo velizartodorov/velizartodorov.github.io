@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Accordion, Col, Container, Row } from "react-bootstrap";
 
 import { useTranslation } from 'react-i18next';
-import { bullet, getImageUrl } from "../common/utils";
+import { bullet } from "../common/utils";
 import { Employment } from "./employment";
 import { useDisplayPeriod } from './utils';
 
@@ -16,7 +16,7 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
                 <Container fluid>
                     <Row className="align-items-center">
                         <Col xs="auto" className="text-left">
-                            <img src={getImageUrl(item.icon)} alt="company icon" width="30" />
+                            <img src={item.icon} alt="company icon" width="30" />
                         </Col>
                         <Col xs={9} md={5} className="text-left">
                             <h5 className="employment-font">

@@ -1,5 +1,5 @@
 import Table from 'react-bootstrap/Table';
-import { getImageUrl } from '../common/utils';
+
 import './header.css';
 import { Link } from './link';
 import { useProfile } from './profile.init';
@@ -13,7 +13,7 @@ const Header: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
                 <tbody>
                     <tr>
                         <td rowSpan={3} className="avatar-td">
-                            <img className="avatar" src={getImageUrl(profile.imageUrl)} alt="" />
+                            <img className="avatar" src={profile.imageUrl} alt="" />
                         </td>
                         <td colSpan={1}><h2>{profile.name}</h2></td>
                         <td>{children}</td>

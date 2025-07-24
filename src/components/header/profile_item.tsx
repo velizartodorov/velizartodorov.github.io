@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from '../header/link';
-import { getImageUrl } from '../common/utils';
+
 
 const ProfileItem: React.FC<{ link: Link }> = ({ link }) => {
     const content = (
         <>
-            <img src={getImageUrl(link.icon)} style={{ width: link.width }} alt={link.label} />
+            <img src={link.icon} style={{ width: link.width }} alt={link.label} />
             <span className="text-margin">{link.label}</span>
         </>
     );
