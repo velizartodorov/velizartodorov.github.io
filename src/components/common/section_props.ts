@@ -1,5 +1,5 @@
 export interface SectionProps {
-  title: string;
+  title?: string;
   className?: string;
   eventKey?: string;
 }

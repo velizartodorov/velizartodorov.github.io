@@ -1,0 +1,462 @@
+{
+    "title": "Employments \uD83D\uDCBC",
+    "list": [
+        {
+            "position": "Full-Stack Developer",
+            "company": "Docbyte",
+            "type": "Service",
+            "place": "Ghent, Belgium",
+            "description": [
+                "Docbyte is a leading organization that provides intelligent technologies to various knowledge worker organizations, from banks and insurers to any enterprise in the field of information security, preservation, and document processing.",
+                "Their platform helps to automate document processes and preserve digital information, enabling the clients to prepare for a fully digital future.",
+                "",
+                "Description \uD83D\uDCDA",
+                "",
+                "• Accident management - solving incident/bug tickets and acting as a mediator between engineering and service desk",
+                "• Migrating legacy on-premise apps towards cloud serverless AWS Lambda solution",
+                "• Integrating Amazon Textract as an OCR solution for the cloud infrastructure",
+                "• Documenting the flow in C4 architectural diagram",
+                "• Following ISO 27001/9001/QTSP standards in the ecosystem of Docbyte",
+                "• Leading the daily meetings, when team lead was not available",
+                "",
+                "Technologies - Cloud Solution \uD83D\uDD27",
+                "",
+                "• Language: Java 17, Python 3",
+                "• Framework: Quarkus",
+                "• Services: AWS Lambda/AWS Step Functions/SNS/SQS",
+                "• API Tools: AWS API Gateway",
+                "• Dependency management: Maven",
+                "• Testing framework: Quarkus Test Framework JUnit 4",
+                "• Storage:  Amazon Simple Storage Service (S3)",
+                "• Event bus: Amazon EventBridge",
+                "• Artifacts repository: AWS CodeArtifact",
+                "• Deployments: AWS CodePipeline",
+                "• Building: AWS CodeBuild",
+                "• Database: AWS DynamoDB, Amazon Relational Database (RDS), PostgreSQL",
+                "• Database management: AWS Management Console",
+                "• Application server: AWS SAM (Serverless Application Model)",
+                "• Architecture: Serverless, microservices",
+                "• Identity/access management: KeyCloak, AWS Identity and Access Management (IAM)",
+                "• OCR: Google AI, Amazon Textract, Native OCR",
+                "• Front-end: Angular 12",
+                "• IDE: IntelliJ, VS Code, PyCharm",
+                "• Diagram schematization and documentation: draw.io",
+                "• Development methodology: Pair/solo programming",
+                "• Task management: JIRA",
+                "• Time logging: JIRA Tempo",
+                "• Production methodology: Scrum, sprints of two weeks",
+                "",
+                "Technologies - Legacy on-premise solution \uD83D\uDD27",
+                "",
+                "• Language/framework: .NET 4.5 / OpenText Captiva",
+                "• OCR: Google AI",
+                "• Database: Microsoft SQL Server, PostgreSQL",
+                "• Ecosystem: Microsoft services / batch processing",
+                "• Version control: Git / BitBucket",
+                "",
+                "Domain Expertise \uD83C\uDF10",
+                "",
+                "• Intelligent Document Processing (IDP) – experience with high-volume, AI-enhanced document capture and classification",
+                "• Document Management – deep involvement in document lifecycle workflows, from ingestion to storage and compliance",
+                "• Compliance-Centric Systems – work aligned with ISO 27001, ISO 9001, and QTSP standards",
+                "• Legacy System Modernization – transforming on-premise .NET-based platforms to modern serverless AWS architectures",
+                "• Enterprise Content & Records Management – exposure to OpenText Captiva and related ECM platforms",
+                "",
+                "References \uD83D\uDCCC",
+                ""
+            ],
+            "icon": "/employments/docbyte.jpg",
+            "period": {
+                "start": "2024-04-01",
+                "end": "2025-03-01"
+            },
+            "references": [
+                {
+                    "value": "Amazon Textract",
+                    "href": "https://aws.amazon.com/textract/"
+                },
+                {
+                    "value": "Aspose.PDF | Java PDF Document Processing Class Library",
+                    "href": "https://releases.aspose.com/pdf/java/"
+                },
+                {
+                    "value": "Docbyte N.V.",
+                    "href": "https://www.docbyte.com/"
+                }
+            ]
+        },
+        {
+            "position": "Java Software Crafter",
+            "place": "Hasselt, Belgium (Remote)",
+            "company": "Continuum Consulting NV",
+            "type": "Consultancy",
+            "description": [
+                "Description \uD83D\uDCDA",
+                "",
+                "Joined the Continuum tribe, consulting clients using Java based applications.",
+                "",
+                "• Research & development on internal applications, such as E-Tribe Tool and HR Interview Tool",
+                "• Experimenting with Docker, Kubernetes and tryouts for migrating from Elastic BeanStalk to Kubernetes",
+                "• Updating documentation",
+                "",
+                "Technologies \uD83D\uDD27",
+                "",
+                "• Language/framework: Java 17, Spring Boot 2.6.7",
+                "• API Tools: Swagger",
+                "• Dependency management: Gradle",
+                "• Containerization: Docker",
+                "• DevOps: Elastic BeanStalk",
+                "• Testing framework: JUnit 4",
+                "• Deployments: Confluence Bamboo, Azure",
+                "• Database: PostgreSQL, Amazon DynamoDB (serverless, key-value NoSQL database)",
+                "• Application server: Apache Tomcat 8",
+                "• Architecture: Microservices, Client-server",
+                "• Persistence: Spring Data JPA/R2DBC, Hibernate",
+                "• Database management: Flyway",
+                "• Identity/access management: KeyCloak (0Auth 2.0)",
+                "• Front-end: Angular 12",
+                "• Version control: Git, GitHub",
+                "• IDE: IntelliJ, VS Code",
+                "• Diagram schematization and documentation: Mermaid.js",
+                "• Development methodology: Pair/solo programming",
+                "• Time logging: Teamleader",
+                "• Production methodology: Kanban",
+                "",
+                "Domain Expertise \uD83C\uDF10",
+                "",
+                "• Internal Tooling & Automation – R&D on productivity platforms such as interview and HR tools",
+                "• Enterprise Application Development – working on modular Java/Spring Boot microservices in a consultancy setting",
+                "• DevOps Enablement – experimenting with Docker and Kubernetes as part of infrastructure modernization",
+                "• Cloud Migration Strategy – evaluating migration paths from Elastic Beanstalk to Kubernetes-based infrastructure",
+                "• Agile Delivery – operating in Kanban-driven team for continuous improvement and task-based flow",
+                "",
+                "References \uD83D\uDCCC",
+                ""
+            ],
+            "icon": "/employments/continuum.jpg",
+            "period": {
+                "start": "2023-05-01",
+                "end": "2024-01-01"
+            },
+            "references": [
+                {
+                    "value": "Continuum Consulting NV",
+                    "href": "https://www.continuum.be/en/"
+                }
+            ]
+        },
+        {
+            "position": "Java Developer",
+            "company": "Securex",
+            "type": "Product",
+            "place": "Ghent, Belgium (Contract)",
+            "description": [
+                "Description \uD83D\uDCDA",
+                "",
+                "Joined Securex as an external Java software developer.",
+                "",
+                "• Joined the Continuum tribe working as a consultant for the social-secretariate “Securex”",
+                "• Worked on an application collecting surveys from employees about their medical status – “BeWell”",
+                "• Supported an application for gathering input information from starting entrepreneurs – “GO-Start”",
+                "",
+                "Technologies \uD83D\uDD27",
+                "",
+                "• Language/framework: Java 11/17, Spring Boot 2.6",
+                "• API Tools: Apicurio Studio, Swagger",
+                "• Dependency management: Gradle",
+                "• Testing framework: Groovy-Spock",
+                "• CI/CD: Atlassian Bamboo",
+                "• Data monitoring: Elastic Kibana",
+                "• Deployments: Azure",
+                "• Database: Oracle, Microsoft SQL Server",
+                "• Application server: Apache Tomcat",
+                "• Architecture: Distributed microservices, Spring Cloud Gateway, Netflix Zuul API (Eureka)",
+                "• Message queues/notifications: Amazon Simple Queue Service (SQS) / Amazon Simple Notification Service (SNS)",
+                "• Persistence: Spring Data JPA, Hibernate",
+                "• Database management: Liquibase",
+                "• Front-end: React, React Native (mobile app)",
+                "• Version control: Git, BitBucket",
+                "• IDE: IntelliJ, VS Code, DbVisualizer Pro 11.0.5",
+                "• Development methodology: Pair/solo programming",
+                "• Production methodology: Scrum with 2-week sprints (planning, retros), SAFe (Scaled agile framework)",
+                "• Time logging: Jira",
+                "",
+                "Domain Expertise \uD83C\uDF10",
+                "",
+                "• HR & Well-being Solutions – contributed to the development of “BeWell”, a medical survey tool supporting employee health monitoring",
+                "• Entrepreneurship Enablement – supported “GO-Start”, a platform assisting new business founders with required onboarding data",
+                "• Public Sector & Social Secretariat – software development for services tailored to HR compliance, payroll, and administrative workflows",
+                "• Scaled Agile Delivery – operated within SAFe (Scaled Agile Framework) for managing large enterprise projects",
+                "• Data Privacy & Compliance – working in environments that prioritize secure handling of personal and health-related data",
+                "",
+                "References \uD83D\uDCCC",
+                ""
+            ],
+            "icon": "/employments/securex.png",
+            "period": {
+                "start": "2023-07-01",
+                "end": "2023-12-01"
+            },
+            "references": [
+                {
+                    "value": "Securex",
+                    "href": "https://www.securex.be/en"
+                }
+            ]
+        },
+        {
+            "position": "Software Developer",
+            "company": "Unified Post",
+            "type": "Product",
+            "place": "Ghent, Belgium",
+            "description": [
+                "Description \uD83D\uDCDA",
+                "",
+                "• ADMS was acquired by Unified Post",
+                "• Worked on the Integration Portal, configuration app for connecting 3rd party apps to the Unified Post flows",
+                "• Setting-up JIRA flow + Bitbucket integration, Git Gitflow",
+                "• Working on accountancy simulation app using multi-tenancy architecture (Spring Boot)",
+                "• Documenting and schematizing the flow using C4 diagrams, updating README-s",
+                "• Creating TestRail cases",
+                "",
+                "Technologies \uD83D\uDD27",
+                "",
+                "• Language/framework: Java 8/11, Spring Boot 2.6.7, Project Reactor",
+                "• API tool: Swagger",
+                "• Dependency management: Maven, Gradle",
+                "• Testing framework/tools: JUnit 4/5, Mockito, TestRails (testcases), Selenium",
+                "• CI/CD: BitBucket Pipelines",
+                "• Database: PostgreSQL",
+                "• Application server: Apache Tomcat 8",
+                "• Architecture: Microservices",
+                "• Persistence: Spring Data JPA, Hibernate",
+                "• Caching: Redis",
+                "• Database management: Liquibase, Flyway",
+                "• Identity/access management: KeyCloak (0Auth 2.0)",
+                "• Front-end: Angular 12",
+                "• IDE: IntelliJ, VS Code, DBeaver",
+                "• Diagram schematization and documentation: Draw.io, C4 Structurizr, Markdown",
+                "• Production methodology: Kanban & Scrum",
+                "",
+                "Domain Expertise \uD83C\uDF10",
+                "",
+                "• FinTech Integration – contributing to tools that bridge third-party apps with Unified Post's financial processing infrastructure",
+                "• Multi-Tenant Application Design – development of accountancy simulation app supporting multiple client contexts securely",
+                "• DevOps and Tooling Optimization – setting up JIRA-Bitbucket workflows and standardizing Git Gitflow branching strategy",
+                "• Quality Assurance & Documentation – authoring C4 diagrams, TestRail test cases, and structured technical documentation",
+                "• Agile Product Delivery – working in hybrid Scrum and Kanban environments across distributed microservice architecture",
+                "",
+                "References \uD83D\uDCCC",
+                ""
+            ],
+            "icon": "/employments/unified_post.jpeg",
+            "period": {
+                "start": "2019-04-01",
+                "end": "2023-04-01"
+            },
+            "references": [
+                {
+                    "value": "Unifiedpost",
+                    "href": "https://www.unifiedpost.com/"
+                },
+                {
+                    "value": "Banqup",
+                    "href": "https://www.banqup.com/"
+                }
+            ]
+        },
+        {
+            "position": "Java Developer",
+            "company": "ADM Solutions",
+            "type": "Product",
+            "place": "Ghent, Belgium",
+            "description": [
+                "Description \uD83D\uDCDA",
+                "",
+                "• Integrating, developing and improving automatized invoice/dossier flows with external services such as BillToBox (BanqUp), ELO and accountancy packages",
+                "• Documenting and schematizing the flow using UML diagrams",
+                "• Working on InvoiceFlow, monolitic application which distributes invoices towards different accountancy packages like Expert-M, Adsolut, ExactOnline, BoCount, Wings Online and also persists them in a document management system called ELO",
+                "• Working on DossierFlow, monolitic application which reads information about user dossiers from Adsolut and imports them in ELO",
+                "• Migrating Java applications from SVN to Git",
+                "",
+                "Technologies \uD83D\uDD27",
+                "",
+                "• Language: Java 8",
+                "• Testing framework: JUnit 4",
+                "• Database: Microsoft SQL Server 2008-2012",
+                "• Application server: Apache Tomcat 8",
+                "• OS: Windows Server 2008-2012",
+                "• External API: ELO API",
+                "• Persistence: Java Database Connectivity (JDBC)",
+                "• Architecture: Java Servlet",
+                "• Front-end: Java Server Pages (JSP) + jQuerry/Ajax",
+                "• Version Control: SVN/Git, BitBucket",
+                "• IDE: Eclipse",
+                "• Diagram schematization: Draw.io, MS Visio",
+                "• Development methodology: Pair programming",
+                "• Production methodology: Kanban",
+                "",
+                "Domain Expertise \uD83C\uDF10",
+                "",
+                "• Document & Invoice Processing – development of automation flows for invoice and dossier management integrating ELO and accountancy platforms",
+                "• Accounting Software Integration – implementing connectors for financial systems such as Expert-M, Adsolut, BoCount, Wings Online, and ExactOnline",
+                "• Enterprise Document Management – use of ELO API to store and retrieve structured content from external applications",
+                "• Legacy System Maintenance – maintaining and enhancing monolithic Java Servlet applications on Windows Server infrastructure",
+                "• Source Control Modernization – migrating Java projects from SVN to Git to align with modern version control standards",
+                "",
+                "References \uD83D\uDCCC",
+                ""
+            ],
+            "icon": "/employments/adm_solutions.jpg",
+            "period": {
+                "start": "2018-11-01",
+                "end": "2019-03-01"
+            },
+            "references": [
+                {
+                    "value": "ADM Solutions",
+                    "href": "https://web.archive.org/web/20181111090144/https://adm-solutions.eu/nl/"
+                },
+                {
+                    "value": "ELO",
+                    "href": "https://www.elo.com/en-de.html"
+                }
+            ]
+        },
+        {
+            "position": "Erasmus+ .NET Developer Trainee",
+            "company": "ADM Solutions",
+            "type": "Research & Development",
+            "place": "Ghent, Belgium",
+            "description": [
+                "Description \uD83D\uDCDA",
+                "",
+                "• Overview of C# programming concepts and approaches in .NET 4.0 and higher (Visual Studio 2015/17)",
+                "• Design and implementation of C#-based software",
+                "• Improving workflow and providing support functions",
+                "• Performing tests over C#-based software components",
+                "• Development methodology: Pair programming",
+                "• Production methodology: Kanban",
+                "",
+                "Domain Expertise \uD83C\uDF10",
+                "",
+                "• Academic R&D Collaboration – participating in international research projects through Erasmus+ and academic partnerships",
+                "• Software Design & Implementation – hands-on experience designing and coding C# applications using .NET Framework 4.0+",
+                "• Code Testing & Validation – validating custom components through functional and modular testing strategies",
+                "• Workflow Optimization – supporting team productivity by improving internal tooling and development pipelines",
+                "• Technical Communication – contributing to collaborative projects across multiple stakeholders in university and private sector",
+                "",
+                "References \uD83D\uDCCC",
+                ""
+            ],
+            "icon": "/employments/adm_solutions.jpg",
+            "period": {
+                "start": "2018-07-01",
+                "end": "2018-10-01"
+            },
+            "references": [
+                {
+                    "value": "ADM Solutions",
+                    "href": "https://web.archive.org/web/20181111090144/https://adm-solutions.eu/nl/"
+                },
+                {
+                    "value": "Erasmus+",
+                    "href": "https://erasmus-plus.ec.europa.eu/"
+                },
+                {
+                    "value": "University of Ruse",
+                    "href": "https://www.uni-ruse.bg/en"
+                }
+            ]
+        },
+        {
+            "position": "Full-Stack Developer",
+            "company": "DSI Ltd.",
+            "type": "Startup",
+            "place": "Rousse, Bulgaria",
+            "description": [
+                "Description \uD83D\uDCDA",
+                "",
+                "• Kozelat.com/Outletpc.bg – OpenCart 2.3 (PHP 7.1/Bootstrap 3) shops – development and support",
+                "• Maintaining cron jobs for product import in the shops from external suppliers",
+                "• MiAudit – (Laravel 4.2/Bootstrap 3) – system for audit and management of cleaning companies in UK",
+                "• Git/Unix shell, FileZilla, PuTTY remote maintenance of company servers",
+                "• Project management system (Redmine) & web hosting administration (Digital Ocean)",
+                "• Development methodology: Pair programming",
+                "• Production methodology: Kanban",
+                "",
+                "Domain Expertise \uD83C\uDF10",
+                "",
+                "• E-Commerce Development – maintaining and customizing online stores using OpenCart and Laravel frameworks",
+                "• Back-office Systems – building and supporting custom platforms for auditing and managing cleaning services (MiAudit UK)",
+                "• Web Server & Hosting Management – performing shell-based maintenance and deployments via SSH tools (PuTTY, FileZilla)",
+                "• Version Control & Collaboration – using Git and Redmine for team coordination and issue tracking",
+                "• Agile Collaboration – working in iterative cycles following Kanban practices with peer development",
+                "",
+                "References \uD83D\uDCCC",
+                ""
+            ],
+            "icon": "/employments/dsi.png",
+            "period": {
+                "start": "2017-07-01",
+                "end": "2018-05-01"
+            },
+            "references": [
+                {
+                    "value": "DSI Ltd - Developing Software Innovations",
+                    "href": "https://dsi.bg/en/"
+                },
+                {
+                    "value": "Kozelat.com",
+                    "href": "https://kozelat.com/"
+                },
+                {
+                    "value": "Outletpc.bg",
+                    "href": "https://outletpc.bg/"
+                },
+                {
+                    "value": "MiAudit",
+                    "href": "https://miaudit.com/"
+                }
+            ]
+        },
+        {
+            "position": "Computer Repair Technician",
+            "company": "Telnet Ltd.",
+            "type": "Service",
+            "place": "Elena, Bulgaria",
+            "description": [
+                "Description \uD83D\uDCDA",
+                "",
+                "• software and hardware fixing PC-s, laptops, mobile phones, tables",
+                "• changing, cleaning and maintaining hardware components of computer configurations",
+                "• software reinstallation, backup and maintance",
+                "• creating hardware parts list for PC configuration based on customer requirements",
+                "",
+                "The company has already been acquired by the largest telecom in Bulgaria – Vivacom (2024). \uD83D\uDCA1",
+                "",
+                "Domain Expertise \uD83C\uDF10",
+                "",
+                "• IT Support & Repair – hands-on experience repairing consumer and office hardware including PCs, laptops, phones, and tablets",
+                "• Hardware Maintenance – performing upgrades, diagnostics, and component-level servicing on computing devices",
+                "• Software Installation & Troubleshooting – reinstalling OS, managing backups, and resolving system-level software issues",
+                "• Custom PC Configuration – selecting hardware components and building systems tailored to customer needs",
+                "• Customer Service – direct communication with clients to identify technical needs and deliver appropriate solutions",
+                "",
+                "References \uD83D\uDCCC",
+                ""
+            ],
+            "icon": "/employments/telnet.png",
+            "period": {
+                "start": "2015-07-01",
+                "end": "2015-09-01"
+            },
+            "references": [
+                {
+                    "value": "Vivacom",
+                    "href": "https://www.vivacom.bg/bg/telnet"
+                }
+            ]
+        }
+    ]
+}

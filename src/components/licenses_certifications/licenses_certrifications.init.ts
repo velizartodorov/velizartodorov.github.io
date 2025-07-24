@@ -1,33 +1,15 @@
 import { LicenseCertification } from "./license_certification";
+import { useTranslation } from 'react-i18next';
 
-export const licensesCertifications: LicenseCertification[] = [
-    {
-        icon: '/education/udemy_icon.svg',
-        name: 'AWS Essentials',
-        institution: 'Udemy',
-        field: 'AWS',
-        date: new Date(2025, 1),
-        link: '/certificates/AWS-Essentials-Velizar-Todrov.pdf'
-    },
-    {
-        icon: '/education/cvo_gent.png',
-        name: 'Nederlands - tweede taal - richtgraad 2',
-        institution: 'Het Perspectief PCVO',
-        field: 'Dutch/Flemish Language and Literature',
-        date: new Date(2021, 4)
-    },
-    {
-        icon: '/education/naric.svg',
-        name: 'Opleidingskwalifikatiegraad - Masters',
-        institution: 'NARIC-Vlaanderen',
-        field: 'Dutch/Flemish Language and Literature',
-        date: new Date(2018, 6)
-    },
-    {
-        icon: '/education/deutsches-sprachdiplom.jpg',
-        name: 'Deutsches Sprachdiplom (DSD)',
-        institution: 'Kulturministerkonferenz Deutschland',
-        field: 'German Language and Literature',
-        date: new Date(2012, 11)
-    }
-]
+export function useLicensesCertifications(): LicenseCertification[] {
+    const { t } = useTranslation();
+    const data = t('licenses:list', { returnObjects: true }) as any[];
+    return data.map((item: any) => ({
+        name: item.name ?? '',
+        institution: item.institution ?? '',
+        field: item.field ?? '',
+        date: item.date ? new Date(item.date) : new Date(0),
+        icon: item.icon ?? '',
+        link: item.link ?? '',
+    }));
+}

@@ -1,20 +1,21 @@
-import { Employment } from "./employment";
-import { adm_solutions } from "./employments/adm_solutions";
-import { continuum } from "./employments/continuum";
-import { docbyte } from "./employments/docbyte";
-import { desi as dsi } from "./employments/dsi";
-import { erasmus_adm_solutions } from "./employments/erasmus_adm_solutions";
-import { securex } from "./employments/securex";
-import { telnet } from "./employments/telnet";
-import { unified_post } from "./employments/unified_post";
 
-export const employments: Employment[] = [
-    docbyte,
-    continuum,
-    securex,
-    unified_post,
-    adm_solutions,
-    erasmus_adm_solutions,
-    dsi,
-    telnet
-];
+import { useTranslation } from 'react-i18next';
+import { Employment } from "./employment";
+
+export function useEmployments(): Employment[] {
+  const { t } = useTranslation();
+  const data = t('employments:list', { returnObjects: true }) as any[];
+  return data.map((e: any) => ({
+    position: e.position,
+    company: e.company,
+    type: e.type ?? '',
+    place: e.place,
+    icon: e.icon,
+    period:
+      e.period && typeof e.period.start === 'string' && typeof e.period.end === 'string'
+        ? { start: new Date(e.period.start), end: new Date(e.period.end) }
+        : { start: new Date(), end: new Date() },
+    description: e.description,
+    references: Array.isArray(e.references) ? e.references : [],
+  }));
+}
