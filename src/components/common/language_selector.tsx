@@ -1,15 +1,13 @@
 import React from 'react';
 import './language_selector.css';
+import { useTranslation } from 'react-i18next';
 
-export const LanguageContext = React.createContext<{ language: 'en' | 'nl' }>({ language: 'en' });
-
-interface LanguageSelectorProps {
-    value: 'en' | 'nl';
-    onChange: (lang: 'en' | 'nl') => void;
-}
-
-export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ value, onChange }) => {
-    const isEnglish = value === 'en';
+export const LanguageSelector: React.FC = () => {
+    const { i18n } = useTranslation();
+    const isEnglish = i18n.language === 'en';
+    const handleChange = () => {
+        i18n.changeLanguage(isEnglish ? 'nl' : 'en');
+    };
     return (
         <div className="form-check form-switch d-flex align-items-center language-selector-switch">
             <span
@@ -20,7 +18,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ value, onCha
                 type="checkbox"
                 id="lang-switch"
                 checked={!isEnglish}
-                onChange={() => onChange(isEnglish ? 'nl' : 'en')}
+                onChange={handleChange}
                 aria-label={isEnglish ? 'Switch to Dutch' : 'Switch to English'}
             />
             <span
