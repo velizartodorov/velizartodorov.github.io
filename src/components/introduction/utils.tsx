@@ -1,4 +1,5 @@
 
+import { $SpecialObject } from 'i18next/typescript/helpers';
 import { useTranslation } from 'react-i18next';
 import { Period } from "../common/period";
 import { useEmployments } from "../employments/employments.init";
@@ -28,6 +29,13 @@ export function useIntroductionStats() {
     const totalTime = `${sumYears} ${yearLabel}, ${totalMonths} ${monthLabel}, ${andLabel} ${totalDays} ${dayLabel}`;
 
     return { softwareEmployments, totalYears, totalTime };
+}
+
+export function useFormatBody(bodyRaw: $SpecialObject) {
+    const { totalTime, totalYears } = useIntroductionStats();
+    return Array.isArray(bodyRaw)
+        ? interpolate(bodyRaw.join(' '), { totalTime, totalYears })
+        : interpolate(String(bodyRaw), { totalTime, totalYears });
 }
 
 export function interpolate(str: string, vars: Record<string, string | number>) {
