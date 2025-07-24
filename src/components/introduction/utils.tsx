@@ -1,12 +1,10 @@
-import { useContext } from "react";
-import { LanguageContext } from '../common/language_selector';
-import enCommon from '../common/common.en.json';
-import nlCommon from '../common/common.nl.json';
+
+import { useTranslation } from 'react-i18next';
 import { Period } from "../common/period";
 import { useEmployments } from "../employments/employments.init";
 
-
 export function useIntroductionStats() {
+    const { t } = useTranslation();
     const employments = useEmployments();
     const telnetEmployment = employments.find(e => e.company.toLowerCase().includes('telnet'));
     const softwareEmployments = employments
@@ -20,14 +18,14 @@ export function useIntroductionStats() {
         return total + yearsDifference(period);
     }, 0);
 
-    const { language } = useContext(LanguageContext);
-    const commonLang = language === 'nl' ? nlCommon.period : enCommon.period;
     const periods = softwareEmployments.map(p => ({ start: new Date(p.start), end: new Date(p.end) }));
     const merged = mergePeriods(periods);
     const { totalYears: sumYears, totalMonths, totalDays } = sumPeriods(merged);
-    const totalTime = `${sumYears} ${sumYears === 1 ? commonLang.year : commonLang.years}, ` +
-        `${totalMonths} ${totalMonths === 1 ? commonLang.month : commonLang.months}, ` +
-        `${commonLang.and} ${totalDays} ${totalDays === 1 ? commonLang.day : commonLang.days}`;
+    const yearLabel = t(`common:period.${sumYears === 1 ? 'year' : 'years'}`);
+    const monthLabel = t(`common:period.${totalMonths === 1 ? 'month' : 'months'}`);
+    const dayLabel = t(`common:period.${totalDays === 1 ? 'day' : 'days'}`);
+    const andLabel = t('common:period.and');
+    const totalTime = `${sumYears} ${yearLabel}, ${totalMonths} ${monthLabel}, ${andLabel} ${totalDays} ${dayLabel}`;
 
     return { softwareEmployments, totalYears, totalTime };
 }
