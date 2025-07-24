@@ -1,17 +1,17 @@
-import { FC, useContext } from 'react';
+
+import { FC } from 'react';
 import { Col, ListGroup, Row } from 'react-bootstrap';
 import { getImageUrl } from '../common/utils';
 import { LicenseCertification } from './license_certification';
-import enCommon from '../common/common.en.json';
-import nlCommon from '../common/common.nl.json';
-import { LanguageContext } from '../common/language_selector';
+import { useTranslation } from 'react-i18next';
+
 
 const LicenseCertificationItem: FC<{
   item: LicenseCertification; index: number
 }> = ({ item }) => {
   const hasLink = Boolean(item.link?.trim());
-  const { language } = useContext(LanguageContext);
-  const months = language === 'nl' ? nlCommon.months : enCommon.months;
+  const { t } = useTranslation();
+  const months = t('common:months', { returnObjects: true }) as string[];
   const date = item.date instanceof Date ? item.date : new Date(item.date);
   const month = date.getMonth();
   const year = date.getFullYear();
