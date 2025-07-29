@@ -23,3 +23,9 @@
 * `licenses_certifications` -> `licenses-certifications`
 * remove from the code `PUBLIC_URL` calls like `process.env.PUBLIC_URL + employment.icon` ✅
 * when updating `.md` files don't create new deployment
+* folder `interaces`
+* refactor periods -> move them to separate `utils` folder
+* move languages to `translations` folder
+* check accessibility - <https://www.w3.org/WAI/standards-guidelines/wcag/>
+* fix language toggle colors (or exchange it with flags)
+* translate it to Bulgarian
