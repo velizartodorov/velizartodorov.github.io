@@ -10,7 +10,7 @@
     "@types/jest": "^30.0.0",
     "@types/node": "^24.0.15",
     "@types/react": "^19.1.6",
-    "@types/react-dom": "^19.1.5",
+    "@types/react-dom": "^19.1.7",
     "bootstrap": "^5.3.7",
     "i18next": "23.4.6",
     "postcss": "^8.5.6",
