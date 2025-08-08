@@ -1,0 +1,33 @@
+.accordion-heading {
+  font-size: 1.5rem;
+}
+
+@media (max-width: 400px) {
+  .accordion-heading {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 376px) {
+  .accordion-heading {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 355px) {
+  .accordion-heading {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 325px) {
+  .accordion-heading {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 300px) {
+  .accordion-heading {
+    font-size: 0.9rem;
+  }
+}
