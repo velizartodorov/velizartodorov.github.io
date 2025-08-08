@@ -1,0 +1,58 @@
+title: "Opleiding 🦉"
+list:
+  - occupation: "Nederlands als tweede taal"
+    institution: "Het Perspectief PCVO"
+    place: "Gent, België"
+    icon: "/education/cvo_gent.png"
+    period:
+      start: "{{dates:nt2_education_start}}"
+      end: "{{dates:nt2_education_end}}"
+    body:
+      - "Referenties 📌"
+      - ""
+    references:
+      - value: "Nederlands tweede taal - Niveau 2 (B2) informatie"
+        href: "https://www.vlaanderen.be/opleidingsdatabank/nederlands-tweede-taal-richtgraad-2"
+  - occupation: "Software Engineering (Master diploma)"
+    institution: "Universiteit van Rousse"
+    place: "Rousse, Bulgarije"
+    icon: "/education/university_ruse.png"
+    period:
+      start: "{{dates:software_engineering_start}}"
+      end: "{{dates:software_engineering_end}}"
+    body:
+      - "Referenties 📌"
+      - ""
+    references:
+      - value: "Universiteit van Ruse"
+        href: "https://www.uni-ruse.bg/en"
+  - occupation: "Computer Engineering (Bachelor diploma)"
+    institution: "Universiteit van Rousse"
+    place: "Rousse, Bulgarije"
+    icon: "/education/university_ruse.png"
+    period:
+      start: "{{dates:computer_engineering_start}}"
+      end: "{{dates:computer_engineering_end}}"
+    body:
+      - "Referenties 📌"
+      - ""
+    references:
+      - value: "Universiteit van Rousse"
+        href: "https://www.uni-ruse.bg/en"
+  - occupation: "Duitse & Engelse taal"
+    institution: "Taalmiddelbare school “Prof. Dr. Assen Zlatarov”"
+    place: "Veliko Tarnovo, Bulgarije"
+    icon: "/education/assen_zlatarov_language_school.jpg"
+    period:
+      start: "{{dates:german_english_education_start}}"
+      end: "{{dates:german_english_education_end}}"
+    body:
+      - "Referenties 📌"
+      - ""
+    references:
+      - value: "ZfA - Deutsches Sprachdiplom (DSD)"
+        href: "https://www.kmk.org/themen/deutsches-sprachdiplom-dsd.html"
+      - value: "Duitse taalprofiel"
+        href: "https://ezikovavt.com/%D1%87%D1%83%D0%B6%D0%B4%D0%B8-%D0%B5%D0%B7%D0%B8%D1%86%D0%B8/deutsch/"
+      - value: "Engelse taalprofiel"
+        href: "https://ezikovavt.com/%D1%87%D1%83%D0%B6%D0%B4%D0%B8-%D0%B5%D0%B7%D0%B8%D1%86%D0%B8/english/"

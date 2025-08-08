@@ -1,0 +1,37 @@
+position: "Full-Stack Developer"
+company: "DSI Ltd."
+type: "Startup"
+place: "Rousse, Bulgarije"
+description: |
+  Beschrijving 📚
+
+  • Kozelat.com/Outletpc.bg – OpenCart 2.3 (PHP 7.1/Bootstrap 3) shops – ontwikkeling en support
+  • Onderhoud van cronjobs voor productimport in de shops van externe leveranciers
+  • MiAudit – (Laravel 4.2/Bootstrap 3) – systeem voor audit en management van schoonmaakbedrijven in het VK
+  • Git/Unix shell, FileZilla, PuTTY remote onderhoud van bedrijfsservers
+  • Projectmanagementsysteem (Redmine) & webhostingbeheer (Digital Ocean)
+  • Ontwikkelmethode: Pair programming
+  • Productiemethode: Kanban
+
+  Domeinexpertise 🌐
+
+  • E-commerce ontwikkeling – onderhoud en maatwerk van webshops met OpenCart en Laravel
+  • Backofficesystemen – bouwen en ondersteunen van platforms voor audit en management van schoonmaakdiensten (MiAudit VK)
+  • Webserver- & hostingbeheer – shell-based onderhoud en deployment via SSH-tools (PuTTY, FileZilla)
+  • Versiebeheer & samenwerking – gebruik van Git en Redmine voor teamcoördinatie en issue tracking
+  • Agile samenwerking – werken in iteratieve cycli volgens Kanban met peer development
+
+  Referenties 📌
+icon: "/employments/dsi.png"
+period:
+  start: "{{dates:dsi_start}}"
+  end: "{{dates:dsi_end}}"
+references:
+  - value: "DSI Ltd - Developing Software Innovations"
+    href: "https://dsi.bg/en/"
+  - value: "Kozelat.com"
+    href: "https://kozelat.com/"
+  - value: "Outletpc.bg"
+    href: "https://outletpc.bg/"
+  - value: "MiAudit"
+    href: "https://miaudit.com/"

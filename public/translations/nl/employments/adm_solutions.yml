@@ -1,0 +1,48 @@
+position: "Java Developer"
+company: "ADM Solutions"
+type: "Product"
+place: "Gent, België"
+description: |
+  Beschrijving 📚
+
+  • Integreren, ontwikkelen en verbeteren van geautomatiseerde factuur/dossierstromen met externe diensten zoals BillToBox (BanqUp), ELO en accountancypakketten
+  • Documenteren en schematiseren van de flow met UML-diagrammen
+  • Werken aan InvoiceFlow, monolithische applicatie die facturen distribueert naar verschillende accountancypakketten zoals Expert-M, Adsolut, ExactOnline, BoCount, Wings Online en deze ook opslaat in een document management systeem genaamd ELO
+  • Werken aan DossierFlow, monolithische applicatie die informatie over gebruikersdossiers uit Adsolut leest en importeert in ELO
+  • Java-applicaties migreren van SVN naar Git
+
+  Technologieën 🔧
+
+  • Taal: Java 8
+  • Testframework: JUnit 4
+  • Database: Microsoft SQL Server 2008-2012
+  • Applicatieserver: Apache Tomcat 8
+  • OS: Windows Server 2008-2012
+  • Externe API: ELO API
+  • Persistentie: Java Database Connectivity (JDBC)
+  • Architectuur: Java Servlet
+  • Front-end: Java Server Pages (JSP) + jQuerry/Ajax
+  • Versiebeheer: SVN/Git, BitBucket
+  • IDE: Eclipse
+  • Diagrammen: Draw.io, MS Visio
+  • Ontwikkelmethode: Pair programming
+  • Productiemethode: Kanban
+
+  Domeinexpertise 🌐
+
+  • Document- & factuurverwerking – ontwikkeling van automatiseringsstromen voor factuur- en dossierbeheer met ELO en accountancysystemen
+  • Koppelingen met boekhoudsoftware – implementatie van connectors voor financiële systemen zoals Expert-M, Adsolut, BoCount, Wings Online en ExactOnline
+  • Enterprise documentbeheer – gebruik van ELO API voor opslag en ophalen van gestructureerde content uit externe applicaties
+  • Legacy-systeemonderhoud – onderhoud en verbetering van monolithische Java Servlet-applicaties op Windows Server-infrastructuur
+  • Modernisering versiebeheer – migratie van Java-projecten van SVN naar Git volgens moderne standaarden
+
+  Referenties 📌
+icon: "/employments/adm_solutions.jpg"
+period:
+  start: "{{dates:adm_solutions_start}}"
+  end: "{{dates:adm_solutions_end}}"
+references:
+  - value: "ADM Solutions"
+    href: "https://web.archive.org/web/20181111090144/https://adm-solutions.eu/nl/"
+  - value: "ELO"
+    href: "https://www.elo.com/en-de.html"

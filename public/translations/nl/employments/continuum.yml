@@ -1,0 +1,52 @@
+position: "Java Software Crafter"
+place: "Hasselt, België (Remote)"
+company: "Continuum Consulting NV"
+type: "Consultancy"
+description: |
+  Beschrijving 📚
+
+  Toegetreden tot de Continuum-tribe, consultancy voor klanten met Java-gebaseerde applicaties.
+
+  • R&D aan interne tools zoals E-Tribe Tool en HR Interview Tool
+  • Experimenteren met Docker, Kubernetes en migratie van Elastic BeanStalk naar Kubernetes
+  • Documentatie bijwerken
+
+  Technologieën 🔧
+
+  • Taal/framework: Java 17, Spring Boot 2.6.7
+  • API Tools: Swagger
+  • Dependency management: Gradle
+  • Containerisatie: Docker
+  • DevOps: Elastic BeanStalk
+  • Testframework: JUnit 4
+  • Deployments: Confluence Bamboo, Azure
+  • Database: PostgreSQL, Amazon DynamoDB (serverless, key-value NoSQL database)
+  • Applicatieserver: Apache Tomcat 8
+  • Architectuur: Microservices, client-server
+  • Persistentie: Spring Data JPA/R2DBC, Hibernate
+  • Databasebeheer: Flyway
+  • Identiteit/toegangsbeheer: KeyCloak (OAuth 2.0)
+  • Front-end: Angular 12
+  • Versiebeheer: Git, GitHub
+  • IDE: IntelliJ, VS Code
+  • Diagrammen en documentatie: Mermaid.js
+  • Ontwikkelmethode: Pair/solo programming
+  • Tijdregistratie: Teamleader
+  • Productiemethode: Kanban
+
+  Domeinexpertise 🌐
+
+  • Interne tooling & automatisering – R&D aan productiviteitsplatforms zoals interview- en HR-tools
+  • Enterprise applicatieontwikkeling – werken aan modulaire Java/Spring Boot microservices in consultancysetting
+  • DevOps enablement – experimenteren met Docker en Kubernetes voor infrastructuurmodernisering
+  • Cloudmigratiestrategie – evaluatie van migratiepaden van Elastic Beanstalk naar Kubernetes-infrastructuur
+  • Agile delivery – werken in een Kanban-team voor continue verbetering en taakgerichte flow
+
+  Referenties 📌
+icon: "/employments/continuum.jpg"
+period:
+  start: "{{dates:continuum_start}}"
+  end: "{{dates:continuum_end}}"
+references:
+  - value: "Continuum Consulting NV"
+    href: "https://www.continuum.be/en/"
