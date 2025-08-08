@@ -19,15 +19,13 @@ export function useLicensesCertifications(): LicenseCertification[] {
     if (!ready) return [];
 
     const list = t("licenses_certifications:list", { returnObjects: true }) as Record<string, any>[];
-
-
     if (!Array.isArray(list)) return [];
 
     return list.map((item) => ({
         name: item.name ?? "",
         institution: item.institution ?? "",
         field: item.field ?? "",
-        date: resolveDate(item.date, t),
+        date: resolveDate(item.date),
         icon: item.icon ?? "",
         link: item.link ?? "",
     }));

@@ -13,7 +13,7 @@ const Education = ({ className, eventKey }: Omit<SectionProps, 'title'>) => {
   const educations = Array.isArray(list)
     ? list.map((e: any) => ({
         ...e,
-        period: e.period ? parsePeriod(e.period, t) : { start: new Date(0), end: new Date(0) },
+        period: e.period ? parsePeriod(e.period) : { start: new Date(0), end: new Date(0) },
       }))
     : [];
   return (

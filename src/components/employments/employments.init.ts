@@ -1,5 +1,3 @@
-
-
 import { useTranslation } from 'react-i18next';
 import { Employment } from "./employment";
 import { resolveDate } from '../common/utils';
@@ -16,8 +14,8 @@ export function useEmployments(): Employment[] {
     period:
       e.period && typeof e.period.start === 'string' && typeof e.period.end === 'string'
         ? {
-            start: new Date(resolveDate(e.period.start, t)),
-            end: new Date(resolveDate(e.period.end, t)),
+            start: new Date(resolveDate(e.period.start)),
+            end: new Date(resolveDate(e.period.end)),
           }
         : { start: new Date(), end: new Date() },
     description: e.description,
