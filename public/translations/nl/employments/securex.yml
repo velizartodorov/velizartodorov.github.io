@@ -1,0 +1,48 @@
+position: Java Developer
+company: Securex
+type: Product
+place: "Gent, België (Contract)"
+description: |
+  Beschrijving 📚
+
+  Gestart als externe Java softwareontwikkelaar bij Securex.
+
+  • Lid van de Continuum-tribe als consultant voor het sociaal secretariaat Securex
+  • Werken aan een applicatie voor het verzamelen van medische enquêtes van werknemers – 'BeWell'
+  • Ondersteunen van een applicatie voor het verzamelen van informatie van startende ondernemers – 'GO-Start'
+
+  Technologieën 🔧
+
+  • Taal/framework: Java 11/17, Spring Boot 2.6
+  • API Tools: Apicurio Studio, Swagger
+  • Dependency management: Gradle
+  • Testframework: Groovy-Spock
+  • CI/CD: Atlassian Bamboo
+  • Datamonitoring: Elastic Kibana
+  • Deployments: Azure
+  • Database: Oracle, Microsoft SQL Server
+  • Applicatieserver: Apache Tomcat
+  • Architectuur: Gedistribueerde microservices, Spring Cloud Gateway, Netflix Zuul API (Eureka)
+  • Message queues/notifications: Amazon SQS / SNS
+  • Persistentie: Spring Data JPA, Hibernate
+  • Databasebeheer: Liquibase
+  • Front-end: React, React Native (mobiele app)
+  • Versiebeheer: Git, BitBucket
+  • IDE: IntelliJ, VS Code, DbVisualizer Pro 11.0.5
+  • Ontwikkelmethode: Pair/solo programming
+  • Productiemethode: Scrum met 2-weekse sprints (planning, retros), SAFe (Scaled agile framework)
+  • Tijdregistratie: Jira
+
+  Domeinexpertise 🌐
+
+  • HR & welzijnsoplossingen – bijdragen aan de ontwikkeling van 'BeWell', een medische enquête-tool voor werknemers
+  • Ondernemerschapsondersteuning – bijdragen aan 'GO-Start', een platform voor startende ondernemers
+  • Publieke sector & sociaal secretariaat – softwareontwikkeling voor HR-compliance, payroll en administratieve workflows
+  • Scaled agile delivery – werken binnen SAFe voor grote projecten
+  • Data privacy & compliance – werken in omgevingen met focus op veilige verwerking van persoonsgegevens
+
+  Referenties 📌
+icon: "/employments/securex.png"
+period:
+  start: "{{dates:securex_start}}"
+  end: "{{dates:securex_end}}"
