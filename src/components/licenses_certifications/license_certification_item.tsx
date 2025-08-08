@@ -1,19 +1,13 @@
+
 import { FC } from 'react';
 import { Col, ListGroup, Row } from 'react-bootstrap';
-
 import { LicenseCertification } from './license_certification';
-import { useTranslation } from 'react-i18next';
+import { useMonthYear } from './licenses_certrifications.init';
 
-const LicenseCertificationItem: FC<{
-  item: LicenseCertification; index: number
-}> = ({ item }) => {
+const LicenseCertificationItem: FC<{ item: LicenseCertification; index: number }> = ({ item }) => {
   const hasLink = Boolean(item.link?.trim());
-  const { t } = useTranslation();
-  const months = t('common:months', { returnObjects: true }) as string[];
-  const date = item.date instanceof Date ? item.date : new Date(item.date);
-  const month = date.getMonth();
-  const year = date.getFullYear();
-  const monthYearStr = `${months[month]} ${year}`;
+  const getMonthYear = useMonthYear();
+  const monthYearStr = getMonthYear(item.date);
 
   return (
     <ListGroup.Item

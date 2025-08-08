@@ -1,4 +1,5 @@
 
+
 import { useTranslation } from 'react-i18next';
 import { Period } from "../common/period";
 import { currentDate } from "../common/utils";
@@ -27,9 +28,3 @@ export function useMonthYear(): (date: Date) => string {
     };
 }
 
-export function parsePeriod(period: any) {
-    return {
-        start: period.start ? new Date(period.start) : new Date(0),
-        end: period.end ? new Date(period.end) : new Date(0),
-    };
-}
