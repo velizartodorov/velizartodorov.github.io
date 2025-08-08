@@ -1,0 +1,16 @@
+.text-margin {
+    margin-left: 0.5rem;
+
+    .profile-item-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 240px) {
+    .text-margin {
+        font-size: 0.7rem;
+        margin-left: 0.2rem;
+    }
+}
