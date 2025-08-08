@@ -68,8 +68,8 @@
             ],
             "icon": "/employments/docbyte.jpg",
             "period": {
-                "start": "{{dates.docbyte_start}}",
-                "end": "{{dates.docbyte_end}}"
+                "start": "{{dates:docbyte_start}}",
+                "end": "{{dates:docbyte_end}}"
             },
             "references": [
                 {
@@ -136,8 +136,8 @@
             ],
             "icon": "/employments/continuum.jpg",
             "period": {
-                "start": "{{dates.continuum_start}}",
-                "end": "{{dates.continuum_end}}"
+                "start": "{{dates:continuum_start}}",
+                "end": "{{dates:continuum_end}}"
             },
             "references": [
                 {
@@ -195,8 +195,8 @@
             ],
             "icon": "/employments/securex.png",
             "period": {
-                "start": "{{dates.securex_start}}",
-                "end": "{{dates.securex_end}}"
+                "start": "{{dates:securex_start}}",
+                "end": "{{dates:securex_end}}"
             },
             "references": [
                 {
@@ -252,8 +252,8 @@
             ],
             "icon": "/employments/unified_post.jpeg",
             "period": {
-                "start": "{{dates.unified_post_start}}",
-                "end": "{{dates.unified_post_end}}"
+                "start": "{{dates:unified_post_start}}",
+                "end": "{{dates:unified_post_end}}"
             },
             "references": [
                 {
@@ -310,8 +310,8 @@
             ],
             "icon": "/employments/adm_solutions.jpg",
             "period": {
-                "start": "{{dates.adm_solutions_start}}",
-                "end": "{{dates.adm_solutions_end}}"
+                "start": "{{dates:adm_solutions_start}}",
+                "end": "{{dates:adm_solutions_end}}"
             },
             "references": [
                 {
@@ -352,8 +352,8 @@
             ],
             "icon": "/employments/adm_solutions.jpg",
             "period": {
-                "start": "{{dates.erasmus_start}}",
-                "end": "{{dates.erasmus_end}}"
+                "start": "{{dates:erasmus_start}}",
+                "end": "{{dates:erasmus_end}}"
             },
             "references": [
                 {
@@ -399,8 +399,8 @@
             ],
             "icon": "/employments/dsi.png",
             "period": {
-                "start": "{{dates.dsi_start}}",
-                "end": "{{dates.dsi_end}}"
+                "start": "{{dates:dsi_start}}",
+                "end": "{{dates:dsi_end}}"
             },
             "references": [
                 {
@@ -449,8 +449,8 @@
             ],
             "icon": "/employments/telnet.png",
             "period": {
-                "start": "{{dates.telnet_start}}",
-                "end": "{{dates.telnet_end}}"
+                "start": "{{dates:telnet_start}}",
+                "end": "{{dates:telnet_end}}"
             },
             "references": [
                 {
