@@ -36,55 +36,144 @@ interface EmploymentIndex {
   list?: string[];
 }
 
-// Fetch index + item files and register the combined bundle
 async function loadAndRegisterEmployments(lang: string) {
-  // /public/translations/<lang>/employments.yml
-  const indexRes = await fetch(`/translations/${lang}/employments.yml`);
-  if (!indexRes.ok) {
-    return;
+  try {
+    const prefix = process.env.PUBLIC_URL || '';
+    console.debug(`Loading employments for ${lang}`);
+
+    // Load index file
+    const indexPath = `${prefix}/translations/${lang}/employments.yml`;
+    console.debug(`Fetching employment index from: ${indexPath}`);
+    const indexRes = await fetch(indexPath);
+    
+    if (!indexRes.ok) {
+      throw new Error(`Failed to fetch employment index: ${indexRes.status}`);
+    }
+
+    const indexText = await indexRes.text();
+    let index: EmploymentIndex;
+    
+    try {
+      index = yaml.load(indexText) as EmploymentIndex;
+      console.debug(`Parsed employment index:`, index);
+      
+      if (!index || !Array.isArray(index.list)) {
+        throw new Error('Invalid employment index structure');
+      }
+    } catch (error) {
+      console.error(`Failed to parse employment index:`, error);
+      throw error;
+    }
+
+    const items = await Promise.all(
+      index.list.map(async (file) => {
+        try {
+          const filePath = `${prefix}/translations/${lang}/employments/${file}`;
+          console.debug(`Loading employment file: ${filePath}`);
+          
+          const res = await fetch(filePath);
+          if (!res.ok) {
+            throw new Error(`HTTP ${res.status}`);
+          }
+          
+          const txt = await res.text();
+          let data: any;
+          
+          try {
+            data = yaml.load(txt);
+            if (!data || typeof data !== 'object') {
+              throw new Error('Invalid YAML structure');
+            }
+            
+            // Validate required fields
+            if (!data.position || !data.company || !data.period) {
+              throw new Error('Missing required fields');
+            }
+            
+            return data;
+          } catch (error) {
+            console.error(`Failed to parse employment file ${file}:`, error);
+            throw error;
+          }
+        } catch (error) {
+          console.error(`Failed to load employment ${file}:`, error);
+          return null;
+        }
+      })
+    );
+
+    // Filter out failed loads
+    const validItems = items.filter(item => item !== null);
+    
+    if (validItems.length === 0) {
+      throw new Error('No valid employment items loaded');
+    }
+
+    console.debug(`Successfully loaded ${validItems.length}/${items.length} employment items`);
+
+    // Register the bundle
+    const bundle = {
+      title: index.title ?? '',
+      list: validItems
+    };
+    console.debug(`Registering employment bundle for ${lang}:`, bundle);
+    
+    i18n.addResourceBundle(
+      lang,
+      'employments',
+      bundle,
+      true,   // deep
+      true    // overwrite
+    );
+
+    console.debug(`Successfully registered employment bundle for ${lang}`);
+  } catch (error) {
+    console.error(`Failed to load employments for ${lang}:`, error);
   }
-
-  const indexText = await indexRes.text();
-  const index = yaml.load(indexText) as EmploymentIndex | null;
-
-  const files = Array.isArray(index?.list) ? index!.list : [];
-
-  const items = await Promise.all(
-    files.map(async (file) => {
-      const res = await fetch(`/translations/${lang}/employments/${file}`);
-      if (!res.ok) return {};
-      const txt = await res.text();
-      const obj = yaml.load(txt) as any;
-      return obj ?? {};
-    })
-  );
-
-  i18n.addResourceBundle(
-    lang,
-    'employments',
-    { title: index?.title ?? '', list: items },
-    true,   // deep
-    true    // overwrite
-  );
 }
 
-i18n
-  .use(Backend)
-  .use(initReactI18next)
-  .init({
-    lng: 'en',
-    fallbackLng: 'en',
-    ns: NAMESPACES,
-    defaultNS: 'common',
-    interpolation: {
-      escapeValue: false,
-    },
-    backend: {
-      loadPath: customLoadPath,
-      parse: parseWithYaml,
-    },
-  });
+async function initializeI18n() {
+  try {
+    console.debug('Initializing i18n');
+    
+    await i18n
+      .use(Backend)
+      .use(initReactI18next)
+      .init({
+        lng: 'en',
+        fallbackLng: 'en',
+        ns: NAMESPACES,
+        defaultNS: 'common',
+        debug: true,
+        interpolation: {
+          escapeValue: false,
+        },
+        backend: {
+          loadPath: customLoadPath,
+          parse: parseWithYaml,
+        },
+      });
 
-void Promise.all(['en', 'nl'].map((lang) => loadAndRegisterEmployments(lang)));
+    console.debug('i18n initialized, loading employments');
+    
+    // Load employments after i18n is initialized
+    await Promise.all(['en', 'nl'].map(lang => loadAndRegisterEmployments(lang)));
+    
+    console.debug('All resources loaded:', 
+      i18n.languages.map(lang => ({
+        lang,
+        namespaces: NAMESPACES.map(ns => ({
+          ns,
+          loaded: i18n.hasResourceBundle(lang, ns),
+          resources: i18n.getResourceBundle(lang, ns)
+        }))
+      }))
+    );
+  } catch (error) {
+    console.error('Failed to initialize i18n:', error);
+  }
+}
+
+void initializeI18n();
 
 export default i18n;
