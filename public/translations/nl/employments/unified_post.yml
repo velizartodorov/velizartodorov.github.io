@@ -1,0 +1,51 @@
+position: Software Developer
+company: Unified Post
+type: Product
+place: "Gent, België"
+description: |
+  Beschrijving 📚
+
+  • ADMS werd overgenomen door Unified Post
+  • Werken aan het Integration Portal, configuratie-app voor het koppelen van 3rd party apps aan Unified Post-flows
+  • Opzetten van JIRA-flow + Bitbucket-integratie, Git Gitflow
+  • Werken aan accountancy-simulatie-app met multi-tenant architectuur (Spring Boot)
+  • Documenteren en schematiseren van de flow met C4-diagrammen, README's bijwerken
+  • TestRail-cases aanmaken
+
+  Technologieën 🔧
+
+  • Taal/framework: Java 8/11, Spring Boot 2.6.7, Project Reactor
+  • API-tool: Swagger
+  • Dependency management: Maven, Gradle
+  • Testframework/tools: JUnit 4/5, Mockito, TestRails (testcases), Selenium
+  • CI/CD: BitBucket Pipelines
+  • Database: PostgreSQL
+  • Applicatieserver: Apache Tomcat 8
+  • Architectuur: Microservices
+  • Persistentie: Spring Data JPA, Hibernate
+  • Caching: Redis
+  • Databasebeheer: Liquibase, Flyway
+  • Identiteit/toegangsbeheer: KeyCloak (OAuth 2.0)
+  • Front-end: Angular 12
+  • IDE: IntelliJ, VS Code, DBeaver
+  • Diagrammen en documentatie: Draw.io, C4 Structurizr, Markdown
+  • Productiemethodologie: Kanban & Scrum
+
+  Domeinexpertise 🌐
+
+  • FinTech-integratie – bijdragen aan tools die third-party apps koppelen aan Unified Post's financiële infrastructuur
+  • Multi-tenant applicatieontwerp – ontwikkeling van accountancy-simulatie-app met ondersteuning voor meerdere klantcontexten
+  • DevOps en tooling-optimalisatie – opzetten van JIRA-Bitbucket-workflows en standaardiseren van Git Gitflow
+  • Kwaliteitsborging & documentatie – opstellen van C4-diagrammen, TestRail-testcases en gestructureerde technische documentatie
+  • Agile productlevering – werken in hybride Scrum- en Kanban-omgevingen over gedistribueerde microservice-architectuur
+
+  Referenties 📌
+icon: "/employments/unified_post.jpeg"
+period:
+  start: "{{dates:unified_post_start}}"
+  end: "{{dates:unified_post_end}}"
+references:
+  - value: "Unifiedpost"
+    href: "https://www.unifiedpost.com/"
+  - value: "Banqup"
+    href: "https://www.banqup.com/"
