@@ -7,7 +7,7 @@ const AccordionWrapper: FC<Properties> = ({ title, children, className = '', eve
     <Accordion.Item eventKey={eventKey}>
       <Card>
         <Accordion.Header>
-          <h4 className="px-2 mb-1">{title}</h4>
+          <h4 className="mb-1">{title}</h4>
         </Accordion.Header>
         <Accordion.Body>
           <Accordion>
