@@ -6,7 +6,7 @@ export function useIntroductionStats() {
     const employments = useEmployments();
 
     const telnetEmployment = employments.find(e =>
-        e.company.toLowerCase().includes('telnet')
+        typeof e.company === 'string' && e.company.toLowerCase().includes('telnet')
     );
 
     const softwareEmployments = employments
