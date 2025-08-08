@@ -11,7 +11,8 @@ const LicensesCertifications = ({ className, eventKey }: SectionProps) => {
   const { t } = useTranslation();
   const licensesCertifications = useLicensesCertifications();
   return (
-    <AccordionWrapper title={t('licenses:title')} eventKey={eventKey} className={className}>
+    <AccordionWrapper title={t('licenses_certifications:title')}
+      eventKey={eventKey} className={className}>
       <ListGroup variant="flush">
         {licensesCertifications.map((item, index) => (
           <LicenseCertificationItem item={item} index={index} key={index} />
