@@ -1,26 +1,13 @@
+
 import { FC } from 'react';
 import { Col, ListGroup, Row } from 'react-bootstrap';
-
 import { LicenseCertification } from './license_certification';
-import { useTranslation } from 'react-i18next';
+import { useMonthYear } from './licenses_certrifications.init';
 
-const LicenseCertificationItem: FC<{
-  item: LicenseCertification; index: number
-}> = ({ item }) => {
+const LicenseCertificationItem: FC<{ item: LicenseCertification; index: number }> = ({ item }) => {
   const hasLink = Boolean(item.link?.trim());
-  const { t } = useTranslation();
-  const months = t('common:months', { returnObjects: true }) as string[];
-  let monthYearStr = '';
-  if (item.date) {
-    const dateObj = new Date(item.date);
-    const month = dateObj.getMonth();
-    const year = dateObj.getFullYear();
-    if (!isNaN(month) && !isNaN(year) && months[month]) {
-      monthYearStr = `${months[month]} ${year}`;
-    } else {
-      console.warn('Invalid date in LicenseCertificationItem:', item.date, dateObj, month, year);
-    }
-  }
+  const getMonthYear = useMonthYear();
+  const monthYearStr = getMonthYear(item.date);
 
   return (
     <ListGroup.Item
