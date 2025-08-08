@@ -15,14 +15,22 @@ i18n
             'education',
             'licenses_certifications',
             'profile',
-            'introduction'
+            'introduction',
+            'dates'
         ],
         defaultNS: 'common',
         interpolation: {
             escapeValue: false,
         },
         backend: {
-            loadPath: '/translations/{{lng}}/{{ns}}.json',
+            loadPath: (lngs: string, namespaces: string) => {
+                if (namespaces === 'dates'
+                    || (Array.isArray(namespaces)
+                        && namespaces.includes('dates'))) {
+                    return '/translations/dates.json';
+                }
+                return '/translations/' + lngs + '/' + namespaces + '.json';
+            },
         },
     });
 

@@ -2,7 +2,7 @@ export interface LicenseCertification {
     name: string;
     institution: string;
     field: string;
-    date: Date;
+    date: string;
     icon: string;
     link?: string;
 }

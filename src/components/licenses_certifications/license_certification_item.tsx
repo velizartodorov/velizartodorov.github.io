@@ -10,10 +10,17 @@ const LicenseCertificationItem: FC<{
   const hasLink = Boolean(item.link?.trim());
   const { t } = useTranslation();
   const months = t('common:months', { returnObjects: true }) as string[];
-  const date = item.date instanceof Date ? item.date : new Date(item.date);
-  const month = date.getMonth();
-  const year = date.getFullYear();
-  const monthYearStr = `${months[month]} ${year}`;
+  let monthYearStr = '';
+  if (item.date) {
+    const dateObj = new Date(item.date);
+    const month = dateObj.getMonth();
+    const year = dateObj.getFullYear();
+    if (!isNaN(month) && !isNaN(year) && months[month]) {
+      monthYearStr = `${months[month]} ${year}`;
+    } else {
+      console.warn('Invalid date in LicenseCertificationItem:', item.date, dateObj, month, year);
+    }
+  }
 
   return (
     <ListGroup.Item
