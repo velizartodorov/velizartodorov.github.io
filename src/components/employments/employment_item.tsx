@@ -42,12 +42,21 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
                     <div className="mb-3">
                         {`🏢 ${t('common:companyType')}: ${item.type}`}
                     </div>
-                    {item.description?.map((bodyItem: string, descIdx: number) => (
-                        <span key={index + '-' + descIdx}>
+                    {Array.isArray(item.description)
+                      ? item.description.map((bodyItem: string, descIdx: number) => (
+                          <span key={index + '-' + descIdx}>
                             {bodyItem}
                             <br />
-                        </span>
-                    ))}
+                          </span>
+                        ))
+                      : typeof item.description === 'string' && (
+                          (item.description as string).split('\n').map((line: string, descIdx: number) => (
+                            <span key={index + '-' + descIdx}>
+                              {line}
+                              <br />
+                            </span>
+                          ))
+                        )}
                     {item.references?.map((link: any, refIdx: number) => (
                         <div key={link.href + '-' + refIdx}>
                             <span>{bullet} </span>

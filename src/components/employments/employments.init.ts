@@ -18,7 +18,11 @@ export function useEmployments(): Employment[] {
             end: new Date(resolveDate(e.period.end)),
           }
         : { start: new Date(), end: new Date() },
-    description: e.description,
+    description: Array.isArray(e.description)
+      ? e.description
+      : typeof e.description === 'string'
+        ? e.description.split('\n')
+        : [],
     references: Array.isArray(e.references) ? e.references : [],
   }));
 }
