@@ -22,7 +22,7 @@ export function currentDate(): Date {
 
 export function resolveDate(dateStr: string | undefined, t: TFunction): string {
   if (!dateStr) return "";
-  const match = dateStr.match(/^\{\{\s*dates:([\w_\-]+)\s*\}\}$/);
+  const match = dateStr.match(/^\{\{\s*dates:([\w_-]+)\s*\}\}$/);
   if (match) {
     const key = match[1];
     const value = t(key, { ns: "dates" });
