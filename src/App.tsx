@@ -19,6 +19,7 @@ import Introduction from './components/introduction/introduction';
 import i18n from './i18n';
 import { useProfile } from './components/header/profile.init';
 import LicensesCertifications from './components/licenses_certifications/licenses_certifications';
+import EnvBanner from './components/common/env_banner';
 
 window.React = React;
 
@@ -48,6 +49,7 @@ export function App() {
           />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
+        <EnvBanner />
         <Footer />
       </Router>
     </I18nextProvider>
