@@ -4,7 +4,8 @@ import { resolveDate } from '../common/utils';
 
 export function useEmployments(): Employment[] {
   const { t } = useTranslation(['employments', 'dates']);
-  const data = t('employments:list', { returnObjects: true }) as any[];
+  const dataRaw = t('employments:list', { returnObjects: true });
+  const data = Array.isArray(dataRaw) ? dataRaw : [];
   return data.map((e: any) => ({
     position: e.position,
     company: e.company,
