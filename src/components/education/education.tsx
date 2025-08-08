@@ -1,11 +1,10 @@
 
+import { useTranslation } from 'react-i18next';
 import AccordionWrapper from '../common/accordion_wrapper';
 import { SectionProps } from '../common/section_props';
+import { parsePeriod } from '../common/utils';
 import './education.css';
 import EducationItem from './education_item';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { parsePeriod } from './utils';
 
 const Education = ({ className, eventKey }: Omit<SectionProps, 'title'>) => {
   const { t } = useTranslation();
@@ -14,7 +13,7 @@ const Education = ({ className, eventKey }: Omit<SectionProps, 'title'>) => {
   const educations = Array.isArray(list)
     ? list.map((e: any) => ({
         ...e,
-        period: e.period ? parsePeriod(e.period) : { start: new Date(0), end: new Date(0) },
+        period: e.period ? parsePeriod(e.period, t) : { start: new Date(0), end: new Date(0) },
       }))
     : [];
   return (

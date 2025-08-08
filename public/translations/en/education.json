@@ -7,8 +7,8 @@
             "place": "Ghent, Belgium",
             "icon": "/education/cvo_gent.png",
             "period": {
-                "start": "{{dates.nt2_education_start}}",
-                "end": "{{dates.nt2_education_end}}"
+                "start": "{{dates:nt2_education_start}}",
+                "end": "{{dates:nt2_education_end}}"
             },
             "body": [
                 "References 📌",
@@ -27,8 +27,8 @@
             "place": "Rousse, Bulgaria",
             "icon": "/education/university_ruse.png",
             "period": {
-                "start": "{{dates.software_engineering_start}}",
-                "end": "{{dates.software_engineering_end}}"
+                "start": "{{dates:software_engineering_start}}",
+                "end": "{{dates:software_engineering_end}}"
             },
             "body": [
                 "References 📌",
@@ -47,8 +47,8 @@
             "place": "Rousse, Bulgaria",
             "icon": "/education/university_ruse.png",
             "period": {
-                "start": "{{dates.computer_engineering_start}}",
-                "end": "{{dates.computer_engineering_end}}"
+                "start": "{{dates:computer_engineering_start}}",
+                "end": "{{dates:computer_engineering_end}}"
             },
             "body": [
                 "References 📌",
@@ -67,8 +67,8 @@
             "place": "Veliko Tarnovo, Bulgaria",
             "icon": "/education/assen_zlatarov_language_school.jpg",
             "period": {
-                "start": "{{dates.german_english_education_start}}",
-                "end": "{{dates.german_english_education_end}}"
+                "start": "{{dates:german_english_education_start}}",
+                "end": "{{dates:german_english_education_end}}"
             },
             "body": [
                 "References 📌",

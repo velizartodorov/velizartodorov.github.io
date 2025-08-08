@@ -1,4 +1,17 @@
-import { TFunction } from 'i18next';
+import { TFunction } from "i18next";
+
+export function parsePeriod(period: any, t?: TFunction) {
+    if (t) {
+        return {
+            start: period.start ? new Date(resolveDate(period.start, t)) : new Date(0),
+            end: period.end ? new Date(resolveDate(period.end, t)) : new Date(0),
+        };
+    }
+    return {
+        start: period.start ? new Date(period.start) : new Date(0),
+        end: period.end ? new Date(period.end) : new Date(0),
+    };
+}
 
 export const bullet = '\u2022';
 
