@@ -5,6 +5,7 @@ import { Profile } from "./profile";
 
 export function useProfile(): Profile {
     const { t } = useTranslation();
+    const langs = t('profile:languages', { returnObjects: true });
     return {
         name: t('profile:name'),
         imageUrl: t('profile:imageUrl'),
@@ -14,6 +15,6 @@ export function useProfile(): Profile {
         linkedIn: t('profile:linkedIn', { returnObjects: true }) as Link,
         gitHub: t('profile:gitHub', { returnObjects: true }) as Link,
         blog: t('profile:blog', { returnObjects: true }) as Link,
-        languages: t('profile:languages', { returnObjects: true }) as Link[]
+        languages: Array.isArray(langs) ? langs as Link[] : []
     }
 }
