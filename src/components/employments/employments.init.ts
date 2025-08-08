@@ -3,10 +3,28 @@ import { Employment } from "./employment";
 import { resolveDate } from '../common/utils';
 
 export function useEmployments(): Employment[] {
-  const { t } = useTranslation(['employments', 'dates']);
-  const dataRaw = t('employments:list', { returnObjects: true });
-  const data = Array.isArray(dataRaw) ? dataRaw : [];
-  return data.map((e: any) => ({
+  const { t, i18n } = useTranslation(['employments', 'dates']);
+  
+  // Debug the employment data structure
+  console.debug('Employment resources:', {
+    en: i18n.getResourceBundle('en', 'employments'),
+    nl: i18n.getResourceBundle('nl', 'employments'),
+  });
+
+  // Access the bundle and get the list property
+  const bundle = i18n.getResourceBundle(i18n.language, 'employments');
+  console.debug('Employment bundle:', bundle);
+
+  // Get the list from the bundle
+  const employmentData = bundle?.list || [];
+  console.debug('Raw employment data:', employmentData);
+  
+  if (!Array.isArray(employmentData)) {
+    console.error('Employment data is not an array:', employmentData);
+    return [];
+  }
+  
+  return employmentData.map((e: any) => ({
     position: e.position,
     company: e.company,
     type: e.type ?? '',

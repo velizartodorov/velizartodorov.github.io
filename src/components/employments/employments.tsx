@@ -7,10 +7,12 @@ import './employments.css';
 import { useEmployments } from './employments.init';
 
 const Employments = ({ className, eventKey }: SectionProps) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation(['employments']);
+  const employments = useEmployments();
+
   return (
     <AccordionWrapper title={t('employments:title')} eventKey={eventKey} className={className}>
-      {useEmployments().map((item, index) => (
+      {employments.map((item, index) => (
         <EmploymentItem item={item} index={index} eventKey={String(index)} key={index} />
       ))}
     </AccordionWrapper>
