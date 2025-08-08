@@ -1,4 +1,3 @@
-import { $SpecialObject } from 'i18next/typescript/helpers';
 import { useTranslation } from 'react-i18next';
 import { useEmployments } from "../employments/employments.init";
 
@@ -31,7 +30,7 @@ export function useIntroductionStats() {
     return { softwareEmployments, totalYears, totalTime };
 }
 
-export function useFormatBody(bodyRaw: $SpecialObject) {
+export function useFormatBody(bodyRaw: unknown) {
     const { totalTime, totalYears } = useIntroductionStats();
     return Array.isArray(bodyRaw)
         ? interpolate(bodyRaw.join(' '), { totalTime, totalYears })
