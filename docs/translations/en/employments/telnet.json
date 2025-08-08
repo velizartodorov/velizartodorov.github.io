@@ -1,0 +1,35 @@
+{
+  "position": "Computer Repair Technician",
+  "company": "Telnet Ltd.",
+  "type": "Service",
+  "place": "Elena, Bulgaria",
+  "description": [
+    "Description \uD83D\uDCDA",
+    "",
+    "• software and hardware fixing PC-s, laptops, mobile phones, tables",
+    "• changing, cleaning and maintaining hardware components of computer configurations",
+    "• software reinstallation, backup and maintance",
+    "• creating hardware parts list for PC configuration based on customer requirements",
+    "",
+    "The company has already been acquired by the largest telecom in Bulgaria – Vivacom (2024). \uD83D\uDCA1",
+    "",
+    "Domain Expertise \uD83C\uDF10",
+    "",
+    "• IT Support & Repair – hands-on experience repairing consumer and office hardware including PCs, laptops, phones, and tablets",
+    "• Hardware Maintenance – performing upgrades, diagnostics, and component-level servicing on computing devices",
+    "• Software Installation & Troubleshooting – reinstalling OS, managing backups, and resolving system-level software issues",
+    "• Custom PC Configuration – selecting hardware components and building systems tailored to customer needs",
+    "• Customer Service – direct communication with clients to identify technical needs and deliver appropriate solutions",
+    "",
+    "References \uD83D\uDCCC",
+    ""
+  ],
+  "icon": "/employments/telnet.png",
+  "period": {
+    "start": "{{dates:telnet_start}}",
+    "end": "{{dates:telnet_end}}"
+  },
+  "references": [
+    { "value": "Vivacom", "href": "https://www.vivacom.bg/bg/telnet" }
+  ]
+}
