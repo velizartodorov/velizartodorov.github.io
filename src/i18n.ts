@@ -51,6 +51,8 @@ async function loadAndRegisterEmployments(lang: string) {
     }
 
     const indexText = await indexRes.text();
+    console.debug(`Raw index text: ${indexText}`);
+    
     let index: EmploymentIndex;
     
     try {
@@ -65,6 +67,8 @@ async function loadAndRegisterEmployments(lang: string) {
       throw error;
     }
 
+    console.debug(`Found ${index.list.length} employment files to load`);
+
     const items = await Promise.all(
       index.list.map(async (file) => {
         try {
@@ -77,6 +81,8 @@ async function loadAndRegisterEmployments(lang: string) {
           }
           
           const txt = await res.text();
+          console.debug(`Raw employment file content (first 200 chars): ${txt.substring(0, 200)}...`);
+          
           let data: any;
           
           try {
@@ -90,6 +96,7 @@ async function loadAndRegisterEmployments(lang: string) {
               throw new Error('Missing required fields');
             }
             
+            console.debug(`Successfully parsed employment: ${data.position} at ${data.company}`);
             return data;
           } catch (error) {
             console.error(`Failed to parse employment file ${file}:`, error);
@@ -127,6 +134,11 @@ async function loadAndRegisterEmployments(lang: string) {
     );
 
     console.debug(`Successfully registered employment bundle for ${lang}`);
+    
+    // Verify the bundle was registered
+    const registeredBundle = i18n.getResourceBundle(lang, 'employments');
+    console.debug(`Verification - registered bundle for ${lang}:`, registeredBundle);
+    
   } catch (error) {
     console.error(`Failed to load employments for ${lang}:`, error);
   }
@@ -154,11 +166,24 @@ async function initializeI18n() {
         },
       });
 
-    console.debug('i18n initialized, loading employments');
+    console.debug('i18n initialized, loading common namespace');
+    
+    // Explicitly load common namespace for all languages
+    await Promise.all(['en', 'nl'].map(lang => i18n.loadNamespaces(['common'])));
+    
+    console.debug('Common namespace loaded, loading dates namespace');
+    
+    // Explicitly load dates namespace for all languages
+    await Promise.all(['en', 'nl'].map(lang => i18n.loadNamespaces(['dates'])));
+    
+    console.debug('Dates namespace loaded, loading employments');
     
     // Load employments after i18n is initialized
     await Promise.all(['en', 'nl'].map(lang => loadAndRegisterEmployments(lang)));
     
+    console.debug('Employments loaded, checking final state');
+    
+    // Check the final state of all resources
     console.debug('All resources loaded:', 
       i18n.languages.map(lang => ({
         lang,
@@ -169,6 +194,18 @@ async function initializeI18n() {
         }))
       }))
     );
+    
+    // Specifically check employment bundles
+    console.debug('Employment bundles after loading:');
+    ['en', 'nl'].forEach(lang => {
+      const bundle = i18n.getResourceBundle(lang, 'employments');
+      console.debug(`Language ${lang}:`, {
+        hasBundle: !!bundle,
+        bundle: bundle,
+        listLength: bundle?.list?.length || 0
+      });
+    });
+    
   } catch (error) {
     console.error('Failed to initialize i18n:', error);
   }

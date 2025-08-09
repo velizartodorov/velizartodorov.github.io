@@ -4,7 +4,7 @@ import { Period } from "../common/period";
 import { currentDate } from "../common/utils";
 
 export function useDisplayPeriod() {
-    const { t } = useTranslation();
+    const { t } = useTranslation(['common']);
 
     function monthYear(date: Date): string {
         const months = t('common:months', { returnObjects: true }) as string[];
