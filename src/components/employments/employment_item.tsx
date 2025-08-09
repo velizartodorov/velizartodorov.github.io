@@ -8,7 +8,7 @@ import { useDisplayPeriod } from './utils';
 
 const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> =
     ({ item, index, eventKey }) => {
-        const { t } = useTranslation();
+        const { t } = useTranslation(['common']);
         const { display } = useDisplayPeriod();
         const at = t('common:period.at');
         return (
