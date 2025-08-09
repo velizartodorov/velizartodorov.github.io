@@ -44,8 +44,8 @@ description: |
   References 📌
 icon: "/employments/securex.png"
 period:
-  start: "{{dates:securex_start}}"
-  end: "{{dates:securex_end}}"
+  start: "{{ dates.securex_start }}"
+  end: "{{ dates.securex_end }}"
 references:
   - value: "Securex"
     href: "https://www.securex.be/en"
