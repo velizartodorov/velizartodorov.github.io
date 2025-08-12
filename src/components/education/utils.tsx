@@ -10,7 +10,7 @@ export function useDisplayPeriod(): (period: Period) => string {
     return (period: Period) => {
         const formattedStartDate = getMonthYear(period.start);
         const formattedEndDate = getMonthYear(period.end);
-        const present = t('common:present') || 'Present';
+        const present = t('common:present');
         const conjunction = '-';
         return formattedEndDate === getMonthYear(currentDate())
             ? `${formattedStartDate} ${conjunction} ${present}`
