@@ -18,7 +18,7 @@ export function useLicensesCertifications(): LicenseCertification[] {
     const { t, ready } = useTranslation(["licenses_certifications", "dates"]);
     if (!ready) return [];
 
-    const list = t("licenses_certifications:list", { returnObjects: true }) as Record<string, any>[];
+    const list = t("licenses_certifications:list", { returnObjects: true }) as LicenseCertification[];
     if (!Array.isArray(list)) return [];
 
     return list.map((item) => ({
