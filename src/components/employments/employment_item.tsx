@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { bullet } from "../common/utils";
 import { Employment } from "./employment";
 import { useDisplayPeriod } from './utils';
+import { Reference } from '../common/reference';
 
 const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> =
     ({ item, index, eventKey }) => {
@@ -48,7 +49,7 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
                             <br />
                         </span>
                     ))}
-                    {item.references?.map((link: any, refIdx: number) => (
+                    {item.references?.map((link: Reference, refIdx: number) => (
                         <div key={link.href + '-' + refIdx}>
                             <span>{bullet} </span>
                             <a href={link.href}>{link.value}</a>

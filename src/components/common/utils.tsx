@@ -1,6 +1,7 @@
-import i18next from 'i18next'; 
+import i18next from 'i18next';
+import { Period } from './period';
 
-export function resolveDate(dateStr?: string): string {
+export function resolveDate(dateStr: string): string {
   if (!dateStr) return '';
   const match = dateStr.match(/^\{\{\s*dates:([\w_-]+)\s*\}\}$/);
   if (!match) return dateStr;
@@ -10,9 +11,9 @@ export function resolveDate(dateStr?: string): string {
   return value !== key ? value : '';
 }
 
-export function parsePeriod(period: { start?: string; end?: string }) {
-  const startStr = resolveDate(period.start);
-  const endStr = resolveDate(period.end);
+export function parsePeriod(period: Period) {
+  const startStr = resolveDate(period.start.toString());
+  const endStr = resolveDate(period.end.toString());
   return {
     start: startStr ? new Date(startStr) : new Date(0),
     end: endStr ? new Date(endStr) : new Date(0),
