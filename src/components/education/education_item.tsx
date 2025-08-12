@@ -32,14 +32,14 @@ const EducationItem: FC<{ item: IEducation; index: number }> = ({ item, index })
         </Container>
       </Accordion.Header>
       <Accordion.Body>
-        {item.body.map((bodyItem: string) => (
-          <span key={index + '-' + bodyItem}>
+        {item.body.map((bodyItem: string, bodyIndex: number) => (
+          <span key={`body-${index}-${bodyIndex}`}>
             {bodyItem}
             <br />
           </span>
         ))}
-        {item.references.map((link: Reference) => (
-          <div key={link.href}>
+        {item.references.map((link: Reference, refIndex: number) => (
+          <div key={`ref-${index}-${refIndex}`}>
             <span>{bullet} </span>
             <a href={link.href}>{link.value}</a>
           </div>
