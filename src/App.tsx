@@ -8,13 +8,13 @@ import {
 } from 'react-router-dom';
 
 import './App.css';
-
 import { I18nextProvider } from 'react-i18next';
 import { LanguageSelector } from './components/common/language_selector';
 import Education from './components/education/education';
 import Employments from './components/employments/employments';
 import Footer from './components/footer/footer';
 import Header from './components/header/header';
+import Presentations from './components/presentations/presentations';
 import Introduction from './components/introduction/introduction';
 import i18n from './i18n';
 import { useProfile } from './components/header/profile.init';
@@ -43,7 +43,8 @@ export function App() {
                 <Introduction className="mx-4" eventKey="0" />
                 <Employments className="mt-3 mx-4" eventKey="1" />
                 <LicensesCertifications className="mt-3 mx-4" eventKey="2" />
-                <Education className="mt-3 mx-4" eventKey="3" />
+                <Presentations className="mt-3 mx-4" eventKey="3" />
+                <Education className="mt-3 mx-4" eventKey="4" />
               </>
             }
           />
