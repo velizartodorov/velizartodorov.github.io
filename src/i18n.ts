@@ -18,6 +18,7 @@ const NAMESPACES = [
   'education',
   'licenses_certifications',
   'profile',
+  'presentations',
   'introduction',
   'dates',
 ];
