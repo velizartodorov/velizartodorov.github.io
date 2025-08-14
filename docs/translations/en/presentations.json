@@ -1,0 +1,10 @@
+{
+    "title": "Presentations 📊",
+    "list": [
+        {
+            "name": "Git workflows presentation",
+            "icon": "/icons/git.png",
+            "link": "https://www.slideshare.net/slideshow/git-workflows-256351424/256351424"
+        }
+    ]
+}
