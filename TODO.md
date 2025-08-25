@@ -1,5 +1,6 @@
 # TO DO 📌
 
+* migrate project to Vite to resolve the `react-scripts` dependancy
 * create design for mobile interface ✅
 * fix accordion clickable ✅
 * add projects component
