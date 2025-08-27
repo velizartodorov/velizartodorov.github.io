@@ -4,10 +4,10 @@
   "type": "Service",
   "place": "Ghent, Belgium",
   "description": [
+    "Description \uD83D\uDCDA",
+    "",
     "Docbyte is a leading organization that provides intelligent technologies to various knowledge worker organizations, from banks and insurers to any enterprise in the field of information security, preservation, and document processing.",
     "Their platform helps to automate document processes and preserve digital information, enabling the clients to prepare for a fully digital future.",
-    "",
-    "Description \uD83D\uDCDA",
     "",
     "• Accident management - solving incident/bug tickets and acting as a mediator between engineering and service desk",
     "• During the accident management procedure over 300 tickets were solved for the period of 12 months",
@@ -69,8 +69,17 @@
     "end": "{{dates:docbyte_end}}"
   },
   "references": [
-    { "value": "Amazon Textract", "href": "https://aws.amazon.com/textract/" },
-    { "value": "Aspose.PDF | Java PDF Document Processing Class Library", "href": "https://releases.aspose.com/pdf/java/" },
-    { "value": "Docbyte N.V.", "href": "https://www.docbyte.com/" }
+    {
+      "value": "Amazon Textract",
+      "href": "https://aws.amazon.com/textract/"
+    },
+    {
+      "value": "Aspose.PDF | Java PDF Document Processing Class Library",
+      "href": "https://releases.aspose.com/pdf/java/"
+    },
+    {
+      "value": "Docbyte N.V.",
+      "href": "https://www.docbyte.com/"
+    }
   ]
 }
