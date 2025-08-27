@@ -7,7 +7,7 @@ const EnvBanner: React.FC = () => {
 
   return (
     <div style={{
-      backgroundColor: '#ff000088',
+      backgroundColor: '#ff000070',
       color: 'white',
       textAlign: 'center',
       padding: '4px',
