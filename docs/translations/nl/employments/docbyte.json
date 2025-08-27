@@ -4,10 +4,10 @@
   "type": "Service",
   "place": "Gent, België",
   "description": [
+    "Beschrijving \uD83D\uDCDA",
+    "",
     "Docbyte is een toonaangevende organisatie die intelligente technologieën levert aan diverse kenniswerkers, van banken en verzekeraars tot elke onderneming op het gebied van informatiebeveiliging, archivering en documentverwerking.",
     "Hun platform helpt bij het automatiseren van documentprocessen en het bewaren van digitale informatie, zodat klanten zich kunnen voorbereiden op een volledig digitale toekomst.",
-    "",
-    "Beschrijving \uD83D\uDCDA",
     "",
     "• Incidentbeheer - oplossen van incidenten/bugtickets en optreden als bemiddelaar tussen engineering en servicedesk",
     "• Tijdens het incidentbeheerproces zijn er meer dan 300 tickets opgelost in een periode van 12 maanden",
@@ -69,8 +69,17 @@
     "end": "{{dates:docbyte_end}}"
   },
   "references": [
-    { "value": "Amazon Textract", "href": "https://aws.amazon.com/textract/" },
-    { "value": "Aspose.PDF | Java PDF Document Processing Class Library", "href": "https://releases.aspose.com/pdf/java/" },
-    { "value": "Docbyte N.V.", "href": "https://www.docbyte.com/" }
+    {
+      "value": "Amazon Textract",
+      "href": "https://aws.amazon.com/textract/"
+    },
+    {
+      "value": "Aspose.PDF | Java PDF Document Processing Class Library",
+      "href": "https://releases.aspose.com/pdf/java/"
+    },
+    {
+      "value": "Docbyte N.V.",
+      "href": "https://www.docbyte.com/"
+    }
   ]
 }
