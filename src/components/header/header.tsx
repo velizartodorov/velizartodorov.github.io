@@ -1,7 +1,7 @@
 import Table from 'react-bootstrap/Table';
 
+import { LanguageSelector } from '../common/language_selector';
 import './header.css';
-import { Link } from './link';
 import { useProfile } from './profile.init';
 import ProfileItem from './profile_item';
 
@@ -15,19 +15,17 @@ const Header: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
                         <td rowSpan={3} className="avatar-td">
                             <img className="avatar" src={profile.imageUrl} alt="" />
                         </td>
-                        <td colSpan={1}><h2>{profile.name}</h2></td>
-                        <td>{children}</td>
+                        <td colSpan={3}><h2>{profile.name}</h2></td>
                     </tr>
                     <tr>
+                        <td><LanguageSelector /></td>
                         <td><ProfileItem link={profile.email} /></td>
                         <td><ProfileItem link={profile.linkedIn} /></td>
-                        <td><ProfileItem link={profile.gitHub} /></td>
-                        <td><ProfileItem link={profile.blog} /></td>
                     </tr>
                     <tr>
-                        <td className="d-none d-sm-table-cell">
-                            <ProfileItem link={profile.address} />
-                        </td>
+                        <td><ProfileItem link={profile.gitHub} /></td>
+                        <td><ProfileItem link={profile.blog} /></td>
+                        <td><ProfileItem link={profile.address} /></td>
                     </tr>
                 </tbody>
             </Table>
