@@ -21,20 +21,12 @@ const Languages: React.FC<LanguagesProps> = ({ className, eventKey }) => {
       title="Languages 🌐"
     >
       <Table responsive hover className="m-0 languages-table">
-        <thead>
-          <tr>
-            <th>Language</th>
-            <th>Level</th>
-            <th>Proficiency</th>
-          </tr>
-        </thead>
         <tbody>
           {profile.languages.map((language: Link) => (
             <tr key={language.label}>
               <td>
                 <ProfileItem link={language} />
               </td>
-              <td>{language.level}</td>
               <td>{language.proficiency}</td>
             </tr>
           ))}
