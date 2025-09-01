@@ -3,4 +3,6 @@ export interface Link {
     icon: string;
     width: number;
     url?: string;
+    proficiency?: string;
+    level?: string;
 }

@@ -38,19 +38,25 @@
     },
     "languages": [
         {
+            "label": "Bulgarian",
+            "icon": "/header/speak.png",
+            "width": 47,
+            "proficiency": "Native",
+            "level": "C2"
+        },
+        {
             "label": "English",
             "icon": "/header/speak.png",
-            "width": 47
+            "width": 47,
+            "proficiency": "Professional working proficiency",
+            "level": "C1"
         },
         {
             "label": "Dutch",
             "icon": "/header/speak.png",
-            "width": 47
-        },
-        {
-            "label": "Bulgarian (Native)",
-            "icon": "/header/speak.png",
-            "width": 47
+            "width": 47,
+            "proficiency": "Professional working proficiency",
+            "level": "B2"
         }
     ]
 }

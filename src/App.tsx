@@ -15,11 +15,13 @@ import Employments from './components/employments/employments';
 import Footer from './components/footer/footer';
 import Header from './components/header/header';
 import Presentations from './components/presentations/presentations';
+import Languages from './components/languages/languages';
 import Introduction from './components/introduction/introduction';
 import i18n from './i18n';
 import { useProfile } from './components/header/profile.init';
 import LicensesCertifications from './components/licenses_certifications/licenses_certifications';
 import EnvBanner from './components/common/env_banner';
+
 
 window.React = React;
 
@@ -44,7 +46,8 @@ export function App() {
                 <Employments className="mt-3 mx-4" eventKey="1" />
                 <LicensesCertifications className="mt-3 mx-4" eventKey="2" />
                 <Presentations className="mt-3 mx-4" eventKey="3" />
-                <Education className="mt-3 mx-4" eventKey="4" />
+                <Languages className="mt-3 mx-4" eventKey="4" />
+                <Education className="mt-3 mx-4" eventKey="5" />
               </>
             }
           />
