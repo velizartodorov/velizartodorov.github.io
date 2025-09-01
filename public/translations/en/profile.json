@@ -41,22 +41,19 @@
             "label": "English",
             "icon": "/header/speak.png",
             "width": 27,
-            "proficiency": "Professional working proficiency",
-            "level": "C1"
+            "proficiency": "Professional working proficiency"
         },
         {
             "label": "Dutch",
             "icon": "/header/speak.png",
             "width": 27,
-            "proficiency": "Professional working proficiency",
-            "level": "B2"
+            "proficiency": "Professional working proficiency"
         },
         {
             "label": "Bulgarian",
             "icon": "/header/speak.png",
             "width": 27,
-            "proficiency": "Native",
-            "level": "C2"
+            "proficiency": "Native"
         }
     ]
 }
