@@ -4,5 +4,4 @@ export interface Link {
     width: number;
     url?: string;
     proficiency?: string;
-    level?: string;
 }
