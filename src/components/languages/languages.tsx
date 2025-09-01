@@ -1,9 +1,9 @@
 import React from 'react';
-import { useProfile } from '../header/profile.init';
-import ProfileItem from '../header/profile_item';
-import { Link } from '../header/link';
-import AccordionWrapper from '../common/accordion_wrapper';
 import Table from 'react-bootstrap/Table';
+import { useTranslation } from 'react-i18next';
+import AccordionWrapper from '../common/accordion_wrapper';
+import { Link } from '../header/link';
+import ProfileItem from '../header/profile_item';
 import './languages.css';
 
 interface LanguagesProps {
@@ -12,17 +12,17 @@ interface LanguagesProps {
 }
 
 const Languages: React.FC<LanguagesProps> = ({ className, eventKey }) => {
-  const profile = useProfile();
-  
+  const { t } = useTranslation('languages');
+
   return (
     <AccordionWrapper
       eventKey={eventKey}
       className={className}
-      title="Languages 🌐"
+      title={t('title')}
     >
       <Table responsive hover className="m-0 languages-table">
         <tbody>
-          {profile.languages.map((language: Link) => (
+          {(t('list', { returnObjects: true }) as Link[]).map((language: Link) => (
             <tr key={language.label}>
               <td>
                 <ProfileItem link={language} />

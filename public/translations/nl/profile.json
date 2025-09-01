@@ -35,22 +35,5 @@
         "icon": "/header/blog.png",
         "width": 47,
         "url": "https://willscornersite.wordpress.com/"
-    },
-    "languages": [
-        {
-            "label": "Engels",
-            "icon": "/header/speak.png",
-            "width": 47
-        },
-        {
-            "label": "Nederlands",
-            "icon": "/header/speak.png",
-            "width": 47
-        },
-        {
-            "label": "Bulgaars (Moedertaal)",
-            "icon": "/header/speak.png",
-            "width": 47
-        }
-    ]
+    }
 }
