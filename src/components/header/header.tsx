@@ -4,7 +4,6 @@ import './header.css';
 import { Link } from './link';
 import { useProfile } from './profile.init';
 import ProfileItem from './profile_item';
-import Languages from './languages';
 
 const Header: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
     const profile = useProfile();
@@ -32,7 +31,6 @@ const Header: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
                     </tr>
                 </tbody>
             </Table>
-            <Languages />
         </header>
     );
 };
