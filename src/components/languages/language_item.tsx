@@ -13,7 +13,7 @@ const LanguageItem: FC<{ item: Language }> = ({ item }) => {
                         alt="language icon"
                     />
                 </Col>
-                <Col xs={3} className="text-left">
+                <Col xs={4} className="text-left">
                     <h5 className="language-font mb-0">{item.label}</h5>
                 </Col>
                 <Col className="language-proficiency">
