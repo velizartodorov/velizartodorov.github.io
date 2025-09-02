@@ -2,18 +2,13 @@ import React from 'react';
 import Table from 'react-bootstrap/Table';
 import { useTranslation } from 'react-i18next';
 import AccordionWrapper from '../common/accordion_wrapper';
+import { SectionProps } from '../common/section_props';
 import { Link } from '../header/link';
 import ProfileItem from '../header/profile_item';
 import './languages.css';
 
-interface LanguagesProps {
-  className?: string;
-  eventKey?: string;
-}
-
-const Languages: React.FC<LanguagesProps> = ({ className, eventKey }) => {
+const Languages: React.FC<SectionProps> = ({ className, eventKey }) => {
   const { t } = useTranslation('languages');
-
   return (
     <AccordionWrapper
       eventKey={eventKey}
