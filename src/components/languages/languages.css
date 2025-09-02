@@ -1,5 +1,14 @@
 .languages-table {
-    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: Inter, -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        Roboto,
+        Oxygen,
+        Ubuntu,
+        Cantarell,
+        'Open Sans',
+        'Helvetica Neue',
+        sans-serif;
 }
 
 .languages-table td {
@@ -40,7 +49,7 @@
         font-size: 1rem;
         font-weight: 400;
     }
-    
+
     .languages-table td:last-child {
         font-size: 0.9rem;
     }
@@ -54,6 +63,7 @@
     .languages-table td:first-child {
         font-size: 0.95rem;
     }
+
     .languages-table td:last-child {
         font-size: 0.85rem;
     }
@@ -63,6 +73,7 @@
     .languages-table td:first-child {
         font-size: 0.9rem;
     }
+
     .languages-table td:last-child {
         font-size: 0.8rem;
     }
@@ -72,12 +83,15 @@
     .languages-table td {
         padding: 0.5rem 0.75rem;
     }
+
     .languages-table td:first-child {
         font-size: 0.85rem;
     }
+
     .languages-table td:last-child {
         font-size: 0.75rem;
     }
+
     .languages-table img {
         margin-right: 0.5rem;
     }
@@ -87,6 +101,7 @@
     .languages-table td:first-child {
         font-size: 0.8rem;
     }
+
     .languages-table td:last-child {
         font-size: 0.7rem;
     }
