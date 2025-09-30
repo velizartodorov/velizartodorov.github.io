@@ -14,6 +14,8 @@ export function useDisplayPeriod() {
     }
 
     function yearMonthDiff(period: Period): string {
+        if (!period.end) return '';
+
         const periodLang = t('common:period', { returnObjects: true }) as Record<string, string>;
         const monthDiff = (period.end.getFullYear() - period.start.getFullYear()) * 12
             + (period.end.getMonth() - period.start.getMonth());
@@ -28,22 +30,40 @@ export function useDisplayPeriod() {
             monthString = `${remainingMonths} ${remainingMonths === 1 ? periodLang.month : periodLang.months}`;
         }
         const separator = yearString && monthString ? ', ' : '';
-        return `(${yearString}${separator}${monthString})`;
+        return `${yearString}${separator}${monthString}`;
     }
 
     function periodDifference(period: Period): string {
         const diff = yearMonthDiff(period);
-        return diff ? `${diff}` : '';
+        return diff ? `(${diff})` : '';
     }
 
     function display(period: Period): string {
         const periodLang = t('common:period', { returnObjects: true }) as Record<string, string>;
         const formattedStartDate = monthYear(period.start);
-        const formattedEndDate = monthYear(period.end);
-        const periodDiff = periodDifference(period);
+        const today = currentDate();
         const presentText = periodLang.present;
-        return formattedEndDate === monthYear(currentDate())
-            ? `${formattedStartDate} - ${presentText} ${yearMonthDiff(period)}`
+
+        // Handle missing end date (current or future position)
+        if (!period.end) {
+            return `${formattedStartDate} - ${presentText}`;
+        }
+
+        if (period.start > today) {
+            return `${formattedStartDate} - ${presentText}`;
+        }
+
+        const formattedEndDate = monthYear(period.end);
+        const formattedToday = monthYear(today);
+
+        // For future dates with end date, don't show duration
+        if (period.start > today && period.end) {
+            return `${formattedStartDate} - ${formattedEndDate}`;
+        }
+
+        const periodDiff = periodDifference(period);
+        return formattedEndDate === formattedToday
+            ? `${formattedStartDate} - ${presentText} ${periodDifference({ start: period.start, end: today })}`
             : `${formattedStartDate} - ${formattedEndDate} ${periodDiff}`;
     }
 
