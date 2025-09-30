@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Employment } from "./employment";
-import { resolveDate } from '../common/utils';
+import { resolveDate, currentDate } from '../common/utils';
 
 export function useEmployments(): Employment[] {
   const { t } = useTranslation(['employments', 'dates']);
@@ -18,11 +18,24 @@ export function useEmployments(): Employment[] {
 }
 
 function resolvePeriod(e: Employment): { start: Date; end: Date; } {
-  return e.period && typeof e.period.start === 'string'
-    && typeof e.period.end === 'string'
-    ? {
-      start: new Date(resolveDate(e.period.start)),
-      end: new Date(resolveDate(e.period.end)),
-    }
-    : { start: new Date(), end: new Date() };
+  if (!e.period || typeof e.period.start !== 'string') {
+    return { start: currentDate(), end: currentDate() };
+  }
+
+  const startDateStr = resolveDate(e.period.start);
+  if (!startDateStr) {
+    return { start: currentDate(), end: currentDate() };
+  }
+  const startDate = new Date(startDateStr);
+  startDate.setUTCHours(0, 0, 0, 0);
+  
+  if (!e.period.end || typeof e.period.end !== 'string') {
+    const today = currentDate();
+    return { start: startDate, end: today };
+  }
+
+  const endDateStr = resolveDate(e.period.end);
+  const endDate = endDateStr ? new Date(endDateStr) : currentDate();
+  endDate.setUTCHours(0, 0, 0, 0);
+  return { start: startDate, end: endDate };
 }
