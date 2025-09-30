@@ -1,0 +1,17 @@
+{
+    "position": "Software Engineer",
+    "company": "Collibra",
+    "type": "Product",
+    "place": "Brussels, Belgium",
+    "description": [
+        "Collibra is a leading enterprise data governance platform helping organizations understand, trust, and access their data 🏢",
+        "The company is recognized as a Leader in the Gartner Magic Quadrant for Data Governance Solutions",
+        "Working as a Software Engineer in the AI/ML team, focusing on intelligent data classification 🚀",
+        "Developing machine learning services to automate metadata extraction and enhance data cataloging",
+        "Collaborating with cross-functional teams to deliver data intelligence solutions"
+    ],
+    "icon": "/employments/collibra.jpeg",
+    "period": {
+        "start": "{{dates:collibra_start}}"
+    }
+}
