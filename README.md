@@ -16,6 +16,11 @@ Go to <http://localhost:3000/>.
 
 That's it. Have fun! 😎 🎉
 
+## Lang files warning 🔠⚠️
+
+In order to apply changes, make sure you adapt the files in the `public` folder,
+and not the ones in `docs`, as they are identical.
+
 ## CI/CD 🚀
 
 ### Github Workflows 🏭
@@ -31,4 +36,5 @@ Example:
 
 ### Dependabot 🤖
 
-`dependabot.yml` will make sure that bumping of library happens on a regular basis by Dependabot with automatic opening of a PR.
+`dependabot.yml` will make sure that bumping of library happens on a regular
+basis by Dependabot with automatic opening of a PR.
