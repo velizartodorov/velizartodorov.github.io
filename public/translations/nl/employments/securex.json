@@ -23,7 +23,7 @@
     "• Deployments: Azure",
     "• Database: Oracle, Microsoft SQL Server",
     "• Applicatieserver: Apache Tomcat",
-    "• Architectuur: Gedistribueerde microservices, Spring Cloud Gateway, Netflix Zuul API (Eureka)",
+    "• Architectuur: Gedistribueerde microservices, Spring Cloud Gateway, Netflix Zuul API (Eureka), single-tenancy",
     "• Message queues/notifications: Amazon SQS / SNS",
     "• Persistentie: Spring Data JPA, Hibernate",
     "• Databasebeheer: Liquibase",

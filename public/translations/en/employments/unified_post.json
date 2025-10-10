@@ -22,7 +22,7 @@
     "• CI/CD: BitBucket Pipelines",
     "• Database: PostgreSQL",
     "• Application server: Apache Tomcat 8",
-    "• Architecture: Microservices",
+    "• Architecture: Microservices, Single-tenancy",
     "• Persistence: Spring Data JPA, Hibernate",
     "• Caching: Redis",
     "• Database management: Liquibase, Flyway",
