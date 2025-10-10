@@ -33,7 +33,7 @@
     "• Database: AWS DynamoDB, Amazon Relational Database (RDS), PostgreSQL",
     "• Database management: AWS Management Console",
     "• Application server: AWS SAM (Serverless Application Model)",
-    "• Architecture: Serverless, microservices",
+    "• Architecture: Serverless, microservices, single-tenancy",
     "• Identity/access management: KeyCloak, AWS Identity and Access Management (IAM)",
     "• OCR: Google AI, Amazon Textract, Native OCR",
     "• Front-end: Angular 12",

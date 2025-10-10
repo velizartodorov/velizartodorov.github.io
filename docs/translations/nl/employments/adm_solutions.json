@@ -21,7 +21,7 @@
     "• OS: Windows Server 2008-2012",
     "• Externe API: ELO API",
     "• Persistentie: Java Database Connectivity (JDBC)",
-    "• Architectuur: Java Servlet",
+    "• Architectuur: Java Servlet MVC Architecture, Single-tenancy",
     "• Front-end: Java Server Pages (JSP) + jQuerry/Ajax",
     "• Versiebeheer: SVN/Git, BitBucket",
     "• IDE: Eclipse",
