@@ -28,8 +28,9 @@ interface TranslationModule {
 // Helper to load all JSON files from a directory
 const loadAllTranslations = async () => {
   const translationModules = import.meta.glob<TranslationModule>([
-    '/src/translations/**/*.json',
-    '/src/translations/dates.json'
+    './translations/**/*.json',
+    '!./translations/**/employments/**/*.json', // Exclude employment files as they're handled separately
+    './translations/dates.json'
   ]);
 
   for (const [path, importModule] of Object.entries(translationModules)) {
@@ -74,31 +75,44 @@ interface EmploymentData {
 
 // Load employments separately due to their special structure
 const loadEmployments = async () => {
-  const employmentModules = import.meta.glob<TranslationModule>([
-    '/src/translations/*/employments.json',
-    '/src/translations/*/employments/*.json'
-  ]);
+  // First, load the main employment index files
+  const indexModules = import.meta.glob<TranslationModule>('./translations/*/employments.json');
+  const itemModules = import.meta.glob<TranslationModule>('./translations/*/employments/*.json');
 
   const employmentsByLang: Record<string, EmploymentData> = {};
 
-  for (const [path, importModule] of Object.entries(employmentModules)) {
+  // Load index files first
+  for (const [path, importModule] of Object.entries(indexModules)) {
     try {
       const module = await importModule();
-      const langMatch = path.match(/\/translations\/([^/]+)\/employments/);
+      const langMatch = path.match(/\.\/translations\/([^/]+)\/employments\.json/);
+      if (!langMatch) continue;
+      
+      const lang = langMatch[1];
+      const indexData = module.default as EmploymentIndex;
+      employmentsByLang[lang] = { 
+        index: indexData,
+        items: []
+      };
+    } catch (error) {
+      console.error(`Error loading employment index file ${path}:`, error);
+    }
+  }
+
+  // Then load individual employment files
+  for (const [path, importModule] of Object.entries(itemModules)) {
+    try {
+      const module = await importModule();
+      const langMatch = path.match(/\.\/translations\/([^/]+)\/employments\//);
       if (!langMatch) continue;
       
       const lang = langMatch[1];
       
-      if (path.includes('/employments.json')) {
-        const indexData = module.default as EmploymentIndex;
-        employmentsByLang[lang] = { index: indexData };
-      } else {
-        if (!employmentsByLang[lang]) {
-          employmentsByLang[lang] = { items: [] };
-        }
-        if (employmentsByLang[lang].items) {
-          employmentsByLang[lang].items.push(module.default);
-        }
+      if (!employmentsByLang[lang]) {
+        employmentsByLang[lang] = { items: [] };
+      }
+      if (employmentsByLang[lang].items) {
+        employmentsByLang[lang].items.push(module.default);
       }
     } catch (error) {
       console.error(`Error loading employment file ${path}:`, error);
