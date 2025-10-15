@@ -99,32 +99,30 @@ const loadEmployments = async () => {
     }
   }
 
-  // Then load individual employment files
+  // Create a map to store loaded employment files
+  const employmentFileMap: Record<string, Record<string, any>> = {};
+
+  // Load all employment files into the map
   for (const [path, importModule] of Object.entries(itemModules)) {
     try {
       const module = await importModule();
-      const langMatch = path.match(/\.\/translations\/([^/]+)\/employments\//);
-      if (!langMatch) continue;
-      
-      const lang = langMatch[1];
-      
-      if (!employmentsByLang[lang]) {
-        employmentsByLang[lang] = { items: [] };
-      }
-      if (employmentsByLang[lang].items) {
-        employmentsByLang[lang].items.push(module.default);
-      }
+      const fileName = path.split('/').pop() || '';
+      employmentFileMap[fileName] = module.default;
     } catch (error) {
       console.error(`Error loading employment file ${path}:`, error);
     }
   }
 
-  // Add employment resources
+  // Add employment resources in the order specified by the index files
   Object.entries(employmentsByLang).forEach(([lang, data]) => {
-    if (data.index && data.items) {
+    if (data.index) {
+      const orderedItems = data.index.list
+        .map(fileName => employmentFileMap[fileName])
+        .filter(item => item); // Remove any undefined items
+
       i18n.addResourceBundle(lang as Language, 'employments', {
         title: data.index.title,
-        list: data.items
+        list: orderedItems
       }, true, true);
     }
   });
