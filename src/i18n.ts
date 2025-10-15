@@ -20,23 +20,110 @@ const NAMESPACES = [
   'dates',
 ] as const;
 
-// Helpers
-const getTranslationPath = (language: string, namespace: string | string[]): string => {
-  const ns = Array.isArray(namespace) ? namespace[0] : namespace;
-  return ns === 'dates' ? '/translations/dates.json' : `/translations/${language}/${ns}.json`;
+// Types for imports
+interface TranslationModule {
+  default: Record<string, any>;
+}
+
+// Helper to load all JSON files from a directory
+const loadAllTranslations = async () => {
+  const translationModules = import.meta.glob<TranslationModule>([
+    '/src/translations/**/*.json',
+    '/src/translations/dates.json'
+  ]);
+
+  for (const [path, importModule] of Object.entries(translationModules)) {
+    try {
+      const module = await importModule();
+      
+      // Parse the path to get language and namespace
+      const matches = path.match(/\/translations\/(?:([^/]+)\/)?([^/]+)\.json$/);
+      if (!matches) continue;
+      
+      const [, lang = DEFAULT_LANGUAGE, fileName] = matches;
+      
+      // Handle special cases
+      if (fileName === 'dates') {
+        i18n.addResourceBundle(DEFAULT_LANGUAGE, 'dates', module.default, true, true);
+        continue;
+      }
+      
+      if (fileName === 'employments') {
+        // Store employment index for later processing
+        continue;
+      }
+      
+      // Add regular namespace translations
+      const namespace = fileName.replace('.json', '');
+      i18n.addResourceBundle(lang as Language, namespace, module.default, true, true);
+    } catch (error) {
+      console.error(`Error loading translation file ${path}:`, error);
+    }
+  }
 };
 
-const loadEmployments = (lang: Language): void => {
-  const { title, list = [] } = require(`../public/translations/${lang}/employments.json`) as { title: string; list: string[] };
-  const employments = list.map((file: string) =>
-    require(`../public/translations/${lang}/employments/${file}`)
-  );
+interface EmploymentIndex {
+  title: string;
+  list: string[];
+}
 
-  i18n.addResourceBundle(lang, 'employments', { title, list: employments }, true, true);
+interface EmploymentData {
+  index?: EmploymentIndex;
+  items?: Record<string, any>[];
+}
+
+// Load employments separately due to their special structure
+const loadEmployments = async () => {
+  const employmentModules = import.meta.glob<TranslationModule>([
+    '/src/translations/*/employments.json',
+    '/src/translations/*/employments/*.json'
+  ]);
+
+  const employmentsByLang: Record<string, EmploymentData> = {};
+
+  for (const [path, importModule] of Object.entries(employmentModules)) {
+    try {
+      const module = await importModule();
+      const langMatch = path.match(/\/translations\/([^/]+)\/employments/);
+      if (!langMatch) continue;
+      
+      const lang = langMatch[1];
+      
+      if (path.includes('/employments.json')) {
+        const indexData = module.default as EmploymentIndex;
+        employmentsByLang[lang] = { index: indexData };
+      } else {
+        if (!employmentsByLang[lang]) {
+          employmentsByLang[lang] = { items: [] };
+        }
+        if (employmentsByLang[lang].items) {
+          employmentsByLang[lang].items.push(module.default);
+        }
+      }
+    } catch (error) {
+      console.error(`Error loading employment file ${path}:`, error);
+    }
+  }
+
+  // Add employment resources
+  Object.entries(employmentsByLang).forEach(([lang, data]) => {
+    if (data.index && data.items) {
+      i18n.addResourceBundle(lang as Language, 'employments', {
+        title: data.index.title,
+        list: data.items
+      }, true, true);
+    }
+  });
+};
+
+const loadTranslations = async () => {
+  await Promise.all([
+    loadAllTranslations(),
+    loadEmployments()
+  ]);
 };
 
 i18n
-  .use(Backend)
   .use(initReactI18next)
   .init({
     lng: DEFAULT_LANGUAGE,
@@ -44,9 +131,14 @@ i18n
     ns: NAMESPACES,
     defaultNS: 'common',
     interpolation: { escapeValue: false },
-    backend: { loadPath: getTranslationPath },
   });
 
-SUPPORTED_LANGUAGES.forEach(loadEmployments);
+// Initialize i18n asynchronously
+const initI18n = async () => {
+  await Promise.all(SUPPORTED_LANGUAGES.map(loadTranslations));
+};
+
+// Start the initialization
+initI18n().catch(console.error);
 
 export default i18n;

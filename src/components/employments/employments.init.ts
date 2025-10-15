@@ -4,7 +4,11 @@ import { resolveDate, currentDate } from '../common/utils';
 
 export function useEmployments(): Employment[] {
   const { t } = useTranslation(['employments', 'dates']);
-  const data = t('employments:list', { returnObjects: true }) as Employment[];
+  const employmentData = t('employments:list', { returnObjects: true });
+  
+  // Ensure we have an array to work with
+  const data = Array.isArray(employmentData) ? employmentData : [];
+  
   return data.map((e: Employment) => ({
     position: e.position,
     company: e.company,
