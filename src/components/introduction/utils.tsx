@@ -10,10 +10,10 @@ export function useIntroductionStats() {
     );
 
     const softwareEmployments = employments
-        .filter(e => e.company !== (telnetEmployment?.company ?? ''))
+        .filter(e => e.company !== (telnetEmployment?.company ?? '') && e.period.end)
         .map(e => ({
             start: new Date(e.period.start),
-            end: new Date(e.period.end),
+            end: new Date(e.period.end!), // Safe to use ! because we filtered for existence
         }));
 
     const mergedPeriods = mergeOverlappingPeriods(softwareEmployments);

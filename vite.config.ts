@@ -1,0 +1,51 @@
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import { resolve } from 'path';
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  base: './', // Using relative path for GitHub Pages compatibility
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, './src'),
+    },
+  },
+  server: {
+    port: 3000,
+    open: true,
+  },
+  build: {
+    outDir: 'dist',
+    sourcemap: true,
+    target: 'es2020',
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
+      },
+      output: {
+        manualChunks(id) {
+          // Vendor chunk
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || 
+                id.includes('i18next')) {
+              return 'vendor';
+            }
+          }
+          // Translations chunk
+          if (id.includes('/translations/')) {
+            return 'translations';
+          }
+        }
+      }
+    }
+  },
+  optimizeDeps: {
+    include: ['i18next', 'react-i18next']
+  },
+  // Configure proper handling of JSON files
+  json: {
+    stringify: false
+  },
+  publicDir: resolve(__dirname, 'public')
+});

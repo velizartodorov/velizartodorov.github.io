@@ -38,7 +38,7 @@ jobs:
         if: github.event_name == 'push'
         run: |
           rm -rf docs
-          mv build docs
+          mv dist docs
 
       - name: Commit and push docs/
         if: github.event_name == 'push'
