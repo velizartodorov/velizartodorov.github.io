@@ -6,20 +6,49 @@ React-based single page web application representing Velizar's portfolio:
 
 ## How to start locally? 🤔
 
-In project directory, run in terminal:
+First, install the dependencies:
 
-```js
-npm start
+```bash
+npm install
 ```
 
-Go to <http://localhost:3000/>.
+Then, to start the development server:
+
+```bash
+npm run dev
+```
+
+The app will be available at <http://localhost:3000/>.
+
+To build for production:
+
+```bash
+npm run build
+```
+
+To preview the production build locally:
+
+```bash
+npm run preview
+```
 
 That's it. Have fun! 😎 🎉
 
-## Lang files warning 🔠⚠️
+## Translation files 🔠
 
-In order to apply changes, make sure you adapt the files in the `public` folder,
-and not the ones in `docs`, as they are identical.
+The application uses JSON files for translations located in the `src/translations` directory.
+Each language (en, nl) has its own set of translation files.
+
+### Structure
+
+- `src/translations/`
+  - `en/` - English translations
+  - `nl/` - Dutch translations
+  - Each language folder contains:
+    - Common translation files (`.json`)
+    - `employments/` - Individual employment entries
+    - `employments.json` - Index file defining the order of employment entries
+
 
 ## CI/CD 🚀
 
