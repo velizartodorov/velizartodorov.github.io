@@ -49,7 +49,6 @@ Each language (en, nl) has its own set of translation files.
     - `employments/` - Individual employment entries
     - `employments.json` - Index file defining the order of employment entries
 
-
 ## CI/CD 🚀
 
 ### Github Workflows 🏭
