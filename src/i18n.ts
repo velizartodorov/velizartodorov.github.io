@@ -101,15 +101,24 @@ const loadEmployments = async () => {
     }
   }
 
-  // Create a map to store loaded employment files
-  const employmentFileMap: Record<string, Record<string, any>> = {};
+  // Create a map to store loaded employment files by language
+  const employmentFilesByLang: Record<string, Record<string, Record<string, any>>> = {};
 
-  // Load all employment files into the map
+  // Load all employment files into language-specific maps
   for (const [path, importModule] of Object.entries(itemModules)) {
     try {
       const module = await importModule();
+      const langMatch = path.match(/\.\/translations\/([^/]+)\/employments\//);
+      if (!langMatch || !langMatch[1]) continue;
+
+      const lang = langMatch[1];
       const fileName = path.split('/').pop() || '';
-      employmentFileMap[fileName] = module.default;
+
+      if (!employmentFilesByLang[lang]) {
+        employmentFilesByLang[lang] = {};
+      }
+      
+      employmentFilesByLang[lang][fileName] = module.default;
     } catch (error) {
       console.error(`Error loading employment file ${path}:`, error);
     }
@@ -117,9 +126,10 @@ const loadEmployments = async () => {
 
   // Add employment resources in the order specified by the index files
   Object.entries(employmentsByLang).forEach(([lang, data]) => {
-    if (data.index) {
+    if (data.index && employmentFilesByLang[lang]) {
+      const langFiles = employmentFilesByLang[lang];
       const orderedItems = data.index.list
-        .map(fileName => employmentFileMap[fileName])
+        .map(fileName => langFiles[fileName])
         .filter(item => item); // Remove any undefined items
 
       i18n.addResourceBundle(lang as Language, 'employments', {
