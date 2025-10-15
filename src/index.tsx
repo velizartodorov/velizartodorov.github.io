@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { I18nextProvider } from 'react-i18next';
 import { App } from './App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 const redirectPath = window.location.search
-  ? window.location.search
-      .slice(1)
-      .replace(/~and~/g, '&')
+  ? window.location.search.slice(1).replace(/~and~/g, '&')
   : null;
 
 if (redirectPath) {
@@ -15,19 +14,17 @@ if (redirectPath) {
   window.history.replaceState(null, '', newUrl);
 }
 
-// Initialize app only after i18n is ready
 const initApp = async () => {
   try {
-    // Import i18n and wait for it to initialize
-    const { i18nInstance } = await import('./i18n');
+    const { i18nInstance, default: i18n } = await import('./i18n');
     await i18nInstance;
 
-    const root = ReactDOM.createRoot(
-      document.getElementById('root') as HTMLElement
-    );
+    const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
     root.render(
       <React.StrictMode>
-        <App />
+        <I18nextProvider i18n={i18n}>
+          <App />
+        </I18nextProvider>
       </React.StrictMode>
     );
 
