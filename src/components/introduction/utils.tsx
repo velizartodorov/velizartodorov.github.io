@@ -46,19 +46,39 @@ function interpolate(template: string, vars: Record<string, string | number>) {
 function mergeOverlappingPeriods(periods: { start: Date; end: Date }[]): { start: Date; end: Date }[] {
     if (periods.length === 0) return [];
 
-    const sorted = periods.slice().sort((a, b) => a.start.getTime() - b.start.getTime());
-    const merged: { start: Date; end: Date }[] = [sorted[0]];
+    const sorted = periods
+        .slice()
+        .sort((a, b) => a.start.getTime() - b.start.getTime());
+    
+    // We know first element exists because we checked length above
+    const firstPeriod = sorted[0]!;
+    
+    // Initialize with a deep copy of the first period
+    const merged: { start: Date; end: Date }[] = [{
+        start: new Date(firstPeriod.start.getTime()),
+        end: new Date(firstPeriod.end.getTime())
+    }];
 
-    for (let i = 1; i < sorted.length; i++) {
-        const last = merged[merged.length - 1];
-        const current = sorted[i];
-
-        if (last.end < current.start) {
-            merged.push({ ...current });
+    // Process the rest of the periods
+    for (const currentPeriod of sorted.slice(1)) {
+        const lastMerged = merged[merged.length - 1]!; // We know this exists as we initialized it
+        
+        if (lastMerged.end.getTime() < currentPeriod.start.getTime()) {
+            // No overlap, add as new period
+            merged.push({
+                start: new Date(currentPeriod.start.getTime()),
+                end: new Date(currentPeriod.end.getTime())
+            });
         } else {
-            last.end = new Date(Math.max(last.end.getTime(), current.end.getTime()));
+            // Overlap exists, extend the end date if necessary
+            lastMerged.end = new Date(Math.max(
+                lastMerged.end.getTime(),
+                currentPeriod.end.getTime()
+            ));
         }
     }
+
+    return merged;
 
     return merged;
 }

@@ -7,6 +7,7 @@ export function resolveDate(dateStr: string): string {
   if (!match) return dateStr;
 
   const key = match[1];
+  if (!key) return '';
   const value = i18next.t(key, { ns: 'dates' });
   return value !== key ? value : '';
 }

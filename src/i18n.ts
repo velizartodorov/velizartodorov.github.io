@@ -39,7 +39,7 @@ const loadAllTranslations = async () => {
       
       // Parse the path to get language and namespace
       const matches = path.match(/\/translations\/(?:([^/]+)\/)?([^/]+)\.json$/);
-      if (!matches) continue;
+      if (!matches || !matches[2]) continue;
       
       const [, lang = DEFAULT_LANGUAGE, fileName] = matches;
       
@@ -86,14 +86,16 @@ const loadEmployments = async () => {
     try {
       const module = await importModule();
       const langMatch = path.match(/\.\/translations\/([^/]+)\/employments\.json/);
-      if (!langMatch) continue;
+      if (!langMatch || !langMatch[1]) continue;
       
       const lang = langMatch[1];
       const indexData = module.default as EmploymentIndex;
-      employmentsByLang[lang] = { 
-        index: indexData,
-        items: []
-      };
+      if (SUPPORTED_LANGUAGES.includes(lang as Language)) {
+        employmentsByLang[lang] = { 
+          index: indexData,
+          items: []
+        };
+      }
     } catch (error) {
       console.error(`Error loading employment index file ${path}:`, error);
     }
