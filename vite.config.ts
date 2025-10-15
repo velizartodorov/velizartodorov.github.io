@@ -1,10 +1,14 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
+import Yaml2Plugin from 'vite-plugin-yaml2';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    Yaml2Plugin(),
+  ],
   base: './', // Using relative path for GitHub Pages compatibility
   resolve: {
     alias: {
