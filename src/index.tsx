@@ -15,13 +15,25 @@ if (redirectPath) {
   window.history.replaceState(null, '', newUrl);
 }
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// Initialize app only after i18n is ready
+const initApp = async () => {
+  try {
+    // Import i18n and wait for it to initialize
+    await import('./i18n');
 
-reportWebVitals();
+    const root = ReactDOM.createRoot(
+      document.getElementById('root') as HTMLElement
+    );
+    root.render(
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    );
+
+    reportWebVitals();
+  } catch (error) {
+    console.error('Failed to initialize application:', error);
+  }
+};
+
+initApp();

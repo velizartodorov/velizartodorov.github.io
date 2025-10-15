@@ -135,10 +135,25 @@ i18n
 
 // Initialize i18n asynchronously
 const initI18n = async () => {
-  await Promise.all(SUPPORTED_LANGUAGES.map(loadTranslations));
+  try {
+    await i18n
+      .use(initReactI18next)
+      .init({
+        lng: DEFAULT_LANGUAGE,
+        fallbackLng: DEFAULT_LANGUAGE,
+        ns: NAMESPACES,
+        defaultNS: 'common',
+        interpolation: { escapeValue: false },
+      });
+
+    await Promise.all(SUPPORTED_LANGUAGES.map(loadTranslations));
+    return i18n;
+  } catch (error) {
+    console.error('Failed to initialize i18n:', error);
+    throw error;
+  }
 };
 
-// Start the initialization
-initI18n().catch(console.error);
-
-export default i18n;
+// Export the initialization promise instead of the i18n instance directly
+export const i18nInstance = initI18n();
+export default await i18nInstance;
