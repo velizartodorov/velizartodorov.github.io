@@ -19,7 +19,8 @@ if (redirectPath) {
 const initApp = async () => {
   try {
     // Import i18n and wait for it to initialize
-    await import('./i18n');
+    const { i18nInstance } = await import('./i18n');
+    await i18nInstance;
 
     const root = ReactDOM.createRoot(
       document.getElementById('root') as HTMLElement

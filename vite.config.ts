@@ -5,7 +5,7 @@ import { resolve } from 'path';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/', // Change this to your repo name if deploying to GitHub Pages
+  base: './', // Using relative path for GitHub Pages compatibility
   resolve: {
     alias: {
       '@': resolve(__dirname, './src'),
@@ -18,9 +18,25 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: true,
+    target: 'es2020',
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
+      },
+      output: {
+        manualChunks(id) {
+          // Vendor chunk
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || 
+                id.includes('i18next')) {
+              return 'vendor';
+            }
+          }
+          // Translations chunk
+          if (id.includes('/translations/')) {
+            return 'translations';
+          }
+        }
       }
     }
   },
