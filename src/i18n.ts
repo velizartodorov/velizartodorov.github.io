@@ -3,95 +3,116 @@ import Backend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 
 type Language = 'en' | 'nl';
-const SUPPORTED_LANGUAGES: Language[] = ['en', 'nl'];
+const SUPPORTED_LANGUAGES: readonly Language[] = ['en', 'nl'] as const;
 const DEFAULT_LANGUAGE: Language = 'en';
 
 const NAMESPACES = [
-  'common',
-  'employments',
-  'education',
-  'licenses_certifications',
+  'common', 
+  'employments', 
+  'education', 
+  'licenses_certifications', 
   'profile',
-  'languages',
-  'presentations',
-  'introduction',
+  'languages', 
+  'presentations', 
+  'introduction', 
   'dates',
 ] as const;
 
-interface TranslationModule { default: Record<string, any>; }
+const BUNDLE_OPTIONS: [boolean, boolean] = [true, true];
+const addBundle = (lang: Language, ns: string, data: any) =>
+  i18n.addResourceBundle(lang, ns, data, ...BUNDLE_OPTIONS);
+
+const isSupportedLang = (lang?: string): lang is Language =>
+  !!lang && (SUPPORTED_LANGUAGES as readonly string[]).includes(lang);
+
+const logError = (ctx: string, path: string, err: unknown) =>
+  console.error(`Error ${ctx} ${path}:`, err);
+
+const TRANSLATION_PATH_RE = /\/translations\/(?:([^/]+)\/)?([^/]+)\.json$/;
+const EMPLOYMENTS_INDEX_RE = /\.\/translations\/([^/]+)\/employments\.json/;
+const EMPLOYMENTS_ITEM_LANG_RE = /\.\/translations\/([^/]+)\/employments\//;
+
+async function importGlob<T>(
+  mods: Record<string, () => Promise<T>>,
+  onEach: (p: string, m: T) => void | Promise<void>,
+  ctx: string
+) {
+  for (const [p, importer] of Object.entries(mods)) {
+    try {
+      const mod = await importer();
+      await onEach(p, mod);
+    } catch (e) {
+      logError(ctx, p, e);
+    }
+  }
+}
 
 const loadAllTranslations = async () => {
-  const translationModules = import.meta.glob<TranslationModule>([
+  const mods = import.meta.glob([
     './translations/**/*.json',
     '!./translations/**/employments/**/*.json',
     './translations/dates.json',
   ]);
 
-  for (const [path, importModule] of Object.entries(translationModules)) {
-    try {
-      const module = await importModule();
-      const matches = path.match(/\/translations\/(?:([^/]+)\/)?([^/]+)\.json$/);
-      if (!matches || !matches[2]) continue;
-
-      const [, lang = DEFAULT_LANGUAGE, fileName] = matches;
-
+  await importGlob(
+    mods,
+    async (path, mod: any) => {
+      const m = path.match(TRANSLATION_PATH_RE);
+      if (!m) return;
+      const [, langMaybe, fileName] = m;
+      if (!fileName) return;
+      const lang: Language = isSupportedLang(langMaybe)
+        ? langMaybe
+        : DEFAULT_LANGUAGE;
       if (fileName === 'dates') {
-        i18n.addResourceBundle(DEFAULT_LANGUAGE, 'dates', module.default, true, true);
-        continue;
+        addBundle(DEFAULT_LANGUAGE, 'dates', mod.default);
+        return;
       }
-      if (fileName === 'employments') continue;
-
-      const namespace = fileName.replace('.json', '');
-      i18n.addResourceBundle(lang as Language, namespace, module.default, true, true);
-    } catch (error) {
-      console.error(`Error loading translation file ${path}:`, error);
-    }
-  }
+      if (fileName === 'employments') return;
+      addBundle(lang, fileName.replace(/\.json$/, ''), mod.default);
+    },
+    'translation file'
+  );
 };
 
-interface EmploymentIndex { title: string; list: string[]; }
-interface EmploymentData { index?: EmploymentIndex; items?: Record<string, any>[]; }
-
 const loadEmployments = async () => {
-  const indexModules = import.meta.glob<TranslationModule>('./translations/*/employments.json');
-  const itemModules = import.meta.glob<TranslationModule>('./translations/*/employments/*.json');
+  const indexMods = import.meta.glob('./translations/*/employments.json');
+  const itemMods = import.meta.glob('./translations/*/employments/*.json');
+  const byLang: Record<Language, any> = { en: {}, nl: {} };
 
-  const employmentsByLang: Record<string, EmploymentData> = {};
-  for (const [path, importModule] of Object.entries(indexModules)) {
-    try {
-      const module = await importModule();
-      const langMatch = path.match(/\.\/translations\/([^/]+)\/employments\.json/);
-      if (!langMatch || !langMatch[1]) continue;
-      const lang = langMatch[1];
-      const indexData = module.default as EmploymentIndex;
-      if (SUPPORTED_LANGUAGES.includes(lang as Language)) {
-        employmentsByLang[lang] = { index: indexData, items: [] };
-      }
-    } catch (error) {
-      console.error(`Error loading employment index file ${path}:`, error);
-    }
-  }
+  await importGlob(
+    indexMods,
+    async (p, m: any) => {
+      const l = p.match(EMPLOYMENTS_INDEX_RE)?.[1];
+      if (!isSupportedLang(l)) return;
+      byLang[l].index = m.default;
+      byLang[l].items = [];
+    },
+    'employment index'
+  );
 
-  const employmentFilesByLang: Record<string, Record<string, Record<string, any>>> = {};
-  for (const [path, importModule] of Object.entries(itemModules)) {
-    try {
-      const module = await importModule();
-      const langMatch = path.match(/\.\/translations\/([^/]+)\/employments\//);
-      if (!langMatch || !langMatch[1]) continue;
-      const lang = langMatch[1];
-      const fileName = path.split('/').pop() || '';
-      (employmentFilesByLang[lang] ||= {})[fileName] = module.default;
-    } catch (error) {
-      console.error(`Error loading employment file ${path}:`, error);
-    }
-  }
+  const filesByLang: Partial<Record<Language, Record<string, any>>> = {};
+  await importGlob(
+    itemMods,
+    async (p, m: any) => {
+      const l = p.match(EMPLOYMENTS_ITEM_LANG_RE)?.[1];
+      if (!isSupportedLang(l)) return;
+      const f = p.split('/').pop() || '';
+      (filesByLang[l] ||= {})[f] = m.default;
+    },
+    'employment file'
+  );
 
-  Object.entries(employmentsByLang).forEach(([lang, data]) => {
-    if (data.index && employmentFilesByLang[lang]) {
-      const langFiles = employmentFilesByLang[lang];
-      const orderedItems = data.index.list.map(fileName => langFiles[fileName]).filter(Boolean);
-      i18n.addResourceBundle(lang as Language, 'employments', { title: data.index.title, list: orderedItems }, true, true);
-    }
+  (Object.entries(byLang) as [Language, any][]).forEach(([lang, data]) => {
+    const files = filesByLang[lang];
+    if (!data.index || !files) return;
+    const ordered = (data.index.list || [])
+      .map((f: string) => files[f])
+      .filter(Boolean);
+    addBundle(lang, 'employments', {
+      title: data.index.title,
+      list: ordered,
+    });
   });
 };
 
@@ -101,10 +122,7 @@ const loadTranslations = async () => {
 
 const initI18n = async () => {
   try {
-    i18n
-      .use(Backend)           // optional if you rely solely on addResourceBundle
-      .use(initReactI18next);
-
+    i18n.use(Backend).use(initReactI18next);
     await i18n.init({
       lng: DEFAULT_LANGUAGE,
       fallbackLng: DEFAULT_LANGUAGE,
@@ -112,12 +130,11 @@ const initI18n = async () => {
       defaultNS: 'common',
       interpolation: { escapeValue: false },
     });
-
-    await loadTranslations(); // load once
+    await loadTranslations();
     return i18n;
-  } catch (error) {
-    console.error('Failed to initialize i18n:', error);
-    throw error;
+  } catch (e) {
+    console.error('Failed to initialize i18n:', e);
+    throw e;
   }
 };
 
