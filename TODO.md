@@ -1,13 +1,14 @@
 # TO DO 📌
 
-* migrate project to Vite to resolve the `react-scripts` dependancy ✅
+* create a structure where each `Employment` has a list of `Position`
+* migrate project to Vite to resolve the `react-scripts` dependency ✅
 * create design for mobile interface ✅
 * fix accordion clickable ✅
 * add projects component
 * create deployment process ✅
 * publish portfolio on GitHub ✅
 * add languages section and ~~remove languages from header~~ ✅
-* add accordions arrows in the beginning
+* add accordion arrows in the beginning
 * ~~add letters of reference ⚠️ (DSI/ADMS/UP)~~
 * common comonents -> Introduction
 * put pictures in `assets`
@@ -23,7 +24,7 @@
 * `assets` folder in `public`
 * `licenses_certifications` -> `licenses-certifications`
 * remove from the code `PUBLIC_URL` calls like `process.env.PUBLIC_URL + employment.icon` ✅
-* when updating `.md` files don't create new deployment
+* when updating `.md` files, don't create a new deployment
 * folder `interaces`
 * refactor periods -> move them to separate `utils` folder
 * move languages to `translations` folder
