@@ -21,7 +21,7 @@
         "• Containerization: Docker, Kubernetes",
         "• DevOps: ArgoCD",
         "• Testing framework: JUnit 5, Mockito",
-        "• Deployments:Helm",
+        "• Deployments: Helm",
         "• Database: PostgreSQL, Neo4j",
         "• Application server: Apache Tomcat",
         "• Architecture: Microservices, Multitenant/Single-tenant",
