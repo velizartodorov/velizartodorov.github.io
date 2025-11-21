@@ -25,7 +25,7 @@
         "• Containerization: Docker",
         "• Testing framework: JUnit 5, Mockito",
         "• Deployments: Helm charts, Kubernetis, ArgoCD (Multi-tenant), Jenkins (Single-tenant)",
-        "• Database: PostgreSQL, Neo4j",
+        "• Database: PostgreSQL, Liquibase(migrations), Neo4j",
         "• Application server: Apache Tomcat",
         "• Architecture: Microservices, Multitenant/Single-tenant",
         "• Persistence: Spring Data JPA, Hibernate",
