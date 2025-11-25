@@ -16,8 +16,12 @@
             ],
             "references": [
                 {
-                    "value": "Dutch second language - Level 2 (B2) information",
+                    "value": "Dutch second language - Richtgraad 2 information",
                     "href": "https://www.vlaanderen.be/opleidingsdatabank/nederlands-tweede-taal-richtgraad-2"
+                },
+                {
+                    "value": "Dutch second language - Richtgraad 3 information",
+                    "href": "https://www.vlaanderen.be/opleidingsdatabank/nederlands-tweede-taal-richtgraad-3"
                 }
             ]
         },
