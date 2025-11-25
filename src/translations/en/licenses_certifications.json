@@ -2,6 +2,13 @@
     "title": "Licenses & certifications 🔖",
     "list": [
         {
+            "icon": "/education/cvo_gent.png",
+            "name": "Nederlands - tweede taal - richtgraad 3",
+            "institution": "Het Perspectief PCVO",
+            "field": "Dutch/Flemish Language and Literature",
+            "date": "{{dates:nt3_cert}}"
+        },
+        {
             "icon": "/education/udemy_icon.svg",
             "name": "AWS Essentials",
             "institution": "Udemy",
