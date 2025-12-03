@@ -31,6 +31,7 @@
         "• Persistence: Spring Data JPA, Hibernate",
         "• Database management: Flyway",
         "• CI/CD: GitHub Actions, Grafana, Prometheus, Datadog",
+        "• Vulnerability management: Snyk",
         "• Identity/access management: KeyCloak (OAuth 2.0)",
         "• Version control: Git, GitHub",
         "• IDE: IntelliJ, Cursor"
