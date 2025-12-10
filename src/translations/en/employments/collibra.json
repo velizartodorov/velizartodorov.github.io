@@ -21,6 +21,7 @@
         "• Language/framework: Java 21, Spring Boot",
         "• Batch processing: JobRunr",
         "• API Tools: OpenAPI/Swagger",
+        "• API Connectivity: REST, GraphQL",
         "• Dependency management: Gradle",
         "• Containerization: Docker",
         "• Testing framework: JUnit 5, Mockito",
