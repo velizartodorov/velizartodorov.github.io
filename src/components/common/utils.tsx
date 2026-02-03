@@ -3,7 +3,7 @@ import {Period} from './period';
 
 export function resolveDate(dateStr: string): string {
     if (!dateStr) return '';
-    const match = new RegExp(/^\{\{\s*dates:([\w_-]+)\s*}}$/).exec(dateStr);
+    const match = new RegExp(/^\{\{\s*dates:([\w-]+)\s*}}$/).exec(dateStr);
     if (!match) return dateStr;
 
     const key = match[1];
