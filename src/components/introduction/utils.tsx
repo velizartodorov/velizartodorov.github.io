@@ -6,7 +6,7 @@ export function useIntroductionStats() {
     const employments = useEmployments();
 
     const telnetEmployment = employments.find(e =>
-        typeof e.company === 'string' && e.company.toLowerCase().includes('telnet')
+        e.company.toLowerCase().includes('telnet')
     );
 
     const softwareEmployments = employments
@@ -38,8 +38,8 @@ export function useFormatBody(bodyRaw: unknown) {
 }
 
 function interpolate(template: string, vars: Record<string, string | number>) {
-    return template.replace(/\{(\w+)\}/g, (_, key) =>
-        vars[key] !== undefined ? String(vars[key]) : `{${key}}`
+    return template.replaceAll(/\{(\w+)}/g, (_, key) =>
+        vars[key] === undefined ? `{${key}}` : String(vars[key])
     );
 }
 
@@ -55,19 +55,19 @@ function mergeOverlappingPeriods(periods: { start: Date; end: Date }[]): { start
     
     // Initialize with a deep copy of the first period
     const merged: { start: Date; end: Date }[] = [{
-        start: new Date(firstPeriod.start.getTime()),
-        end: new Date(firstPeriod.end.getTime())
+        start: new Date(firstPeriod.start),
+        end: new Date(firstPeriod.end)
     }];
 
     // Process the rest of the periods
     for (const currentPeriod of sorted.slice(1)) {
-        const lastMerged = merged[merged.length - 1]!; // We know this exists as we initialized it
+        const lastMerged = merged.at(-1)!; // We know this exists as we initialized it
         
         if (lastMerged.end.getTime() < currentPeriod.start.getTime()) {
             // No overlap, add as new period
             merged.push({
-                start: new Date(currentPeriod.start.getTime()),
-                end: new Date(currentPeriod.end.getTime())
+                start: new Date(currentPeriod.start),
+                end: new Date(currentPeriod.end)
             });
         } else {
             // Overlap exists, extend the end date if necessary
@@ -77,8 +77,6 @@ function mergeOverlappingPeriods(periods: { start: Date; end: Date }[]): { start
             ));
         }
     }
-
-    return merged;
 
     return merged;
 }

@@ -1,23 +1,18 @@
-
-import { useTranslation } from 'react-i18next';
-import { Period } from "../common/period";
-import { currentDate } from "../common/utils";
+import {useTranslation} from 'react-i18next';
+import {Period} from "../common/period";
+import {currentDate} from "../common/utils";
 
 export function useDisplayPeriod() {
-    const { t } = useTranslation();
+    const {t} = useTranslation();
 
     function formatMonthYear(date: Date): string {
-        const months = t('common:months', { returnObjects: true }) as string[];
+        const months = t('common:months', {returnObjects: true}) as string[];
         return `${months[date.getMonth()]} ${date.getFullYear()}`;
-    }
-
-    function shouldShowPresent(period: Period, today: Date): boolean {
-        return !period.end || period.start > today;
     }
 
     function display(period: Period): string {
         const today = currentDate();
-        const periodLang = t('common:period', { returnObjects: true }) as Record<string, string>;
+        const periodLang = t('common:period', {returnObjects: true}) as Record<string, string>;
         const presentText = periodLang.present;
         const formattedStartDate = formatMonthYear(period.start);
 
@@ -31,7 +26,11 @@ export function useDisplayPeriod() {
         return isCurrentMonth
             ? `${formattedStartDate} - ${presentText}`
             : `${formattedStartDate} - ${formattedEndDate}`;
+
+        function shouldShowPresent(period: Period, today: Date): boolean {
+            return !period.end || period.start > today;
+        }
     }
 
-    return { display };
+    return {display};
 }

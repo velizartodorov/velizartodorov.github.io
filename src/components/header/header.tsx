@@ -4,8 +4,9 @@ import { LanguageSelector } from '../common/language_selector';
 import './header.css';
 import { useProfile } from './profile.init';
 import ProfileItem from './profile_item';
+import React from "react";
 
-const Header: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
+const Header: React.FC<{ children?: React.ReactNode }> = () => {
     const profile = useProfile();
     return (
         <header className="mt-3 ms-0 ms-md-4">

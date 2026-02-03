@@ -1,5 +1,6 @@
 import { Link } from './link';
 import './profile_item.css';
+import React from "react";
 
 const ProfileItem: React.FC<{ link: Link }> = ({ link }) => {
     const content = (

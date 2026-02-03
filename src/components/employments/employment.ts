@@ -4,7 +4,7 @@ import { Reference } from "../common/reference";
 export interface Employment {
     position: string;
     company: string;
-    type: String;
+    type: string;
     place: string;
     icon: string;
     period: Period;
