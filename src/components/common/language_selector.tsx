@@ -22,7 +22,7 @@ export const LanguageSelector: React.FC = () => {
                 aria-label={isEnglish ? 'Switch to Dutch' : 'Switch to English'}
             />
             <span
-                className={`language-selector-label nl ${!isEnglish ? 'active' : 'inactive'}`}
+                className={`language-selector-label nl ${isEnglish ? 'inactive' : 'active'}`}
             >NL</span>
         </div>
     );
