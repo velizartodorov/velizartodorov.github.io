@@ -12,7 +12,7 @@ export function useEducations(): IEducation[] {
             period: e.period ? parsePeriod(e.period) :
                 {
                     start: new Date(0),
-                    end: new Date(0)
+                    end: undefined,
                 },
         }))
         : [];

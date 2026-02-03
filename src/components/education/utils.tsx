@@ -1,30 +1,37 @@
 
-
 import { useTranslation } from 'react-i18next';
 import { Period } from "../common/period";
 import { currentDate } from "../common/utils";
 
-export function useDisplayPeriod(): (period: Period) => string {
+export function useDisplayPeriod() {
     const { t } = useTranslation();
-    const getMonthYear = useMonthYear();
-    return (period: Period) => {
-        const formattedStartDate = getMonthYear(period.start);
-        const formattedEndDate = getMonthYear(period.end);
-        const present = t('common:present');
-        const conjunction = '-';
-        return formattedEndDate === getMonthYear(currentDate())
-            ? `${formattedStartDate} ${conjunction} ${present}`
-            : `${formattedStartDate} ${conjunction} ${formattedEndDate}`;
-    };
-}
 
-export function useMonthYear(): (date: Date) => string {
-    const { t } = useTranslation();
-    return (date: Date) => {
+    function formatMonthYear(date: Date): string {
         const months = t('common:months', { returnObjects: true }) as string[];
-        const month = date.getMonth();
-        const year = date.getFullYear();
-        return `${months[month]} ${year}`;
-    };
-}
+        return `${months[date.getMonth()]} ${date.getFullYear()}`;
+    }
 
+    function shouldShowPresent(period: Period, today: Date): boolean {
+        return !period.end || period.start > today;
+    }
+
+    function display(period: Period): string {
+        const today = currentDate();
+        const periodLang = t('common:period', { returnObjects: true }) as Record<string, string>;
+        const presentText = periodLang.present;
+        const formattedStartDate = formatMonthYear(period.start);
+
+        if (shouldShowPresent(period, today)) {
+            return `${formattedStartDate} - ${presentText}`;
+        }
+
+        const formattedEndDate = formatMonthYear(period.end!);
+        const isCurrentMonth = formattedEndDate === formatMonthYear(today);
+
+        return isCurrentMonth
+            ? `${formattedStartDate} - ${presentText}`
+            : `${formattedStartDate} - ${formattedEndDate}`;
+    }
+
+    return { display };
+}
