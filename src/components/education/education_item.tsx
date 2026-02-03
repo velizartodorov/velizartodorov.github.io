@@ -10,7 +10,7 @@ import { useDisplayPeriod } from './utils';
 const EducationItem: FC<{ item: IEducation; index: number }> = ({ item, index }) => {
   const { t } = useTranslation();
   const atWord = t('common:period.at');
-  const displayPeriod = useDisplayPeriod();
+  const { display } = useDisplayPeriod();
   return (
     <Accordion.Item eventKey={index.toString()}>
       <Accordion.Header>
@@ -26,7 +26,7 @@ const EducationItem: FC<{ item: IEducation; index: number }> = ({ item, index })
             </Col>
             <Col className="d-none d-sm-block">{item.place}</Col>
             <Col xs="auto" className="text-right d-none d-sm-block">
-              <h5>{displayPeriod(item.period)}</h5>
+              <h5>{display(item.period)}</h5>
             </Col>
           </Row>
         </Container>

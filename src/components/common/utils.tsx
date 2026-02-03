@@ -14,10 +14,10 @@ export function resolveDate(dateStr: string): string {
 
 export function parsePeriod(period: Period) {
   const startStr = resolveDate(period.start.toString());
-  const endStr = resolveDate(period.end.toString());
+  const endStr = period.end ? resolveDate(period.end.toString()) : '';
   return {
     start: startStr ? new Date(startStr) : new Date(0),
-    end: endStr ? new Date(endStr) : new Date(0),
+    end: endStr ? new Date(endStr) : undefined,
   };
 }
 

@@ -32,7 +32,7 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
                                 <h5 className="employment-font">
                                     {display({
                                         start: new Date(item.period.start),
-                                        end: new Date(item.period.end)
+                                        end: item.period.end ? new Date(item.period.end) : undefined
                                     })}
                                 </h5>
                             </Col>
