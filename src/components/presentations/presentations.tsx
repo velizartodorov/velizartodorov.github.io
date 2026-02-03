@@ -14,7 +14,7 @@ const Presentations = ({ className, eventKey }: SectionProps) => {
       eventKey={eventKey} className={className}>
       <ListGroup variant="flush">
         {presentations.map((item, index) => (
-          <PresentationItem item={item} index={index} key={index} />
+          <PresentationItem item={item} index={index} key={index.valueOf()} />
         ))}
       </ListGroup>
     </AccordionWrapper>

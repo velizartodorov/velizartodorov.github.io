@@ -14,7 +14,7 @@ import { useProfile } from './components/header/profile.init';
 import LicensesCertifications from './components/licenses_certifications/licenses_certifications';
 import EnvBanner from './components/common/env_banner';
 
-window.React = React;
+globalThis.React = React;
 
 export function App() {
   const { name } = useProfile();

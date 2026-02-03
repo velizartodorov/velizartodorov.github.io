@@ -5,6 +5,7 @@ import { SectionProps } from '../common/section_props';
 import { Language } from './language';
 import LanguageItem from './language_item';
 import './languages.css';
+import React from "react";
 
 const Languages: React.FC<SectionProps> = ({ className, eventKey }) => {
   const { t, ready } = useTranslation('languages');

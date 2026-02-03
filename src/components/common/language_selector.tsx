@@ -6,7 +6,7 @@ export const LanguageSelector: React.FC = () => {
     const { i18n } = useTranslation();
     const isEnglish = i18n.language === 'en';
     const handleChange = () => {
-        i18n.changeLanguage(isEnglish ? 'nl' : 'en');
+        void i18n.changeLanguage(isEnglish ? 'nl' : 'en');
     };
     return (
         <div className="form-check form-switch d-flex align-items-center language-selector-switch">

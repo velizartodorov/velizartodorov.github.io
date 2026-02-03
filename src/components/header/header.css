@@ -3,7 +3,6 @@
 }
 
 .no-underline {
-    text-decoration: none !important;
     text-decoration: none;
 }
 
@@ -36,7 +35,7 @@
         padding: 1%;
     }
 
-    .profile-table td>a {
+    .profile-table td > a {
         width: 230px;
         text-align: start;
         display: block;

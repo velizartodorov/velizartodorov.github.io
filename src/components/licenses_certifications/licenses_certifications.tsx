@@ -15,7 +15,7 @@ const LicensesCertifications = ({ className, eventKey }: SectionProps) => {
       eventKey={eventKey} className={className}>
       <ListGroup variant="flush">
         {licensesCertifications.map((item, index) => (
-          <LicenseCertificationItem item={item} index={index} key={index} />
+          <LicenseCertificationItem item={item} index={index} key={index.valueOf()} />
         ))}
       </ListGroup>
     </AccordionWrapper>
