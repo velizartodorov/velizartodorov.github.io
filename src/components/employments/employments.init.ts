@@ -21,25 +21,17 @@ export function useEmployments(): Employment[] {
   }));
 }
 
-function resolvePeriod(e: Employment): { start: Date; end: Date; } {
-  if (!e.period || typeof e.period.start !== 'string') {
-    return { start: currentDate(), end: currentDate() };
-  }
+function parseDate(value: unknown): Date | undefined {
+  if (typeof value !== 'string') return undefined;
+  const resolved = resolveDate(value);
+  if (!resolved) return undefined;
+  const date = new Date(resolved);
+  date.setUTCHours(0, 0, 0, 0);
+  return date;
+}
 
-  const startDateStr = resolveDate(e.period.start);
-  if (!startDateStr) {
-    return { start: currentDate(), end: currentDate() };
-  }
-  const startDate = new Date(startDateStr);
-  startDate.setUTCHours(0, 0, 0, 0);
-  
-  if (!e.period.end || typeof e.period.end !== 'string') {
-    const today = currentDate();
-    return { start: startDate, end: today };
-  }
-
-  const endDateStr = resolveDate(e.period.end);
-  const endDate = endDateStr ? new Date(endDateStr) : currentDate();
-  endDate.setUTCHours(0, 0, 0, 0);
-  return { start: startDate, end: endDate };
+function resolvePeriod(e: Employment): { start: Date; end?: Date; } {
+  const start = parseDate(e.period?.start) ?? currentDate();
+  const end = parseDate(e.period?.end) ?? currentDate();
+  return { start, end };
 }
