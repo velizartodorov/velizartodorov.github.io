@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { resolve } from 'path';
+import { resolve } from 'node:path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -24,23 +24,10 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
       },
       output: {
-        manualChunks(id) {
-          // Vendor chunk
-          if (id.includes('node_modules')) {
-            if (id.includes('react') || 
-                id.includes('i18next')) {
-              return 'vendor';
-            }
-          }
-          // Translations chunk
-          if (id.includes('/translations/')) {
-            return 'translations';
-          }
-        }
       }
     }
   },
-  optimizeDeps: {
+    optimizeDeps: {
     include: ['i18next', 'react-i18next']
   },
   // Configure proper handling of JSON files
