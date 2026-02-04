@@ -1,0 +1,2 @@
+const e=["januari","februari","maart","april","mei","juni","juli","augustus","september","oktober","november","december"],a={year:"jaar",years:"jaar",month:"maand",months:"maanden",present:"heden",at:"bij",and:"en",day:"dag",days:"dagen"},n="Aangedreven door",o="Bedrijfstype",r={months:e,period:a,poweredBy:n,companyType:o};export{o as companyType,r as default,e as months,a as period,n as poweredBy};
+//# sourceMappingURL=common-Bt82GtRR.js.map

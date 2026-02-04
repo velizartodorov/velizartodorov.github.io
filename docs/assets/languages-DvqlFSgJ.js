@@ -1,0 +1,2 @@
+const e="Talen 🌐",a=[{label:"Engels",icon:"/header/speak.png",width:27,proficiency:"Professionele werkvaardigheid"},{label:"Nederlands",icon:"/header/speak.png",width:27,proficiency:"Professionele werkvaardigheid"},{label:"Bulgaars",icon:"/header/speak.png",width:27,proficiency:"Moedertaal"}],i={title:e,list:a};export{i as default,a as list,e as title};
+//# sourceMappingURL=languages-DvqlFSgJ.js.map
