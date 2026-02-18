@@ -1,0 +1,117 @@
+name: Auto-merge Dependabot PRs
+
+on:
+  schedule:
+    # Run every Wednesday at 08:00 UTC (09:00 CET / 10:00 CEST Brussels time)
+    # Gives time for Dependabot PRs (created Tuesday) and CI checks to complete
+    - cron: '0 8 * * 3'
+  workflow_dispatch: # Allow manual trigger
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Auto-merge Dependabot PRs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Starting auto-merge process..."
+          merged_count=0
+          max_iterations=10  # Safety limit to prevent infinite loops
+
+          for iteration in $(seq 1 $max_iterations); do
+            echo ""
+            echo "=== Iteration $iteration ==="
+            echo "Fetching open Dependabot PRs..."
+
+            # Get all open PRs created by dependabot
+            prs=$(gh pr list --author "app/dependabot" --state open --json number,title,statusCheckRollup)
+
+            if [ "$prs" = "[]" ]; then
+              echo "No open Dependabot PRs found."
+              break
+            fi
+
+            echo "Found Dependabot PRs:"
+            echo "$prs" | jq -r '.[] | "#\(.number): \(.title)"'
+
+            # Track if we merged anything in this iteration
+            merged_in_iteration=false
+
+            # Process each PR
+            echo "$prs" | jq -c '.[]' | while read -r pr; do
+              pr_number=$(echo "$pr" | jq -r '.number')
+              pr_title=$(echo "$pr" | jq -r '.title')
+              status_checks=$(echo "$pr" | jq -r '.statusCheckRollup')
+
+              echo ""
+              echo "Processing PR #$pr_number: $pr_title"
+
+              # Check if all status checks passed
+              if [ "$status_checks" = "null" ] || [ "$status_checks" = "[]" ]; then
+                echo "  ⏳ No status checks found, skipping..."
+                continue
+              fi
+
+              # Check if all checks passed
+              all_passed=$(echo "$status_checks" | jq -r 'all(.[]; .status == "COMPLETED" and .conclusion == "SUCCESS")')
+
+              if [ "$all_passed" = "true" ]; then
+                echo "  ✅ All checks passed, merging PR #$pr_number..."
+                if gh pr merge "$pr_number" --squash --delete-branch; then
+                  echo "  ✨ PR #$pr_number merged successfully!"
+                  echo "true" > /tmp/merged_flag
+
+                  # Rebase remaining Dependabot PRs on the updated main branch
+                  echo ""
+                  echo "  🔄 Rebasing remaining Dependabot PRs..."
+                  remaining_prs=$(gh pr list --author "app/dependabot" --state open --json number --jq '.[].number')
+
+                  if [ -n "$remaining_prs" ]; then
+                    for remaining_pr in $remaining_prs; do
+                      echo "     Updating PR #$remaining_pr..."
+                      gh api "repos/:owner/:repo/pulls/$remaining_pr/update-branch" -X PUT 2>/dev/null || echo "     ⚠️ Could not update PR #$remaining_pr (may already be up-to-date)"
+                    done
+                  fi
+
+                  # Break to re-fetch PRs after this merge
+                  break
+                else
+                  echo "  ⚠️ Failed to merge PR #$pr_number"
+                fi
+              else
+                echo "  ❌ Some checks failed or are pending, skipping PR #$pr_number"
+                echo "$status_checks" | jq -r '.[] | "     \(.context): \(.status) - \(.conclusion)"'
+              fi
+            done
+
+            # Check if we merged anything
+            if [ -f /tmp/merged_flag ]; then
+              merged_in_iteration=true
+              merged_count=$((merged_count + 1))
+              rm /tmp/merged_flag
+              echo ""
+              echo "⏳ Waiting 10 seconds for GitHub to update..."
+              sleep 10
+            fi
+
+            # If nothing was merged in this iteration, we're done
+            if [ "$merged_in_iteration" = false ]; then
+              echo ""
+              echo "No more PRs to merge in this iteration."
+              break
+            fi
+          done
+
+          echo ""
+          echo "========================================="
+          echo "Auto-merge process completed!"
+          echo "Total PRs merged: $merged_count"
+          echo "========================================="

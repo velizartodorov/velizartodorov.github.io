@@ -66,3 +66,10 @@ Example:
 
 `dependabot.yml` will make sure that bumping of library happens on a regular
 basis by Dependabot with automatic opening of a PR.
+
+The `auto-merge-dependabot.yml` workflow automatically merges Dependabot PRs weekly:
+
+- **Tuesday 08:00** (Brussels time): Dependabot creates PRs for dependency updates
+- **Wednesday 10:00** (Brussels time): Auto-merge workflow runs and merges PRs that pass all CI checks
+
+This ensures dependencies are kept up-to-date automatically while maintaining code quality through automated testing.
