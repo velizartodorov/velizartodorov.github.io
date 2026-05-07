@@ -6,6 +6,42 @@
 @media (max-width: 576px) {
     .employment-font {
         font-size: 1rem;
-        font-weight: 400; 
+        font-weight: 400;
     }
+}
+
+.positions-timeline {
+    position: relative;
+    padding-left: 24px;
+}
+
+.positions-timeline::before {
+    content: "";
+    position: absolute;
+    left: 9px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background-color: #dee2e6;
+}
+
+.position-block {
+    position: relative;
+}
+
+.position-block + .position-block {
+    margin-top: 1.75rem;
+}
+
+.position-block::before {
+    content: "";
+    position: absolute;
+    left: -20px;
+    top: 8px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #0d6efd;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px #0d6efd;
 }

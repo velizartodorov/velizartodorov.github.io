@@ -5,15 +5,17 @@ export function useIntroductionStats() {
     const { t } = useTranslation();
     const employments = useEmployments();
 
-    const telnetEmployment = employments.find(e =>
-        e.company.toLowerCase().includes('telnet')
+    const telnetCompany = employments.find(c =>
+        c.company.toLowerCase().includes('telnet')
     );
 
     const softwareEmployments = employments
-        .filter(e => e.company !== (telnetEmployment?.company ?? '') && e.period.end)
-        .map(e => ({
-            start: new Date(e.period.start),
-            end: new Date(e.period.end!), // Safe to use ! because we filtered for existence
+        .filter(c => c.company !== (telnetCompany?.company ?? ''))
+        .flatMap(c => c.positions)
+        .filter(p => p.period.end)
+        .map(p => ({
+            start: new Date(p.period.start),
+            end: new Date(p.period.end!), // Safe to use ! because we filtered for existence
         }));
 
     const mergedPeriods = mergeOverlappingPeriods(softwareEmployments);

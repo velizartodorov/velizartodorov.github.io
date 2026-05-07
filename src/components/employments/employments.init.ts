@@ -1,24 +1,29 @@
 import { useTranslation } from 'react-i18next';
-import { Employment } from "./employment";
+import { Employment, Position } from "./employment";
 import { resolveDate, currentDate } from '../common/utils';
 
 export function useEmployments(): Employment[] {
   const { t } = useTranslation(['employments', 'dates']);
   const employmentData = t('employments:list', { returnObjects: true });
-  
-  // Ensure we have an array to work with
+
   const data = Array.isArray(employmentData) ? employmentData : [];
-  
-  return data.map((e: Employment) => ({
-    position: e.position,
-    company: e.company,
-    type: e.type ?? '',
-    place: e.place,
-    icon: e.icon,
-    period: resolvePeriod(e),
-    description: e.description,
-    references: Array.isArray(e.references) ? e.references : [],
+
+  return data.map((c: Employment): Employment => ({
+    company: c.company,
+    icon: c.icon,
+    type: c.type ?? '',
+    positions: Array.isArray(c.positions) ? c.positions.map(toPosition) : [],
   }));
+}
+
+function toPosition(p: Position): Position {
+  return {
+    position: p.position,
+    place: p.place,
+    period: resolvePeriod(p),
+    description: p.description,
+    references: Array.isArray(p.references) ? p.references : [],
+  };
 }
 
 function parseDate(value: unknown): Date | undefined {
@@ -30,8 +35,8 @@ function parseDate(value: unknown): Date | undefined {
   return date;
 }
 
-function resolvePeriod(e: Employment): { start: Date; end?: Date; } {
-  const start = parseDate(e.period?.start) ?? currentDate();
-  const end = parseDate(e.period?.end) ?? currentDate();
+function resolvePeriod(p: Position): { start: Date; end?: Date; } {
+  const start = parseDate(p.period?.start) ?? currentDate();
+  const end = parseDate(p.period?.end) ?? currentDate();
   return { start, end };
 }
