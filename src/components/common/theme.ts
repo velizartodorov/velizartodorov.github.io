@@ -12,19 +12,12 @@ function readStoredTheme(): Theme | null {
         return null;
     }
 }
-
-function systemPrefersDark(): boolean {
-    return typeof window !== 'undefined'
-        && window.matchMedia
-        && window.matchMedia('(prefers-color-scheme: dark)').matches;
-}
-
 function currentTheme(): Theme {
-    return (document.documentElement.getAttribute('data-bs-theme') as Theme) || 'light';
+    return (document.documentElement.dataset.bsTheme as Theme) || 'light';
 }
 
 function applyTheme(theme: Theme) {
-    document.documentElement.setAttribute('data-bs-theme', theme);
+    document.documentElement.dataset.bsTheme = theme;
 }
 
 export function useTheme(): { theme: Theme; toggle: () => void } {
@@ -32,7 +25,7 @@ export function useTheme(): { theme: Theme; toggle: () => void } {
 
     useEffect(() => {
         if (readStoredTheme() !== null) return;
-        const mq = window.matchMedia('(prefers-color-scheme: dark)');
+        const mq = globalThis.matchMedia('(prefers-color-scheme: dark)');
         const onChange = () => {
             if (readStoredTheme() !== null) return;
             const next: Theme = mq.matches ? 'dark' : 'light';
@@ -54,14 +47,10 @@ export function useTheme(): { theme: Theme; toggle: () => void } {
             // ignore
         }
         setTheme(next);
-        window.setTimeout(() => {
+        globalThis.setTimeout(() => {
             root.classList.remove('theme-switching');
         }, 300);
     }, []);
 
     return { theme, toggle };
-}
-
-export function initialThemePreference(): Theme {
-    return readStoredTheme() ?? (systemPrefersDark() ? 'dark' : 'light');
 }

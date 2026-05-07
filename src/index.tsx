@@ -5,13 +5,13 @@ import { App } from './App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
-const redirectPath = window.location.search
-  ? window.location.search.slice(1).replace(/~and~/g, '&')
+const redirectPath = globalThis.location.search
+  ? globalThis.location.search.slice(1).replaceAll('~and~', '&')
   : null;
 
 if (redirectPath) {
-  const newUrl = window.location.origin + '/' + redirectPath;
-  window.history.replaceState(null, '', newUrl);
+  const newUrl = globalThis.location.origin + '/' + redirectPath;
+    globalThis.history.replaceState(null, '', newUrl);
 }
 
 const initApp = async () => {

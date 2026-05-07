@@ -57,7 +57,7 @@ const loadAllTranslations = async () => {
   await importGlob(
     mods,
     async (path, mod: any) => {
-      const m = path.match(TRANSLATION_PATH_RE);
+      const m = new RegExp(TRANSLATION_PATH_RE).exec(path);
       if (!m) return;
       const [, langMaybe, fileName] = m;
       if (!fileName) return;
@@ -83,7 +83,7 @@ const loadEmployments = async () => {
   await importGlob(
     indexMods,
     async (p, m: any) => {
-      const l = p.match(EMPLOYMENTS_INDEX_RE)?.[1];
+      const l = new RegExp(EMPLOYMENTS_INDEX_RE).exec(p)?.[1];
       if (!isSupportedLang(l)) return;
       byLang[l].index = m.default;
       byLang[l].items = [];
@@ -95,7 +95,7 @@ const loadEmployments = async () => {
   await importGlob(
     itemMods,
     async (p, m: any) => {
-      const l = p.match(EMPLOYMENTS_ITEM_LANG_RE)?.[1];
+      const l = new RegExp(EMPLOYMENTS_ITEM_LANG_RE).exec(p)?.[1];
       if (!isSupportedLang(l)) return;
       const f = p.split('/').pop() || '';
       (filesByLang[l] ||= {})[f] = m.default;

@@ -13,10 +13,9 @@
   --app-dot-ring: #ffffff;
   --app-link: #0969da;
   --app-link-hover: #0860c4;
-}
 
 /* Accordion polish: softer active state, refined corners, both themes. */
-:root {
+
   --bs-accordion-active-bg: var(--app-surface-alt);
   --bs-accordion-active-color: var(--app-text);
   --bs-accordion-btn-focus-box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
