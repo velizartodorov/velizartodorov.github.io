@@ -8,6 +8,10 @@
     }
 }
 
+[data-bs-theme="dark"] .profile-item-content img[src*="github"] {
+    filter: invert(1);
+}
+
 @media (max-width: 240px) {
     .text-margin {
         font-size: 0.7rem;
