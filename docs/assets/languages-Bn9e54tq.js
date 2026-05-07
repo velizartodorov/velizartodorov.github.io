@@ -1,0 +1,2 @@
+var e=`Languages 🌐`,t=[{label:`English`,icon:`/header/speak.png`,width:27,proficiency:`Professional working proficiency`},{label:`Dutch`,icon:`/header/speak.png`,width:27,proficiency:`Professional working proficiency`},{label:`Bulgarian`,icon:`/header/speak.png`,width:27,proficiency:`Native`}],n={title:e,list:t};export{n as default,t as list,e as title};
+//# sourceMappingURL=languages-Bn9e54tq.js.map

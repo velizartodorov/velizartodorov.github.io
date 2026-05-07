@@ -1,2 +1,0 @@
-const i="Languages 🌐",e=[{label:"English",icon:"/header/speak.png",width:27,proficiency:"Professional working proficiency"},{label:"Dutch",icon:"/header/speak.png",width:27,proficiency:"Professional working proficiency"},{label:"Bulgarian",icon:"/header/speak.png",width:27,proficiency:"Native"}],n={title:i,list:e};export{n as default,e as list,i as title};
-//# sourceMappingURL=languages-DXW_X0Wj.js.map

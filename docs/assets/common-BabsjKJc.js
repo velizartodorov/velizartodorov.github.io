@@ -1,2 +1,0 @@
-const e=["January","February","March","April","May","June","July","August","September","October","November","December"],o={year:"year",years:"years",month:"month",months:"months",present:"Present",at:"at",and:"and",day:"day",days:"days"},a="Powered by",n="Company type",r={months:e,period:o,poweredBy:a,companyType:n};export{n as companyType,r as default,e as months,o as period,a as poweredBy};
-//# sourceMappingURL=common-BabsjKJc.js.map
