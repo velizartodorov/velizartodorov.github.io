@@ -1,10 +1,16 @@
 {
-    "position": "Software Engineer",
-    "company": "Collibra",
-    "type": "Product",
-    "place": "Brussels, Belgium",
-    "description": [
-        "Description \uD83D\uDCDA",
+  "company": "Collibra",
+  "icon": "/employments/collibra.jpeg",
+  "type": "Product",
+  "positions": [
+    {
+      "position": "Software Engineer",
+      "place": "Brussels, Belgium",
+      "period": {
+        "start": "{{dates:collibra_start}}"
+      },
+      "description": [
+        "Description 📚",
         "",
         "Collibra is a leading enterprise data governance platform helping organizations understand, trust, and access their data 🏢",
         "The company is recognized as a Leader in the Gartner Magic Quadrant for Data Governance Solutions",
@@ -12,11 +18,11 @@
         "Developing machine learning services to automate metadata extraction and enhance data cataloging",
         "Collaborating with cross-functional teams to deliver data intelligence solutions",
         "",
-        "Personal contributions \uD83D\uDC4D",
+        "Personal contributions 👍",
         "",
         "• Worked together with quality assurance engineers to ensure proper testing procedures on technical and functional level",
         "",
-        "Technologies \uD83D\uDD27",
+        "Technologies 🔧",
         "",
         "• Language/framework: Java 21, Spring Boot",
         "• Batch/worker processing: JobRunr",
@@ -37,9 +43,7 @@
         "• Identity/access management: KeyCloak (OAuth 2.0)",
         "• Version control: Git, GitHub",
         "• IDE: IntelliJ, Visual Studio Code, Cursor"
-    ],
-    "icon": "/employments/collibra.jpeg",
-    "period": {
-        "start": "{{dates:collibra_start}}"
+      ]
     }
+  ]
 }

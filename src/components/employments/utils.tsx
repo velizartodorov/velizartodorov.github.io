@@ -1,6 +1,28 @@
 import {useTranslation} from 'react-i18next';
 import {Period} from "../common/period";
 import {currentDate} from "../common/utils";
+import {Position} from "./employment";
+
+export function combinedPeriod(positions: Position[]): Period | undefined {
+    if (positions.length === 0) return undefined;
+    let start = new Date(positions[0]!.period.start);
+    let end: Date | undefined = positions[0]!.period.end
+        ? new Date(positions[0]!.period.end!)
+        : undefined;
+    let hasOpenEnded = !positions[0]!.period.end;
+
+    for (const p of positions.slice(1)) {
+        const s = new Date(p.period.start);
+        if (s < start) start = s;
+        if (!p.period.end) {
+            hasOpenEnded = true;
+        } else {
+            const e = new Date(p.period.end);
+            if (!end || e > end) end = e;
+        }
+    }
+    return {start, end: hasOpenEnded ? undefined : end};
+}
 
 export function useDisplayPeriod() {
     const {t} = useTranslation();
