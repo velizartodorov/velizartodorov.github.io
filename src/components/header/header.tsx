@@ -1,6 +1,7 @@
 import Table from 'react-bootstrap/Table';
 
 import { LanguageSelector } from '../common/language_selector';
+import ThemeToggle from '../common/theme_toggle';
 import './header.css';
 import { useProfile } from './profile.init';
 import ProfileItem from './profile_item';
@@ -16,7 +17,12 @@ const Header: React.FC<{ children?: React.ReactNode }> = () => {
                         <td rowSpan={3} className="avatar-td">
                             <img className="avatar" src={profile.imageUrl} alt="" />
                         </td>
-                        <td colSpan={3}><h2>{profile.name}</h2></td>
+                        <td colSpan={3}>
+                            <div className="header-name-row">
+                                <h2 className="mb-0">{profile.name}</h2>
+                                <ThemeToggle />
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td><LanguageSelector /></td>

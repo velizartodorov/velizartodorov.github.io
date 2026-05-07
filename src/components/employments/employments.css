@@ -22,7 +22,7 @@
     top: 8px;
     bottom: 8px;
     width: 2px;
-    background-color: #dee2e6;
+    background-color: var(--app-border);
 }
 
 .position-block {
@@ -41,7 +41,12 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: #0d6efd;
-    border: 2px solid #fff;
-    box-shadow: 0 0 0 1px #0d6efd;
+    background-color: var(--app-accent);
+    border: 2px solid var(--app-surface);
+    box-shadow: 0 0 0 1px var(--app-accent);
+    transition: transform 0.2s ease;
+}
+
+.position-block:hover::before {
+    transform: scale(1.15);
 }
