@@ -1,11 +1,11 @@
 .text-margin {
     margin-left: 0.5rem;
+}
 
-    .profile-item-content {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+.profile-item-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 [data-bs-theme="dark"] .profile-item-content img[src*="github"] {
