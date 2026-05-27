@@ -6,7 +6,7 @@
   "dependencies": {
     "bootstrap": "^5.3.8",
     "i18next": "26.2.0",
-    "i18next-http-backend": "^3.0.5",
+    "i18next-http-backend": "^4.0.0",
     "react": "^19.2.6",
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.2.5",
