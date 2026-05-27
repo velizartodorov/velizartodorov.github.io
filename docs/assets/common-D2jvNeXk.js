@@ -1,0 +1,2 @@
+var e=[`januari`,`februari`,`maart`,`april`,`mei`,`juni`,`juli`,`augustus`,`september`,`oktober`,`november`,`december`],t={year:`jaar`,years:`jaar`,month:`maand`,months:`maanden`,present:`heden`,at:`bij`,and:`en`,day:`dag`,days:`dagen`},n=`Aangedreven door`,r=`Bedrijfstype`,i={months:e,period:t,poweredBy:n,companyType:r};export{r as companyType,i as default,e as months,t as period,n as poweredBy};
+//# sourceMappingURL=common-D2jvNeXk.js.map
