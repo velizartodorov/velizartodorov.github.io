@@ -1,2 +1,0 @@
-var e=`Employments 💼`,t=[`collibra.json`,`docbyte.json`,`continuum.json`,`unified_post.json`,`erasmus.json`,`dsi.json`,`telnet.json`],n={title:e,list:t};export{n as default,t as list,e as title};
-//# sourceMappingURL=employments-CYSdCH1I-CYSdCH1I-CYSdCH1I.js.map

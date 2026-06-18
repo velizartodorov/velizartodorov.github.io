@@ -1,2 +1,0 @@
-var e=`Presentations 📊`,t=[{name:`Git workflows presentation`,icon:`/icons/git.png`,link:`https://www.slideshare.net/slideshow/git-workflows-256351424/256351424`}],n={title:e,list:t};export{n as default,t as list,e as title};
-//# sourceMappingURL=presentations-BYlSiQkS-BYlSiQkS-BYlSiQkS.js.map
