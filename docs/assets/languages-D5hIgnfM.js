@@ -1,2 +1,0 @@
-var e=`Talen 🌐`,t=[{label:`Engels`,icon:`/header/speak.png`,width:27,proficiency:`Professionele werkvaardigheid`},{label:`Nederlands`,icon:`/header/speak.png`,width:27,proficiency:`Professionele werkvaardigheid`},{label:`Bulgaars`,icon:`/header/speak.png`,width:27,proficiency:`Moedertaal`}],n={title:e,list:t};export{n as default,t as list,e as title};
-//# sourceMappingURL=languages-D5hIgnfM.js.map
