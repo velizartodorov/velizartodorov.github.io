@@ -32,7 +32,7 @@ jobs:
             echo "Fetching open Dependabot PRs..."
 
             # Get all open PRs created by dependabot
-            prs=$(gh pr list --author "app/dependabot" --state open --json number,title,statusCheckRollup)
+            prs=$(gh pr list --author "app/dependabot" --state open --json number,title)
 
             if [ "$prs" = "[]" ]; then
               echo "No open Dependabot PRs found."
@@ -49,21 +49,12 @@ jobs:
             echo "$prs" | jq -c '.[]' | while read -r pr; do
               pr_number=$(echo "$pr" | jq -r '.number')
               pr_title=$(echo "$pr" | jq -r '.title')
-              status_checks=$(echo "$pr" | jq -r '.statusCheckRollup')
 
               echo ""
               echo "Processing PR #$pr_number: $pr_title"
 
-              # Check if all status checks passed
-              if [ "$status_checks" = "null" ] || [ "$status_checks" = "[]" ]; then
-                echo "  ⏳ No status checks found, skipping..."
-                continue
-              fi
-
-              # Check if all checks passed
-              all_passed=$(echo "$status_checks" | jq -r 'all(.[]; .status == "COMPLETED" and .conclusion == "SUCCESS")')
-
-              if [ "$all_passed" = "true" ]; then
+              # Check if all status checks passed using gh pr checks
+              if gh pr checks "$pr_number" --require > /dev/null 2>&1; then
                 echo "  ✅ All checks passed, merging PR #$pr_number..."
                 if gh pr merge "$pr_number" --squash --delete-branch; then
                   echo "  ✨ PR #$pr_number merged successfully!"
@@ -88,7 +79,7 @@ jobs:
                 fi
               else
                 echo "  ❌ Some checks failed or are pending, skipping PR #$pr_number"
-                echo "$status_checks" | jq -r '.[] | "     \(.context): \(.status) - \(.conclusion)"'
+                gh pr checks "$pr_number" || true
               fi
             done
 
@@ -114,4 +105,4 @@ jobs:
           echo "========================================="
           echo "Auto-merge process completed!"
           echo "Total PRs merged: $merged_count"
-          echo "========================================="
+          echo "=========================================
