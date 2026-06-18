@@ -9,6 +9,43 @@
 				"$tsc"
 			],
 			"group": "build"
+		},
+		{
+			"label": "Verify build after workflow fix",
+			"type": "shell",
+			"command": "npm run build",
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Push Pages fix",
+			"type": "shell",
+			"command": "git status --short && git add .github/workflows/build-deploy.yml index.html manifest.json 404.html robots.txt && git commit -m \"Fix Pages asset deployment\"",
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Commit Pages fix",
+			"type": "shell",
+			"command": "git status --short; git add .github/workflows/build-deploy.yml index.html manifest.json 404.html robots.txt; git commit -m \"Fix Pages asset deployment\"",
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Commit Pages fix",
+			"type": "shell",
+			"command": "git status --short; git add .github/workflows/build-deploy.yml index.html manifest.json 404.html robots.txt; git commit -m 'Fix Pages asset deployment'",
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Status after restore",
+			"type": "shell",
+			"command": "git status --short",
+			"problemMatcher": [],
+			"group": "build"
 		}
 	]
 }
