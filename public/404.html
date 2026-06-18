@@ -6,15 +6,26 @@
     <script type="text/javascript">
       (function () {
         var l = window.location;
-        var redirectTo =
-          l.protocol +
-          '//' +
-          l.host +
-          '/?' +
-          l.pathname.slice(1).replace(/&/g, '~and~') +
-          (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-          l.hash;
-        window.location.replace(redirectTo);
+        var pathname = l.pathname;
+        
+        // List of static file extensions to exclude from redirect
+        var staticExtensions = ['.js', '.json', '.css', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico', '.woff', '.woff2', '.ttf', '.eot'];
+        var isStaticFile = staticExtensions.some(function(ext) {
+          return pathname.endsWith(ext);
+        });
+        
+        // Only redirect if it's not a static file
+        if (!isStaticFile) {
+          var redirectTo =
+            l.protocol +
+            '//' +
+            l.host +
+            '/?' +
+            l.pathname.slice(1).replace(/&/g, '~and~') +
+            (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+            l.hash;
+          window.location.replace(redirectTo);
+        }
       })();
     </script>
   </head>
