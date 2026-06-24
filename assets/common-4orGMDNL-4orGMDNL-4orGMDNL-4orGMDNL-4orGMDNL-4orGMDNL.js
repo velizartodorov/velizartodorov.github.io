@@ -1,2 +1,0 @@
-var e=[`January`,`February`,`March`,`April`,`May`,`June`,`July`,`August`,`September`,`October`,`November`,`December`],t={year:`year`,years:`years`,month:`month`,months:`months`,present:`Present`,at:`at`,and:`and`,day:`day`,days:`days`},n=`Powered by`,r=`Company type`,i={months:e,period:t,poweredBy:n,companyType:r};export{r as companyType,i as default,e as months,t as period,n as poweredBy};
-//# sourceMappingURL=common-4orGMDNL-4orGMDNL-4orGMDNL-4orGMDNL-4orGMDNL-4orGMDNL.js.map
