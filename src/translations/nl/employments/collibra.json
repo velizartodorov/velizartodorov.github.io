@@ -7,7 +7,8 @@
       "position": "Software Engineer",
       "place": "Brussel, België",
       "period": {
-        "start": "{{dates:collibra_start}}"
+        "start": "{{dates:collibra_start}}",
+        "end": "{{dates:collibra_end}}"
       },
       "description": [
         "Beschrijving 📚",

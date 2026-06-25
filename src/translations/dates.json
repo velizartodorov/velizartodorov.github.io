@@ -1,4 +1,5 @@
 {
+  "_comment": "Date format: YYYY-MM-DD",
   "aws_essentials": "2025-02-01",
   "nt3_cert": "2025-11-05",
   "nt2_cert": "2021-05-01",
@@ -11,7 +12,8 @@
   "computer_engineering_end": "2017-07-01",
   "german_english_education_start": "2008-09-01",
   "german_english_education_end": "2013-05-01",
-  "collibra_start": "2025-10-07",
+  "collibra_start": "2025-10-01",
+  "collibra_end": "2026-06-01",
   "docbyte_start": "2024-04-01",
   "docbyte_end": "2025-04-01",
   "continuum_start": "2023-05-01",
