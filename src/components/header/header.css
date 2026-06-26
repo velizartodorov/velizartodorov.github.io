@@ -28,9 +28,6 @@
     vertical-align: middle;
 }
 
-.profile-table tbody tr:nth-child(n+2) td:first-child {
-    text-align: center;
-}
 
 .avatar {
     height: 200px;
