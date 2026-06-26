@@ -3,9 +3,15 @@
 }
 
 .profile-item-content {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+}
+
+.profile-item-content img {
+    width: 40px;
+    flex-shrink: 0;
+    display: block;
 }
 
 [data-bs-theme="dark"] .profile-item-content img[src*="github"] {

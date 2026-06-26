@@ -4,8 +4,8 @@
 }
 
 .language-selector-switch {
-    gap: 2px;
-    min-width: 120px;
+    gap: 6px;
+    justify-content: center;
 }
 
 .language-selector-label {
@@ -15,14 +15,6 @@
     display: flex;
     align-items: center;
     height: 28px;
-}
-
-.language-selector-label.en {
-    margin-right: 50px;
-}
-
-.language-selector-label.nl {
-    margin-left: 10px;
 }
 
 .language-selector-label.inactive {
@@ -39,6 +31,6 @@
     height: 26px;
     min-height: 26px;
     min-width: 44px;
-    margin-left: 0;
-    margin-right: 0;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }
