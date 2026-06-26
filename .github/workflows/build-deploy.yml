@@ -34,28 +34,11 @@ jobs:
       - name: Build the app
         run: npm run build
 
-      - name: Publish built site to repository root
-        if: github.event_name == 'push'
-        run: |
-          rm -f index.html
-          rm -f manifest.json
-          rm -f robots.txt
-          rm -f favicon.ico
-          rm -f 404.html
-          rm -rf assets
-          rm -rf certificates
-          rm -rf education
-          rm -rf employments
-          rm -rf header
-          rm -rf icons
-          cp -R dist/. .
-          cp -R public/certificates public/education public/employments public/header public/icons public/404.html .
-
-      - name: Commit and push site files
+      - name: Commit and push docs
         if: github.event_name == 'push'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add index.html manifest.json robots.txt favicon.ico 404.html assets certificates education employments header icons
+          git add docs/
           git commit -m "Update GitHub Pages site" || echo "No changes to commit"
           git push
