@@ -1,0 +1,2 @@
+import{r as e}from"./rolldown-runtime-QTnfLwEv.js";import{d as t,f as n,h as r,u as i}from"./main-DhEiR1o-.js";var a=e(t()),o=e(r()),s=n(),c=o.forwardRef(({bsPrefix:e,fluid:t=!1,as:n=`div`,className:r,...o},c)=>{let l=i(e,`container`),u=typeof t==`string`?`-${t}`:`-fluid`;return(0,s.jsx)(n,{ref:c,...o,className:(0,a.default)(r,t?`${l}${u}`:l)})});c.displayName=`Container`;export{c as t};
+//# sourceMappingURL=Container-xvbQdpaW.js.map
