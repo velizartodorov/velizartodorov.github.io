@@ -127,6 +127,7 @@ const initI18n = async () => {
       fallbackLng: DEFAULT_LANGUAGE,
       ns: NAMESPACES,
       defaultNS: 'common',
+      resources: {},
       interpolation: { escapeValue: false },
     });
     await loadTranslations();
