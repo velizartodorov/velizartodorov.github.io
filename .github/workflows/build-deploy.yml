@@ -35,7 +35,7 @@ jobs:
         run: npm run build
 
       - name: Commit and push docs
-        if: github.event_name == 'push'
+        if: success() && github.event_name == 'push'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
