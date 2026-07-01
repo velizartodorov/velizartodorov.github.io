@@ -197,10 +197,9 @@ describe('LanguageSelector', () => {
     expect(screen.getByTestId('path').textContent).toBe('/');
   });
 
-  it('NL button is pressed when Dutch is active', async () => {
-    await act(async () => { await i18n.changeLanguage('nl'); });
+  it('NL button is pressed when at /nl', () => {
     render(
-      <Wrapper>
+      <Wrapper initialEntries={['/nl']}>
         <LanguageSelector />
       </Wrapper>
     );
