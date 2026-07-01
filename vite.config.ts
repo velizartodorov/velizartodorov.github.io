@@ -1,6 +1,12 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'node:path';
+import { execSync } from 'node:child_process';
+
+const commitSha = process.env.VITE_COMMIT_SHA ?? (() => {
+  try { return execSync('git rev-parse HEAD', { encoding: 'utf8' }).trim(); }
+  catch { return undefined; }
+})();
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -33,6 +39,9 @@ export default defineConfig({
   // Configure proper handling of JSON files
   json: {
     stringify: false
+  },
+  define: {
+    'import.meta.env.VITE_COMMIT_SHA': JSON.stringify(commitSha),
   },
   publicDir: resolve(__dirname, 'public'),
   test: {
