@@ -3,6 +3,13 @@
     "list": [
         {
             "icon": "/education/cvo_gent.png",
+            "name": "Deelcertificaat NT2 - Effectiveness mondeling",
+            "institution": "Het Perspectief PCVO",
+            "field": "Dutch/Flemish Language and Literature",
+            "date": "{{dates:eff_cert}}"
+        },
+        {
+            "icon": "/education/cvo_gent.png",
             "name": "Nederlands - tweede taal - richtgraad 3",
             "institution": "Het Perspectief PCVO",
             "field": "Dutch/Flemish Language and Literature",
