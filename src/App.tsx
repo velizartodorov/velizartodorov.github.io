@@ -40,7 +40,7 @@ function PageContent() {
   );
 }
 
-function LangRoute({ lang }: { lang: 'en' | 'nl' }) {
+export function LangRoute({ lang }: { lang: 'en' | 'nl' }) {
   const { i18n } = useTranslation();
 
   useEffect(() => {
