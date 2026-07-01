@@ -60,7 +60,7 @@ The custom `build-deploy.yml` workflow makes sure that:
 
 Example:
 
-![cicd](assets/cicd.png)
+![cicd](.github/images/cicd.png)
 
 ### Dependabot 🤖
 
