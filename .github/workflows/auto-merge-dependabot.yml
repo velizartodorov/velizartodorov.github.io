@@ -67,8 +67,8 @@ jobs:
 
                   if [ -n "$remaining_prs" ]; then
                     for remaining_pr in $remaining_prs; do
-                      echo "     Updating PR #$remaining_pr..."
-                      gh api "repos/:owner/:repo/pulls/$remaining_pr/update-branch" -X PUT 2>/dev/null || echo "     ⚠️ Could not update PR #$remaining_pr (may already be up-to-date)"
+                      echo "     Rebasing PR #$remaining_pr..."
+                      gh pr comment "$remaining_pr" --body "@dependabot rebase" 2>/dev/null || echo "     ⚠️ Could not rebase PR #$remaining_pr"
                     done
                   fi
 
