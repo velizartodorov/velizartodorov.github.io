@@ -5,13 +5,13 @@ import { App } from './App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
-// GitHub Pages SPA redirect: paths are encoded as "?some/path" in the search string.
-// Re-decode them back to the real path so React Router sees the right URL.
-const params = new URLSearchParams(globalThis.location.search);
-const isPathRedirect = globalThis.location.search.length > 0
-  && [...params.values()].some(v => v === '');
+const search = globalThis.location.search;
+
+// GitHub Pages SPA redirect: 404.html encodes the path as the bare query string with no '='.
+// Re-decode it back to the real path so React Router sees the right URL.
+const isPathRedirect = search.length > 0 && !search.slice(1).includes('=');
 const redirectPath = isPathRedirect
-  ? globalThis.location.search.slice(1).replaceAll('~and~', '&')
+  ? search.slice(1).replaceAll('~and~', '&')
   : null;
 
 if (redirectPath) {
@@ -19,12 +19,25 @@ if (redirectPath) {
   globalThis.history.replaceState(null, '', newUrl);
 }
 
+// Backward compat: ?lang=nl links redirect to the /nl subpath.
+if (!isPathRedirect && search) {
+  const langParam = new URLSearchParams(search).get('lang');
+  if (langParam === 'nl') {
+    globalThis.history.replaceState(null, '', globalThis.location.origin + '/nl');
+  } else if (langParam === 'en') {
+    const cleanUrl = new URL(globalThis.location.href);
+    cleanUrl.searchParams.delete('lang');
+    globalThis.history.replaceState(null, '', cleanUrl.toString());
+  }
+}
+
 const initApp = async () => {
   try {
     const { i18nInstance, default: i18n } = await import('./i18n');
     await i18nInstance;
 
-    if (globalThis.location.pathname.startsWith('/nl')) {
+    const pathname = globalThis.location.pathname;
+    if (pathname === '/nl' || pathname.startsWith('/nl/')) {
       await i18n.changeLanguage('nl');
     }
 

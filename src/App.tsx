@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './App.css';
-import { LanguageSelector } from './components/common/language_selector';
 import Education from './components/education/education';
 import Employments from './components/employments/employments';
 import Footer from './components/footer/footer';
@@ -52,7 +51,7 @@ function LangRoute({ lang }: { lang: 'en' | 'nl' }) {
     setLink('link[hreflang="en"]', { rel: 'alternate', hreflang: 'en', href: `${SITE_URL}/` });
     setLink('link[hreflang="nl"]', { rel: 'alternate', hreflang: 'nl', href: `${SITE_URL}/nl/` });
     setLink('link[hreflang="x-default"]', { rel: 'alternate', hreflang: 'x-default', href: `${SITE_URL}/` });
-  }, [lang, i18n]);
+  }, [lang]);
 
   return <PageContent />;
 }
@@ -65,12 +64,11 @@ export function App() {
 
   return (
     <Router basename="/">
-      <Header>
-        <LanguageSelector />
-      </Header>
+      <Header />
       <Routes>
         <Route path="/" element={<LangRoute lang="en" />} />
         <Route path="/nl" element={<LangRoute lang="nl" />} />
+        <Route path="/nl/" element={<LangRoute lang="nl" />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <EnvBanner />
