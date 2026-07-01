@@ -56,7 +56,7 @@ jobs:
               # Check if all status checks passed using gh pr checks
               if gh pr checks "$pr_number" --required > /dev/null 2>&1; then
                 echo "  ✅ All checks passed, merging PR #$pr_number..."
-                if gh pr merge "$pr_number" --squash --delete-branch; then
+                if gh pr merge "$pr_number" --squash --delete-branch --yes; then
                   echo "  ✨ PR #$pr_number merged successfully!"
                   echo "true" > /tmp/merged_flag
 
