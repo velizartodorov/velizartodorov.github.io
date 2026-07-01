@@ -1,12 +1,16 @@
 import React from 'react';
 import './language_selector.css';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 export const LanguageSelector: React.FC = () => {
     const { i18n } = useTranslation();
+    const navigate = useNavigate();
     const isEnglish = i18n.language === 'en';
     const handleChange = () => {
-        void i18n.changeLanguage(isEnglish ? 'nl' : 'en');
+        const newLang = isEnglish ? 'nl' : 'en';
+        void i18n.changeLanguage(newLang);
+        navigate(isEnglish ? '/nl' : '/', { replace: true });
     };
     return (
         <div className="form-check form-switch d-flex align-items-center language-selector-switch">

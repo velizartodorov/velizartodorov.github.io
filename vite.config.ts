@@ -34,5 +34,10 @@ export default defineConfig({
   json: {
     stringify: false
   },
-  publicDir: resolve(__dirname, 'public')
+  publicDir: resolve(__dirname, 'public'),
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: ['./src/setupTests.ts'],
+  },
 });
