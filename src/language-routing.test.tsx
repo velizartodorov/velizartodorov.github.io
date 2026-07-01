@@ -174,18 +174,18 @@ describe('LangRoute', () => {
 // ─── LanguageSelector component ──────────────────────────────────────────────
 
 describe('LanguageSelector', () => {
-  it('navigates to /nl when toggled from English', async () => {
+  it('navigates to /nl when NL is clicked from English', async () => {
     render(
       <Wrapper initialEntries={['/']}>
         <LanguageSelector />
         <LocationDisplay />
       </Wrapper>
     );
-    await userEvent.click(screen.getByRole('checkbox'));
+    await userEvent.click(screen.getByRole('button', { name: 'NL' }));
     expect(screen.getByTestId('path').textContent).toBe('/nl');
   });
 
-  it('navigates to / when toggled from Dutch', async () => {
+  it('navigates to / when EN is clicked from Dutch', async () => {
     await act(async () => { await i18n.changeLanguage('nl'); });
     render(
       <Wrapper initialEntries={['/nl']}>
@@ -193,26 +193,26 @@ describe('LanguageSelector', () => {
         <LocationDisplay />
       </Wrapper>
     );
-    await userEvent.click(screen.getByRole('checkbox'));
+    await userEvent.click(screen.getByRole('button', { name: 'EN' }));
     expect(screen.getByTestId('path').textContent).toBe('/');
   });
 
-  it('toggle is checked when Dutch is active', async () => {
+  it('NL button is pressed when Dutch is active', async () => {
     await act(async () => { await i18n.changeLanguage('nl'); });
     render(
       <Wrapper>
         <LanguageSelector />
       </Wrapper>
     );
-    expect(screen.getByRole('checkbox')).toBeChecked();
+    expect(screen.getByRole('button', { name: 'NL' })).toHaveAttribute('aria-pressed', 'true');
   });
 
-  it('toggle is unchecked when English is active', () => {
+  it('EN button is pressed when English is active', () => {
     render(
       <Wrapper>
         <LanguageSelector />
       </Wrapper>
     );
-    expect(screen.getByRole('checkbox')).not.toBeChecked();
+    expect(screen.getByRole('button', { name: 'EN' })).toHaveAttribute('aria-pressed', 'true');
   });
 });
