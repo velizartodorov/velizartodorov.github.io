@@ -13,7 +13,7 @@ const EnvBanner: React.FC = () => {
       padding: '4px',
       position: 'fixed',
       width: '100%',
-      bottom: 0,
+      top: 0,
       zIndex: 9999,
       fontWeight: 'bold'
     }}>

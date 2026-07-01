@@ -64,6 +64,7 @@ export function App() {
 
   return (
     <Router basename="/">
+      <EnvBanner />
       <Header />
       <Routes>
         <Route path="/" element={<LangRoute lang="en" />} />
@@ -71,7 +72,6 @@ export function App() {
         <Route path="/nl/" element={<LangRoute lang="nl" />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-      <EnvBanner />
       <Footer />
     </Router>
   );
