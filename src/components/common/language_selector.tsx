@@ -8,8 +8,8 @@ export const LanguageSelector: React.FC = () => {
     const isEnglish = pathname !== '/nl' && !pathname.startsWith('/nl/');
 
     const switchTo = (lang: 'en' | 'nl') => {
-        if ((lang === 'en') === isEnglish) return;
-        navigate(lang === 'nl' ? '/nl' : '/', { replace: true });
+        const target = (lang === 'en') === isEnglish ? (isEnglish ? 'nl' : 'en') : lang;
+        navigate(target === 'nl' ? '/nl' : '/', { replace: true });
     };
 
     return (
