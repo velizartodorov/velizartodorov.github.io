@@ -5,10 +5,9 @@ import { App } from './App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
+// GitHub Pages SPA redirect: paths are encoded as "?some/path" in the search string.
+// Re-decode them back to the real path so React Router sees the right URL.
 const params = new URLSearchParams(globalThis.location.search);
-const langParam = params.get('lang');
-
-// GitHub Pages path redirects have empty-value entries (e.g. "?about", "?some/path")
 const isPathRedirect = globalThis.location.search.length > 0
   && [...params.values()].some(v => v === '');
 const redirectPath = isPathRedirect
@@ -25,8 +24,8 @@ const initApp = async () => {
     const { i18nInstance, default: i18n } = await import('./i18n');
     await i18nInstance;
 
-    if (langParam === 'en' || langParam === 'nl') {
-      await i18n.changeLanguage(langParam);
+    if (globalThis.location.pathname.startsWith('/nl')) {
+      await i18n.changeLanguage('nl');
     }
 
     const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
