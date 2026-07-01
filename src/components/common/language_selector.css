@@ -1,36 +1,38 @@
-.language-selector-switch.form-check,
-.language-selector-switch.form-switch {
-    padding-left: 0 !important;
-}
-
-.language-selector-switch {
-    gap: 6px;
-    justify-content: flex-start;
-}
-
-.language-selector-label {
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    display: flex;
+.lang-pill {
+    display: inline-flex;
     align-items: center;
-    height: 28px;
+    background: var(--app-surface-alt);
+    border: 1px solid var(--app-border);
+    border-radius: 24px;
+    padding: 3px;
+    gap: 2px;
 }
 
-.language-selector-label.inactive {
-    opacity: 0.4;
-}
-
-.language-selector-label.active {
-    opacity: 1;
-}
-
-.language-selector-input {
+.lang-pill-btn {
+    border: none;
+    background: transparent;
+    border-radius: 20px;
+    padding: 5px 13px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--app-text-muted);
     cursor: pointer;
-    width: 44px;
-    height: 26px;
-    min-height: 26px;
-    min-width: 44px;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+    transition: background 0.15s ease, color 0.15s ease;
+    font-family: inherit;
+    line-height: 1.4;
+}
+
+.lang-pill-btn.active {
+    background: var(--app-accent-subtle);
+    color: var(--app-accent);
+}
+
+.lang-pill-btn:not(.active):hover {
+    color: var(--app-text);
+}
+
+.lang-pill-btn:focus-visible {
+    outline: 2px solid var(--app-accent);
+    outline-offset: 1px;
 }
