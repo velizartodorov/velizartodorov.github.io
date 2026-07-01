@@ -36,6 +36,8 @@ jobs:
 
       - name: Build the app
         run: npm run build
+        env:
+          VITE_COMMIT_SHA: ${{ github.sha }}
 
       - name: Commit and push docs
         if: success() && github.event_name == 'push'
