@@ -12,6 +12,7 @@
 /build
 /dist
 /docs
+/assets
 
 # misc
 .DS_Store
