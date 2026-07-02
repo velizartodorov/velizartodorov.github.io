@@ -1,3 +1,28 @@
+@import "tailwindcss";
+
+/* theme.ts toggles data-bs-theme on <html>, not a "dark" class */
+@custom-variant dark (&:where([data-bs-theme="dark"], [data-bs-theme="dark"] *));
+
+@theme {
+  /* Match Bootstrap's grid breakpoints (kept from the pre-Tailwind layout) */
+  --breakpoint-sm: 36rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 62rem;
+  --breakpoint-xl: 75rem;
+  --breakpoint-2xl: 87.5rem;
+
+  --color-app-bg: var(--app-bg);
+  --color-app-surface: var(--app-surface);
+  --color-app-surface-alt: var(--app-surface-alt);
+  --color-app-border: var(--app-border);
+  --color-app-text: var(--app-text);
+  --color-app-text-muted: var(--app-text-muted);
+  --color-app-accent: var(--app-accent);
+  --color-app-accent-subtle: var(--app-accent-subtle);
+  --color-app-link: var(--app-link);
+  --color-app-link-hover: var(--app-link-hover);
+}
+
 :root {
   /* GitHub Primer light palette */
   --app-bg: #ffffff;
@@ -13,27 +38,6 @@
   --app-dot-ring: #ffffff;
   --app-link: #0969da;
   --app-link-hover: #0860c4;
-
-/* Accordion polish: softer active state, refined corners, both themes. */
-
-  --bs-accordion-active-bg: var(--app-surface-alt);
-  --bs-accordion-active-color: var(--app-text);
-  --bs-accordion-btn-focus-box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
-  --bs-accordion-border-color: var(--app-border);
-  --bs-accordion-border-radius: 12px;
-  --bs-accordion-inner-border-radius: 11px;
-  --bs-accordion-bg: var(--app-surface);
-  --bs-accordion-color: var(--app-text);
-  --bs-accordion-btn-color: var(--app-text);
-}
-
-.accordion-button {
-  font-weight: 500;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.accordion-item {
-  box-shadow: 0 1px 3px var(--app-shadow);
 }
 
 [data-bs-theme="dark"] {
@@ -51,14 +55,6 @@
   --app-dot-ring: #161b22;
   --app-link: #2f81f7;
   --app-link-hover: #58a6ff;
-
-  /* Override Bootstrap dark-theme variables so its components share our palette. */
-  --bs-body-bg: var(--app-bg);
-  --bs-body-color: var(--app-text);
-  --bs-border-color: var(--app-border);
-  --bs-secondary-bg: var(--app-surface);
-  --bs-tertiary-bg: var(--app-surface-alt);
-  --bs-emphasis-color: var(--app-text);
 }
 
 html {

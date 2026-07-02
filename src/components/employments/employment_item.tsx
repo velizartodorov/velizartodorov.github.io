@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { Accordion, Col, Container, Row } from "react-bootstrap";
 
 import { useTranslation } from 'react-i18next';
+import { AccordionItem } from '../common/accordion';
 import { bullet } from "../common/utils";
 import { Employment } from "./employment";
 import { combinedPeriod, useDisplayPeriod } from './utils';
@@ -20,73 +20,72 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
             ? `${headerPosition.position} ${at} ${item.company}`
             : '';
 
+        const header = (
+            <div className="flex w-full items-center gap-3">
+                <div className="shrink-0 text-left">
+                    <img src={item.icon} alt="company icon" className="w-[30px]" />
+                </div>
+                <div className="w-9/12 text-left md:w-5/12">
+                    <h5 className="mb-0 text-xl max-sm:text-base max-sm:font-normal">
+                        {headerTitle}
+                    </h5>
+                </div>
+                <div className="hidden flex-1 sm:block">
+                    {headerPlace}
+                </div>
+                <div className="hidden shrink-0 text-right sm:block">
+                    <h5 className="mb-0 text-xl max-sm:text-base max-sm:font-normal">
+                        {headerPeriod ? display(headerPeriod) : ''}
+                    </h5>
+                </div>
+            </div>
+        );
         return (
-            <Accordion.Item eventKey={eventKey}>
-                <Accordion.Header>
-                    <Container fluid>
-                        <Row className="align-items-center">
-                            <Col xs="auto" className="text-left">
-                                <img src={item.icon} alt="company icon" width="30" />
-                            </Col>
-                            <Col xs={9} md={5} className="text-left">
-                                <h5 className="employment-font">
-                                    {headerTitle}
-                                </h5>
-                            </Col>
-                            <Col className="d-none d-sm-block d-md-block">
-                                {headerPlace}
-                            </Col>
-                            <Col xs="auto" className="d-none d-sm-block text-right">
-                                <h5 className="employment-font">
-                                    {headerPeriod ? display(headerPeriod) : ''}
-                                </h5>
-                            </Col>
-                        </Row>
-                    </Container>
-                </Accordion.Header>
-                <Accordion.Body>
-                    {item.type && (
-                        <div className="mb-3">
-                            {`🏢 ${t('common:companyType')}: ${item.type}`}
-                        </div>
-                    )}
-                    <div className="positions-timeline">
-                    {positions.map((position, posIdx) => {
-                        const showTitle = positions.length > 1;
-                        return (
-                            <div key={`${index}-${posIdx}`} className="position-block">
-                                {showTitle && (
-                                    <>
-                                        <h5 className="employment-font mb-1">
-                                            {`${position.position}`}
-                                        </h5>
-                                        <div className="text-muted mb-2">
-                                            {display({
-                                                start: new Date(position.period.start),
-                                                end: position.period.end ? new Date(position.period.end) : undefined
-                                            })}
-                                        </div>
-                                    </>
-                                )}
-                                {position.description?.map((bodyItem: string, descIdx: number) => (
-                                    <span key={`${index}-${posIdx}-${descIdx}`}>
-                                        {bodyItem}
-                                        <br />
-                                    </span>
-                                ))}
-                                {position.references?.map((link: Reference, refIdx: number) => (
-                                    <div key={`${link.href}-${refIdx}`}>
-                                        <span>{bullet} </span>
-                                        <a href={link.href}>{link.value}</a>
-                                        <br />
-                                    </div>
-                                ))}
-                            </div>
-                        );
-                    })}
+            <AccordionItem eventKey={eventKey} header={header}>
+                {item.type && (
+                    <div className="mb-3">
+                        {`🏢 ${t('common:companyType')}: ${item.type}`}
                     </div>
-                </Accordion.Body>
-            </Accordion.Item>
+                )}
+                <div className="relative space-y-7 pl-6 before:absolute before:top-2 before:bottom-2 before:left-[9px] before:w-[2px] before:bg-app-border before:content-['']">
+                {positions.map((position, posIdx) => {
+                    const showTitle = positions.length > 1;
+                    return (
+                        <div
+                            key={`${index}-${posIdx}`}
+                            className="relative before:absolute before:-left-5 before:top-2 before:h-3 before:w-3 before:rounded-full before:border-2 before:border-app-surface before:bg-app-accent before:shadow-[0_0_0_1px_var(--app-accent)] before:transition-transform before:duration-200 before:content-[''] hover:before:scale-[1.15]"
+                        >
+                            {showTitle && (
+                                <>
+                                    <h5 className="mb-1 text-xl max-sm:text-base max-sm:font-normal">
+                                        {`${position.position}`}
+                                    </h5>
+                                    <div className="mb-2 text-app-text-muted">
+                                        {display({
+                                            start: new Date(position.period.start),
+                                            end: position.period.end ? new Date(position.period.end) : undefined
+                                        })}
+                                    </div>
+                                </>
+                            )}
+                            {position.description?.map((bodyItem: string, descIdx: number) => (
+                                <span key={`${index}-${posIdx}-${descIdx}`}>
+                                    {bodyItem}
+                                    <br />
+                                </span>
+                            ))}
+                            {position.references?.map((link: Reference, refIdx: number) => (
+                                <div key={`${link.href}-${refIdx}`}>
+                                    <span>{bullet} </span>
+                                    <a href={link.href}>{link.value}</a>
+                                    <br />
+                                </div>
+                            ))}
+                        </div>
+                    );
+                })}
+                </div>
+            </AccordionItem>
         );
     };
 

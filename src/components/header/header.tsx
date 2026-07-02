@@ -1,8 +1,5 @@
-import Table from 'react-bootstrap/Table';
-
 import { LanguageSelector } from '../common/language_selector';
 import ThemeToggle from '../common/theme_toggle';
-import './header.css';
 import { useProfile } from './profile.init';
 import ProfileItem from './profile_item';
 import React from "react";
@@ -10,32 +7,24 @@ import React from "react";
 const Header: React.FC = () => {
     const profile = useProfile();
     return (
-        <header className="mt-3 ms-0 ms-md-4">
-            <Table responsive borderless className="profile-table mb-2">
-                <tbody>
-                    <tr>
-                        <td rowSpan={3} className="avatar-td">
-                            <img className="avatar" src={profile.imageUrl} alt="" />
-                        </td>
-                        <td colSpan={3}>
-                            <div className="header-name-row">
-                                <h2 className="mb-0">{profile.name}</h2>
-                                <ThemeToggle />
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><LanguageSelector /></td>
-                        <td><ProfileItem link={profile.email} /></td>
-                        <td><ProfileItem link={profile.linkedIn} /></td>
-                    </tr>
-                    <tr>
-                        <td><ProfileItem link={profile.gitHub} /></td>
-                        <td><ProfileItem link={profile.blog} /></td>
-                        <td><ProfileItem link={profile.address} /></td>
-                    </tr>
-                </tbody>
-            </Table>
+        <header className="mt-3 ml-0 md:ml-6">
+            <div className="mb-2 grid grid-cols-1 items-center justify-items-center gap-x-4 gap-y-2 text-center sm:grid-cols-[240px_repeat(3,1fr)] sm:justify-items-start sm:text-left">
+                <img
+                    className="row-start-1 h-[200px] w-[200px] rounded-full border-[3px] border-app-surface-alt object-cover shadow-[0_4px_16px_var(--app-shadow)] transition-[transform,box-shadow] duration-300 hover:scale-[1.02] hover:shadow-[0_6px_24px_var(--app-shadow)] sm:col-start-1 sm:row-span-3"
+                    src={profile.imageUrl}
+                    alt=""
+                />
+                <div className="row-start-2 flex items-center gap-4 sm:col-start-2 sm:col-span-3 sm:row-start-1">
+                    <h2 className="m-0 text-[2rem] font-bold tracking-tight">{profile.name}</h2>
+                    <ThemeToggle />
+                </div>
+                <div className="sm:col-start-2 sm:row-start-2"><LanguageSelector /></div>
+                <div className="sm:col-start-3 sm:row-start-2"><ProfileItem link={profile.email} /></div>
+                <div className="sm:col-start-4 sm:row-start-2"><ProfileItem link={profile.linkedIn} /></div>
+                <div className="sm:col-start-2 sm:row-start-3"><ProfileItem link={profile.gitHub} /></div>
+                <div className="sm:col-start-3 sm:row-start-3"><ProfileItem link={profile.blog} /></div>
+                <div className="sm:col-start-4 sm:row-start-3"><ProfileItem link={profile.address} /></div>
+            </div>
         </header>
     );
 };

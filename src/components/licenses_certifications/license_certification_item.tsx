@@ -1,6 +1,5 @@
 
 import { FC } from 'react';
-import { Col, ListGroup, Row } from 'react-bootstrap';
 import { LicenseCertification } from './license_certification';
 import { useMonthYear } from './licenses_certrifications.init';
 
@@ -8,34 +7,35 @@ const LicenseCertificationItem: FC<{ item: LicenseCertification; index: number }
   const hasLink = Boolean(item.link?.trim());
   const getMonthYear = useMonthYear();
   const monthYearStr = getMonthYear(item.date);
+  const Tag = hasLink ? 'a' : 'div';
 
   return (
-    <ListGroup.Item
-      as={hasLink ? 'a' : 'div'}
-      href={hasLink ? item.link : undefined}
-      rel={hasLink ? 'noopener noreferrer' : undefined}
-      className="p-10 list-group-item license-item"
-    >
-      <Row className="align-items-center">
-        <Col xs="auto" className="text-left license-icon">
-          <img
-            src={item.icon}
-            height="25"
-            width="30"
-            alt="license icon"
-          />
-        </Col>
-        <Col xs={9} md={5} className="text-left">
-          <h5 className="license-font mb-0">{item.name}</h5>
-        </Col>
-        <Col className="text-left d-none d-sm-block ps-0">
-          {item.institution}
-        </Col>
-        <Col xs="auto" className="text-end d-none d-sm-block pe-5">
-          <h5>{monthYearStr}</h5>
-        </Col>
-      </Row>
-    </ListGroup.Item>
+    <li>
+      <Tag
+        href={hasLink ? item.link : undefined}
+        rel={hasLink ? 'noopener noreferrer' : undefined}
+        className="block rounded-lg px-4 py-2 transition-colors hover:bg-app-surface-alt hover:no-underline"
+      >
+        <div className="flex items-center gap-3">
+          <div className="shrink-0 text-left">
+            <img
+              src={item.icon}
+              alt="license icon"
+              className="h-[25px] w-[30px] rounded bg-app-icon-bg shadow-[0_1px_4px_var(--app-shadow)]"
+            />
+          </div>
+          <div className="w-9/12 text-left md:w-5/12">
+            <h5 className="mb-0 text-xl max-sm:text-base max-sm:font-normal">{item.name}</h5>
+          </div>
+          <div className="hidden flex-1 pl-0 text-left sm:block">
+            {item.institution}
+          </div>
+          <div className="hidden shrink-0 pr-12 text-right sm:block">
+            <h5 className="mb-0 text-xl">{monthYearStr}</h5>
+          </div>
+        </div>
+      </Tag>
+    </li>
   );
 };
 

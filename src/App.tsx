@@ -1,8 +1,6 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect } from 'react';
 import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import './App.css';
 import Education from './components/education/education';
 import Employments from './components/employments/employments';
 import Footer from './components/footer/footer';
@@ -30,12 +28,12 @@ function setLink(selector: string, attrs: Record<string, string>): void {
 function PageContent() {
   return (
     <>
-      <Introduction className="mx-4" eventKey="0" />
-      <Employments className="mt-3 mx-4" eventKey="1" />
-      <LicensesCertifications className="mt-3 mx-4" eventKey="2" />
-      <Presentations className="mt-3 mx-4" eventKey="3" />
-      <Languages className="mt-3 mx-4" eventKey="4" />
-      <Education className="mt-3 mx-4" eventKey="5" />
+      <Introduction className="mx-6" eventKey="0" />
+      <Employments className="mt-4 mx-6" eventKey="1" />
+      <LicensesCertifications className="mt-4 mx-6" eventKey="2" />
+      <Presentations className="mt-4 mx-6" eventKey="3" />
+      <Languages className="mt-4 mx-6" eventKey="4" />
+      <Education className="mt-4 mx-6" eventKey="5" />
     </>
   );
 }
