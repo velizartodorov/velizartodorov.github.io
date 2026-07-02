@@ -1,4 +1,5 @@
 import { FC, useState } from 'react';
+import { AccordionChevron } from './accordion';
 import { Properties } from './properties';
 
 const AccordionWrapper: FC<Properties> = ({ title, children, className = '' }) => {
@@ -14,12 +15,7 @@ const AccordionWrapper: FC<Properties> = ({ title, children, className = '' }) =
         <h4 className="m-0 font-semibold tracking-tight text-app-text text-[clamp(0.6rem,-0.75rem+9vw,1.5rem)]">
           {title}
         </h4>
-        <span
-          aria-hidden="true"
-          className={`shrink-0 text-2xl text-app-text-muted transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
-        >
-          ▾
-        </span>
+        <AccordionChevron open={open} className="h-6 w-6 text-app-text-muted" />
       </button>
       <div className={`grid transition-[grid-template-rows] duration-200 ease-out ${open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
         <div className="overflow-hidden">
