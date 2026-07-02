@@ -9,7 +9,7 @@ const Employments = ({className, eventKey}: SectionProps) => {
     const {t} = useTranslation();
     return (
         <AccordionWrapper title={t('employments:title')} eventKey={eventKey} className={className}>
-            <AccordionGroup>
+            <AccordionGroup className="space-y-1">
                 {useEmployments().map((item, index) => (
                     <EmploymentItem item={item} index={index} eventKey={String(index)} key={index.valueOf()}/>
                 ))}

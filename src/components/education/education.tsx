@@ -18,7 +18,7 @@ const Education = ({className, eventKey}: Omit<SectionProps, 'title'>) => {
         : [];
     return (
         <AccordionWrapper title={title} eventKey={eventKey} className={className}>
-            <AccordionGroup>
+            <AccordionGroup className="space-y-1">
                 {educations.map((item, index) => (
                     <EducationItem item={item} index={index} key={index.valueOf()}/>
                 ))}

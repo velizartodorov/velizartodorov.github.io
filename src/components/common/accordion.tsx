@@ -8,12 +8,12 @@ interface AccordionCtx {
 const AccordionContext = createContext<AccordionCtx | null>(null);
 
 /** Groups AccordionItems so opening one closes the others, like Bootstrap's default (non-alwaysOpen) Accordion. */
-export const AccordionGroup: FC<{ children: ReactNode }> = ({ children }) => {
+export const AccordionGroup: FC<{ children: ReactNode; className?: string }> = ({ children, className = 'space-y-2' }) => {
   const [openKey, setOpenKey] = useState<string | null>(null);
   const toggle = (key: string) => setOpenKey((prev) => (prev === key ? null : key));
   return (
     <AccordionContext.Provider value={{ openKey, toggle }}>
-      <div className="space-y-2">{children}</div>
+      <div className={className}>{children}</div>
     </AccordionContext.Provider>
   );
 };
