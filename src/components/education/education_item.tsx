@@ -14,7 +14,7 @@ const EducationItem: FC<{ item: IEducation; index: number }> = ({ item, index })
   const header = (
     <div className="flex w-full items-center gap-3">
       <div className="shrink-0 text-left">
-        <img src={item.icon} alt="education icon" className="w-[30px]" />
+        <img src={item.icon} alt="education icon" className="w-[30px] rounded-lg" />
       </div>
       <div className="w-9/12 text-left md:w-7/12">
         <h5 className="mb-0 text-xl max-sm:text-base max-sm:font-normal">
