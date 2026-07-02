@@ -2,9 +2,9 @@ name: Auto-merge Dependabot PRs
 
 on:
   schedule:
-    # Run every Wednesday at 08:00 UTC (09:00 CET / 10:00 CEST Brussels time)
-    # Gives time for Dependabot PRs (created Tuesday) and CI checks to complete
-    - cron: '0 8 * * 3'
+    # Run daily at 09:00 UTC (10:00 CET / 11:00 CEST Brussels time)
+    # Gives time for that day's Dependabot PRs (created 08:00 Brussels time) and CI checks to complete
+    - cron: '0 9 * * *'
   workflow_dispatch: # Allow manual trigger
 
 permissions:
