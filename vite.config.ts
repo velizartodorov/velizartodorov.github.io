@@ -45,5 +45,6 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: ['./src/setupTests.ts'],
+    maxConcurrency: 20, // let src/links.test.ts fire all its concurrent checks in one batch
   },
 });

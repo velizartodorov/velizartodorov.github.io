@@ -48,10 +48,7 @@ const allLinks = [...collectEmploymentLinks(), ...collectEducationLinks()].filte
 describe('external links', () => {
   it.concurrent.each(allLinks)('$label — $url', async ({ url }) => {
     const opts = { signal: AbortSignal.timeout(10_000), headers: { 'User-Agent': 'Mozilla/5.0 link-checker', 'Accept': 'text/html,application/xhtml+xml,*/*' } };
-    let response = await fetch(url, { method: 'HEAD', ...opts });
-    if (!response.ok) {
-      response = await fetch(url, { method: 'GET', ...opts });
-    }
+    const response = await fetch(url, { method: 'GET', ...opts });
     expect(
       response.ok,
       `Expected 2xx but got ${response.status} for ${url}`,
