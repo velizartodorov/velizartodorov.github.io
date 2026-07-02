@@ -10,6 +10,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  actions: write
 
 jobs:
   auto-merge:
@@ -106,3 +107,9 @@ jobs:
           echo "Auto-merge process completed!"
           echo "Total PRs merged: $merged_count"
           echo "========================================="
+
+          if [ "$merged_count" -gt 0 ]; then
+            echo ""
+            echo "🚀 Triggering deployment for the updated master branch..."
+            gh workflow run build-deploy.yml --ref master
+          fi
