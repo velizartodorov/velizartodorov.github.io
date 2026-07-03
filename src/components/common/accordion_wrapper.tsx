@@ -1,25 +1,26 @@
 import { FC, useState } from 'react';
 import { AccordionChevron } from './accordion';
 import { Properties } from './properties';
+import { cx } from './utils';
 
 const AccordionWrapper: FC<Properties> = ({ title, children, className = '' }) => {
     const [open, setOpen] = useState(true);
     return (
         <div
-            className={[
+            className={cx(
                 'border-app-border bg-app-surface overflow-hidden rounded-xl border',
                 'shadow-[0_1px_3px_var(--app-shadow)]',
                 className,
-            ].join(' ')}
+            )}
         >
             <button
                 type="button"
                 onClick={() => setOpen((o) => !o)}
                 aria-expanded={open}
-                className={[
+                className={cx(
                     'bg-app-surface-alt flex w-full cursor-pointer items-center justify-between gap-3 rounded-t-xl',
                     'px-4 py-2 text-left transition-[filter] hover:brightness-95 dark:hover:brightness-125',
-                ].join(' ')}
+                )}
             >
                 {/* Sized to keep the longest current title ("Licenses & certifications 🔖", ~27 chars)
             on one line down to ~320px viewports, with some margin to spare. If a longer title
@@ -30,10 +31,10 @@ const AccordionWrapper: FC<Properties> = ({ title, children, className = '' }) =
                 <AccordionChevron open={open} className="text-app-text-muted h-6 w-6" />
             </button>
             <div
-                className={[
+                className={cx(
                     'grid transition-[grid-template-rows] duration-200 ease-out',
                     open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]',
-                ].join(' ')}
+                )}
             >
                 <div className="overflow-hidden">
                     <div className="px-4 pt-3 pb-4">{children}</div>

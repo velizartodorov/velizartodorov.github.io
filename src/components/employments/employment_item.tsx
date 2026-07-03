@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { AccordionItem } from '../common/accordion';
-import { bullet } from '../common/utils';
+import { bullet, cx } from '../common/utils';
 import { Employment } from './employment';
 import { combinedPeriod, useDisplayPeriod } from './utils';
 import { Reference } from '../common/reference';
@@ -37,22 +37,22 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
         <AccordionItem eventKey={eventKey} header={header}>
             {item.type && <div className="mb-3">{`🏢 ${t('common:companyType')}: ${item.type}`}</div>}
             <div
-                className={[
+                className={cx(
                     'before:bg-app-border relative space-y-7 pl-6',
                     "before:absolute before:top-2 before:bottom-2 before:left-[9px] before:w-[2px] before:content-['']",
-                ].join(' ')}
+                )}
             >
                 {positions.map((position, posIdx) => {
                     const showTitle = positions.length > 1;
                     return (
                         <div
                             key={`${index}-${posIdx}`}
-                            className={[
+                            className={cx(
                                 'before:border-app-surface before:bg-app-accent relative before:absolute',
                                 'before:top-2 before:-left-5 before:h-3 before:w-3 before:rounded-full before:border-2',
                                 "before:shadow-[0_0_0_1px_var(--app-accent)] before:content-['']",
                                 'before:transition-transform before:duration-200 hover:before:scale-[1.15]',
-                            ].join(' ')}
+                            )}
                         >
                             {showTitle && (
                                 <>

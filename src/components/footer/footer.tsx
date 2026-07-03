@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useProfile } from '../header/profile.init';
+import { cx } from '../common/utils';
 import { useCurrentYear } from './utils';
 
 const COMMIT_SHA = import.meta.env.VITE_COMMIT_SHA as string | undefined;
@@ -14,10 +15,10 @@ const Footer = () => {
             {t('common:poweredBy')} {profile.name} ® {year ?? ''} 😉 🚀
             {COMMIT_SHA && (
                 <a
-                    className={[
+                    className={cx(
                         'text-app-text-muted hover:text-app-text-muted ml-2 font-mono text-xs no-underline',
                         'opacity-60 hover:opacity-100',
-                    ].join(' ')}
+                    )}
                     href={`${REPO_URL}/commit/${COMMIT_SHA}`}
                     target="_blank"
                     rel="noopener noreferrer"

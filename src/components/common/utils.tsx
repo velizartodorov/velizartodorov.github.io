@@ -27,3 +27,7 @@ export function currentDate(): Date {
 }
 
 export const bullet = '\u2022';
+
+export function cx(...classes: Array<string | false | undefined>): string {
+    return classes.filter(Boolean).join(' ');
+}

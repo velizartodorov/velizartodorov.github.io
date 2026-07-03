@@ -1,11 +1,12 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { cx } from './utils';
 
-const BASE_BTN = [
-    'rounded-[20px] border-none px-[13px] py-[5px] font-sans text-[13px] font-semibold leading-[1.4]',
-    'tracking-[0.5px] transition-colors duration-300 ease-out cursor-pointer',
-    'focus-visible:outline focus-visible:outline-2 focus-visible:outline-app-accent focus-visible:outline-offset-1',
-].join(' ');
+const BASE_BTN = cx(
+    'rounded-[20px] border-none px-[13px] py-[5px] font-sans text-[13px] leading-[1.4] font-semibold',
+    'cursor-pointer tracking-[0.5px] transition-colors duration-300 ease-out',
+    'focus-visible:outline-app-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1',
+);
 const ACTIVE_BTN = 'bg-app-accent-subtle text-app-accent';
 const INACTIVE_BTN = 'bg-transparent text-app-text-muted hover:text-app-text';
 

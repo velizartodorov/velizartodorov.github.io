@@ -1,4 +1,5 @@
 import { createContext, FC, ReactNode, useCallback, useContext, useMemo, useState } from 'react';
+import { cx } from './utils';
 
 interface AccordionCtx {
     openKey: string | null;
@@ -51,19 +52,19 @@ export const AccordionItem: FC<{ eventKey: string; header: ReactNode; children: 
                 type="button"
                 onClick={() => ctx.toggle(eventKey)}
                 aria-expanded={isOpen}
-                className={[
+                className={cx(
                     'bg-app-surface-alt flex w-full cursor-pointer items-center gap-3 px-3 py-2 text-left',
                     'transition-[filter] hover:brightness-95 dark:hover:brightness-125',
-                ].join(' ')}
+                )}
             >
                 <span className="min-w-0 flex-1">{header}</span>
                 <AccordionChevron open={isOpen} className="text-app-text-muted h-5 w-5" />
             </button>
             <div
-                className={[
+                className={cx(
                     'grid transition-[grid-template-rows] duration-200 ease-out',
                     isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]',
-                ].join(' ')}
+                )}
             >
                 <div className="overflow-hidden">
                     <div className="px-4 pt-3 pb-4">{children}</div>
