@@ -1,8 +1,6 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import './App.css';
 import Education from './components/education/education';
 import Employments from './components/employments/employments';
 import Footer from './components/footer/footer';
@@ -27,16 +25,33 @@ function setLink(selector: string, attrs: Record<string, string>): void {
   for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
 }
 
-function PageContent() {
+function PageContent({ lang }: { lang: 'en' | 'nl' }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    const el = ref.current;
+    if (!el) return;
+    // Replay the fade-in on every language switch without remounting
+    // (remounting would reset accordion open/closed state).
+    el.classList.remove('fade-in-text');
+    void el.offsetWidth;
+    el.classList.add('fade-in-text');
+  }, [lang]);
+
   return (
-    <>
-      <Introduction className="mx-4" eventKey="0" />
-      <Employments className="mt-3 mx-4" eventKey="1" />
-      <LicensesCertifications className="mt-3 mx-4" eventKey="2" />
-      <Presentations className="mt-3 mx-4" eventKey="3" />
-      <Languages className="mt-3 mx-4" eventKey="4" />
-      <Education className="mt-3 mx-4" eventKey="5" />
-    </>
+    <div ref={ref} className="fade-in-text">
+      <Introduction className="mx-6" eventKey="0" />
+      <Employments className="mt-4 mx-6" eventKey="1" />
+      <LicensesCertifications className="mt-4 mx-6" eventKey="2" />
+      <Presentations className="mt-4 mx-6" eventKey="3" />
+      <Languages className="mt-4 mx-6" eventKey="4" />
+      <Education className="mt-4 mx-6" eventKey="5" />
+    </div>
   );
 }
 
@@ -53,7 +68,7 @@ export function LangRoute({ lang }: { lang: 'en' | 'nl' }) {
     setLink('link[hreflang="x-default"]', { rel: 'alternate', hreflang: 'x-default', href: `${SITE_URL}/` });
   }, [lang]);
 
-  return <PageContent />;
+  return <PageContent lang={lang} />;
 }
 
 export function App() {

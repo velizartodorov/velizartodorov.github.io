@@ -4,4 +4,5 @@ export interface Link {
     width: number;
     url?: string;
     proficiency?: string;
+    invertInDarkMode?: boolean;
 }

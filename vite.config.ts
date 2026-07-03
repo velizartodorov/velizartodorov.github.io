@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
 import { resolve } from 'node:path';
 import { execSync } from 'node:child_process';
 
@@ -10,7 +11,7 @@ if (!process.env.VITE_COMMIT_SHA) {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), tailwindcss()],
   base: './', // Using relative path for GitHub Pages compatibility
   resolve: {
     alias: {
