@@ -12,7 +12,7 @@ const AccordionWrapper: FC<Properties> = ({ title, children, className = '' }) =
         aria-expanded={open}
         className="flex w-full cursor-pointer items-center justify-between gap-3 rounded-t-xl bg-app-surface-alt px-4 py-2 text-left transition-[filter] hover:brightness-95 dark:hover:brightness-125"
       >
-        <h4 className="m-0 font-semibold tracking-tight text-app-text text-[clamp(0.6rem,-0.75rem+9vw,1.5rem)]">
+        <h4 className="m-0 font-semibold tracking-tight text-app-text text-[clamp(0.6rem,-0.92rem+9vw,1.5rem)]">
           {title}
         </h4>
         <AccordionChevron open={open} className="h-6 w-6 text-app-text-muted" />
