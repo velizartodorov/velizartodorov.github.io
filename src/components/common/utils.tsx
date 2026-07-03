@@ -1,5 +1,5 @@
 import i18next from 'i18next';
-import {Period} from './period';
+import { Period } from './period';
 
 export function resolveDate(dateStr: string): string {
     if (!dateStr) return '';
@@ -8,7 +8,7 @@ export function resolveDate(dateStr: string): string {
 
     const key = match[1];
     if (!key) return '';
-    const value = i18next.t(key, {ns: 'dates'});
+    const value = i18next.t(key, { ns: 'dates' });
     return value === key ? '' : value;
 }
 

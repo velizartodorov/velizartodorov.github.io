@@ -17,7 +17,7 @@ export const LanguageSelector: React.FC = () => {
 
     return (
         <div
-            className="inline-flex items-center gap-0.5 rounded-3xl border border-app-border bg-app-surface-alt p-[3px]"
+            className="border-app-border bg-app-surface-alt inline-flex items-center gap-0.5 rounded-3xl border p-[3px]"
             role="group"
             aria-label="Language"
         >
@@ -26,13 +26,17 @@ export const LanguageSelector: React.FC = () => {
                 className={`${BASE_BTN} ${isEnglish ? ACTIVE_BTN : INACTIVE_BTN}`}
                 onClick={() => switchTo('en')}
                 aria-pressed={isEnglish}
-            >EN</button>
+            >
+                EN
+            </button>
             <button
                 type="button"
                 className={`${BASE_BTN} ${!isEnglish ? ACTIVE_BTN : INACTIVE_BTN}`}
                 onClick={() => switchTo('nl')}
                 aria-pressed={!isEnglish}
-            >NL</button>
+            >
+                NL
+            </button>
         </div>
     );
 };

@@ -1,19 +1,17 @@
 import { useTranslation } from 'react-i18next';
-import { useEmployments } from "../employments/employments.init";
+import { useEmployments } from '../employments/employments.init';
 
 export function useIntroductionStats() {
     const { t } = useTranslation();
     const employments = useEmployments();
 
-    const telnetCompany = employments.find(c =>
-        c.company.toLowerCase().includes('telnet')
-    );
+    const telnetCompany = employments.find((c) => c.company.toLowerCase().includes('telnet'));
 
     const softwareEmployments = employments
-        .filter(c => c.company !== (telnetCompany?.company ?? ''))
-        .flatMap(c => c.positions)
-        .filter(p => p.period.end)
-        .map(p => ({
+        .filter((c) => c.company !== (telnetCompany?.company ?? ''))
+        .flatMap((c) => c.positions)
+        .filter((p) => p.period.end)
+        .map((p) => ({
             start: new Date(p.period.start),
             end: new Date(p.period.end!), // Safe to use ! because we filtered for existence
         }));
@@ -41,42 +39,43 @@ export function useFormatBody(bodyRaw: unknown) {
 
 function interpolate(template: string, vars: Record<string, string | number>) {
     return template.replaceAll(/\{(\w+)}/g, (_, key) =>
-        vars[key] === undefined ? `{${key}}` : String(vars[key])
+        vars[key] === undefined ? `{${key}}` : String(vars[key]),
     );
 }
 
-function mergeOverlappingPeriods(periods: { start: Date; end: Date }[]): { start: Date; end: Date }[] {
+function mergeOverlappingPeriods(
+    periods: { start: Date; end: Date }[],
+): { start: Date; end: Date }[] {
     if (periods.length === 0) return [];
 
-    const sorted = periods
-        .slice()
-        .sort((a, b) => a.start.getTime() - b.start.getTime());
-    
+    const sorted = periods.slice().sort((a, b) => a.start.getTime() - b.start.getTime());
+
     // We know first element exists because we checked length above
     const firstPeriod = sorted[0]!;
-    
+
     // Initialize with a deep copy of the first period
-    const merged: { start: Date; end: Date }[] = [{
-        start: new Date(firstPeriod.start),
-        end: new Date(firstPeriod.end)
-    }];
+    const merged: { start: Date; end: Date }[] = [
+        {
+            start: new Date(firstPeriod.start),
+            end: new Date(firstPeriod.end),
+        },
+    ];
 
     // Process the rest of the periods
     for (const currentPeriod of sorted.slice(1)) {
         const lastMerged = merged.at(-1)!; // We know this exists as we initialized it
-        
+
         if (lastMerged.end.getTime() < currentPeriod.start.getTime()) {
             // No overlap, add as new period
             merged.push({
                 start: new Date(currentPeriod.start),
-                end: new Date(currentPeriod.end)
+                end: new Date(currentPeriod.end),
             });
         } else {
             // Overlap exists, extend the end date if necessary
-            lastMerged.end = new Date(Math.max(
-                lastMerged.end.getTime(),
-                currentPeriod.end.getTime()
-            ));
+            lastMerged.end = new Date(
+                Math.max(lastMerged.end.getTime(), currentPeriod.end.getTime()),
+            );
         }
     }
 
@@ -84,7 +83,9 @@ function mergeOverlappingPeriods(periods: { start: Date; end: Date }[]): { start
 }
 
 function sumDateDifferences(periods: { start: Date; end: Date }[]) {
-    let totalYears = 0, totalMonths = 0, totalDays = 0;
+    let totalYears = 0,
+        totalMonths = 0,
+        totalDays = 0;
 
     for (const { start, end } of periods) {
         const diff = getExactDateDifference(start, end);

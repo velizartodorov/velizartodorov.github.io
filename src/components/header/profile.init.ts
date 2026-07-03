@@ -1,7 +1,6 @@
-
 import { useTranslation } from 'react-i18next';
-import { Link } from "./link";
-import { Profile } from "./profile";
+import { Link } from './link';
+import { Profile } from './profile';
 
 export function useProfile(): Profile {
     const { t } = useTranslation();
@@ -14,8 +13,11 @@ export function useProfile(): Profile {
         linkedIn: t('profile:linkedIn', { returnObjects: true }) as Link,
         // These icon assets are dark-on-transparent glyphs (not language-dependent), so they
         // need inverting in dark mode regardless of translation content.
-        gitHub: { ...(t('profile:gitHub', { returnObjects: true }) as Link), invertInDarkMode: true },
+        gitHub: {
+            ...(t('profile:gitHub', { returnObjects: true }) as Link),
+            invertInDarkMode: true,
+        },
         blog: { ...(t('profile:blog', { returnObjects: true }) as Link), invertInDarkMode: true },
-        languages: t('profile:languages', { returnObjects: true }) as Link[]
-    }
+        languages: t('profile:languages', { returnObjects: true }) as Link[],
+    };
 }
