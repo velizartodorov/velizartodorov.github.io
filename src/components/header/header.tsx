@@ -8,9 +8,18 @@ const Header: React.FC = () => {
     const profile = useProfile();
     return (
         <header className="mt-3 ml-0 md:ml-6">
-            <div className="mb-2 grid grid-cols-1 items-center justify-items-center gap-x-4 gap-y-2 text-center sm:grid-cols-[240px_repeat(3,1fr)] sm:justify-items-start sm:text-left">
+            <div
+                className={[
+                    'mb-2 grid grid-cols-1 items-center justify-items-center gap-x-4 gap-y-2 text-center',
+                    'sm:grid-cols-[240px_repeat(3,1fr)] sm:justify-items-start sm:text-left',
+                ].join(' ')}
+            >
                 <img
-                    className="border-app-surface-alt row-start-1 h-[200px] w-[200px] rounded-full border-[3px] object-cover shadow-[0_4px_16px_var(--app-shadow)] transition-[scale,box-shadow] duration-500 ease-out hover:scale-[1.01] hover:shadow-[0_6px_24px_var(--app-shadow)] sm:col-start-1 sm:row-span-3"
+                    className={[
+                        'border-app-surface-alt row-start-1 h-[200px] w-[200px] rounded-full border-[3px] object-cover',
+                        'shadow-[0_4px_16px_var(--app-shadow)] transition-[scale,box-shadow] duration-500 ease-out',
+                        'hover:scale-[1.01] hover:shadow-[0_6px_24px_var(--app-shadow)] sm:col-start-1 sm:row-span-3',
+                    ].join(' ')}
                     src={profile.imageUrl}
                     alt=""
                 />

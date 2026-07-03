@@ -32,13 +32,7 @@ afterEach(() => {
     document.querySelectorAll('link[rel="canonical"], link[hreflang]').forEach((el) => el.remove());
 });
 
-function Wrapper({
-    children,
-    initialEntries = ['/'],
-}: {
-    children: React.ReactNode;
-    initialEntries?: string[];
-}) {
+function Wrapper({ children, initialEntries = ['/'] }: { children: React.ReactNode; initialEntries?: string[] }) {
     return (
         <MemoryRouter initialEntries={initialEntries}>
             <I18nextProvider i18n={i18n}>{children}</I18nextProvider>

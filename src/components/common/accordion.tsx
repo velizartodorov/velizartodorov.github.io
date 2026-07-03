@@ -7,10 +7,7 @@ interface AccordionCtx {
 
 const AccordionContext = createContext<AccordionCtx | null>(null);
 
-export const AccordionChevron: FC<{ open: boolean; className?: string }> = ({
-    open,
-    className = '',
-}) => (
+export const AccordionChevron: FC<{ open: boolean; className?: string }> = ({ open, className = '' }) => (
     <svg
         viewBox="0 0 24 24"
         fill="none"
@@ -31,10 +28,7 @@ export const AccordionGroup: FC<{ children: ReactNode; className?: string }> = (
     className = 'space-y-2',
 }) => {
     const [openKey, setOpenKey] = useState<string | null>(null);
-    const toggle = useCallback(
-        (key: string) => setOpenKey((prev) => (prev === key ? null : key)),
-        [],
-    );
+    const toggle = useCallback((key: string) => setOpenKey((prev) => (prev === key ? null : key)), []);
     const contextValue = useMemo(() => ({ openKey, toggle }), [openKey, toggle]);
     return (
         <AccordionContext.Provider value={contextValue}>
@@ -57,13 +51,19 @@ export const AccordionItem: FC<{ eventKey: string; header: ReactNode; children: 
                 type="button"
                 onClick={() => ctx.toggle(eventKey)}
                 aria-expanded={isOpen}
-                className="bg-app-surface-alt flex w-full cursor-pointer items-center gap-3 px-3 py-2 text-left transition-[filter] hover:brightness-95 dark:hover:brightness-125"
+                className={[
+                    'bg-app-surface-alt flex w-full cursor-pointer items-center gap-3 px-3 py-2 text-left',
+                    'transition-[filter] hover:brightness-95 dark:hover:brightness-125',
+                ].join(' ')}
             >
                 <span className="min-w-0 flex-1">{header}</span>
                 <AccordionChevron open={isOpen} className="text-app-text-muted h-5 w-5" />
             </button>
             <div
-                className={`grid transition-[grid-template-rows] duration-200 ease-out ${isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}
+                className={[
+                    'grid transition-[grid-template-rows] duration-200 ease-out',
+                    isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]',
+                ].join(' ')}
             >
                 <div className="overflow-hidden">
                     <div className="px-4 pt-3 pb-4">{children}</div>

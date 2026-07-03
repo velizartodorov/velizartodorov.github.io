@@ -38,14 +38,10 @@ export function useFormatBody(bodyRaw: unknown) {
 }
 
 function interpolate(template: string, vars: Record<string, string | number>) {
-    return template.replaceAll(/\{(\w+)}/g, (_, key) =>
-        vars[key] === undefined ? `{${key}}` : String(vars[key]),
-    );
+    return template.replaceAll(/\{(\w+)}/g, (_, key) => (vars[key] === undefined ? `{${key}}` : String(vars[key])));
 }
 
-function mergeOverlappingPeriods(
-    periods: { start: Date; end: Date }[],
-): { start: Date; end: Date }[] {
+function mergeOverlappingPeriods(periods: { start: Date; end: Date }[]): { start: Date; end: Date }[] {
     if (periods.length === 0) return [];
 
     const sorted = periods.slice().sort((a, b) => a.start.getTime() - b.start.getTime());
@@ -73,9 +69,7 @@ function mergeOverlappingPeriods(
             });
         } else {
             // Overlap exists, extend the end date if necessary
-            lastMerged.end = new Date(
-                Math.max(lastMerged.end.getTime(), currentPeriod.end.getTime()),
-            );
+            lastMerged.end = new Date(Math.max(lastMerged.end.getTime(), currentPeriod.end.getTime()));
         }
     }
 

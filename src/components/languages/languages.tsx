@@ -15,10 +15,7 @@ const Languages: React.FC<SectionProps> = ({ className, eventKey }) => {
     return (
         <AccordionWrapper eventKey={eventKey} className={className} title={t('title')}>
             <ul className="divide-app-border divide-y">
-                {ready &&
-                    languages.map((language: Language) => (
-                        <LanguageItem item={language} key={language.label} />
-                    ))}
+                {ready && languages.map((language: Language) => <LanguageItem item={language} key={language.label} />)}
             </ul>
         </AccordionWrapper>
     );

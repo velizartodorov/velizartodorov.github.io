@@ -10,18 +10,11 @@ const ProfileItem: React.FC<{ link: Link }> = ({ link }) => {
                 alt={link.label}
                 className={`block shrink-0 ${link.invertInDarkMode ? 'dark:invert' : ''}`}
             />
-            <span className="ml-2 max-[240px]:ml-[0.2rem] max-[240px]:text-[0.7rem]">
-                {link.label}
-            </span>
+            <span className="ml-2 max-[240px]:ml-[0.2rem] max-[240px]:text-[0.7rem]">{link.label}</span>
         </span>
     );
     return link.url ? (
-        <a
-            className="no-underline hover:no-underline"
-            href={link.url}
-            target="_blank"
-            rel="noreferrer"
-        >
+        <a className="no-underline hover:no-underline" href={link.url} target="_blank" rel="noreferrer">
             {content}
         </a>
     ) : (

@@ -11,12 +11,7 @@ const Employments = ({ className, eventKey }: SectionProps) => {
         <AccordionWrapper title={t('employments:title')} eventKey={eventKey} className={className}>
             <AccordionGroup className="space-y-1">
                 {useEmployments().map((item, index) => (
-                    <EmploymentItem
-                        item={item}
-                        index={index}
-                        eventKey={String(index)}
-                        key={index.valueOf()}
-                    />
+                    <EmploymentItem item={item} index={index} eventKey={String(index)} key={index.valueOf()} />
                 ))}
             </AccordionGroup>
         </AccordionWrapper>

@@ -18,8 +18,7 @@ const NAMESPACES = [
 ] as const;
 
 const BUNDLE_OPTIONS: [boolean, boolean] = [true, true];
-const addBundle = (lang: Language, ns: string, data: any) =>
-    i18n.addResourceBundle(lang, ns, data, ...BUNDLE_OPTIONS);
+const addBundle = (lang: Language, ns: string, data: any) => i18n.addResourceBundle(lang, ns, data, ...BUNDLE_OPTIONS);
 
 const isSupportedLang = (lang?: string): lang is Language =>
     !!lang && (SUPPORTED_LANGUAGES as readonly string[]).includes(lang);
@@ -30,11 +29,7 @@ const EMPLOYMENTS_ITEM_LANG_RE = /\.\/translations\/([^/]+)\/employments\//;
 
 const loadAllTranslations = () => {
     const mods = import.meta.glob(
-        [
-            './translations/**/*.json',
-            '!./translations/**/employments/**/*.json',
-            './translations/dates.json',
-        ],
+        ['./translations/**/*.json', '!./translations/**/employments/**/*.json', './translations/dates.json'],
         { eager: true },
     ) as Record<string, { default: any }>;
 

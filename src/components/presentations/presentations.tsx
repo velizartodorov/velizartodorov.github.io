@@ -8,11 +8,7 @@ const Presentations = ({ className, eventKey }: SectionProps) => {
     const { t } = useTranslation();
     const presentations = usePresentations();
     return (
-        <AccordionWrapper
-            title={t('presentations:title')}
-            eventKey={eventKey}
-            className={className}
-        >
+        <AccordionWrapper title={t('presentations:title')} eventKey={eventKey} className={className}>
             <ul className="divide-app-border divide-y">
                 {presentations.map((item, index) => (
                     <PresentationItem item={item} index={index} key={index.valueOf()} />
