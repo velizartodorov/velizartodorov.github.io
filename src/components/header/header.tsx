@@ -19,11 +19,13 @@ const Header: React.FC = () => {
                     <ThemeToggle />
                 </div>
                 <div className="sm:col-start-2 sm:row-start-2"><LanguageSelector /></div>
-                <div className="sm:col-start-3 sm:row-start-2"><ProfileItem link={profile.email} /></div>
-                <div className="sm:col-start-4 sm:row-start-2"><ProfileItem link={profile.linkedIn} /></div>
-                <div className="sm:col-start-2 sm:row-start-3"><ProfileItem link={profile.gitHub} /></div>
-                <div className="sm:col-start-3 sm:row-start-3"><ProfileItem link={profile.blog} /></div>
-                <div className="sm:col-start-4 sm:row-start-3"><ProfileItem link={profile.address} /></div>
+                <div className="flex w-fit flex-col items-start gap-y-2 sm:contents">
+                    <div className="sm:col-start-3 sm:row-start-2"><ProfileItem link={profile.email} /></div>
+                    <div className="sm:col-start-4 sm:row-start-2"><ProfileItem link={profile.linkedIn} /></div>
+                    <div className="sm:col-start-2 sm:row-start-3"><ProfileItem link={profile.gitHub} /></div>
+                    <div className="sm:col-start-3 sm:row-start-3"><ProfileItem link={profile.blog} /></div>
+                    <div className="sm:col-start-4 sm:row-start-3"><ProfileItem link={profile.address} /></div>
+                </div>
             </div>
         </header>
     );
