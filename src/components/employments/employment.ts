@@ -1,5 +1,5 @@
-import { Period } from "../common/period";
-import { Reference } from "../common/reference";
+import { Period } from '../common/period';
+import { Reference } from '../common/reference';
 
 export interface Position {
     position: string;

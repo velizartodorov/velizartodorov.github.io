@@ -1,7 +1,7 @@
-import {useTranslation} from 'react-i18next';
-import {Period} from "../common/period";
-import {currentDate} from "../common/utils";
-import {Position} from "./employment";
+import { useTranslation } from 'react-i18next';
+import { Period } from '../common/period';
+import { currentDate } from '../common/utils';
+import { Position } from './employment';
 
 export function combinedPeriod(positions: Position[]): Period | undefined {
     if (positions.length === 0) return undefined;
@@ -21,36 +21,32 @@ export function combinedPeriod(positions: Position[]): Period | undefined {
             hasOpenEnded = true;
         }
     }
-    return {start, end: hasOpenEnded ? undefined : end};
+    return { start, end: hasOpenEnded ? undefined : end };
 }
 
 export function useDisplayPeriod() {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
 
     function formatMonthYear(date: Date): string {
-        const months = t('common:months', {returnObjects: true}) as string[];
+        const months = t('common:months', { returnObjects: true }) as string[];
         return `${months[date.getMonth()]} ${date.getFullYear()}`;
     }
 
-    function formatDuration(duration: { years: number, months: number }): string {
-        const periodLang = t('common:period', {returnObjects: true}) as Record<string, string>;
-        const {years, months} = duration;
+    function formatDuration(duration: { years: number; months: number }): string {
+        const periodLang = t('common:period', { returnObjects: true }) as Record<string, string>;
+        const { years, months } = duration;
 
         function getYears() {
             return years === 1 ? periodLang.year : periodLang.years;
         }
 
-        const yearString = years > 0
-            ? `${years} ${(getYears())}`
-            : '';
+        const yearString = years > 0 ? `${years} ${getYears()}` : '';
 
         function getMonths() {
             return months === 1 ? periodLang.month : periodLang.months;
         }
 
-        const monthString = months > 0
-            ? `${months} ${(getMonths())}`
-            : '';
+        const monthString = months > 0 ? `${months} ${getMonths()}` : '';
 
         const separator = yearString && monthString ? ', ' : '';
         return `${yearString}${separator}${monthString}`;
@@ -62,16 +58,14 @@ export function useDisplayPeriod() {
         return formatDuration(duration);
     }
 
-
     function periodDifference(period: Period): string {
         const diff = yearMonthDiff(period);
         return diff ? `(${diff})` : '';
     }
 
-
     function display(period: Period): string {
         const today = currentDate();
-        const periodLang = t('common:period', {returnObjects: true}) as Record<string, string>;
+        const periodLang = t('common:period', { returnObjects: true }) as Record<string, string>;
         const presentText = periodLang.present;
         const formattedStartDate = formatMonthYear(period.start);
 
@@ -93,19 +87,19 @@ export function useDisplayPeriod() {
         const isCurrentMonth = formatMonthYear(period.end) === formatMonthYear(today);
 
         return isCurrentMonth
-            ? `${formattedStartDate} - ${presentText} ${periodDifference({start: period.start, end: today})}`
+            ? `${formattedStartDate} - ${presentText} ${periodDifference({ start: period.start, end: today })}`
             : `${formattedStartDate} - ${formattedEndDate} ${periodDiff}`;
     }
 
-    return {display};
+    return { display };
 }
 
-function calculateDuration(start: Date, end: Date): { years: number, months: number } {
-    const monthDiff = (end.getFullYear() - start.getFullYear()) * 12
-        + (end.getMonth() - start.getMonth());
+function calculateDuration(start: Date, end: Date): { years: number; months: number } {
+    const monthDiff =
+        (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
     return {
         years: Math.floor(monthDiff / 12),
-        months: monthDiff % 12
+        months: monthDiff % 12,
     };
 }
 
