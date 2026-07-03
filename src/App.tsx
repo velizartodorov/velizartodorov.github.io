@@ -27,14 +27,14 @@ function setLink(selector: string, attrs: Record<string, string>): void {
 
 function PageContent() {
   return (
-    <>
+    <div className="fade-in-text">
       <Introduction className="mx-6" eventKey="0" />
       <Employments className="mt-4 mx-6" eventKey="1" />
       <LicensesCertifications className="mt-4 mx-6" eventKey="2" />
       <Presentations className="mt-4 mx-6" eventKey="3" />
       <Languages className="mt-4 mx-6" eventKey="4" />
       <Education className="mt-4 mx-6" eventKey="5" />
-    </>
+    </div>
   );
 }
 
@@ -51,7 +51,7 @@ export function LangRoute({ lang }: { lang: 'en' | 'nl' }) {
     setLink('link[hreflang="x-default"]', { rel: 'alternate', hreflang: 'x-default', href: `${SITE_URL}/` });
   }, [lang]);
 
-  return <PageContent />;
+  return <PageContent key={lang} />;
 }
 
 export function App() {

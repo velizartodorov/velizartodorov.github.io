@@ -7,7 +7,7 @@ const ThemeToggle: FC = () => {
     return (
         <button
             type="button"
-            className="inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-app-border bg-app-surface-alt text-[1.05rem] leading-none text-app-text transition-[background-color,transform] duration-200 hover:rotate-[15deg] hover:bg-app-border focus-visible:outline-none"
+            className="inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-app-border bg-app-surface-alt text-[1.05rem] leading-none text-app-text transition-[background-color,rotate] duration-300 ease-out hover:rotate-[15deg] hover:bg-app-border focus-visible:outline-none"
             aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
             aria-pressed={isDark}
             onClick={toggle}
