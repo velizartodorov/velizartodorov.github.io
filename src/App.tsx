@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Education from './components/education/education';
@@ -25,9 +25,21 @@ function setLink(selector: string, attrs: Record<string, string>): void {
   for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
 }
 
-function PageContent() {
+function PageContent({ lang }: { lang: 'en' | 'nl' }) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    // Replay the fade-in on every language switch without remounting
+    // (remounting would reset accordion open/closed state).
+    el.classList.remove('fade-in-text');
+    void el.offsetWidth;
+    el.classList.add('fade-in-text');
+  }, [lang]);
+
   return (
-    <div className="fade-in-text">
+    <div ref={ref} className="fade-in-text">
       <Introduction className="mx-6" eventKey="0" />
       <Employments className="mt-4 mx-6" eventKey="1" />
       <LicensesCertifications className="mt-4 mx-6" eventKey="2" />
@@ -51,7 +63,7 @@ export function LangRoute({ lang }: { lang: 'en' | 'nl' }) {
     setLink('link[hreflang="x-default"]', { rel: 'alternate', hreflang: 'x-default', href: `${SITE_URL}/` });
   }, [lang]);
 
-  return <PageContent key={lang} />;
+  return <PageContent lang={lang} />;
 }
 
 export function App() {
