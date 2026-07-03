@@ -112,15 +112,9 @@ code {
   to { opacity: 1; }
 }
 
-/* Fade in text when the language switches, without animating icons or the
-   cards/borders around them (anything containing an icon is left static). */
-.fade-in-text * {
+/* Fade in text when the language switches, without animating icons, cards,
+   or borders around them. Scoped to text-bearing tags rather than every
+   descendant, so only the translated content itself dissolves. */
+.fade-in-text :is(h1, h2, h3, h4, h5, h6, p, span, a, li) {
   animation: fade-in 0.5s ease-in-out;
-}
-
-.fade-in-text img,
-.fade-in-text svg,
-.fade-in-text *:has(img),
-.fade-in-text *:has(svg) {
-  animation: none;
 }

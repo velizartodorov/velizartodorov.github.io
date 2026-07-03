@@ -27,8 +27,13 @@ function setLink(selector: string, attrs: Record<string, string>): void {
 
 function PageContent({ lang }: { lang: 'en' | 'nl' }) {
   const ref = useRef<HTMLDivElement>(null);
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
     const el = ref.current;
     if (!el) return;
     // Replay the fade-in on every language switch without remounting

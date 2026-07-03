@@ -12,8 +12,7 @@ export const LanguageSelector: React.FC = () => {
     const isEnglish = pathname !== '/nl' && !pathname.startsWith('/nl/');
 
     const switchTo = (lang: 'en' | 'nl') => {
-        const target = (lang === 'en') === isEnglish ? (isEnglish ? 'nl' : 'en') : lang;
-        navigate(target === 'nl' ? '/nl' : '/', { replace: true });
+        navigate(lang === 'nl' ? '/nl' : '/', { replace: true });
     };
 
     return (

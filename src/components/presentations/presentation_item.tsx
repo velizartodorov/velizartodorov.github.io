@@ -7,7 +7,7 @@ const PresentationItem: FC<{ item: Presentation; index: number }> = ({ item }) =
       <a
         href={item.link}
         rel='noopener noreferrer'
-        className="block rounded-lg px-4 py-2 transition-colors hover:bg-app-surface-alt hover:no-underline"
+        className="block rounded-lg px-4 py-2 transition-colors hover:bg-app-surface-alt hover:no-underline focus:bg-app-surface-alt focus:no-underline"
       >
         <div className="flex items-center gap-3">
           <div className="shrink-0 text-left">

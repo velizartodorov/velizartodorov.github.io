@@ -1,4 +1,4 @@
-import { createContext, FC, ReactNode, useContext, useState } from 'react';
+import { createContext, FC, ReactNode, useCallback, useContext, useMemo, useState } from 'react';
 
 interface AccordionCtx {
   openKey: string | null;
@@ -25,9 +25,10 @@ export const AccordionChevron: FC<{ open: boolean; className?: string }> = ({ op
 /** Groups AccordionItems so opening one closes the others, like Bootstrap's default (non-alwaysOpen) Accordion. */
 export const AccordionGroup: FC<{ children: ReactNode; className?: string }> = ({ children, className = 'space-y-2' }) => {
   const [openKey, setOpenKey] = useState<string | null>(null);
-  const toggle = (key: string) => setOpenKey((prev) => (prev === key ? null : key));
+  const toggle = useCallback((key: string) => setOpenKey((prev) => (prev === key ? null : key)), []);
+  const contextValue = useMemo(() => ({ openKey, toggle }), [openKey, toggle]);
   return (
-    <AccordionContext.Provider value={{ openKey, toggle }}>
+    <AccordionContext.Provider value={contextValue}>
       <div className={className}>{children}</div>
     </AccordionContext.Provider>
   );
