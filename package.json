@@ -21,6 +21,7 @@
     "deploy": "gh-pages -d dist",
     "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,css}\"",
+    "check:encoding": "node scripts/check-mojibake.mjs $(git ls-files 'src/**/*.{ts,tsx,css}')",
     "prepare": "husky"
   },
   "eslintConfig": {
@@ -30,7 +31,10 @@
     ]
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx,css}": "prettier --write"
+    "src/**/*.{ts,tsx,css}": [
+      "prettier --write",
+      "node scripts/check-mojibake.mjs"
+    ]
   },
   "browserslist": {
     "production": [

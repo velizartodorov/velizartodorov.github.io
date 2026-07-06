@@ -6,9 +6,7 @@ import { Position } from './employment';
 export function combinedPeriod(positions: Position[]): Period | undefined {
     if (positions.length === 0) return undefined;
     let start = new Date(positions[0]!.period.start);
-    let end: Date | undefined = positions[0]!.period.end
-        ? new Date(positions[0]!.period.end)
-        : undefined;
+    let end: Date | undefined = positions[0]!.period.end ? new Date(positions[0]!.period.end) : undefined;
     let hasOpenEnded = !positions[0]!.period.end;
 
     for (const p of positions.slice(1)) {
@@ -95,8 +93,7 @@ export function useDisplayPeriod() {
 }
 
 function calculateDuration(start: Date, end: Date): { years: number; months: number } {
-    const monthDiff =
-        (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
+    const monthDiff = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
     return {
         years: Math.floor(monthDiff / 12),
         months: monthDiff % 12,

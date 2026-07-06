@@ -1,8 +1,12 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { tw } from './tw';
 
-const BASE_BTN =
-    'rounded-[20px] border-none px-[13px] py-[5px] font-sans text-[13px] font-semibold leading-[1.4] tracking-[0.5px] transition-colors duration-300 ease-out cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-app-accent focus-visible:outline-offset-1';
+const BASE_BTN = tw(
+    'rounded-[20px] border-none px-[13px] py-[5px] font-sans text-[13px] leading-[1.4] font-semibold',
+    'cursor-pointer tracking-[0.5px] transition-colors duration-300 ease-out',
+    'focus-visible:outline-app-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1',
+);
 const ACTIVE_BTN = 'bg-app-accent-subtle text-app-accent';
 const INACTIVE_BTN = 'bg-transparent text-app-text-muted hover:text-app-text';
 
@@ -23,7 +27,7 @@ export const LanguageSelector: React.FC = () => {
         >
             <button
                 type="button"
-                className={`${BASE_BTN} ${isEnglish ? ACTIVE_BTN : INACTIVE_BTN}`}
+                className={tw(BASE_BTN, isEnglish ? ACTIVE_BTN : INACTIVE_BTN)}
                 onClick={() => switchTo('en')}
                 aria-pressed={isEnglish}
             >
@@ -31,7 +35,7 @@ export const LanguageSelector: React.FC = () => {
             </button>
             <button
                 type="button"
-                className={`${BASE_BTN} ${!isEnglish ? ACTIVE_BTN : INACTIVE_BTN}`}
+                className={tw(BASE_BTN, !isEnglish ? ACTIVE_BTN : INACTIVE_BTN)}
                 onClick={() => switchTo('nl')}
                 aria-pressed={!isEnglish}
             >

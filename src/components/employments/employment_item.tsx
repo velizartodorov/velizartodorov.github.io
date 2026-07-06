@@ -3,15 +3,12 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AccordionItem } from '../common/accordion';
 import { bullet } from '../common/utils';
+import { tw } from '../common/tw';
 import { Employment } from './employment';
 import { combinedPeriod, useDisplayPeriod } from './utils';
 import { Reference } from '../common/reference';
 
-const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> = ({
-    item,
-    index,
-    eventKey,
-}) => {
+const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> = ({ item, index, eventKey }) => {
     const { t } = useTranslation();
     const { display } = useDisplayPeriod();
     const positions = item.positions ?? [];
@@ -39,16 +36,24 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
     );
     return (
         <AccordionItem eventKey={eventKey} header={header}>
-            {item.type && (
-                <div className="mb-3">{`🏢 ${t('common:companyType')}: ${item.type}`}</div>
-            )}
-            <div className="before:bg-app-border relative space-y-7 pl-6 before:absolute before:top-2 before:bottom-2 before:left-[9px] before:w-[2px] before:content-['']">
+            {item.type && <div className="mb-3">{`🏢 ${t('common:companyType')}: ${item.type}`}</div>}
+            <div
+                className={tw(
+                    'before:bg-app-border relative space-y-7 pl-6',
+                    "before:absolute before:top-2 before:bottom-2 before:left-[9px] before:w-[2px] before:content-['']",
+                )}
+            >
                 {positions.map((position, posIdx) => {
                     const showTitle = positions.length > 1;
                     return (
                         <div
                             key={`${index}-${posIdx}`}
-                            className="before:border-app-surface before:bg-app-accent relative before:absolute before:top-2 before:-left-5 before:h-3 before:w-3 before:rounded-full before:border-2 before:shadow-[0_0_0_1px_var(--app-accent)] before:transition-transform before:duration-200 before:content-[''] hover:before:scale-[1.15]"
+                            className={tw(
+                                'before:border-app-surface before:bg-app-accent relative before:absolute',
+                                'before:top-2 before:-left-5 before:h-3 before:w-3 before:rounded-full before:border-2',
+                                "before:shadow-[0_0_0_1px_var(--app-accent)] before:content-['']",
+                                'before:transition-transform before:duration-200 hover:before:scale-[1.15]',
+                            )}
                         >
                             {showTitle && (
                                 <>
@@ -58,9 +63,7 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
                                     <div className="text-app-text-muted mb-2">
                                         {display({
                                             start: new Date(position.period.start),
-                                            end: position.period.end
-                                                ? new Date(position.period.end)
-                                                : undefined,
+                                            end: position.period.end ? new Date(position.period.end) : undefined,
                                         })}
                                     </div>
                                 </>
