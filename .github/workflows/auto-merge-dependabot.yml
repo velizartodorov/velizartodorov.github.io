@@ -1,10 +1,13 @@
 name: Auto-merge Dependabot PRs
 
 on:
+  workflow_run:
+    # Fires as soon as CI finishes on a Dependabot PR, instead of waiting for a fixed daily slot
+    workflows: ["Build and Deploy"]
+    types: [completed]
   schedule:
-    # Run daily at 09:00 UTC (10:00 CET / 11:00 CEST Brussels time)
-    # Gives time for that day's Dependabot PRs (created 08:00 Brussels time) and CI checks to complete
-    - cron: '0 9 * * *'
+    # Safety net in case a workflow_run event is ever missed
+    - cron: '0 */3 * * *'
   workflow_dispatch: # Allow manual trigger
 
 permissions:
@@ -14,6 +17,8 @@ permissions:
 
 jobs:
   auto-merge:
+    # Skip workflow_run events that aren't for a Dependabot branch (e.g. regular PRs/pushes)
+    if: github.event_name != 'workflow_run' || startsWith(github.event.workflow_run.head_branch, 'dependabot/')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
