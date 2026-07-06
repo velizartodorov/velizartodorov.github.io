@@ -27,7 +27,7 @@ const LicenseCertificationItem: FC<{ item: LicenseCertification; index: number }
                 <div className="flex items-center gap-3">
                     <div className="flex min-w-0 flex-1 items-center gap-3">
                         <div className="shrink-0 text-left">
-                            <img src={item.icon} alt="license icon" className={ICON} />
+                            <img src={item.icon} alt="license icon" className={ICON} loading="lazy" decoding="async" />
                         </div>
                         <div className="w-9/12 text-left md:w-5/12">
                             <h5 className="mb-0 text-xl font-semibold tracking-[-0.02em] max-sm:text-base max-sm:font-normal">
