@@ -3,7 +3,7 @@ import { useProfile } from '../header/profile.init';
 import { tw } from '../common/tw';
 import { useCurrentYear } from './utils';
 
-const COMMIT_SHA = import.meta.env.VITE_COMMIT_SHA as string | undefined;
+const COMMIT_SHA = process.env.NEXT_PUBLIC_COMMIT_SHA;
 const REPO_URL = 'https://github.com/velizartodorov/velizartodorov.github.io';
 
 const Footer = () => {

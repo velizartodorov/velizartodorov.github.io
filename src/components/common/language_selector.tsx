@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLangSwitch } from '../../App';
 import { tw } from './tw';
 
 const BASE_BTN = tw(
@@ -11,13 +11,8 @@ const ACTIVE_BTN = 'bg-app-accent-subtle text-app-accent';
 const INACTIVE_BTN = 'bg-transparent text-app-text-muted hover:text-app-text';
 
 export const LanguageSelector: React.FC = () => {
-    const navigate = useNavigate();
-    const { pathname } = useLocation();
-    const isEnglish = pathname !== '/nl' && !pathname.startsWith('/nl/');
-
-    const switchTo = (lang: 'en' | 'nl') => {
-        navigate(lang === 'nl' ? '/nl' : '/', { replace: true });
-    };
+    const { lang, switchTo } = useLangSwitch();
+    const isEnglish = lang !== 'nl';
 
     return (
         <div

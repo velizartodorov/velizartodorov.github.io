@@ -13,6 +13,7 @@ function readStoredTheme(): Theme | null {
     }
 }
 function currentTheme(): Theme {
+    if (typeof document === 'undefined') return 'light';
     return (document.documentElement.dataset.bsTheme as Theme) || 'light';
 }
 
@@ -21,9 +22,16 @@ function applyTheme(theme: Theme) {
 }
 
 export function useTheme(): { theme: Theme; toggle: () => void } {
-    const [theme, setTheme] = useState<Theme>(() => currentTheme());
+    // Static export always prerenders as 'light' (no access to the client's stored theme),
+    // so the client's first render must match that to avoid a hydration mismatch. The inline
+    // FOUC-prevention script in the root layout already applied the real theme to the DOM
+    // before this runs; syncing it into state here is a normal post-hydration update, not a
+    // mismatch, so it doesn't retrigger the flash the FOUC script was written to prevent.
+    const [theme, setTheme] = useState<Theme>('light');
 
     useEffect(() => {
+        setTheme(currentTheme());
+
         if (readStoredTheme() !== null) return;
         const mq = globalThis.matchMedia('(prefers-color-scheme: dark)');
         const onChange = () => {

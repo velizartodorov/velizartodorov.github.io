@@ -11,6 +11,7 @@ const PresentationItem: FC<{ item: Presentation; index: number }> = ({ item }) =
                 className={tw(
                     'hover:bg-app-surface-alt focus:bg-app-surface-alt block rounded-lg px-4 py-2 transition-colors',
                     'hover:no-underline focus:no-underline',
+                    'text-app-link hover:text-app-link-hover',
                 )}
             >
                 <div className="flex items-center gap-3">
@@ -22,7 +23,9 @@ const PresentationItem: FC<{ item: Presentation; index: number }> = ({ item }) =
                         />
                     </div>
                     <div className="w-9/12 text-left md:w-5/12">
-                        <h5 className="mb-0 text-xl max-sm:text-base max-sm:font-normal">{item.name}</h5>
+                        <h5 className="mb-0 text-xl font-semibold tracking-[-0.02em] max-sm:text-base max-sm:font-normal">
+                            {item.name}
+                        </h5>
                     </div>
                 </div>
             </a>

@@ -15,7 +15,12 @@ const ProfileItem: React.FC<{ link: Link }> = ({ link }) => {
         </span>
     );
     return link.url ? (
-        <a className="no-underline hover:no-underline" href={link.url} target="_blank" rel="noreferrer">
+        <a
+            className="text-app-link hover:text-app-link-hover no-underline transition-colors hover:no-underline"
+            href={link.url}
+            target="_blank"
+            rel="noreferrer"
+        >
             {content}
         </a>
     ) : (
