@@ -1,7 +1,7 @@
 import React from 'react';
 
 const EnvBanner: React.FC = () => {
-    if (!import.meta.env.DEV) {
+    if (process.env.NODE_ENV === 'production') {
         return null;
     }
 

@@ -17,13 +17,13 @@ const EducationItem: FC<{ item: IEducation; index: number }> = ({ item, index })
                 <img src={item.icon} alt="education icon" className="w-[30px] rounded-lg" />
             </div>
             <div className="w-9/12 text-left md:w-7/12">
-                <h5 className="mb-0 text-xl max-sm:text-base max-sm:font-normal">
+                <h5 className="mb-0 text-xl font-semibold tracking-[-0.02em] max-sm:text-base max-sm:font-normal">
                     {`${item.occupation} ${atWord} ${item.institution}`}
                 </h5>
             </div>
             <div className="hidden flex-1 sm:block">{item.place}</div>
             <div className="hidden shrink-0 text-right sm:block">
-                <h5 className="mb-0 text-xl">{display(item.period)}</h5>
+                <h5 className="mb-0 text-xl font-semibold tracking-[-0.02em]">{display(item.period)}</h5>
             </div>
         </div>
     );
@@ -38,7 +38,9 @@ const EducationItem: FC<{ item: IEducation; index: number }> = ({ item, index })
             {item.references.map((link: Reference, refIndex: number) => (
                 <div key={`ref-${index}-${refIndex}`}>
                     <span>{bullet} </span>
-                    <a href={link.href}>{link.value}</a>
+                    <a href={link.href} className="text-app-link hover:text-app-link-hover transition-colors">
+                        {link.value}
+                    </a>
                 </div>
             ))}
         </AccordionItem>

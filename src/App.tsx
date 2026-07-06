@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from 'react';
-import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+'use client';
+
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
+import { I18nextProvider } from 'react-i18next';
 import Education from './components/education/education';
 import Employments from './components/employments/employments';
 import Footer from './components/footer/footer';
@@ -8,24 +9,25 @@ import Header from './components/header/header';
 import Presentations from './components/presentations/presentations';
 import Languages from './components/languages/languages';
 import Introduction from './components/introduction/introduction';
-import { useProfile } from './components/header/profile.init';
 import LicensesCertifications from './components/licenses_certifications/licenses_certifications';
 import EnvBanner from './components/common/env_banner';
+import { createLangInstance, type Language } from './i18n';
+import reportWebVitals from './reportWebVitals';
 
-globalThis.React = React;
-
-const SITE_URL = 'https://velizartodorov.github.io';
-
-function setLink(selector: string, attrs: Record<string, string>): void {
-    let el = document.querySelector<HTMLLinkElement>(selector);
-    if (!el) {
-        el = document.createElement('link');
-        document.head.appendChild(el);
-    }
-    for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
+interface LangSwitchValue {
+    lang: Language;
+    switchTo: (lang: Language) => void;
 }
 
-function PageContent({ lang }: { lang: 'en' | 'nl' }) {
+const LangSwitchContext = createContext<LangSwitchValue | null>(null);
+
+export function useLangSwitch(): LangSwitchValue {
+    const ctx = useContext(LangSwitchContext);
+    if (!ctx) throw new Error('useLangSwitch must be used within PortfolioApp');
+    return ctx;
+}
+
+function PageContent({ lang }: { lang: Language }) {
     const ref = useRef<HTMLDivElement>(null);
     const isFirstRender = useRef(true);
 
@@ -55,47 +57,55 @@ function PageContent({ lang }: { lang: 'en' | 'nl' }) {
     );
 }
 
-export function LangRoute({ lang }: { lang: 'en' | 'nl' }) {
-    const { i18n } = useTranslation();
+function PortfolioAppInner() {
+    const { lang, switchTo } = useLangSwitch();
 
     useEffect(() => {
-        void i18n.changeLanguage(lang);
         document.documentElement.lang = lang;
-        const canonical = lang === 'nl' ? `${SITE_URL}/nl/` : `${SITE_URL}/`;
-        setLink('link[rel="canonical"]', { rel: 'canonical', href: canonical });
-        setLink('link[hreflang="en"]', { rel: 'alternate', hreflang: 'en', href: `${SITE_URL}/` });
-        setLink('link[hreflang="nl"]', {
-            rel: 'alternate',
-            hreflang: 'nl',
-            href: `${SITE_URL}/nl/`,
-        });
-        setLink('link[hreflang="x-default"]', {
-            rel: 'alternate',
-            hreflang: 'x-default',
-            href: `${SITE_URL}/`,
-        });
     }, [lang]);
 
-    return <PageContent lang={lang} />;
-}
-
-export function App() {
-    const { name } = useProfile();
     useEffect(() => {
-        document.title = name;
-    }, [name]);
+        reportWebVitals();
+    }, []);
+
+    useEffect(() => {
+        // Backward compat: ?lang=nl / ?lang=en links redirect to the /nl subpath.
+        const search = globalThis.location.search;
+        if (!search) return;
+        const langParam = new URLSearchParams(search).get('lang');
+        if (langParam === 'nl' || langParam === 'en') {
+            switchTo(langParam);
+        }
+        // Intentionally mount-only: switchTo/instance/setLang are all referentially
+        // stable across renders even though the closure identity changes.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
-        <Router basename="/">
+        <>
             <EnvBanner />
             <Header />
-            <Routes>
-                <Route path="/" element={<LangRoute lang="en" />} />
-                <Route path="/nl" element={<LangRoute lang="nl" />} />
-                <Route path="/nl/" element={<LangRoute lang="nl" />} />
-                <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
+            <PageContent lang={lang} />
             <Footer />
-        </Router>
+        </>
+    );
+}
+
+export function PortfolioApp({ initialLang }: { initialLang: Language }) {
+    const [instance] = useState(() => createLangInstance(initialLang));
+    const [lang, setLang] = useState<Language>(initialLang);
+
+    const switchTo = (next: Language) => {
+        void instance.changeLanguage(next);
+        setLang(next);
+        globalThis.history.replaceState(null, '', next === 'nl' ? '/nl/' : '/');
+    };
+
+    return (
+        <I18nextProvider i18n={instance}>
+            <LangSwitchContext.Provider value={{ lang, switchTo }}>
+                <PortfolioAppInner />
+            </LangSwitchContext.Provider>
+        </I18nextProvider>
     );
 }

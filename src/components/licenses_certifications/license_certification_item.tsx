@@ -8,6 +8,7 @@ const ROW = tw(
     'hover:bg-app-surface-alt focus:bg-app-surface-alt block rounded-lg px-3 py-2 transition-colors',
     'hover:no-underline focus:no-underline',
 );
+const LINK_ROW = tw(ROW, 'text-app-link hover:text-app-link-hover');
 const ICON = tw('bg-app-icon-bg h-[25px] w-[30px] rounded', 'shadow-[0_1px_4px_var(--app-shadow)]');
 
 const LicenseCertificationItem: FC<{ item: LicenseCertification; index: number }> = ({ item }) => {
@@ -21,7 +22,7 @@ const LicenseCertificationItem: FC<{ item: LicenseCertification; index: number }
             <Tag
                 href={hasLink ? item.link : undefined}
                 rel={hasLink ? 'noopener noreferrer' : undefined}
-                className={ROW}
+                className={hasLink ? LINK_ROW : ROW}
             >
                 <div className="flex items-center gap-3">
                     <div className="flex min-w-0 flex-1 items-center gap-3">
@@ -29,11 +30,15 @@ const LicenseCertificationItem: FC<{ item: LicenseCertification; index: number }
                             <img src={item.icon} alt="license icon" className={ICON} />
                         </div>
                         <div className="w-9/12 text-left md:w-5/12">
-                            <h5 className="mb-0 text-xl max-sm:text-base max-sm:font-normal">{item.name}</h5>
+                            <h5 className="mb-0 text-xl font-semibold tracking-[-0.02em] max-sm:text-base max-sm:font-normal">
+                                {item.name}
+                            </h5>
                         </div>
                         <div className="hidden flex-1 pl-0 text-left sm:block">{item.institution}</div>
                         <div className="hidden shrink-0 text-right sm:block">
-                            <h5 className="mb-0 text-xl max-sm:text-base max-sm:font-normal">{monthYearStr}</h5>
+                            <h5 className="mb-0 text-xl font-semibold tracking-[-0.02em] max-sm:text-base max-sm:font-normal">
+                                {monthYearStr}
+                            </h5>
                         </div>
                     </div>
                     {/* Invisible copy of AccordionItem's real chevron so this row reserves the exact same

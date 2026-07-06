@@ -24,11 +24,13 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
                 <img src={item.icon} alt="company icon" className="w-[30px] rounded-lg" />
             </div>
             <div className="w-9/12 text-left md:w-5/12">
-                <h5 className="mb-0 text-xl max-sm:text-base max-sm:font-normal">{headerTitle}</h5>
+                <h5 className="mb-0 text-xl font-semibold tracking-[-0.02em] max-sm:text-base max-sm:font-normal">
+                    {headerTitle}
+                </h5>
             </div>
             <div className="hidden flex-1 sm:block">{headerPlace}</div>
             <div className="hidden shrink-0 text-right sm:block">
-                <h5 className="mb-0 text-xl max-sm:text-base max-sm:font-normal">
+                <h5 className="mb-0 text-xl font-semibold tracking-[-0.02em] max-sm:text-base max-sm:font-normal">
                     {headerPeriod ? display(headerPeriod) : ''}
                 </h5>
             </div>
@@ -57,7 +59,7 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
                         >
                             {showTitle && (
                                 <>
-                                    <h5 className="mb-1 text-xl max-sm:text-base max-sm:font-normal">
+                                    <h5 className="mb-1 text-xl font-semibold tracking-[-0.02em] max-sm:text-base max-sm:font-normal">
                                         {`${position.position}`}
                                     </h5>
                                     <div className="text-app-text-muted mb-2">
@@ -77,7 +79,12 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
                             {position.references?.map((link: Reference, refIdx: number) => (
                                 <div key={`${link.href}-${refIdx}`}>
                                     <span>{bullet} </span>
-                                    <a href={link.href}>{link.value}</a>
+                                    <a
+                                        href={link.href}
+                                        className="text-app-link hover:text-app-link-hover transition-colors"
+                                    >
+                                        {link.value}
+                                    </a>
                                     <br />
                                 </div>
                             ))}

@@ -13,6 +13,9 @@
 /dist
 /docs
 /assets
+/out
+/.next
+next-env.d.ts
 
 # misc
 .DS_Store

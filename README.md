@@ -1,6 +1,6 @@
 # Velizar's portfolio 👨‍💼
 
-React-based single page web application representing Velizar's portfolio:
+Next.js (App Router, static export) web application representing Velizar's portfolio:
 
 <https://velizartodorov.github.io/>
 
@@ -20,7 +20,7 @@ npm run dev
 
 The app will be available at <http://localhost:3000/>.
 
-To build for production:
+To build for production (outputs a static site to `out/`):
 
 ```bash
 npm run build
@@ -29,7 +29,7 @@ npm run build
 To preview the production build locally:
 
 ```bash
-npm run preview
+npm run serve
 ```
 
 That's it. Have fun! 😎 🎉
@@ -65,11 +65,10 @@ Example:
 ### Dependabot 🤖
 
 `dependabot.yml` will make sure that bumping of library happens on a regular
-basis by Dependabot with automatic opening of a PR.
+basis by Dependabot with automatic opening of a PR (daily, 08:00 Brussels time).
 
-The `auto-merge-dependabot.yml` workflow automatically merges Dependabot PRs weekly:
-
-- **Tuesday 08:00** (Brussels time): Dependabot creates PRs for dependency updates
-- **Wednesday 10:00** (Brussels time): Auto-merge workflow runs and merges PRs that pass all CI checks
+The `auto-merge-dependabot.yml` workflow merges Dependabot PRs automatically once their checks
+pass: it triggers as soon as the `Build and Deploy` workflow finishes on a Dependabot branch,
+with a periodic run every 3 hours as a fallback in case that trigger is ever missed.
 
 This ensures dependencies are kept up-to-date automatically while maintaining code quality through automated testing.
