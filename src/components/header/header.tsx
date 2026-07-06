@@ -1,6 +1,6 @@
 import { LanguageSelector } from '../common/language_selector';
 import ThemeToggle from '../common/theme_toggle';
-import { tw } from '../common/utils';
+import { tw } from '../common/tw';
 import { useProfile } from './profile.init';
 import ProfileItem from './profile_item';
 import React from 'react';

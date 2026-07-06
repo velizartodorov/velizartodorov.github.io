@@ -1,5 +1,5 @@
 import { createContext, FC, ReactNode, useCallback, useContext, useMemo, useState } from 'react';
-import { tw } from './utils';
+import { tw } from './tw';
 
 interface AccordionCtx {
     openKey: string | null;
@@ -7,6 +7,11 @@ interface AccordionCtx {
 }
 
 const AccordionContext = createContext<AccordionCtx | null>(null);
+
+const TOGGLE_BTN = tw(
+    'bg-app-surface-alt flex w-full cursor-pointer items-center gap-3 px-3 py-2 text-left',
+    'transition-[filter] hover:brightness-95 dark:hover:brightness-125',
+);
 
 export const AccordionChevron: FC<{ open: boolean; className?: string }> = ({ open, className = '' }) => (
     <svg
@@ -17,7 +22,7 @@ export const AccordionChevron: FC<{ open: boolean; className?: string }> = ({ op
         strokeLinecap="round"
         strokeLinejoin="round"
         aria-hidden="true"
-        className={`shrink-0 transition-transform duration-200 ${open ? 'rotate-180' : ''} ${className}`}
+        className={tw('shrink-0 transition-transform duration-200', open && 'rotate-180', className)}
     >
         <polyline points="6 9 12 15 18 9" />
     </svg>
@@ -48,15 +53,7 @@ export const AccordionItem: FC<{ eventKey: string; header: ReactNode; children: 
     const isOpen = ctx.openKey === eventKey;
     return (
         <div className="border-app-border overflow-hidden rounded-lg border">
-            <button
-                type="button"
-                onClick={() => ctx.toggle(eventKey)}
-                aria-expanded={isOpen}
-                className={tw(
-                    'bg-app-surface-alt flex w-full cursor-pointer items-center gap-3 px-3 py-2 text-left',
-                    'transition-[filter] hover:brightness-95 dark:hover:brightness-125',
-                )}
-            >
+            <button type="button" onClick={() => ctx.toggle(eventKey)} aria-expanded={isOpen} className={TOGGLE_BTN}>
                 <span className="min-w-0 flex-1">{header}</span>
                 <AccordionChevron open={isOpen} className="text-app-text-muted h-5 w-5" />
             </button>

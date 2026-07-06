@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { AccordionChevron } from './accordion';
 import { Properties } from './properties';
-import { tw } from './utils';
+import { tw } from './tw';
 
 const AccordionWrapper: FC<Properties> = ({ title, children, className = '' }) => {
     const [open, setOpen] = useState(true);

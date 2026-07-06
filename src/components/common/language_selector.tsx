@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { tw } from './utils';
+import { tw } from './tw';
 
 const BASE_BTN = tw(
     'rounded-[20px] border-none px-[13px] py-[5px] font-sans text-[13px] leading-[1.4] font-semibold',
@@ -27,7 +27,7 @@ export const LanguageSelector: React.FC = () => {
         >
             <button
                 type="button"
-                className={`${BASE_BTN} ${isEnglish ? ACTIVE_BTN : INACTIVE_BTN}`}
+                className={tw(BASE_BTN, isEnglish ? ACTIVE_BTN : INACTIVE_BTN)}
                 onClick={() => switchTo('en')}
                 aria-pressed={isEnglish}
             >
@@ -35,7 +35,7 @@ export const LanguageSelector: React.FC = () => {
             </button>
             <button
                 type="button"
-                className={`${BASE_BTN} ${!isEnglish ? ACTIVE_BTN : INACTIVE_BTN}`}
+                className={tw(BASE_BTN, !isEnglish ? ACTIVE_BTN : INACTIVE_BTN)}
                 onClick={() => switchTo('nl')}
                 aria-pressed={!isEnglish}
             >

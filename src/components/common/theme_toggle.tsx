@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useTheme } from './theme';
-import { tw } from './utils';
+import { tw } from './tw';
 
 const ThemeToggle: FC = () => {
     const { theme, toggle } = useTheme();

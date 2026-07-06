@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useProfile } from '../header/profile.init';
-import { tw } from '../common/utils';
+import { tw } from '../common/tw';
 import { useCurrentYear } from './utils';
 
 const COMMIT_SHA = import.meta.env.VITE_COMMIT_SHA as string | undefined;

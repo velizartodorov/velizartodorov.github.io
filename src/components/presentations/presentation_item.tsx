@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { tw } from '../common/utils';
+import { tw } from '../common/tw';
 import { Presentation } from './presentation';
 
 const PresentationItem: FC<{ item: Presentation; index: number }> = ({ item }) => {

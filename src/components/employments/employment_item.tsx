@@ -2,7 +2,8 @@ import { FC } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { AccordionItem } from '../common/accordion';
-import { bullet, tw } from '../common/utils';
+import { bullet } from '../common/utils';
+import { tw } from '../common/tw';
 import { Employment } from './employment';
 import { combinedPeriod, useDisplayPeriod } from './utils';
 import { Reference } from '../common/reference';
