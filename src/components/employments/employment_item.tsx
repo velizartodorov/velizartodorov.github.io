@@ -35,7 +35,7 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
     );
     return (
         <AccordionItem eventKey={eventKey} header={header}>
-            {item.type && <div className="mb-3">{`ðŸ¢ ${t('common:companyType')}: ${item.type}`}</div>}
+            {item.type && <div className="mb-3">{`🏢 ${t('common:companyType')}: ${item.type}`}</div>}
             <div
                 className={tw(
                     'before:bg-app-border relative space-y-7 pl-6',

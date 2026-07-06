@@ -22,7 +22,7 @@ const AccordionWrapper: FC<Properties> = ({ title, children, className = '' }) =
                     'px-4 py-2 text-left transition-[filter] hover:brightness-95 dark:hover:brightness-125',
                 )}
             >
-                {/* Sized to keep the longest current title ("Licenses & certifications ðŸ”–", ~27 chars)
+                {/* Sized to keep the longest current title ("Licenses & certifications 🔖", ~27 chars)
             on one line down to ~320px viewports, with some margin to spare. If a longer title
             is ever added in either language, re-check it still fits at narrow widths. */}
                 <h4 className="text-app-text m-0 text-[clamp(0.6rem,-1rem+9vw,1.5rem)] font-semibold tracking-tight">

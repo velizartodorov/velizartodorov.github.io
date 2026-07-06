@@ -19,7 +19,7 @@ const ThemeToggle: FC = () => {
             onClick={toggle}
             title={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
         >
-            <span aria-hidden="true">{isDark ? 'â˜€ï¸Ž' : 'â˜¾'}</span>
+            <span aria-hidden="true">{isDark ? '☀︎' : '☾'}</span>
         </button>
     );
 };
