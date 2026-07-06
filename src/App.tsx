@@ -11,12 +11,12 @@ import Languages from './components/languages/languages';
 import Introduction from './components/introduction/introduction';
 import LicensesCertifications from './components/licenses_certifications/licenses_certifications';
 import EnvBanner from './components/common/env_banner';
-import { createLangInstance, type Language } from './i18n';
+import { createLangInstance, loadLanguage, type Language } from './i18n';
 import reportWebVitals from './reportWebVitals';
 
 interface LangSwitchValue {
     lang: Language;
-    switchTo: (lang: Language) => void;
+    switchTo: (lang: Language) => Promise<void>;
 }
 
 const LangSwitchContext = createContext<LangSwitchValue | null>(null);
@@ -91,12 +91,21 @@ function PortfolioAppInner() {
     );
 }
 
-export function PortfolioApp({ initialLang }: { initialLang: Language }) {
-    const [instance] = useState(() => createLangInstance(initialLang));
+interface PortfolioAppProps {
+    initialLang: Language;
+    // The initial language's translation data, computed at build time by the (server-rendered)
+    // page component. Keeping this per-page rather than importing both languages here is what
+    // keeps the other language's (larger) translation payload out of this page's JS bundle.
+    initialResources: Parameters<typeof createLangInstance>[1];
+}
+
+export function PortfolioApp({ initialLang, initialResources }: PortfolioAppProps) {
+    const [instance] = useState(() => createLangInstance(initialLang, initialResources));
     const [lang, setLang] = useState<Language>(initialLang);
 
-    const switchTo = (next: Language) => {
-        void instance.changeLanguage(next);
+    const switchTo = async (next: Language) => {
+        await loadLanguage(instance, next);
+        await instance.changeLanguage(next);
         setLang(next);
         globalThis.history.replaceState(null, '', next === 'nl' ? '/nl/' : '/');
     };

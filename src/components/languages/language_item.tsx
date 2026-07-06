@@ -10,6 +10,8 @@ const LanguageItem: FC<{ item: Language }> = ({ item }) => {
                         src={item.icon}
                         alt="language icon"
                         className="bg-app-icon-bg h-[27px] w-auto rounded shadow-[0_1px_4px_var(--app-shadow)]"
+                        loading="lazy"
+                        decoding="async"
                     />
                 </div>
                 <div className="w-1/3 text-left">

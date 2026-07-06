@@ -1,7 +1,9 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { PortfolioApp } from './App';
+import { resources as enResources } from './translations/en';
+import { resources as nlResources } from './translations/nl';
 
 vi.mock('./components/introduction/introduction', () => ({ default: () => null }));
 vi.mock('./components/employments/employments', () => ({ default: () => null }));
@@ -20,13 +22,13 @@ afterEach(() => {
 
 describe('PortfolioApp', () => {
     it('renders English content and sets document.documentElement.lang', () => {
-        render(<PortfolioApp initialLang="en" />);
+        render(<PortfolioApp initialLang="en" initialResources={enResources} />);
         expect(document.documentElement.lang).toBe('en');
         expect(screen.getByRole('heading', { level: 2, name: 'Velizar Todorov' })).toBeInTheDocument();
     });
 
     it('renders Dutch content and sets document.documentElement.lang', () => {
-        render(<PortfolioApp initialLang="nl" />);
+        render(<PortfolioApp initialLang="nl" initialResources={nlResources} />);
         expect(document.documentElement.lang).toBe('nl');
     });
 });
@@ -34,33 +36,35 @@ describe('PortfolioApp', () => {
 describe('language switching', () => {
     it('switches to Dutch and updates the URL when NL is clicked from English', async () => {
         const replaceStateSpy = vi.spyOn(window.history, 'replaceState');
-        render(<PortfolioApp initialLang="en" />);
+        render(<PortfolioApp initialLang="en" initialResources={enResources} />);
 
         await userEvent.click(screen.getByRole('button', { name: 'NL' }));
 
+        // Switching lazy-loads the other language's data via a dynamic import, so the update
+        // lands a tick or two after the click resolves rather than perfectly synchronously.
+        await waitFor(() => expect(document.documentElement.lang).toBe('nl'));
         expect(replaceStateSpy).toHaveBeenCalledWith(null, '', '/nl/');
-        expect(document.documentElement.lang).toBe('nl');
         replaceStateSpy.mockRestore();
     });
 
     it('switches to English and updates the URL when EN is clicked from Dutch', async () => {
         const replaceStateSpy = vi.spyOn(window.history, 'replaceState');
-        render(<PortfolioApp initialLang="nl" />);
+        render(<PortfolioApp initialLang="nl" initialResources={nlResources} />);
 
         await userEvent.click(screen.getByRole('button', { name: 'EN' }));
 
+        await waitFor(() => expect(document.documentElement.lang).toBe('en'));
         expect(replaceStateSpy).toHaveBeenCalledWith(null, '', '/');
-        expect(document.documentElement.lang).toBe('en');
         replaceStateSpy.mockRestore();
     });
 
     it('marks the NL button pressed when the initial language is nl', () => {
-        render(<PortfolioApp initialLang="nl" />);
+        render(<PortfolioApp initialLang="nl" initialResources={nlResources} />);
         expect(screen.getByRole('button', { name: 'NL' })).toHaveAttribute('aria-pressed', 'true');
     });
 
     it('marks the EN button pressed when the initial language is en', () => {
-        render(<PortfolioApp initialLang="en" />);
+        render(<PortfolioApp initialLang="en" initialResources={enResources} />);
         expect(screen.getByRole('button', { name: 'EN' })).toHaveAttribute('aria-pressed', 'true');
     });
 });
