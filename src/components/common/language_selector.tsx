@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { cx } from './utils';
+import { tw } from './utils';
 
-const BASE_BTN = cx(
+const BASE_BTN = tw(
     'rounded-[20px] border-none px-[13px] py-[5px] font-sans text-[13px] leading-[1.4] font-semibold',
     'cursor-pointer tracking-[0.5px] transition-colors duration-300 ease-out',
     'focus-visible:outline-app-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1',

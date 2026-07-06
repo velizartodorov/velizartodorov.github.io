@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { AccordionChevron } from '../common/accordion';
-import { cx } from '../common/utils';
+import { tw } from '../common/utils';
 import { LicenseCertification } from './license_certification';
 import { useMonthYear } from './licenses_certrifications.init';
 
@@ -15,7 +15,7 @@ const LicenseCertificationItem: FC<{ item: LicenseCertification; index: number }
             <Tag
                 href={hasLink ? item.link : undefined}
                 rel={hasLink ? 'noopener noreferrer' : undefined}
-                className={cx(
+                className={tw(
                     'hover:bg-app-surface-alt focus:bg-app-surface-alt block rounded-lg px-3 py-2 transition-colors',
                     'hover:no-underline focus:no-underline',
                 )}
@@ -26,7 +26,7 @@ const LicenseCertificationItem: FC<{ item: LicenseCertification; index: number }
                             <img
                                 src={item.icon}
                                 alt="license icon"
-                                className={cx(
+                                className={tw(
                                     'bg-app-icon-bg h-[25px] w-[30px] rounded',
                                     'shadow-[0_1px_4px_var(--app-shadow)]',
                                 )}

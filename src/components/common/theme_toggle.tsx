@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useTheme } from './theme';
-import { cx } from './utils';
+import { tw } from './utils';
 
 const ThemeToggle: FC = () => {
     const { theme, toggle } = useTheme();
@@ -8,7 +8,7 @@ const ThemeToggle: FC = () => {
     return (
         <button
             type="button"
-            className={cx(
+            className={tw(
                 'border-app-border bg-app-surface-alt text-app-text hover:bg-app-border focus-visible:bg-app-border',
                 'inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border text-[1.05rem]',
                 'leading-none transition-[background-color,rotate] duration-300 ease-out hover:rotate-[15deg]',
@@ -19,7 +19,7 @@ const ThemeToggle: FC = () => {
             onClick={toggle}
             title={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
         >
-            <span aria-hidden="true">{isDark ? '☀︎' : '☾'}</span>
+            <span aria-hidden="true">{isDark ? 'â˜€ï¸Ž' : 'â˜¾'}</span>
         </button>
     );
 };
