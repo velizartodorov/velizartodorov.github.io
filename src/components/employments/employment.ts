@@ -5,7 +5,7 @@ export interface Position {
     position: string;
     place: string;
     period: Period;
-    description: Array<string>;
+    description: string;
     references: Array<Reference>;
 }
 

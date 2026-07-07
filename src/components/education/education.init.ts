@@ -7,6 +7,6 @@ export interface IEducation {
     place: string;
     icon: string;
     period: Period;
-    body: Array<string>;
+    body: string;
     references: Array<Reference>;
 }

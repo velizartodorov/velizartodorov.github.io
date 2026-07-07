@@ -30,7 +30,7 @@ const EducationItem: FC<{ item: IEducation; index: number }> = ({ item, index })
     );
     return (
         <AccordionItem eventKey={index.toString()} header={header}>
-            {item.body.map((bodyItem: string, bodyIndex: number) => (
+            {item.body.split('\n').map((bodyItem: string, bodyIndex: number) => (
                 <span key={`body-${index}-${bodyIndex}`}>
                     {bodyItem}
                     <br />

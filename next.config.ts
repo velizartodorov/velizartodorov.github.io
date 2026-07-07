@@ -21,6 +21,23 @@ const nextConfig: NextConfig = {
     env: {
         NEXT_PUBLIC_COMMIT_SHA: commitSha,
     },
+    // Translation data lives in src/translations/**/*.yml (see src/i18n.ts); teach both
+    // bundlers Next can use how to turn those into JS modules.
+    turbopack: {
+        rules: {
+            '*.yml': {
+                loaders: ['yaml-loader'],
+                as: '*.js',
+            },
+        },
+    },
+    webpack: (config) => {
+        config.module.rules.push({
+            test: /\.yml$/,
+            use: 'yaml-loader',
+        });
+        return config;
+    },
 };
 
 export default nextConfig;
