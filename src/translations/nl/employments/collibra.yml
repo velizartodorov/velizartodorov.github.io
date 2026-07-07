@@ -10,23 +10,23 @@ positions:
     description:
       - Beschrijving 📚
       - ''
-      - >-
+      - |-
         Collibra is een toonaangevend platform voor enterprise data governance
         dat organisaties helpt hun data te begrijpen, vertrouwen en toegankelijk
         te maken 🏢
-      - >-
+      - |-
         Het bedrijf wordt erkend als een Leider in het Gartner Magic Quadrant
         for Data Governance Solutions
       - ''
       - Persoonlijke bijdragen 👍
       - ''
-      - >-
+      - |-
         • Werkte samen met kwaliteitsborgingsingenieurs om de juiste
         testprocedures op technisch en functioneel niveau te waarborgen
-      - >-
+      - |-
         • Sloot zich aan bij het Control Tower-team als back-end engineer, een
         app voor het beheren van assets op basis van platformbrede regels
-      - >-
+      - |-
         • Verantwoordelijk voor deployments en CI/CD-pipelines, documenteerde de
         interne procedures
       - ''
@@ -39,7 +39,7 @@ positions:
       - '• Dependency management: Gradle'
       - '• Containerisatie: Docker'
       - '• Testframework: JUnit 5, Mockito'
-      - >-
+      - |-
         • Deployments: Helm charts, Kubernetis, ArgoCD (Multi-tenant), Jenkins
         (Single-tenant)
       - '• Applicatieserver: Apache Tomcat'
@@ -47,7 +47,7 @@ positions:
       - '• Persistentie: Spring Data JPA, Hibernate, JDBC'
       - '• Database: PostgreSQL, Liquibase (migraties), Neo4j'
       - '• Databasebeheer: Liquibase migraties'
-      - >-
+      - |-
         • CI/CD, Monitoring, Logaggregatie: GitHub Actions, Grafana, Prometheus,
         Datadog
       - '• Kwetsbaarheidsbeheer: Snyk'

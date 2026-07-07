@@ -10,22 +10,22 @@ positions:
     description:
       - Description 📚
       - ''
-      - >-
+      - |-
         Collibra is a leading enterprise data governance platform helping
         organizations understand, trust, and access their data 🏢
-      - >-
+      - |-
         The company is recognized as a Leader in the Gartner Magic Quadrant for
         Data Governance Solutions
       - ''
       - Personal contributions 👍
       - ''
-      - >-
+      - |-
         • Worked together with quality assurance engineers to ensure proper
         testing procedures on technical and functional level
-      - >-
+      - |-
         • Joined the Control Tower team as back-end engineer, app for
         controlling and managing assets based on platform wide rules
-      - >-
+      - |-
         • Responsible for deployments and CI/CD pipelines, documented the
         internal proceduresn
       - ''
@@ -38,7 +38,7 @@ positions:
       - '• Dependency management: Gradle'
       - '• Containerization: Docker'
       - '• Testing framework: JUnit 5, Mockito'
-      - >-
+      - |-
         • Deployments: Helm charts, Kubernetis, ArgoCD (Multi-tenant), Jenkins
         (Single-tenant)
       - '• Application server: Apache Tomcat'
@@ -46,7 +46,7 @@ positions:
       - '• Persistence: Spring Data JPA, Hibernate, JDBC'
       - '• Database: PostgreSQL, Liquibase (migrations), Neo4j'
       - '• Database management: Liquibase migrations'
-      - >-
+      - |-
         • CI/CD, Monitoring, Logs aggregation: GitHub Actions, Grafana,
         Prometheus, Datadog
       - '• Vulnerability management: Snyk'
