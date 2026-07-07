@@ -111,6 +111,25 @@ export function PortfolioApp({ initialLang, initialResources }: PortfolioAppProp
     const targetLangRef = useRef<Language>(initialLang);
     const latestSwitchRef = useRef(0);
 
+    useEffect(() => {
+        // Warm the OTHER language's resources during idle time so that, by the time the visitor
+        // actually clicks the toggle, `loadLanguage` below is a no-op and switching only costs a
+        // `changeLanguage` + re-render — no network round trip in the critical path. Deferred to
+        // idle time (rather than fetched eagerly on mount) so it never competes with the initial
+        // page's own load.
+        const other: Language = initialLang === 'nl' ? 'en' : 'nl';
+        const warm = () => void loadLanguage(instance, other);
+
+        if (typeof window.requestIdleCallback === 'function') {
+            const handle = window.requestIdleCallback(warm);
+            return () => window.cancelIdleCallback(handle);
+        }
+        const handle = window.setTimeout(warm, 1000);
+        return () => window.clearTimeout(handle);
+        // Mount-only: `instance` is referentially stable for the component's lifetime, and
+        // `initialLang` never changes after the initial render.
+    }, []);
+
     const switchTo = async (next: Language) => {
         if (next === targetLangRef.current) return;
         targetLangRef.current = next;
