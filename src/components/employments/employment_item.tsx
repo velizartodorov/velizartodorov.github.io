@@ -4,11 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { AccordionItem } from '../common/accordion';
 import Icon from '../common/icon';
 import ItemTitle from '../common/item_title';
-import { bullet } from '../common/utils';
+import Markdown from '../common/markdown';
 import { tw } from '../common/tw';
 import { Employment } from './employment';
 import { combinedPeriod, useDisplayPeriod } from './utils';
-import { Reference } from '../common/reference';
 
 const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> = ({ item, index, eventKey }) => {
     const { t } = useTranslation();
@@ -66,24 +65,7 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
                                     </div>
                                 </div>
                             )}
-                            {position.description?.split('\n').map((bodyItem: string, descIdx: number) => (
-                                <span key={`${index}-${posIdx}-${descIdx}`}>
-                                    {bodyItem}
-                                    <br />
-                                </span>
-                            ))}
-                            {position.references?.map((link: Reference, refIdx: number) => (
-                                <div key={`${link.href}-${refIdx}`}>
-                                    <span>{bullet} </span>
-                                    <a
-                                        href={link.href}
-                                        className="text-app-link hover:text-app-link-hover transition-colors"
-                                    >
-                                        {link.value}
-                                    </a>
-                                    <br />
-                                </div>
-                            ))}
+                            {position.description && <Markdown>{position.description}</Markdown>}
                         </div>
                     );
                 })}

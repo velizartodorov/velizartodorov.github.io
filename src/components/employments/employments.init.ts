@@ -24,7 +24,6 @@ function toPosition(p: Position, t: Translate): Position {
         place: p.place,
         period: resolvePeriod(p, t),
         description: p.description,
-        references: Array.isArray(p.references) ? p.references : [],
     };
 }
 

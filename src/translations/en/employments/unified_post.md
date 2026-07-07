@@ -1,0 +1,97 @@
+---
+company: Unified Post
+icon: /employments/unified_post.jpeg
+type: Product
+positions:
+  - position: Software Developer
+    place: Ghent, Belgium
+    period:
+      start: '{{dates:unified_post_start}}'
+      end: '{{dates:unified_post_end}}'
+  - position: Java Developer | ADM Solutions
+    place: Ghent, Belgium
+    period:
+      start: '{{dates:adm_solutions_start}}'
+      end: '{{dates:adm_solutions_end}}'
+---
+
+Description 📚
+
+- ADMS was acquired by Unified Post
+- Worked on the Integration Portal, configuration app for connecting 3rd party apps to the Unified Post flows
+- Setting-up JIRA flow + Bitbucket integration, Git Gitflow
+- Working on accountancy simulation app using multi-tenancy architecture (Spring Boot)
+- Documenting and schematizing the flow using C4 diagrams, updating README-s
+- Creating TestRail cases
+
+Technologies 🔧
+
+- Language/framework: Java 8/11, Spring Boot 2.6.7, Project Reactor
+- API tool: Swagger
+- Dependency management: Maven, Gradle
+- Testing framework/tools: JUnit 4/5, Mockito, TestRails (testcases), Selenium
+- CI/CD: BitBucket Pipelines
+- Database: PostgreSQL
+- Application server: Apache Tomcat 8
+- Architecture: Microservices, Single-tenancy
+- Persistence: Spring Data JPA, Hibernate
+- Caching: Redis
+- Database management: Liquibase, Flyway
+- Identity/access management: KeyCloak (0Auth 2.0)
+- Front-end: Angular 12
+- IDE: IntelliJ, VS Code, DBeaver
+- Diagram schematization and documentation: Draw.io, C4 Structurizr, Markdown
+- Production methodology: Kanban & Scrum
+
+Domain Expertise 🌐
+
+- FinTech Integration – contributing to tools that bridge third-party apps with Unified Post's financial processing infrastructure
+- Multi-Tenant Application Design – development of accountancy simulation app supporting multiple client contexts securely
+- DevOps and Tooling Optimization – setting up JIRA-Bitbucket workflows and standardizing Git Gitflow branching strategy
+- Quality Assurance & Documentation – authoring C4 diagrams, TestRail test cases, and structured technical documentation
+- Agile Product Delivery – working in hybrid Scrum and Kanban environments across distributed microservice architecture
+
+References 📌
+
+- [Unifiedpost](https://www.unifiedpost.com/)
+- [Banqup](https://www.banqup.com/)
+
+<!-- position -->
+
+Description 📚
+
+- Integrating, developing and improving automatized invoice/dossier flows with external services such as BillToBox (BanqUp), ELO and accountancy packages
+- Documenting and schematizing the flow using UML diagrams
+- Working on InvoiceFlow, monolitic application which distributes invoices towards different accountancy packages like Expert-M, Adsolut, ExactOnline, BoCount, Wings Online and also persists them in a document management system called ELO
+- Working on DossierFlow, monolitic application which reads information about user dossiers from Adsolut and imports them in ELO
+- Migrating Java applications from SVN to Git
+
+Technologies 🔧
+
+- Language: Java 8
+- Testing framework: JUnit 4
+- Database: Microsoft SQL Server 2008-2012
+- Application server: Apache Tomcat 8
+- OS: Windows Server 2008-2012
+- External API: ELO API
+- Persistence: Java Database Connectivity (JDBC)
+- Architecture: Java Servlet MVC Architecture, Single-tenancy
+- Front-end: Java Server Pages (JSP) + jQuerry/Ajax
+- Version Control: SVN/Git, BitBucket
+- IDE: Eclipse
+- Diagram schematization: Draw.io, MS Visio
+- Development methodology: Pair programming
+- Production methodology: Kanban
+
+Domain Expertise 🌐
+
+- Document & Invoice Processing – development of automation flows for invoice and dossier management integrating ELO and accountancy platforms
+- Accounting Software Integration – implementing connectors for financial systems such as Expert-M, Adsolut, BoCount, Wings Online, and ExactOnline
+- Enterprise Document Management – use of ELO API to store and retrieve structured content from external applications
+- Legacy System Maintenance – maintaining and enhancing monolithic Java Servlet applications on Windows Server infrastructure
+- Source Control Modernization – migrating Java projects from SVN to Git to align with modern version control standards
+
+References 📌
+
+- [ADM Solutions](https://web.archive.org/web/20181111090144/https://adm-solutions.eu/nl/)
+- [ELO](https://www.elo.com/en-de.html)

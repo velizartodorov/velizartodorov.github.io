@@ -51,6 +51,7 @@ export const AccordionItem: FC<{ eventKey: string; header: ReactNode; children: 
     const ctx = useContext(AccordionContext);
     if (!ctx) throw new Error('AccordionItem must be used within an AccordionGroup');
     const isOpen = ctx.openKey === eventKey;
+
     return (
         <div className="border-app-border overflow-hidden rounded-lg border">
             <button type="button" onClick={() => ctx.toggle(eventKey)} aria-expanded={isOpen} className={TOGGLE_BTN}>

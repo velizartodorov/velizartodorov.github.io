@@ -1,0 +1,34 @@
+---
+company: ADM Solutions
+icon: /employments/adm_solutions.jpg
+type: Research & Development
+positions:
+  - position: Erasmus+ .NET Ontwikkeling Stagiar
+    place: Gent, België
+    period:
+      start: '{{dates:erasmus_start}}'
+      end: '{{dates:erasmus_end}}'
+---
+
+Beschrijving 📚
+
+- Overzicht van C#-programmeertechnieken en benaderingen in .NET 4.0 en hoger (Visual Studio 2015/17)
+- Ontwerp en implementatie van C#-gebaseerde software
+- Verbeteren van workflow en bieden van ondersteunende functies
+- Testen van C#-componenten
+- Ontwikkelmethode: Pair programming
+- Productiemethode: Kanban
+
+Domeinexpertise 🌐
+
+- Academische R&D-samenwerking – deelname aan internationale onderzoeksprojecten via Erasmus+ en academische partnerschappen
+- Softwareontwerp & implementatie – praktische ervaring met het ontwerpen en coderen van C#-applicaties met .NET Framework 4.0+
+- Code testen & valideren – valideren van componenten via functionele en modulaire teststrategieën
+- Workflowoptimalisatie – teamproductiviteit ondersteunen door interne tooling en pipelines te verbeteren
+- Technische communicatie – bijdragen aan samenwerkingsprojecten tussen universiteit en bedrijfsleven
+
+Referenties 📌
+
+- [ADM Solutions](https://web.archive.org/web/20181111090144/https://adm-solutions.eu/nl/)
+- [Erasmus+](https://erasmus-plus.ec.europa.eu/)
+- [University of Ruse](https://www.uni-ruse.bg/en)

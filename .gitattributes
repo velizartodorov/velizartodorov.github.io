@@ -1,0 +1,4 @@
+# Normalize line endings to LF in the repository and on checkout, regardless of the checking-out
+# platform's core.autocrlf setting. Without this, Windows checkouts materialize *.md/*.yml/etc as
+# CRLF, which has already broken LF-only parsing logic once (see src/translations/build-resources.ts).
+* text=auto eol=lf
