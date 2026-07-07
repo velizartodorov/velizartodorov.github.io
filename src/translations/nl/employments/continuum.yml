@@ -10,10 +10,14 @@ positions:
     description:
       - Beschrijving 📚
       - ''
-      - Toegetreden tot de Continuum-tribe, consultancy voor klanten met Java-gebaseerde applicaties.
+      - >-
+        Toegetreden tot de Continuum-tribe, consultancy voor klanten met
+        Java-gebaseerde applicaties.
       - ''
       - • R&D aan interne tools zoals E-Tribe Tool en HR Interview Tool
-      - • Experimenteren met Docker, Kubernetes en migratie van Elastic BeanStalk naar Kubernetes
+      - >-
+        • Experimenteren met Docker, Kubernetes en migratie van Elastic
+        BeanStalk naar Kubernetes
       - • Documentatie bijwerken
       - ''
       - Technologieën 🔧
@@ -25,7 +29,9 @@ positions:
       - '• DevOps: Elastic BeanStalk'
       - '• Testframework: JUnit 4'
       - '• Deployments: Confluence Bamboo, Azure'
-      - '• Database: PostgreSQL, Amazon DynamoDB (serverless, key-value NoSQL database)'
+      - >-
+        • Database: PostgreSQL, Amazon DynamoDB (serverless, key-value NoSQL
+        database)
       - '• Applicatieserver: Apache Tomcat 8'
       - '• Architectuur: Microservices, client-server'
       - '• Persistentie: Spring Data JPA/R2DBC, Hibernate'
@@ -41,11 +47,21 @@ positions:
       - ''
       - Domeinexpertise 🌐
       - ''
-      - • Interne tooling & automatisering – R&D aan productiviteitsplatforms zoals interview- en HR-tools
-      - • Enterprise applicatieontwikkeling – werken aan modulaire Java/Spring Boot microservices in consultancysetting
-      - • DevOps enablement – experimenteren met Docker en Kubernetes voor infrastructuurmodernisering
-      - • Cloudmigratiestrategie – evaluatie van migratiepaden van Elastic Beanstalk naar Kubernetes-infrastructuur
-      - • Agile delivery – werken in een Kanban-team voor continue verbetering en taakgerichte flow
+      - >-
+        • Interne tooling & automatisering – R&D aan productiviteitsplatforms
+        zoals interview- en HR-tools
+      - >-
+        • Enterprise applicatieontwikkeling – werken aan modulaire Java/Spring
+        Boot microservices in consultancysetting
+      - >-
+        • DevOps enablement – experimenteren met Docker en Kubernetes voor
+        infrastructuurmodernisering
+      - >-
+        • Cloudmigratiestrategie – evaluatie van migratiepaden van Elastic
+        Beanstalk naar Kubernetes-infrastructuur
+      - >-
+        • Agile delivery – werken in een Kanban-team voor continue verbetering
+        en taakgerichte flow
       - ''
       - Referenties 📌
       - ''
@@ -62,9 +78,15 @@ positions:
       - ''
       - Gestart als externe Java softwareontwikkelaar bij Securex.
       - ''
-      - • Lid van de Continuum-tribe als consultant voor het sociaal secretariaat Securex
-      - • Werken aan een applicatie voor het verzamelen van medische enquêtes van werknemers – ‘BeWell’
-      - • Ondersteunen van een applicatie voor het verzamelen van informatie van startende ondernemers – ‘GO-Start’
+      - >-
+        • Lid van de Continuum-tribe als consultant voor het sociaal
+        secretariaat Securex
+      - >-
+        • Werken aan een applicatie voor het verzamelen van medische enquêtes
+        van werknemers – ‘BeWell’
+      - >-
+        • Ondersteunen van een applicatie voor het verzamelen van informatie van
+        startende ondernemers – ‘GO-Start’
       - ''
       - Technologieën 🔧
       - ''
@@ -77,7 +99,9 @@ positions:
       - '• Deployments: Azure'
       - '• Database: Oracle, Microsoft SQL Server'
       - '• Applicatieserver: Apache Tomcat'
-      - '• Architectuur: Gedistribueerde microservices, Spring Cloud Gateway, Netflix Zuul API (Eureka), single-tenancy'
+      - >-
+        • Architectuur: Gedistribueerde microservices, Spring Cloud Gateway,
+        Netflix Zuul API (Eureka), single-tenancy
       - '• Message queues/notifications: Amazon SQS / SNS'
       - '• Persistentie: Spring Data JPA, Hibernate'
       - '• Databasebeheer: Liquibase'
@@ -85,16 +109,26 @@ positions:
       - '• Versiebeheer: Git, BitBucket'
       - '• IDE: IntelliJ, VS Code, DbVisualizer Pro 11.0.5'
       - '• Ontwikkelmethode: Pair/solo programming'
-      - '• Productiemethode: Scrum met 2-weekse sprints (planning, retros), SAFe (Scaled agile framework)'
+      - >-
+        • Productiemethode: Scrum met 2-weekse sprints (planning, retros), SAFe
+        (Scaled agile framework)
       - '• Tijdregistratie: Jira'
       - ''
       - Domeinexpertise 🌐
       - ''
-      - • HR & welzijnsoplossingen – bijdragen aan de ontwikkeling van ‘BeWell’, een medische enquête-tool voor werknemers
-      - • Ondernemerschapsondersteuning – bijdragen aan ‘GO-Start’, een platform voor startende ondernemers
-      - • Publieke sector & sociaal secretariaat – softwareontwikkeling voor HR-compliance, payroll en administratieve workflows
+      - >-
+        • HR & welzijnsoplossingen – bijdragen aan de ontwikkeling van ‘BeWell’,
+        een medische enquête-tool voor werknemers
+      - >-
+        • Ondernemerschapsondersteuning – bijdragen aan ‘GO-Start’, een platform
+        voor startende ondernemers
+      - >-
+        • Publieke sector & sociaal secretariaat – softwareontwikkeling voor
+        HR-compliance, payroll en administratieve workflows
       - • Scaled agile delivery – werken binnen SAFe voor grote projecten
-      - • Data privacy & compliance – werken in omgevingen met focus op veilige verwerking van persoonsgegevens
+      - >-
+        • Data privacy & compliance – werken in omgevingen met focus op veilige
+        verwerking van persoonsgegevens
       - ''
       - Referenties 📌
       - ''

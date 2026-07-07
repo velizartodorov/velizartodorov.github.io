@@ -10,12 +10,23 @@ positions:
     description:
       - Description 📚
       - ''
-      - DSI Ltd. is a software development company specializing in e-commerce solutions and business management systems, focusing on delivering custom web applications for diverse business needs.
+      - >-
+        DSI Ltd. is a software development company specializing in e-commerce
+        solutions and business management systems, focusing on delivering custom
+        web applications for diverse business needs.
       - ''
-      - • Development and maintenance of multiple e-commerce platforms (Kozelat.com/Outletpc.bg) with automated product imports
-      - • Creation and support of MiAudit, a comprehensive auditing system for UK cleaning companies
-      - • Server administration and deployment management across multiple hosting environments
-      - • Implementation of agile methodologies with emphasis on pair programming and continuous delivery
+      - >-
+        • Development and maintenance of multiple e-commerce platforms
+        (Kozelat.com/Outletpc.bg) with automated product imports
+      - >-
+        • Creation and support of MiAudit, a comprehensive auditing system for
+        UK cleaning companies
+      - >-
+        • Server administration and deployment management across multiple
+        hosting environments
+      - >-
+        • Implementation of agile methodologies with emphasis on pair
+        programming and continuous delivery
       - ''
       - Technologies 🔧
       - ''
@@ -32,11 +43,21 @@ positions:
       - ''
       - Domain Expertise 🌐
       - ''
-      - • E-Commerce Development – Building and customizing online stores with automated product synchronization
-      - • Back-office Systems – Creating audit and management platforms for service-based businesses
-      - • DevOps & Infrastructure – Managing deployments and maintaining cloud-based hosting environments
-      - • Agile Practices – Implementing Kanban workflows with pair programming for enhanced code quality
-      - • System Integration – Developing automated data import solutions for multiple supplier systems
+      - >-
+        • E-Commerce Development – Building and customizing online stores with
+        automated product synchronization
+      - >-
+        • Back-office Systems – Creating audit and management platforms for
+        service-based businesses
+      - >-
+        • DevOps & Infrastructure – Managing deployments and maintaining
+        cloud-based hosting environments
+      - >-
+        • Agile Practices – Implementing Kanban workflows with pair programming
+        for enhanced code quality
+      - >-
+        • System Integration – Developing automated data import solutions for
+        multiple supplier systems
       - ''
       - References 📌
       - ''
