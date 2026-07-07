@@ -19,7 +19,7 @@ Personal contributions 👍
 
 - Worked together with quality assurance engineers to ensure proper testing procedures on technical and functional level
 - Joined the Control Tower team as back-end engineer, app for controlling and managing assets based on platform wide rules
-- Responsible for deployments and CI/CD pipelines, documented the internal proceduresn
+- Responsible for deployments and CI/CD pipelines, documented the internal procedures
 
 Technologies 🔧
 
@@ -41,3 +41,7 @@ Technologies 🔧
 - Identity/access management: KeyCloak (OAuth 2.0)
 - Version control: Git, GitHub
 - IDE: IntelliJ, Visual Studio Code, Cursor
+
+References 📌
+
+- [Collibra](https://www.collibra.com/)

@@ -41,3 +41,7 @@ Technologieën 🔧
 - Identiteit/toegangsbeheer: KeyCloak (OAuth 2.0)
 - Versiebeheer: Git, GitHub
 - IDE: IntelliJ, Visual Studio Code, Cursor
+
+Referenties 📌
+
+- [Collibra](https://www.collibra.com/)
