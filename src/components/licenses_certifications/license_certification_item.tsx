@@ -1,13 +1,12 @@
 import { FC } from 'react';
 import { AccordionChevron } from '../common/accordion';
-import Icon from '../common/icon';
-import ItemTitle from '../common/item_title';
+import ItemHeaderRow from '../common/item_header_row';
+import { HOVER_ROW, HOVER_ROW_LINK } from '../common/list_row';
 import { LicenseCertification } from './license_certification';
 import { useMonthYear } from './licenses_certrifications.init';
 
-const ROW = `hover:bg-app-surface-alt focus:bg-app-surface-alt block rounded-lg px-3 py-2 transition-colors
-    hover:no-underline focus:no-underline`;
-const LINK_ROW = `${ROW} text-app-link hover:text-app-link-hover`;
+const ROW = `${HOVER_ROW} px-3 py-2`;
+const LINK_ROW = `${HOVER_ROW_LINK} px-3 py-2`;
 const ICON = 'bg-app-icon-bg h-[25px] w-[30px] rounded shadow-[0_1px_4px_var(--app-shadow)]';
 
 const LicenseCertificationItem: FC<{ item: LicenseCertification; index: number }> = ({ item }) => {
@@ -24,18 +23,13 @@ const LicenseCertificationItem: FC<{ item: LicenseCertification; index: number }
                 className={hasLink ? LINK_ROW : ROW}
             >
                 <div className="flex items-center gap-3">
-                    <div className="flex min-w-0 flex-1 items-center gap-3">
-                        <div className="shrink-0 text-left">
-                            <Icon src={item.icon} alt="license icon" className={ICON} />
-                        </div>
-                        <div className="w-9/12 text-left md:w-5/12">
-                            <ItemTitle>{item.name}</ItemTitle>
-                        </div>
-                        <div className="hidden flex-1 pl-0 text-left sm:block">{item.institution}</div>
-                        <div className="hidden shrink-0 text-right sm:block">
-                            <ItemTitle>{monthYearStr}</ItemTitle>
-                        </div>
-                    </div>
+                    <ItemHeaderRow
+                        icon={{ src: item.icon, alt: 'license icon', className: ICON }}
+                        title={item.name}
+                        place={item.institution}
+                        period={monthYearStr}
+                        className="min-w-0 flex-1"
+                    />
                     {/* Invisible copy of AccordionItem's real chevron so this row reserves the exact same
                     space, keeping columns aligned with the Employments/Education rows. */}
                     <AccordionChevron open={false} className="text-app-text-muted invisible size-5" />

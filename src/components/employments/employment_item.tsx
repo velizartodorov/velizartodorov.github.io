@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { AccordionItem } from '../common/accordion';
-import Icon from '../common/icon';
+import ItemHeaderRow from '../common/item_header_row';
 import ItemTitle from '../common/item_title';
 import Markdown from '../common/markdown';
 import { Employment } from './employment';
@@ -19,18 +19,12 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
     const headerTitle = headerPosition ? `${headerPosition.position} ${at} ${item.company}` : '';
 
     const header = (
-        <div className="flex w-full items-center gap-3">
-            <div className="shrink-0 text-left">
-                <Icon src={item.icon} alt="company icon" className="w-[30px] rounded-lg" />
-            </div>
-            <div className="w-9/12 text-left md:w-5/12">
-                <ItemTitle>{headerTitle}</ItemTitle>
-            </div>
-            <div className="hidden flex-1 sm:block">{headerPlace}</div>
-            <div className="hidden shrink-0 text-right sm:block">
-                <ItemTitle>{headerPeriod ? display(headerPeriod) : ''}</ItemTitle>
-            </div>
-        </div>
+        <ItemHeaderRow
+            icon={{ src: item.icon, alt: 'company icon', className: 'w-[30px] rounded-lg' }}
+            title={headerTitle}
+            place={headerPlace}
+            period={headerPeriod ? display(headerPeriod) : ''}
+        />
     );
     return (
         <AccordionItem eventKey={eventKey} header={header}>

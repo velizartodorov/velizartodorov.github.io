@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import AccordionWrapper from '../common/accordion_wrapper';
+import DividedList from '../common/divided_list';
 import { SectionProps } from '../common/section_props';
 import LicenseCertificationItem from './license_certification_item';
 import { useLicensesCertifications } from './licenses_certrifications.init';
@@ -9,11 +10,11 @@ const LicensesCertifications = ({ className, eventKey }: SectionProps) => {
     const licensesCertifications = useLicensesCertifications();
     return (
         <AccordionWrapper title={t('licenses_certifications:title')} eventKey={eventKey} className={className}>
-            <ul className="divide-app-border divide-y">
+            <DividedList>
                 {licensesCertifications.map((item, index) => (
                     <LicenseCertificationItem item={item} index={index} key={index.valueOf()} />
                 ))}
-            </ul>
+            </DividedList>
         </AccordionWrapper>
     );
 };
