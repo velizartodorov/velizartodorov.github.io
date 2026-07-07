@@ -2,16 +2,13 @@ import { FC } from 'react';
 import { AccordionChevron } from '../common/accordion';
 import Icon from '../common/icon';
 import ItemTitle from '../common/item_title';
-import { tw } from '../common/tw';
 import { LicenseCertification } from './license_certification';
 import { useMonthYear } from './licenses_certrifications.init';
 
-const ROW = tw(
-    'hover:bg-app-surface-alt focus:bg-app-surface-alt block rounded-lg px-3 py-2 transition-colors',
-    'hover:no-underline focus:no-underline',
-);
-const LINK_ROW = tw(ROW, 'text-app-link hover:text-app-link-hover');
-const ICON = tw('bg-app-icon-bg h-[25px] w-[30px] rounded', 'shadow-[0_1px_4px_var(--app-shadow)]');
+const ROW = `hover:bg-app-surface-alt focus:bg-app-surface-alt block rounded-lg px-3 py-2 transition-colors
+    hover:no-underline focus:no-underline`;
+const LINK_ROW = `${ROW} text-app-link hover:text-app-link-hover`;
+const ICON = 'bg-app-icon-bg h-[25px] w-[30px] rounded shadow-[0_1px_4px_var(--app-shadow)]';
 
 const LicenseCertificationItem: FC<{ item: LicenseCertification; index: number }> = ({ item }) => {
     const hasLink = Boolean(item.link?.trim());

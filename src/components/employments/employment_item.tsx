@@ -5,7 +5,6 @@ import { AccordionItem } from '../common/accordion';
 import Icon from '../common/icon';
 import ItemTitle from '../common/item_title';
 import Markdown from '../common/markdown';
-import { tw } from '../common/tw';
 import { Employment } from './employment';
 import { combinedPeriod, useDisplayPeriod } from './utils';
 
@@ -37,22 +36,14 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
         <AccordionItem eventKey={eventKey} header={header}>
             {item.type && <div className="mb-3">{`🏢 ${t('common:companyType')}: ${item.type}`}</div>}
             <div
-                className={tw(
-                    'before:bg-app-border relative space-y-7 pl-6',
-                    "before:absolute before:inset-y-2 before:left-[9px] before:w-[2px] before:content-['']",
-                )}
+                className={`before:bg-app-border relative space-y-7 pl-6 before:absolute before:inset-y-2 before:left-[9px] before:w-[2px] before:content-['']`}
             >
                 {positions.map((position, posIdx) => {
                     const showTitle = positions.length > 1;
                     return (
                         <div
                             key={`${index}-${posIdx}`}
-                            className={tw(
-                                'before:border-app-surface before:bg-app-accent relative before:absolute',
-                                'before:top-2 before:-left-5 before:size-3 before:rounded-full before:border-2',
-                                "before:shadow-[0_0_0_1px_var(--app-accent)] before:content-['']",
-                                'before:transition-transform before:duration-200 hover:before:scale-[1.15]',
-                            )}
+                            className={`before:border-app-surface before:bg-app-accent relative before:absolute before:top-2 before:-left-5 before:size-3 before:rounded-full before:border-2 before:shadow-[0_0_0_1px_var(--app-accent)] before:transition-transform before:duration-200 before:content-[''] hover:before:scale-[1.15]`}
                         >
                             {showTitle && (
                                 <div className="mb-2 flex flex-col gap-1">

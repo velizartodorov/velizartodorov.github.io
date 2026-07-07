@@ -1,15 +1,9 @@
 import React from 'react';
 import { useLangSwitch } from '../../App';
-import { tw } from './tw';
 
-const BASE_BTN = tw(
-    'rounded-[20px] border-none px-[13px] py-[5px] font-sans text-[13px] leading-[1.4] font-semibold',
-    'cursor-pointer tracking-[0.5px] transition-colors duration-75 ease-out',
-    // `outline` (style) and `outline-2` (width) aren't a real conflict — eslint-plugin-tailwindcss
-    // groups all `outline-*` utilities together, so it misreads this as contradicting.
-    // eslint-disable-next-line tailwindcss/no-contradicting-classname
-    'focus-visible:outline-app-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1',
-);
+const BASE_BTN = `rounded-[20px] border-none px-[13px] py-[5px] font-sans text-[13px] leading-[1.4] font-semibold
+    cursor-pointer tracking-[0.5px] transition-colors duration-75 ease-out
+    focus-visible:outline-app-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1`;
 const ACTIVE_BTN = 'bg-app-accent-subtle text-app-accent';
 const INACTIVE_BTN = 'bg-transparent text-app-text-muted hover:text-app-text';
 
@@ -25,7 +19,7 @@ export const LanguageSelector: React.FC = () => {
         >
             <button
                 type="button"
-                className={tw(BASE_BTN, isEnglish ? ACTIVE_BTN : INACTIVE_BTN)}
+                className={`${BASE_BTN} ${isEnglish ? ACTIVE_BTN : INACTIVE_BTN}`}
                 onClick={() => switchTo('en')}
                 aria-pressed={isEnglish}
             >
@@ -33,7 +27,7 @@ export const LanguageSelector: React.FC = () => {
             </button>
             <button
                 type="button"
-                className={tw(BASE_BTN, !isEnglish ? ACTIVE_BTN : INACTIVE_BTN)}
+                className={`${BASE_BTN} ${!isEnglish ? ACTIVE_BTN : INACTIVE_BTN}`}
                 onClick={() => switchTo('nl')}
                 aria-pressed={!isEnglish}
             >

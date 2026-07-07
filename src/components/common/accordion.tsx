@@ -1,5 +1,4 @@
 import { createContext, FC, ReactNode, useCallback, useContext, useMemo, useState } from 'react';
-import { tw } from './tw';
 
 interface AccordionCtx {
     openKey: string | null;
@@ -8,10 +7,8 @@ interface AccordionCtx {
 
 const AccordionContext = createContext<AccordionCtx | null>(null);
 
-const TOGGLE_BTN = tw(
-    'bg-app-surface-alt flex w-full cursor-pointer items-center gap-3 px-3 py-2 text-left',
-    'transition-[filter] hover:brightness-95 dark:hover:brightness-125',
-);
+const TOGGLE_BTN = `bg-app-surface-alt flex w-full cursor-pointer items-center gap-3 px-3 py-2 text-left
+    transition-[filter] hover:brightness-95 dark:hover:brightness-125`;
 
 export const AccordionChevron: FC<{ open: boolean; className?: string }> = ({ open, className = '' }) => (
     <svg
@@ -22,7 +19,7 @@ export const AccordionChevron: FC<{ open: boolean; className?: string }> = ({ op
         strokeLinecap="round"
         strokeLinejoin="round"
         aria-hidden="true"
-        className={tw('shrink-0 transition-transform duration-200', open && 'rotate-180', className)}
+        className={`shrink-0 transition-transform duration-200 ${open ? 'rotate-180' : ''} ${className}`}
     >
         <polyline points="6 9 12 15 18 9" />
     </svg>
@@ -59,10 +56,7 @@ export const AccordionItem: FC<{ eventKey: string; header: ReactNode; children: 
                 <AccordionChevron open={isOpen} className="text-app-text-muted size-5" />
             </button>
             <div
-                className={tw(
-                    'grid transition-[grid-template-rows] duration-200 ease-out',
-                    isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]',
-                )}
+                className={`grid transition-[grid-template-rows] duration-200 ease-out ${isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}
             >
                 <div className="overflow-hidden">
                     <div className="px-4 pt-3 pb-4">{children}</div>
