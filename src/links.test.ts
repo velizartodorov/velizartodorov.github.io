@@ -4,8 +4,9 @@ import { readFileSync } from 'node:fs';
 import { resolve, join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { load } from 'js-yaml';
-import type { Employment } from './components/employments/employment';
-import type { IEducation } from './components/education/education.init';
+import matter from 'gray-matter';
+import type { Position } from './components/employments/employment';
+import type { Reference } from './components/common/reference';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const translationsDir = resolve(__dirname, 'translations/en');
@@ -14,11 +15,17 @@ function readYaml<T>(filePath: string): T {
     return load(readFileSync(filePath, 'utf8')) as T;
 }
 
+function readMarkdownFrontmatter<T>(filePath: string): T {
+    return matter(readFileSync(filePath, 'utf8')).data as T;
+}
+
 function collectEmploymentLinks(): { url: string; label: string }[] {
     const index = readYaml<{ list: string[] }>(join(translationsDir, 'employments.yml'));
     const links: { url: string; label: string }[] = [];
     for (const filename of index.list) {
-        const data = readYaml<Employment>(join(translationsDir, 'employments', filename));
+        const data = readMarkdownFrontmatter<{ company: string; positions: Array<Pick<Position, 'references'>> }>(
+            join(translationsDir, 'employments', filename),
+        );
         for (const position of data.positions) {
             for (const ref of position.references ?? []) {
                 links.push({ url: ref.href, label: `[${data.company}] ${ref.value}` });
@@ -29,9 +36,12 @@ function collectEmploymentLinks(): { url: string; label: string }[] {
 }
 
 function collectEducationLinks(): { url: string; label: string }[] {
-    const data = readYaml<{ list: IEducation[] }>(join(translationsDir, 'education.yml'));
+    const index = readYaml<{ list: string[] }>(join(translationsDir, 'education.yml'));
     const links: { url: string; label: string }[] = [];
-    for (const entry of data.list) {
+    for (const filename of index.list) {
+        const entry = readMarkdownFrontmatter<{ occupation: string; references?: Reference[] }>(
+            join(translationsDir, 'education', filename),
+        );
         for (const ref of entry.references ?? []) {
             links.push({
                 url: ref.href,

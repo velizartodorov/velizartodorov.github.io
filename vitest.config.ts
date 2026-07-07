@@ -1,10 +1,28 @@
-import { defineConfig } from 'vitest/config';
+import { createRequire } from 'node:module';
+import { defineConfig, type Plugin } from 'vitest/config';
 import yaml from '@rollup/plugin-yaml';
+import matter from 'gray-matter';
+
+const require = createRequire(import.meta.url);
+const { stripStructuralNewlines } = require('./loaders/markdown-frontmatter-loader.cjs');
+
+// Mirrors loaders/markdown-frontmatter-loader.cjs (the webpack/Turbopack loader Next uses) so
+// Vitest resolves the same *.md translation modules the same way the app build does.
+function markdownFrontmatter(): Plugin {
+    return {
+        name: 'markdown-frontmatter',
+        transform(source, id) {
+            if (!id.endsWith('.md')) return;
+            const { data, content } = matter(source);
+            return `export default ${JSON.stringify({ ...data, body: stripStructuralNewlines(content) })};`;
+        },
+    };
+}
 
 export default defineConfig({
-    // Translation data lives in src/translations/**/*.yml (see src/i18n.ts); this plugin lets
-    // Vite/Vitest import those the same way Next's bundlers do.
-    plugins: [yaml()],
+    // Translation data lives in src/translations/**/*.{yml,md} (see src/i18n.ts); these plugins
+    // let Vite/Vitest import those the same way Next's bundlers do.
+    plugins: [yaml(), markdownFrontmatter()],
     test: {
         environment: 'jsdom',
         globals: true,

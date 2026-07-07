@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { AccordionItem } from '../common/accordion';
 import Icon from '../common/icon';
 import ItemTitle from '../common/item_title';
+import Markdown from '../common/markdown';
 import { Reference } from '../common/reference';
 import { IEducation } from './education.init';
 import { useDisplayPeriod } from './utils';
@@ -29,12 +30,7 @@ const EducationItem: FC<{ item: IEducation; index: number }> = ({ item, index })
     );
     return (
         <AccordionItem eventKey={index.toString()} header={header}>
-            {item.body.split('\n').map((bodyItem: string, bodyIndex: number) => (
-                <span key={`body-${index}-${bodyIndex}`}>
-                    {bodyItem}
-                    <br />
-                </span>
-            ))}
+            <Markdown>{item.body}</Markdown>
             {item.references.map((link: Reference, refIndex: number) => (
                 <div key={`ref-${index}-${refIndex}`}>
                     <span>{bullet} </span>

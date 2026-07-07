@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { AccordionItem } from '../common/accordion';
 import Icon from '../common/icon';
 import ItemTitle from '../common/item_title';
+import Markdown from '../common/markdown';
 import { bullet } from '../common/utils';
 import { tw } from '../common/tw';
 import { Employment } from './employment';
@@ -66,12 +67,7 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
                                     </div>
                                 </div>
                             )}
-                            {position.description?.split('\n').map((bodyItem: string, descIdx: number) => (
-                                <span key={`${index}-${posIdx}-${descIdx}`}>
-                                    {bodyItem}
-                                    <br />
-                                </span>
-                            ))}
+                            {position.description && <Markdown>{position.description}</Markdown>}
                             {position.references?.map((link: Reference, refIdx: number) => (
                                 <div key={`${link.href}-${refIdx}`}>
                                     <span>{bullet} </span>

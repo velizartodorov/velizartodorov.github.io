@@ -1,5 +1,10 @@
 import { execSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 import type { NextConfig } from 'next';
+
+const markdownFrontmatterLoader = fileURLToPath(
+    new URL('./loaders/markdown-frontmatter-loader.cjs', import.meta.url),
+);
 
 let commitSha = process.env.NEXT_PUBLIC_COMMIT_SHA;
 if (!commitSha) {
@@ -21,7 +26,7 @@ const nextConfig: NextConfig = {
     env: {
         NEXT_PUBLIC_COMMIT_SHA: commitSha,
     },
-    // Translation data lives in src/translations/**/*.yml (see src/i18n.ts); teach both
+    // Translation data lives in src/translations/**/*.{yml,md} (see src/i18n.ts); teach both
     // bundlers Next can use how to turn those into JS modules.
     turbopack: {
         rules: {
@@ -29,13 +34,15 @@ const nextConfig: NextConfig = {
                 loaders: ['yaml-loader'],
                 as: '*.js',
             },
+            '*.md': {
+                loaders: [markdownFrontmatterLoader],
+                as: '*.js',
+            },
         },
     },
     webpack: (config) => {
-        config.module.rules.push({
-            test: /\.yml$/,
-            use: 'yaml-loader',
-        });
+        config.module.rules.push({ test: /\.yml$/, use: 'yaml-loader' });
+        config.module.rules.push({ test: /\.md$/, use: markdownFrontmatterLoader });
         return config;
     },
 };

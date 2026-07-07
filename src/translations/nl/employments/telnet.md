@@ -1,0 +1,34 @@
+---
+company: Telnet Ltd.
+icon: /employments/telnet.png
+type: Service
+positions:
+  - position: Computer Reparatie Technicus
+    place: Elena, Bulgarije
+    period:
+      start: '{{dates:telnet_start}}'
+      end: '{{dates:telnet_end}}'
+    references:
+      - value: Vivacom
+        href: https://www.vivacom.bg/telnet
+---
+
+Beschrijving 📚
+
+- Software- en hardwareherstel van pc's, laptops, mobiele telefoons, tablets
+- Vervangen, schoonmaken en onderhouden van hardwarecomponenten van computerconfiguraties
+- Softwareherinstallatie, back-up en onderhoud
+- Opstellen van hardware-onderdelenlijst voor pc-configuratie op basis van klantwensen
+
+Het bedrijf is inmiddels overgenomen door de grootste telecom in Bulgarije – Vivacom (2024). 💡
+
+Domeinexpertise 🌐
+
+- IT-support & reparatie – praktische ervaring met het repareren van consument- en kantoorhardware zoals pc's, laptops, telefoons en tablets
+- Hardwareonderhoud – uitvoeren van upgrades, diagnostiek en componentniveau-onderhoud aan computers
+- Software-installatie & troubleshooting – herinstalleren van OS, back-ups beheren en systeemproblemen oplossen
+- Maatwerk pc-configuratie – selecteren van hardwarecomponenten en bouwen van systemen op maat
+- Klantenservice – direct contact met klanten om technische behoeften te inventariseren en oplossingen te bieden
+
+Referenties 📌
+
