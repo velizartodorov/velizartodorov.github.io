@@ -3,21 +3,22 @@ import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { resolve, join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { load } from 'js-yaml';
 import type { Employment } from './components/employments/employment';
 import type { IEducation } from './components/education/education.init';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const translationsDir = resolve(__dirname, 'translations/en');
 
-function readJson<T>(filePath: string): T {
-    return JSON.parse(readFileSync(filePath, 'utf8')) as T;
+function readYaml<T>(filePath: string): T {
+    return load(readFileSync(filePath, 'utf8')) as T;
 }
 
 function collectEmploymentLinks(): { url: string; label: string }[] {
-    const index = readJson<{ list: string[] }>(join(translationsDir, 'employments.json'));
+    const index = readYaml<{ list: string[] }>(join(translationsDir, 'employments.yml'));
     const links: { url: string; label: string }[] = [];
     for (const filename of index.list) {
-        const data = readJson<Employment>(join(translationsDir, 'employments', filename));
+        const data = readYaml<Employment>(join(translationsDir, 'employments', filename));
         for (const position of data.positions) {
             for (const ref of position.references ?? []) {
                 links.push({ url: ref.href, label: `[${data.company}] ${ref.value}` });
@@ -28,7 +29,7 @@ function collectEmploymentLinks(): { url: string; label: string }[] {
 }
 
 function collectEducationLinks(): { url: string; label: string }[] {
-    const data = readJson<{ list: IEducation[] }>(join(translationsDir, 'education.json'));
+    const data = readYaml<{ list: IEducation[] }>(join(translationsDir, 'education.yml'));
     const links: { url: string; label: string }[] = [];
     for (const entry of data.list) {
         for (const ref of entry.references ?? []) {
