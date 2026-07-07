@@ -7,7 +7,7 @@ positions:
     period:
       start: '{{dates:collibra_start}}'
       end: '{{dates:collibra_end}}'
-    description: |-
+    description: |
       Beschrijving 📚
 
       Collibra is een toonaangevend platform voor enterprise data governance dat organisaties helpt hun data te begrijpen, vertrouwen en toegankelijk te maken 🏢
@@ -39,3 +39,8 @@ positions:
       • Identiteit/toegangsbeheer: KeyCloak (OAuth 2.0)
       • Versiebeheer: Git, GitHub
       • IDE: IntelliJ, Visual Studio Code, Cursor
+
+      Referenties 📌
+    references:
+      - value: Collibra
+        href: https://www.collibra.com/
