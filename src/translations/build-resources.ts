@@ -22,10 +22,18 @@ interface RawEmployment {
     body: string;
 }
 
-const POSITION_DELIMITER = /\n\n---\n\n/;
+// An HTML comment (not a bare "---") so it can't collide with a real markdown horizontal rule
+// that an author might legitimately add inside a single position's own description.
+const POSITION_DELIMITER = /\n\n<!-- position -->\n\n/;
 
 function assembleEmployment(raw: RawEmployment) {
     const bodies = raw.body.split(POSITION_DELIMITER);
+    if (bodies.length !== raw.positions.length) {
+        throw new Error(
+            `${raw.company}: found ${bodies.length} position body segment(s) but ${raw.positions.length} ` +
+                `position(s) in frontmatter - check the "<!-- position -->" delimiters in the markdown file.`,
+        );
+    }
     return {
         company: raw.company,
         icon: raw.icon,

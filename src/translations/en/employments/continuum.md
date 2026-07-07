@@ -58,7 +58,7 @@ References 📌
 
 - [Continuum Consulting NV](https://www.continuum.be/en/)
 
----
+<!-- position -->
 
 Description 📚
 
