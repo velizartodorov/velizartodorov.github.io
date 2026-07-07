@@ -3,6 +3,14 @@ import { initReactI18next } from 'react-i18next';
 
 export type Language = 'en' | 'nl';
 
+// Single source of truth for the set of supported languages, so call sites that need "the other
+// language(s)" (e.g. prefetching) don't each hardcode their own two-way assumption.
+export const LANGUAGES: readonly Language[] = ['en', 'nl'];
+
+export function otherLanguages(lang: Language): Language[] {
+    return LANGUAGES.filter((other) => other !== lang);
+}
+
 const NAMESPACES = [
     'common',
     'employments',
@@ -49,13 +57,34 @@ const LANGUAGE_LOADERS: Record<Language, () => Promise<{ resources: NamespaceRes
     nl: () => import('./translations/nl'),
 };
 
+// Tracks in-flight loads per instance+language so concurrent callers (e.g. a prefetch effect
+// racing a `?lang=` redirect, or React StrictMode's dev-only double-invoke) share one load
+// instead of each re-running the dynamic import and the resource-bundle merge.
+const pendingLoads = new WeakMap<typeof i18n, Map<Language, Promise<void>>>();
+
 // Async: used when switching to the OTHER language on demand, so its translation payload is
 // only fetched if/when the visitor actually toggles languages, instead of shipping both
 // languages' data to every visitor regardless of which one they view.
-export async function loadLanguage(instance: typeof i18n, lang: Language): Promise<void> {
-    if (instance.hasResourceBundle(lang, 'common')) return;
-    const { resources } = await LANGUAGE_LOADERS[lang]();
-    addLanguageResources(instance, lang, resources);
+export function loadLanguage(instance: typeof i18n, lang: Language): Promise<void> {
+    if (instance.hasResourceBundle(lang, 'common')) return Promise.resolve();
+
+    let pending = pendingLoads.get(instance);
+    if (!pending) {
+        pending = new Map();
+        pendingLoads.set(instance, pending);
+    }
+
+    let promise = pending.get(lang);
+    if (!promise) {
+        promise = (async () => {
+            const { resources } = await LANGUAGE_LOADERS[lang]();
+            addLanguageResources(instance, lang, resources);
+        })();
+        const settled = pending;
+        promise.finally(() => settled.delete(lang));
+        pending.set(lang, promise);
+    }
+    return promise;
 }
 
 export default i18n;

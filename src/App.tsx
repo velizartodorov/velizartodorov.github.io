@@ -11,7 +11,7 @@ import Languages from './components/languages/languages';
 import Introduction from './components/introduction/introduction';
 import LicensesCertifications from './components/licenses_certifications/licenses_certifications';
 import EnvBanner from './components/common/env_banner';
-import { createLangInstance, loadLanguage, type Language } from './i18n';
+import { createLangInstance, loadLanguage, otherLanguages, type Language } from './i18n';
 import reportWebVitals from './reportWebVitals';
 
 interface LangSwitchValue {
@@ -119,14 +119,18 @@ export function PortfolioApp({ initialLang, initialResources }: PortfolioAppProp
         // clicks (e.g. a fast click right after the page becomes interactive), which reintroduced
         // the network round trip for that click. The bundle is tiny (~9KB gzipped) and the fetch
         // is async, so firing it immediately doesn't compete with the initial page's own load.
-        const other: Language = initialLang === 'nl' ? 'en' : 'nl';
-        void loadLanguage(instance, other);
+        for (const other of otherLanguages(initialLang)) {
+            loadLanguage(instance, other).catch((error: unknown) => {
+                console.error(`Failed to prefetch language "${other}":`, error);
+            });
+        }
         // Mount-only: `instance` is referentially stable for the component's lifetime, and
         // `initialLang` never changes after the initial render.
     }, []);
 
     const switchTo = async (next: Language) => {
         if (next === targetLangRef.current) return;
+        const previousTarget = targetLangRef.current;
         targetLangRef.current = next;
         const requestId = ++latestSwitchRef.current;
 
@@ -135,6 +139,12 @@ export function PortfolioApp({ initialLang, initialResources }: PortfolioAppProp
             await instance.changeLanguage(next);
         } catch (error) {
             console.error(`Failed to switch language to "${next}":`, error);
+            // Roll back so a retry of `next` isn't silently blocked by the early-return guard
+            // above — but only if a newer switch hasn't already superseded this one, since that
+            // newer request has already claimed `targetLangRef`.
+            if (latestSwitchRef.current === requestId) {
+                targetLangRef.current = previousTarget;
+            }
             return;
         }
 
