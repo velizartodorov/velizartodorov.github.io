@@ -1,5 +1,3 @@
-import { Reference } from '../components/common/reference';
-
 interface Index {
     title: string;
     list: string[];
@@ -11,7 +9,6 @@ interface RawPosition {
     position: string;
     place: string;
     period: { start: string; end?: string };
-    references?: Reference[];
 }
 
 // Shape produced by loaders/markdown-frontmatter-loader.cjs for one employments/<company>.md:

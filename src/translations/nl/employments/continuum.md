@@ -8,17 +8,11 @@ positions:
     period:
       start: '{{dates:continuum_start}}'
       end: '{{dates:continuum_end}}'
-    references:
-      - value: Continuum Consulting NV
-        href: https://www.continuum.be/en/
   - position: Java Ontwikkelaar bij Securex (Contract)
     place: Gent, België (Contract)
     period:
       start: '{{dates:securex_start}}'
       end: '{{dates:securex_end}}'
-    references:
-      - value: Securex
-        href: https://www.securex.be/en
 ---
 
 Beschrijving 📚
@@ -62,6 +56,7 @@ Domeinexpertise 🌐
 
 Referenties 📌
 
+- [Continuum Consulting NV](https://www.continuum.be/en/)
 
 ---
 
@@ -105,3 +100,4 @@ Domeinexpertise 🌐
 
 Referenties 📌
 
+- [Securex](https://www.securex.be/en)

@@ -6,9 +6,6 @@ icon: /education/university_ruse.png
 period:
   start: '{{dates:software_engineering_start}}'
   end: '{{dates:software_engineering_end}}'
-references:
-  - value: Universiteit van Ruse
-    href: https://www.uni-ruse.bg/en
 ---
 
 📚 Omschrijving
@@ -23,3 +20,4 @@ references:
 
 Referenties 📌
 
+- [Universiteit van Ruse](https://www.uni-ruse.bg/en)

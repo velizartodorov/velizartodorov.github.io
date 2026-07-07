@@ -11,6 +11,9 @@ const Markdown: FC<{ children: string }> = ({ children }) => (
             p: ({ node, ...props }) => <p className="mb-3 last:mb-0" {...props} />,
             ul: ({ node, ...props }) => <ul className="mb-3 list-disc space-y-1 pl-5 last:mb-0" {...props} />,
             ol: ({ node, ...props }) => <ol className="mb-3 list-decimal space-y-1 pl-5 last:mb-0" {...props} />,
+            a: ({ node, ...props }) => (
+                <a className="text-app-link hover:text-app-link-hover transition-colors" {...props} />
+            ),
         }}
     >
         {children}

@@ -8,13 +8,6 @@ positions:
     period:
       start: '{{dates:docbyte_start}}'
       end: '{{dates:docbyte_end}}'
-    references:
-      - value: Amazon Textract
-        href: https://aws.amazon.com/textract/
-      - value: Aspose.PDF | Java PDF Document Processing Class Library
-        href: https://releases.aspose.com/pdf/java/
-      - value: Docbyte N.V.
-        href: https://www.docbyte.com/
 ---
 
 Beschrijving 📚
@@ -75,3 +68,6 @@ Domeinexpertise 🌐
 
 Referenties 📌
 
+- [Amazon Textract](https://aws.amazon.com/textract/)
+- [Aspose.PDF | Java PDF Document Processing Class Library](https://releases.aspose.com/pdf/java/)
+- [Docbyte N.V.](https://www.docbyte.com/)

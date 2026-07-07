@@ -8,15 +8,6 @@ positions:
     period:
       start: '{{dates:dsi_start}}'
       end: '{{dates:dsi_end}}'
-    references:
-      - value: DSI Ltd - Developing Software Innovations
-        href: https://dsi.bg/en/
-      - value: Kozelat.com
-        href: https://kozelat.com/
-      - value: Outletpc.bg
-        href: https://outletpc.bg/
-      - value: MiAudit
-        href: https://miaudit.com/
 ---
 
 Beschrijving 📚
@@ -51,3 +42,7 @@ Domeinexpertise 🌐
 
 Referenties 📌
 
+- [DSI Ltd - Developing Software Innovations](https://dsi.bg/en/)
+- [Kozelat.com](https://kozelat.com/)
+- [Outletpc.bg](https://outletpc.bg/)
+- [MiAudit](https://miaudit.com/)

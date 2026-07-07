@@ -8,21 +8,11 @@ positions:
     period:
       start: '{{dates:unified_post_start}}'
       end: '{{dates:unified_post_end}}'
-    references:
-      - value: Unifiedpost
-        href: https://www.unifiedpost.com/
-      - value: Banqup
-        href: https://www.banqup.com/
   - position: Java Developer | ADM Solutions
     place: Ghent, Belgium
     period:
       start: '{{dates:adm_solutions_start}}'
       end: '{{dates:adm_solutions_end}}'
-    references:
-      - value: ADM Solutions
-        href: https://web.archive.org/web/20181111090144/https://adm-solutions.eu/nl/
-      - value: ELO
-        href: https://www.elo.com/en-de.html
 ---
 
 Description 📚
@@ -63,6 +53,8 @@ Domain Expertise 🌐
 
 References 📌
 
+- [Unifiedpost](https://www.unifiedpost.com/)
+- [Banqup](https://www.banqup.com/)
 
 ---
 
@@ -101,3 +93,5 @@ Domain Expertise 🌐
 
 References 📌
 
+- [ADM Solutions](https://web.archive.org/web/20181111090144/https://adm-solutions.eu/nl/)
+- [ELO](https://www.elo.com/en-de.html)

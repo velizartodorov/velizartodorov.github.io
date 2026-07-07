@@ -8,9 +8,6 @@ positions:
     period:
       start: '{{dates:telnet_start}}'
       end: '{{dates:telnet_end}}'
-    references:
-      - value: Vivacom
-        href: https://www.vivacom.bg/telnet
 ---
 
 Beschrijving 📚
@@ -32,3 +29,4 @@ Domeinexpertise 🌐
 
 Referenties 📌
 
+- [Vivacom](https://www.vivacom.bg/telnet)

@@ -5,8 +5,6 @@ import { resolve, join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { load } from 'js-yaml';
 import matter from 'gray-matter';
-import type { Position } from './components/employments/employment';
-import type { Reference } from './components/common/reference';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const translationsDir = resolve(__dirname, 'translations/en');
@@ -15,22 +13,24 @@ function readYaml<T>(filePath: string): T {
     return load(readFileSync(filePath, 'utf8')) as T;
 }
 
-function readMarkdownFrontmatter<T>(filePath: string): T {
-    return matter(readFileSync(filePath, 'utf8')).data as T;
+function readMarkdown(filePath: string): { data: Record<string, unknown>; content: string } {
+    return matter(readFileSync(filePath, 'utf8'));
+}
+
+// Reference links are authored as plain markdown links (e.g. "- [value](href)") in each entry's
+// body, rather than structured frontmatter - so link-checking has to parse them out of the text.
+const MARKDOWN_LINK = /\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g;
+
+function collectLinksFromContent(content: string, labelPrefix: string): { url: string; label: string }[] {
+    return [...content.matchAll(MARKDOWN_LINK)].map((m) => ({ url: m[2], label: `${labelPrefix} ${m[1]}` }));
 }
 
 function collectEmploymentLinks(): { url: string; label: string }[] {
     const index = readYaml<{ list: string[] }>(join(translationsDir, 'employments.yml'));
     const links: { url: string; label: string }[] = [];
     for (const filename of index.list) {
-        const data = readMarkdownFrontmatter<{ company: string; positions: Array<Pick<Position, 'references'>> }>(
-            join(translationsDir, 'employments', filename),
-        );
-        for (const position of data.positions) {
-            for (const ref of position.references ?? []) {
-                links.push({ url: ref.href, label: `[${data.company}] ${ref.value}` });
-            }
-        }
+        const { data, content } = readMarkdown(join(translationsDir, 'employments', filename));
+        links.push(...collectLinksFromContent(content, `[${data.company}]`));
     }
     return links;
 }
@@ -39,15 +39,8 @@ function collectEducationLinks(): { url: string; label: string }[] {
     const index = readYaml<{ list: string[] }>(join(translationsDir, 'education.yml'));
     const links: { url: string; label: string }[] = [];
     for (const filename of index.list) {
-        const entry = readMarkdownFrontmatter<{ occupation: string; references?: Reference[] }>(
-            join(translationsDir, 'education', filename),
-        );
-        for (const ref of entry.references ?? []) {
-            links.push({
-                url: ref.href,
-                label: `[Education: ${entry.occupation ?? 'unknown'}] ${ref.value}`,
-            });
-        }
+        const { data, content } = readMarkdown(join(translationsDir, 'education', filename));
+        links.push(...collectLinksFromContent(content, `[Education: ${data.occupation ?? 'unknown'}]`));
     }
     return links;
 }

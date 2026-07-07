@@ -8,13 +8,6 @@ positions:
     period:
       start: '{{dates:erasmus_start}}'
       end: '{{dates:erasmus_end}}'
-    references:
-      - value: ADM Solutions
-        href: https://web.archive.org/web/20181111090144/https://adm-solutions.eu/nl/
-      - value: Erasmus+
-        href: https://erasmus-plus.ec.europa.eu/
-      - value: University of Ruse
-        href: https://www.uni-ruse.bg/en
 ---
 
 Description 📚
@@ -36,3 +29,6 @@ Domain Expertise 🌐
 
 References 📌
 
+- [ADM Solutions](https://web.archive.org/web/20181111090144/https://adm-solutions.eu/nl/)
+- [Erasmus+](https://erasmus-plus.ec.europa.eu/)
+- [University of Ruse](https://www.uni-ruse.bg/en)

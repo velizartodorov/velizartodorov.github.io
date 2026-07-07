@@ -1,12 +1,9 @@
-import { bullet } from '../common/utils';
-
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AccordionItem } from '../common/accordion';
 import Icon from '../common/icon';
 import ItemTitle from '../common/item_title';
 import Markdown from '../common/markdown';
-import { Reference } from '../common/reference';
 import { IEducation } from './education.init';
 import { useDisplayPeriod } from './utils';
 
@@ -31,14 +28,6 @@ const EducationItem: FC<{ item: IEducation; index: number }> = ({ item, index })
     return (
         <AccordionItem eventKey={index.toString()} header={header}>
             <Markdown>{item.body}</Markdown>
-            {item.references.map((link: Reference, refIndex: number) => (
-                <div key={`ref-${index}-${refIndex}`}>
-                    <span>{bullet} </span>
-                    <a href={link.href} className="text-app-link hover:text-app-link-hover transition-colors">
-                        {link.value}
-                    </a>
-                </div>
-            ))}
         </AccordionItem>
     );
 };

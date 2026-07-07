@@ -1,5 +1,4 @@
 import { Period } from '../common/period';
-import { Reference } from '../common/reference';
 
 export interface IEducation {
     occupation: string;
@@ -8,5 +7,4 @@ export interface IEducation {
     icon: string;
     period: Period;
     body: string;
-    references: Array<Reference>;
 }

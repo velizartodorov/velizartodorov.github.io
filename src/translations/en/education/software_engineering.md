@@ -6,9 +6,6 @@ icon: /education/university_ruse.png
 period:
   start: '{{dates:software_engineering_start}}'
   end: '{{dates:software_engineering_end}}'
-references:
-  - value: University of Rousse
-    href: https://www.uni-ruse.bg/en
 ---
 
 📚 Description
@@ -25,3 +22,4 @@ references:
 
 References 📌
 
+- [University of Rousse](https://www.uni-ruse.bg/en)
