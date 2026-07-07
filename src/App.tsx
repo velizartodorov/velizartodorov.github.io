@@ -112,20 +112,15 @@ export function PortfolioApp({ initialLang, initialResources }: PortfolioAppProp
     const latestSwitchRef = useRef(0);
 
     useEffect(() => {
-        // Warm the OTHER language's resources during idle time so that, by the time the visitor
-        // actually clicks the toggle, `loadLanguage` below is a no-op and switching only costs a
-        // `changeLanguage` + re-render — no network round trip in the critical path. Deferred to
-        // idle time (rather than fetched eagerly on mount) so it never competes with the initial
-        // page's own load.
+        // Warm the OTHER language's resources right after mount so that, by the time the visitor
+        // clicks the toggle, `loadLanguage` below is a no-op and switching only costs a
+        // `changeLanguage` + re-render — no network round trip in the critical path. This used to
+        // wait for browser idle time, but idle time isn't guaranteed to arrive before a visitor
+        // clicks (e.g. a fast click right after the page becomes interactive), which reintroduced
+        // the network round trip for that click. The bundle is tiny (~9KB gzipped) and the fetch
+        // is async, so firing it immediately doesn't compete with the initial page's own load.
         const other: Language = initialLang === 'nl' ? 'en' : 'nl';
-        const warm = () => void loadLanguage(instance, other);
-
-        if (typeof window.requestIdleCallback === 'function') {
-            const handle = window.requestIdleCallback(warm);
-            return () => window.cancelIdleCallback(handle);
-        }
-        const handle = window.setTimeout(warm, 1000);
-        return () => window.clearTimeout(handle);
+        void loadLanguage(instance, other);
         // Mount-only: `instance` is referentially stable for the component's lifetime, and
         // `initialLang` never changes after the initial render.
     }, []);
