@@ -102,7 +102,7 @@ const GLOBAL_STYLES = `
 }
 
 .fade-in-text :is(h1, h2, h3, h4, h5, h6, p, span, a, li) {
-  animation: fade-in 0.5s ease-in-out;
+  animation: fade-in 0.1s ease-in-out;
 }
 `;
 

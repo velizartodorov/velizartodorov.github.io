@@ -1,9 +1,17 @@
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { PortfolioApp } from './App';
+import { loadLanguage } from './i18n';
 import { resources as enResources } from './translations/en';
 import { resources as nlResources } from './translations/nl';
+
+vi.mock('./i18n', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('./i18n')>();
+    // Spy on the real implementation (rather than replacing it) so every existing test still
+    // gets real language-switching behavior; only call-tracking is added.
+    return { ...actual, loadLanguage: vi.fn(actual.loadLanguage) };
+});
 
 vi.mock('./components/introduction/introduction', () => ({ default: () => null }));
 vi.mock('./components/employments/employments', () => ({ default: () => null }));
@@ -66,5 +74,52 @@ describe('language switching', () => {
     it('marks the EN button pressed when the initial language is en', () => {
         render(<PortfolioApp initialLang="en" initialResources={enResources} />);
         expect(screen.getByRole('button', { name: 'EN' })).toHaveAttribute('aria-pressed', 'true');
+    });
+});
+
+describe('language switching performance', () => {
+    // Adjust this if the toggle's legitimate cost changes (e.g. new work added to the switch
+    // path) rather than loosening it to silence a real regression.
+    const TOGGLE_TIME_THRESHOLD_MS = 200;
+
+    it(`switches language in under ${TOGGLE_TIME_THRESHOLD_MS}ms (median of several toggles)`, async () => {
+        render(<PortfolioApp initialLang="en" initialResources={enResources} />);
+
+        // A single measurement is prone to one-off scheduling/GC noise in the test environment;
+        // take the median across several toggles so an isolated blip doesn't fail the run while a
+        // genuine regression (which slows down every toggle) still gets caught.
+        const targets = ['nl', 'en', 'nl', 'en', 'nl'] as const;
+        const samples: number[] = [];
+
+        for (const target of targets) {
+            const start = performance.now();
+            await userEvent.click(screen.getByRole('button', { name: target.toUpperCase() }));
+            await waitFor(() => expect(document.documentElement.lang).toBe(target));
+            samples.push(performance.now() - start);
+        }
+
+        const median = [...samples].sort((a, b) => a - b)[Math.floor(samples.length / 2)];
+
+        expect(median).toBeLessThan(TOGGLE_TIME_THRESHOLD_MS);
+    });
+});
+
+describe('language prefetching', () => {
+    beforeEach(() => {
+        vi.mocked(loadLanguage).mockClear();
+    });
+
+    // jsdom's dynamic `import()` resolves from the in-memory module graph, so it can't reproduce
+    // real network latency — this test instead asserts the actual contract that matters (the
+    // OTHER language's data is requested on mount, before any click), which is what keeps the
+    // toggle fast regardless of how slow a real fetch is in production.
+    it('prefetches the other language on mount, before any toggle click', () => {
+        render(<PortfolioApp initialLang="en" initialResources={enResources} />);
+        expect(loadLanguage).toHaveBeenCalledWith(expect.anything(), 'nl');
+    });
+
+    it('prefetches English when the initial language is Dutch', () => {
+        render(<PortfolioApp initialLang="nl" initialResources={nlResources} />);
+        expect(loadLanguage).toHaveBeenCalledWith(expect.anything(), 'en');
     });
 });
