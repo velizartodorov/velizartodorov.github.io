@@ -11,12 +11,12 @@ import Languages from './components/languages/languages';
 import Introduction from './components/introduction/introduction';
 import LicensesCertifications from './components/licenses_certifications/licenses_certifications';
 import EnvBanner from './components/common/env_banner';
-import { createLangInstance, type Language } from './i18n';
+import { createLangInstance, loadLanguage, type Language } from './i18n';
 import reportWebVitals from './reportWebVitals';
 
 interface LangSwitchValue {
     lang: Language;
-    switchTo: (lang: Language) => void;
+    switchTo: (lang: Language) => Promise<void>;
 }
 
 const LangSwitchContext = createContext<LangSwitchValue | null>(null);
@@ -91,12 +91,43 @@ function PortfolioAppInner() {
     );
 }
 
-export function PortfolioApp({ initialLang }: { initialLang: Language }) {
-    const [instance] = useState(() => createLangInstance(initialLang));
-    const [lang, setLang] = useState<Language>(initialLang);
+interface PortfolioAppProps {
+    initialLang: Language;
+    // The initial language's translation data, computed at build time by the (server-rendered)
+    // page component. Keeping this per-page rather than importing both languages here is what
+    // keeps the other language's (larger) translation payload out of this page's JS bundle.
+    initialResources: Parameters<typeof createLangInstance>[1];
+}
 
-    const switchTo = (next: Language) => {
-        void instance.changeLanguage(next);
+export function PortfolioApp({ initialLang, initialResources }: PortfolioAppProps) {
+    const [instance] = useState(() => createLangInstance(initialLang, initialResources));
+    const [lang, setLang] = useState<Language>(initialLang);
+    // The most recently REQUESTED language, updated synchronously on every call — distinct from
+    // `lang` (the last CONFIRMED one), which only updates once a switch finishes. Comparing
+    // against `lang` here would be stale while a switch is in flight: clicking EN to cancel a
+    // still-pending switch to NL would wrongly no-op (lang is still 'en' at that point) and let
+    // the stale NL switch win once it resolves. Comparing against this ref instead means each
+    // new click always registers as the new target, so a later request can supersede an earlier
+    // in-flight one.
+    const targetLangRef = useRef<Language>(initialLang);
+    const latestSwitchRef = useRef(0);
+
+    const switchTo = async (next: Language) => {
+        if (next === targetLangRef.current) return;
+        targetLangRef.current = next;
+        const requestId = ++latestSwitchRef.current;
+
+        try {
+            await loadLanguage(instance, next);
+            await instance.changeLanguage(next);
+        } catch (error) {
+            console.error(`Failed to switch language to "${next}":`, error);
+            return;
+        }
+
+        // A newer switch was requested while this one was in flight; let that one win instead.
+        if (latestSwitchRef.current !== requestId) return;
+
         setLang(next);
         globalThis.history.replaceState(null, '', next === 'nl' ? '/nl/' : '/');
     };

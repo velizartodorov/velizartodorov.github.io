@@ -3,6 +3,7 @@ import ThemeToggle from '../common/theme_toggle';
 import { tw } from '../common/tw';
 import { useProfile } from './profile.init';
 import ProfileItem from './profile_item';
+import Image from 'next/image';
 import React from 'react';
 
 const Header: React.FC = () => {
@@ -15,7 +16,7 @@ const Header: React.FC = () => {
                     'sm:grid-cols-[240px_repeat(3,1fr)] sm:justify-items-start sm:text-left',
                 )}
             >
-                <img
+                <Image
                     className={tw(
                         'border-app-surface-alt row-start-1 h-[200px] w-[200px] rounded-full border-[3px] object-cover',
                         'shadow-[0_4px_16px_var(--app-shadow)] transition-[scale,box-shadow] duration-500 ease-out',
@@ -23,6 +24,9 @@ const Header: React.FC = () => {
                     )}
                     src={profile.imageUrl}
                     alt=""
+                    width={200}
+                    height={200}
+                    priority
                 />
                 <div className="row-start-2 flex items-center gap-4 sm:col-span-3 sm:col-start-2 sm:row-start-1">
                     <h2 className="m-0 text-[2rem] font-bold tracking-tight">{profile.name}</h2>

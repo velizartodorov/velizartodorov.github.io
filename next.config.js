@@ -13,6 +13,11 @@ if (!commitSha) {
 module.exports = {
     output: 'export',
     trailingSlash: true, // GitHub Pages: emits /nl/index.html, resolves both /nl and /nl/
+    images: {
+        // Static export has no image server to resize/reformat on the fly; source assets
+        // are pre-sized and pre-compressed instead (see public/ images).
+        unoptimized: true,
+    },
     env: {
         NEXT_PUBLIC_COMMIT_SHA: commitSha,
     },

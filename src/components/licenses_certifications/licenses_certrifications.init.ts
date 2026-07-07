@@ -27,7 +27,7 @@ export function useLicensesCertifications(): LicenseCertification[] {
         name: item.name ?? '',
         institution: item.institution ?? '',
         field: item.field ?? '',
-        date: resolveDate(item.date),
+        date: resolveDate(item.date, t),
         icon: item.icon ?? '',
         link: item.link ?? '',
     }));
