@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import Icon from '../common/icon';
+import ItemTitle from '../common/item_title';
 import { tw } from '../common/tw';
 import { Presentation } from './presentation';
 
@@ -24,9 +25,7 @@ const PresentationItem: FC<{ item: Presentation; index: number }> = ({ item }) =
                         />
                     </div>
                     <div className="w-9/12 text-left md:w-5/12">
-                        <h5 className="mb-0 text-xl font-semibold tracking-[-0.02em] max-sm:text-base max-sm:font-normal">
-                            {item.name}
-                        </h5>
+                        <ItemTitle>{item.name}</ItemTitle>
                     </div>
                 </div>
             </a>

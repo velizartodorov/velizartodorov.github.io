@@ -4,6 +4,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AccordionItem } from '../common/accordion';
 import Icon from '../common/icon';
+import ItemTitle from '../common/item_title';
 import { Reference } from '../common/reference';
 import { IEducation } from './education.init';
 import { useDisplayPeriod } from './utils';
@@ -18,13 +19,11 @@ const EducationItem: FC<{ item: IEducation; index: number }> = ({ item, index })
                 <Icon src={item.icon} alt="education icon" className="w-[30px] rounded-lg" />
             </div>
             <div className="w-9/12 text-left md:w-7/12">
-                <h5 className="mb-0 text-xl font-semibold tracking-[-0.02em] max-sm:text-base max-sm:font-normal">
-                    {`${item.occupation} ${atWord} ${item.institution}`}
-                </h5>
+                <ItemTitle>{`${item.occupation} ${atWord} ${item.institution}`}</ItemTitle>
             </div>
             <div className="hidden flex-1 sm:block">{item.place}</div>
             <div className="hidden shrink-0 text-right sm:block">
-                <h5 className="mb-0 text-xl font-semibold tracking-[-0.02em]">{display(item.period)}</h5>
+                <ItemTitle>{display(item.period)}</ItemTitle>
             </div>
         </div>
     );

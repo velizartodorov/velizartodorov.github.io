@@ -28,7 +28,7 @@ const AccordionWrapper: FC<Properties> = ({ title, children, className = '' }) =
                 <h4 className="text-app-text m-0 text-[clamp(0.6rem,-1rem+9vw,1.5rem)] font-semibold tracking-tight">
                     {title}
                 </h4>
-                <AccordionChevron open={open} className="text-app-text-muted h-6 w-6" />
+                <AccordionChevron open={open} className="text-app-text-muted size-6" />
             </button>
             <div
                 className={tw(

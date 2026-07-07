@@ -11,7 +11,7 @@ const Footer = () => {
     const { t } = useTranslation();
     const profile = useProfile();
     return (
-        <div className="mt-2 mb-2 text-center max-sm:text-[0.9rem]">
+        <div className="my-2 text-center max-sm:text-[0.9rem]">
             {t('common:poweredBy')} {profile.name} ® {year ?? ''} 😉 🚀
             {COMMIT_SHA && (
                 <a

@@ -19,6 +19,7 @@
     --color-app-text-muted: var(--app-text-muted);
     --color-app-accent: var(--app-accent);
     --color-app-accent-subtle: var(--app-accent-subtle);
+    --color-app-icon-bg: var(--app-icon-bg);
     --color-app-link: var(--app-link);
     --color-app-link-hover: var(--app-link-hover);
 

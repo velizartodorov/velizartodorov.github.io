@@ -40,6 +40,9 @@ jobs:
       - name: Check for encoding corruption (mojibake)
         run: npm run check:encoding
 
+      - name: Lint
+        run: npm run lint
+
       - name: Run tests
         run: npx vitest run --exclude src/links.test.ts
 

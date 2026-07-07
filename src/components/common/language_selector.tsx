@@ -5,6 +5,9 @@ import { tw } from './tw';
 const BASE_BTN = tw(
     'rounded-[20px] border-none px-[13px] py-[5px] font-sans text-[13px] leading-[1.4] font-semibold',
     'cursor-pointer tracking-[0.5px] transition-colors duration-300 ease-out',
+    // `outline` (style) and `outline-2` (width) aren't a real conflict — eslint-plugin-tailwindcss
+    // groups all `outline-*` utilities together, so it misreads this as contradicting.
+    // eslint-disable-next-line tailwindcss/no-contradicting-classname
     'focus-visible:outline-app-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1',
 );
 const ACTIVE_BTN = 'bg-app-accent-subtle text-app-accent';

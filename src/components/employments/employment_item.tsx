@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AccordionItem } from '../common/accordion';
 import Icon from '../common/icon';
+import ItemTitle from '../common/item_title';
 import { bullet } from '../common/utils';
 import { tw } from '../common/tw';
 import { Employment } from './employment';
@@ -25,15 +26,11 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
                 <Icon src={item.icon} alt="company icon" className="w-[30px] rounded-lg" />
             </div>
             <div className="w-9/12 text-left md:w-5/12">
-                <h5 className="mb-0 text-xl font-semibold tracking-[-0.02em] max-sm:text-base max-sm:font-normal">
-                    {headerTitle}
-                </h5>
+                <ItemTitle>{headerTitle}</ItemTitle>
             </div>
             <div className="hidden flex-1 sm:block">{headerPlace}</div>
             <div className="hidden shrink-0 text-right sm:block">
-                <h5 className="mb-0 text-xl font-semibold tracking-[-0.02em] max-sm:text-base max-sm:font-normal">
-                    {headerPeriod ? display(headerPeriod) : ''}
-                </h5>
+                <ItemTitle>{headerPeriod ? display(headerPeriod) : ''}</ItemTitle>
             </div>
         </div>
     );
@@ -43,7 +40,7 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
             <div
                 className={tw(
                     'before:bg-app-border relative space-y-7 pl-6',
-                    "before:absolute before:top-2 before:bottom-2 before:left-[9px] before:w-[2px] before:content-['']",
+                    "before:absolute before:inset-y-2 before:left-[9px] before:w-[2px] before:content-['']",
                 )}
             >
                 {positions.map((position, posIdx) => {
@@ -53,23 +50,21 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
                             key={`${index}-${posIdx}`}
                             className={tw(
                                 'before:border-app-surface before:bg-app-accent relative before:absolute',
-                                'before:top-2 before:-left-5 before:h-3 before:w-3 before:rounded-full before:border-2',
+                                'before:top-2 before:-left-5 before:size-3 before:rounded-full before:border-2',
                                 "before:shadow-[0_0_0_1px_var(--app-accent)] before:content-['']",
                                 'before:transition-transform before:duration-200 hover:before:scale-[1.15]',
                             )}
                         >
                             {showTitle && (
-                                <>
-                                    <h5 className="mb-1 text-xl font-semibold tracking-[-0.02em] max-sm:text-base max-sm:font-normal">
-                                        {`${position.position}`}
-                                    </h5>
-                                    <div className="text-app-text-muted mb-2">
+                                <div className="mb-2 flex flex-col gap-1">
+                                    <ItemTitle>{`${position.position}`}</ItemTitle>
+                                    <div className="text-app-text-muted">
                                         {display({
                                             start: new Date(position.period.start),
                                             end: position.period.end ? new Date(position.period.end) : undefined,
                                         })}
                                     </div>
-                                </>
+                                </div>
                             )}
                             {position.description?.split('\n').map((bodyItem: string, descIdx: number) => (
                                 <span key={`${index}-${posIdx}-${descIdx}`}>

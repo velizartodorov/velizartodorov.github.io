@@ -55,7 +55,7 @@ export const AccordionItem: FC<{ eventKey: string; header: ReactNode; children: 
         <div className="border-app-border overflow-hidden rounded-lg border">
             <button type="button" onClick={() => ctx.toggle(eventKey)} aria-expanded={isOpen} className={TOGGLE_BTN}>
                 <span className="min-w-0 flex-1">{header}</span>
-                <AccordionChevron open={isOpen} className="text-app-text-muted h-5 w-5" />
+                <AccordionChevron open={isOpen} className="text-app-text-muted size-5" />
             </button>
             <div
                 className={tw(
