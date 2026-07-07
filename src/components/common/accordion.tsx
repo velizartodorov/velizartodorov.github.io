@@ -51,6 +51,14 @@ export const AccordionItem: FC<{ eventKey: string; header: ReactNode; children: 
     const ctx = useContext(AccordionContext);
     if (!ctx) throw new Error('AccordionItem must be used within an AccordionGroup');
     const isOpen = ctx.openKey === eventKey;
+
+    // Mount children on first open and keep them mounted afterwards (rather than re-mounting on
+    // every toggle) - children include markdown bodies that are non-trivial to parse/render, so
+    // this defers that work until an item is actually viewed instead of paying it for all items
+    // upfront, without re-paying it every time the same item is re-opened.
+    const [hasOpened, setHasOpened] = useState(isOpen);
+    if (isOpen && !hasOpened) setHasOpened(true);
+
     return (
         <div className="border-app-border overflow-hidden rounded-lg border">
             <button type="button" onClick={() => ctx.toggle(eventKey)} aria-expanded={isOpen} className={TOGGLE_BTN}>
@@ -64,7 +72,7 @@ export const AccordionItem: FC<{ eventKey: string; header: ReactNode; children: 
                 )}
             >
                 <div className="overflow-hidden">
-                    <div className="px-4 pt-3 pb-4">{children}</div>
+                    <div className="px-4 pt-3 pb-4">{hasOpened && children}</div>
                 </div>
             </div>
         </div>
