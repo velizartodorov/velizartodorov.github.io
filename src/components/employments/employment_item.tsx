@@ -71,7 +71,7 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
                                     </div>
                                 </>
                             )}
-                            {position.description?.map((bodyItem: string, descIdx: number) => (
+                            {position.description?.split('\n').map((bodyItem: string, descIdx: number) => (
                                 <span key={`${index}-${posIdx}-${descIdx}`}>
                                     {bodyItem}
                                     <br />
