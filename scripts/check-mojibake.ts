@@ -18,7 +18,7 @@ const C1_CONTROL_RANGE = new RegExp('[\\u0080-\\u009F]');
 let hasMojibake = false;
 
 for (const file of files) {
-    let text;
+    let text: string;
     try {
         text = readFileSync(file, 'utf8');
     } catch {
@@ -37,7 +37,7 @@ for (const file of files) {
 if (hasMojibake) {
     console.error(
         '\nOne or more files contain characters consistent with double-encoded UTF-8 (mojibake).\n' +
-            'If this is intentional (genuine C1 control usage), adjust scripts/check-mojibake.mjs.\n' +
+            'If this is intentional (genuine C1 control usage), adjust scripts/check-mojibake.ts.\n' +
             'Otherwise, check whether a tool that edited these files read them with the wrong encoding.',
     );
     process.exit(1);
