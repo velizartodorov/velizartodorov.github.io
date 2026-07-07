@@ -36,7 +36,10 @@ function addLanguageResources(instance: typeof i18n, lang: Language, resources: 
 // the (server-rendered) page component, since each static page already only computes its own
 // language's data at build time — no dynamic import needed, and no extra network round trip.
 export function createLangInstance(lang: Language, resources: NamespaceResources) {
-    const instance = i18n.cloneInstance({ lng: lang });
+    // Fork the resource store so this clone's added bundles never leak into the shared base
+    // instance (or any other clone) — without this, cloneInstance shares one mutable store by
+    // reference, which contaminates other instances/tests created from the same base i18n.
+    const instance = i18n.cloneInstance({ lng: lang, forkResourceStore: true });
     addLanguageResources(instance, lang, resources);
     return instance;
 }

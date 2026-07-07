@@ -2,6 +2,7 @@ import { FC } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { AccordionItem } from '../common/accordion';
+import Icon from '../common/icon';
 import { bullet } from '../common/utils';
 import { tw } from '../common/tw';
 import { Employment } from './employment';
@@ -21,13 +22,7 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
     const header = (
         <div className="flex w-full items-center gap-3">
             <div className="shrink-0 text-left">
-                <img
-                    src={item.icon}
-                    alt="company icon"
-                    className="w-[30px] rounded-lg"
-                    loading="lazy"
-                    decoding="async"
-                />
+                <Icon src={item.icon} alt="company icon" className="w-[30px] rounded-lg" />
             </div>
             <div className="w-9/12 text-left md:w-5/12">
                 <h5 className="mb-0 text-xl font-semibold tracking-[-0.02em] max-sm:text-base max-sm:font-normal">

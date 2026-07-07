@@ -16,26 +16,25 @@ import erasmus from './en/employments/erasmus.json';
 import telnet from './en/employments/telnet.json';
 import unified_post from './en/employments/unified_post.json';
 
-import { buildEmployments } from './build-employments';
+import { buildLanguageResources } from './build-resources';
 
-const employmentItems: Record<string, unknown> = {
-    'collibra.json': collibra,
-    'continuum.json': continuum,
-    'docbyte.json': docbyte,
-    'dsi.json': dsi,
-    'erasmus.json': erasmus,
-    'telnet.json': telnet,
-    'unified_post.json': unified_post,
-};
-
-export const resources = {
+export const resources = buildLanguageResources({
     common,
     education,
-    employments: buildEmployments(employmentsIndex, employmentItems),
+    employmentsIndex,
+    employmentItems: {
+        'collibra.json': collibra,
+        'continuum.json': continuum,
+        'docbyte.json': docbyte,
+        'dsi.json': dsi,
+        'erasmus.json': erasmus,
+        'telnet.json': telnet,
+        'unified_post.json': unified_post,
+    },
     introduction,
     languages,
     licenses_certifications,
     presentations,
     profile,
     dates,
-};
+});

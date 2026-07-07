@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import Icon from '../common/icon';
 import { tw } from '../common/tw';
 import { Presentation } from './presentation';
 
@@ -16,12 +17,10 @@ const PresentationItem: FC<{ item: Presentation; index: number }> = ({ item }) =
             >
                 <div className="flex items-center gap-3">
                     <div className="shrink-0 text-left">
-                        <img
+                        <Icon
                             src={item.icon}
                             alt="presentation icon"
                             className="bg-app-icon-bg h-[27px] w-auto rounded shadow-[0_1px_4px_var(--app-shadow)]"
-                            loading="lazy"
-                            decoding="async"
                         />
                     </div>
                     <div className="w-9/12 text-left md:w-5/12">

@@ -16,29 +16,28 @@ import erasmus from './nl/employments/erasmus.json';
 import telnet from './nl/employments/telnet.json';
 import unified_post from './nl/employments/unified_post.json';
 
-import { buildEmployments } from './build-employments';
+import { buildLanguageResources } from './build-resources';
 
-const employmentItems: Record<string, unknown> = {
-    'collibra.json': collibra,
-    'continuum.json': continuum,
-    'docbyte.json': docbyte,
-    'dsi.json': dsi,
-    'erasmus.json': erasmus,
-    'telnet.json': telnet,
-    'unified_post.json': unified_post,
-};
-
-export const resources = {
+export const resources = buildLanguageResources({
     common,
     education,
-    employments: buildEmployments(employmentsIndex, employmentItems),
+    employmentsIndex,
+    employmentItems: {
+        'collibra.json': collibra,
+        'continuum.json': continuum,
+        'docbyte.json': docbyte,
+        'dsi.json': dsi,
+        'erasmus.json': erasmus,
+        'telnet.json': telnet,
+        'unified_post.json': unified_post,
+    },
     introduction,
     languages,
     licenses_certifications,
     presentations,
     profile,
-    // Dates are locale-agnostic data (not translated copy), so both language bundles
-    // carry the same values — each page/instance is self-sufficient without needing
-    // the other language's module loaded as a fallback.
+    // Dates are locale-agnostic data (not translated copy), so both language bundles carry the
+    // same values — each page/instance is self-sufficient without needing the other language's
+    // module loaded as a fallback.
     dates,
-};
+});
