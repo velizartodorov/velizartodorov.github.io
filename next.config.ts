@@ -1,4 +1,5 @@
-const { execSync } = require('node:child_process');
+import { execSync } from 'node:child_process';
+import type { NextConfig } from 'next';
 
 let commitSha = process.env.NEXT_PUBLIC_COMMIT_SHA;
 if (!commitSha) {
@@ -9,8 +10,7 @@ if (!commitSha) {
     }
 }
 
-/** @type {import('next').NextConfig} */
-module.exports = {
+const nextConfig: NextConfig = {
     output: 'export',
     trailingSlash: true, // GitHub Pages: emits /nl/index.html, resolves both /nl and /nl/
     images: {
@@ -22,3 +22,5 @@ module.exports = {
         NEXT_PUBLIC_COMMIT_SHA: commitSha,
     },
 };
+
+export default nextConfig;
