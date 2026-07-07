@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import Icon from '../common/icon';
+import ItemTitle from '../common/item_title';
 import { Language } from './language';
 
 const LanguageItem: FC<{ item: Language }> = ({ item }) => {
@@ -14,9 +15,7 @@ const LanguageItem: FC<{ item: Language }> = ({ item }) => {
                     />
                 </div>
                 <div className="w-1/3 text-left">
-                    <h5 className="mb-0 text-xl font-semibold tracking-[-0.02em] max-sm:text-base max-sm:font-normal">
-                        {item.label}
-                    </h5>
+                    <ItemTitle>{item.label}</ItemTitle>
                 </div>
                 <div className="text-app-text-muted flex-1 text-right max-sm:text-base">
                     <span>{item.proficiency}</span>

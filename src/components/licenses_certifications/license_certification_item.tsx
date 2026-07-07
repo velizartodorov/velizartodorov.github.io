@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { AccordionChevron } from '../common/accordion';
 import Icon from '../common/icon';
+import ItemTitle from '../common/item_title';
 import { tw } from '../common/tw';
 import { LicenseCertification } from './license_certification';
 import { useMonthYear } from './licenses_certrifications.init';
@@ -31,20 +32,16 @@ const LicenseCertificationItem: FC<{ item: LicenseCertification; index: number }
                             <Icon src={item.icon} alt="license icon" className={ICON} />
                         </div>
                         <div className="w-9/12 text-left md:w-5/12">
-                            <h5 className="mb-0 text-xl font-semibold tracking-[-0.02em] max-sm:text-base max-sm:font-normal">
-                                {item.name}
-                            </h5>
+                            <ItemTitle>{item.name}</ItemTitle>
                         </div>
                         <div className="hidden flex-1 pl-0 text-left sm:block">{item.institution}</div>
                         <div className="hidden shrink-0 text-right sm:block">
-                            <h5 className="mb-0 text-xl font-semibold tracking-[-0.02em] max-sm:text-base max-sm:font-normal">
-                                {monthYearStr}
-                            </h5>
+                            <ItemTitle>{monthYearStr}</ItemTitle>
                         </div>
                     </div>
                     {/* Invisible copy of AccordionItem's real chevron so this row reserves the exact same
                     space, keeping columns aligned with the Employments/Education rows. */}
-                    <AccordionChevron open={false} className="text-app-text-muted invisible h-5 w-5" />
+                    <AccordionChevron open={false} className="text-app-text-muted invisible size-5" />
                 </div>
             </Tag>
         </li>

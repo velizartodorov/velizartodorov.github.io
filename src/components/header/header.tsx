@@ -18,7 +18,7 @@ const Header: React.FC = () => {
             >
                 <Image
                     className={tw(
-                        'border-app-surface-alt row-start-1 h-[200px] w-[200px] rounded-full border-[3px] object-cover',
+                        'border-app-surface-alt row-start-1 size-[200px] rounded-full border-[3px] object-cover',
                         'shadow-[0_4px_16px_var(--app-shadow)] transition-[scale,box-shadow] duration-500 ease-out',
                         'hover:scale-[1.01] hover:shadow-[0_6px_24px_var(--app-shadow)] sm:col-start-1 sm:row-span-3',
                     )}

@@ -78,7 +78,6 @@ function PortfolioAppInner() {
         }
         // Intentionally mount-only: switchTo/instance/setLang are all referentially
         // stable across renders even though the closure identity changes.
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
