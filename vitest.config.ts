@@ -1,10 +1,9 @@
 import { createRequire } from 'node:module';
 import { defineConfig, type Plugin } from 'vitest/config';
 import yaml from '@rollup/plugin-yaml';
-import matter from 'gray-matter';
 
 const require = createRequire(import.meta.url);
-const { stripStructuralNewlines } = require('./loaders/markdown-frontmatter-loader.cjs');
+const { parseFrontmatter, stripStructuralNewlines } = require('./loaders/markdown-frontmatter-loader.cjs');
 
 // Mirrors loaders/markdown-frontmatter-loader.cjs (the webpack/Turbopack loader Next uses) so
 // Vitest resolves the same *.md translation modules the same way the app build does.
@@ -13,7 +12,7 @@ function markdownFrontmatter(): Plugin {
         name: 'markdown-frontmatter',
         transform(source, id) {
             if (!id.endsWith('.md')) return;
-            const { data, content } = matter(source);
+            const { data, content } = parseFrontmatter(source);
             return `export default ${JSON.stringify({ ...data, body: stripStructuralNewlines(content) })};`;
         },
     };
