@@ -27,7 +27,7 @@ export function useLangSwitch(): LangSwitchValue {
     return ctx;
 }
 
-function PageContent({ lang }: { lang: Language }) {
+function PageContent({ lang }: Readonly<{ lang: Language }>) {
     const ref = useRef<HTMLDivElement>(null);
     const isFirstRender = useRef(true);
 
