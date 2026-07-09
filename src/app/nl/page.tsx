@@ -22,7 +22,12 @@ export async function generateMetadata(): Promise<Metadata> {
             description: "Check out Velizar Todorov's portfolio and projects.",
             url: `${SITE_URL}/nl/`,
             type: 'website',
-            images: [`${SITE_URL}/header/velizar.jpg`],
+            images: [
+                {
+                    url: `${SITE_URL}/header/velizar.jpg`,
+                    alt: "Velizar Todorov's profile photo",
+                },
+            ],
         },
     };
 }

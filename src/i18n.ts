@@ -77,7 +77,14 @@ export function loadLanguage(instance: typeof i18n, lang: Language): Promise<voi
             addLanguageResources(instance, lang, resources as NamespaceResources);
         })();
         const settled = pending;
-        promise.finally(() => settled.delete(lang));
+        // Use `.then` with both handlers (not `.finally`) so this cleanup doesn't produce its own
+        // unhandled-rejection chain: `.finally` re-throws the original error into its returned
+        // promise, which nothing here awaits or catches, while `.then(onFulfilled, onRejected)`
+        // resolves as long as neither handler itself throws.
+        promise.then(
+            () => settled.delete(lang),
+            () => settled.delete(lang),
+        );
         pending.set(lang, promise);
     }
     return promise;
