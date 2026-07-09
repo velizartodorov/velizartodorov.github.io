@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useEffect, useRef, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import Education from './components/education/education';
 import Employments from './components/employments/employments';
@@ -128,36 +128,43 @@ export function PortfolioApp({ initialLang, initialResources }: Readonly<Portfol
         // `initialLang` never changes after the initial render.
     }, []);
 
-    const switchTo = async (next: Language) => {
-        if (next === targetLangRef.current) return;
-        const previousTarget = targetLangRef.current;
-        targetLangRef.current = next;
-        const requestId = ++latestSwitchRef.current;
+    const switchTo = useCallback(
+        async (next: Language) => {
+            if (next === targetLangRef.current) return;
+            const previousTarget = targetLangRef.current;
+            targetLangRef.current = next;
+            const requestId = ++latestSwitchRef.current;
 
-        try {
-            await loadLanguage(instance, next);
-            await instance.changeLanguage(next);
-        } catch (error) {
-            console.error(`Failed to switch language to "${next}":`, error);
-            // Roll back so a retry of `next` isn't silently blocked by the early-return guard
-            // above — but only if a newer switch hasn't already superseded this one, since that
-            // newer request has already claimed `targetLangRef`.
-            if (latestSwitchRef.current === requestId) {
-                targetLangRef.current = previousTarget;
+            try {
+                await loadLanguage(instance, next);
+                await instance.changeLanguage(next);
+            } catch (error) {
+                console.error(`Failed to switch language to "${next}":`, error);
+                // Roll back so a retry of `next` isn't silently blocked by the early-return guard
+                // above — but only if a newer switch hasn't already superseded this one, since that
+                // newer request has already claimed `targetLangRef`.
+                if (latestSwitchRef.current === requestId) {
+                    targetLangRef.current = previousTarget;
+                }
+                return;
             }
-            return;
-        }
 
-        // A newer switch was requested while this one was in flight; let that one win instead.
-        if (latestSwitchRef.current !== requestId) return;
+            // A newer switch was requested while this one was in flight; let that one win instead.
+            if (latestSwitchRef.current !== requestId) return;
 
-        setLang(next);
-        globalThis.history.replaceState(null, '', next === 'nl' ? '/nl/' : '/');
-    };
+            setLang(next);
+            globalThis.history.replaceState(null, '', next === 'nl' ? '/nl/' : '/');
+            // `instance` is referentially stable for the component's lifetime (see the useState
+            // initializer above); everything else referenced is a ref or a stable setter.
+        },
+        [instance],
+    );
+
+    const langSwitchValue = useMemo(() => ({ lang, switchTo }), [lang, switchTo]);
 
     return (
         <I18nextProvider i18n={instance}>
-            <LangSwitchContext.Provider value={{ lang, switchTo }}>
+            <LangSwitchContext.Provider value={langSwitchValue}>
                 <PortfolioAppInner />
             </LangSwitchContext.Provider>
         </I18nextProvider>
