@@ -41,7 +41,7 @@ function PageContent({ lang }: Readonly<{ lang: Language }>) {
         // Replay the fade-in on every language switch without remounting
         // (remounting would reset accordion open/closed state).
         el.classList.remove('fade-in-text');
-        void el.offsetWidth;
+        el.getBoundingClientRect();
         el.classList.add('fade-in-text');
     }, [lang]);
 
