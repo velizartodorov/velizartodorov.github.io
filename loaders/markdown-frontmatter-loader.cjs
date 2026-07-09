@@ -12,7 +12,7 @@ function stripStructuralNewlines(content) {
 // comment below). On Windows checkouts (core.autocrlf) these *.md files have \r\n on disk, which
 // would otherwise break the LF-only POSITION_DELIMITER split in build-resources.ts.
 function parseFrontmatter(source) {
-    return matter(source.replace(/\r\n/g, '\n'));
+    return matter(source.replaceAll('\r\n', '\n'));
 }
 
 module.exports = function markdownFrontmatterLoader(source) {
