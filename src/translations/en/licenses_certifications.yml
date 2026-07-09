@@ -2,14 +2,19 @@ title: "Licenses & certifications\_🔖"
 list:
   - icon: /education/cvo_gent.png
     name: Deelcertificaat NT2 - Effectiveness mondeling
-    institution: Het Perspectief PCVO
+    institution: CVO Groeipunt
     field: Dutch/Flemish Language and Literature
     date: '{{dates:eff_cert}}'
   - icon: /education/cvo_gent.png
-    name: Nederlands - tweede taal - richtgraad 3
-    institution: Het Perspectief PCVO
+    name: Certificaat Nederlands tweede taal - richtgraad 3
+    institution: CVO Groeipunt
     field: Dutch/Flemish Language and Literature
     date: '{{dates:nt3_cert}}'
+  - icon: /education/cvo_gent.png
+    name: Deelcertificaat NT2 - Vantage schriftelijk
+    institution: CVO Groeipunt
+    field: Dutch/Flemish Language and Literature
+    date: '{{dates:vantage_schriftelijk}}'
   - icon: /education/udemy_icon.svg
     name: AWS Essentials
     institution: Udemy
@@ -17,10 +22,80 @@ list:
     date: '{{dates:aws_essentials}}'
     link: /certificates/AWS-Essentials-Velizar-Todrov.pdf
   - icon: /education/cvo_gent.png
-    name: Nederlands - tweede taal - richtgraad 2
+    name: Deelcertificaat NT2 - Vantage mondeling
+    institution: CVO Groeipunt
+    field: Dutch/Flemish Language and Literature
+    date: '{{dates:vantage_mondeling}}'
+  - icon: /education/cvo_gent.png
+    name: Certificaat Nederlands tweede taal - richtgraad 2
     institution: Het Perspectief PCVO
     field: Dutch/Flemish Language and Literature
     date: '{{dates:nt2_cert}}'
+  - icon: /education/cvo_gent.png
+    name: Deelcertificaat NT2 - threshold 4 mondeling publiek
+    institution: Het Perspectief PCVO
+    field: Dutch/Flemish Language and Literature
+    date: '{{dates:threshold4_mondeling}}'
+  - icon: /education/cvo_gent.png
+    name: Deelcertificaat NT2 - threshold 4 schriftelijk publiek
+    institution: Het Perspectief PCVO
+    field: Dutch/Flemish Language and Literature
+    date: '{{dates:threshold4_schriftelijk}}'
+  - icon: /education/cvo_gent.png
+    name: Deelcertificaat NT2 - threshold 3 schriftelijk persoonlijk
+    institution: Het Perspectief PCVO
+    field: Dutch/Flemish Language and Literature
+    date: '{{dates:threshold3_schriftelijk}}'
+  - icon: /education/cvo_gent.png
+    name: Deelcertificaat NT2 - threshold 3 mondeling persoonlijk
+    institution: Het Perspectief PCVO
+    field: Dutch/Flemish Language and Literature
+    date: '{{dates:threshold3_mondeling}}'
+  - icon: /education/cvo_gent.png
+    name: Deelcertificaat NT2 - threshold 2 mondeling publiek
+    institution: Het Perspectief PCVO
+    field: Dutch/Flemish Language and Literature
+    date: '{{dates:threshold2_mondeling}}'
+  - icon: /education/cvo_gent.png
+    name: Deelcertificaat NT2 - threshold 2 schriftelijk publiek
+    institution: Het Perspectief PCVO
+    field: Dutch/Flemish Language and Literature
+    date: '{{dates:threshold2_schriftelijk}}'
+  - icon: /education/cvo_gent.png
+    name: Deelcertificaat NT2 - threshold 1 mondeling persoonlijk
+    institution: Het Perspectief PCVO
+    field: Dutch/Flemish Language and Literature
+    date: '{{dates:threshold1_mondeling}}'
+  - icon: /education/cvo_gent.png
+    name: Deelcertificaat NT2 - threshold 1 schriftelijk persoonlijk
+    institution: Het Perspectief PCVO
+    field: Dutch/Flemish Language and Literature
+    date: '{{dates:threshold1_schriftelijk}}'
+  - icon: /education/cvo_gent.png
+    name: Certificaat Nederlands tweede taal - richtgraad 1
+    institution: Het Perspectief PCVO
+    field: Dutch/Flemish Language and Literature
+    date: '{{dates:nt1_cert}}'
+  - icon: /education/cvo_gent.png
+    name: Deelcertificaat NT2 - Waystage mondeling
+    institution: Het Perspectief PCVO
+    field: Dutch/Flemish Language and Literature
+    date: '{{dates:waystage_mondeling}}'
+  - icon: /education/cvo_gent.png
+    name: Deelcertificaat NT2 - Waystage schriftelijk
+    institution: Het Perspectief PCVO
+    field: Dutch/Flemish Language and Literature
+    date: '{{dates:waystage_schriftelijk}}'
+  - icon: /education/cvo_gent.png
+    name: Deelcertificaat NT2 - Breakthrough persoonlijk
+    institution: Het Perspectief PCVO
+    field: Dutch/Flemish Language and Literature
+    date: '{{dates:breakthrough_persoonlijk}}'
+  - icon: /education/cvo_gent.png
+    name: Deelcertificaat NT2 - Breakthrough publiek
+    institution: Het Perspectief PCVO
+    field: Dutch/Flemish Language and Literature
+    date: '{{dates:breakthrough_publiek}}'
   - icon: /education/naric.svg
     name: Opleidingskwalifikatiegraad - Masters
     institution: NARIC-Vlaanderen
