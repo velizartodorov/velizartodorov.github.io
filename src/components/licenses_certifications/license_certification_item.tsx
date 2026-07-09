@@ -20,7 +20,7 @@ const LicenseCertificationItem: FC<{ item: LicenseInstitution; index: number; ev
     const sortedDates = certifications
         .map((c) => c.date)
         .filter(Boolean)
-        .sort();
+        .sort((a, b) => a.localeCompare(b));
     const earliest = sortedDates[0];
     const latest = sortedDates[sortedDates.length - 1];
     const headerPeriod =
