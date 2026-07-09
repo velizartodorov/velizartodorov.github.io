@@ -98,7 +98,7 @@ interface PortfolioAppProps {
     initialResources: Parameters<typeof createLangInstance>[1];
 }
 
-export function PortfolioApp({ initialLang, initialResources }: PortfolioAppProps) {
+export function PortfolioApp({ initialLang, initialResources }: Readonly<PortfolioAppProps>) {
     const [instance] = useState(() => createLangInstance(initialLang, initialResources));
     const [lang, setLang] = useState<Language>(initialLang);
     // The most recently REQUESTED language, updated synchronously on every call — distinct from
