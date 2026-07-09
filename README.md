@@ -36,18 +36,32 @@ That's it. Have fun! 😎 🎉
 
 ## Translation files 🔠
 
-The application uses JSON files for translations located in the `src/translations` directory.
-Each language (en, nl) has its own set of translation files.
+The application uses YAML and Markdown files for translations located in the `src/translations`
+directory. Each language (en, nl) has its own set of translation files, assembled at build time
+into a single `resources` object per language (`en.ts` / `nl.ts`).
 
 ### Structure
 
 - `src/translations/`
-  - `en/` - English translations
-  - `nl/` - Dutch translations
-  - Each language folder contains:
-    - Common translation files (`.json`)
-    - `employments/` - Individual employment entries
-    - `employments.json` - Index file defining the order of employment entries
+  - `dates.yml` - shared date placeholders (e.g. `collibra_start`), referenced from content as
+    `{{dates:collibra_start}}` and resolved at runtime by `useEmployments()`
+  - `en/`, `nl/` - one folder per language, each containing:
+    - `common.yml`, `introduction.yml`, `languages.yml`, `licenses_certifications.yml`,
+      `presentations.yml`, `profile.yml` - simple key/value YAML namespaces
+    - `employments.yml`, `education.yml` - index files (`title` + ordered `list` of filenames)
+      defining which entries appear and in what order
+    - `employments/*.md`, `education/*.md` - one Markdown file per entry, with YAML frontmatter
+      (company/place/period, etc.) and the description as the Markdown body. Employment entries
+      with multiple positions separate each position's body with an `<!-- position -->` marker
+  - `build-resources.ts` - assembles an index file plus its Markdown entries into the final
+    `{ title, list }` shape consumed by the app
+  - `completeness.test.ts` - Vitest check that every key path present in `en`'s resources also
+    exists in `nl` (and vice versa), so a missing translation fails the build instead of silently
+    falling back
+
+Markdown frontmatter is parsed at build time by `loaders/markdown-frontmatter-loader.cjs`
+(via `gray-matter`), which turns each `.md` file into a JS module exporting its frontmatter
+fields plus a `body` string.
 
 ## CI/CD 🚀
 
