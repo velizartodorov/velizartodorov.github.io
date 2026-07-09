@@ -4,7 +4,7 @@ import ItemHeaderRow from '../common/item_header_row';
 import { HOVER_ROW_LINK } from '../common/list_row';
 import { Presentation } from './presentation';
 
-const PresentationItem: FC<{ item: Presentation; index: number }> = ({ item }) => {
+const PresentationItem: FC<{ item: Presentation }> = ({ item }) => {
     return (
         <li>
             <a href={item.link} rel="noopener noreferrer" className={`${HOVER_ROW_LINK} px-4 py-2`}>

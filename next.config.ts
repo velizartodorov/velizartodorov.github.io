@@ -41,8 +41,10 @@ const nextConfig: NextConfig = {
         },
     },
     webpack: (config) => {
-        config.module.rules.push({ test: /\.yml$/, use: 'yaml-loader' });
-        config.module.rules.push({ test: /\.md$/, use: markdownFrontmatterLoader });
+        config.module.rules.push(
+            { test: /\.yml$/, use: 'yaml-loader' },
+            { test: /\.md$/, use: markdownFrontmatterLoader },
+        );
         return config;
     },
 };

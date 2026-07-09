@@ -12,7 +12,7 @@ const Presentations = ({ className, eventKey }: SectionProps) => {
         <AccordionWrapper title={t('presentations:title')} eventKey={eventKey} className={className}>
             <DividedList>
                 {presentations.map((item, index) => (
-                    <PresentationItem item={item} index={index} key={index.valueOf()} />
+                    <PresentationItem item={item} key={index.valueOf()} />
                 ))}
             </DividedList>
         </AccordionWrapper>
