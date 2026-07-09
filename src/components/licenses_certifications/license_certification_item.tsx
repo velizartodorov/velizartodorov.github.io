@@ -1,41 +1,72 @@
 import { FC } from 'react';
-import { AccordionChevron } from '../common/accordion';
+import { AccordionItem } from '../common/accordion';
 import ItemHeaderRow from '../common/item_header_row';
+import ItemTitle from '../common/item_title';
 import { HOVER_ROW, HOVER_ROW_LINK } from '../common/list_row';
-import { LicenseCertification } from './license_certification';
+import { LicenseInstitution } from './license_certification';
 import { useMonthYear } from './licenses_certrifications.init';
 
-const ROW = `${HOVER_ROW} px-3 py-2`;
-const LINK_ROW = `${HOVER_ROW_LINK} px-3 py-2`;
 const ICON = 'bg-app-icon-bg h-[25px] w-[30px] rounded shadow-[0_1px_4px_var(--app-shadow)]';
+const ROW = `${HOVER_ROW} px-3 py-1`;
+const LINK_ROW = `${HOVER_ROW_LINK} px-3 py-1`;
 
-const LicenseCertificationItem: FC<{ item: LicenseCertification; index: number }> = ({ item }) => {
-    const hasLink = Boolean(item.link?.trim());
+const LicenseCertificationItem: FC<{ item: LicenseInstitution; index: number; eventKey: string }> = ({
+    item,
+    index,
+    eventKey,
+}) => {
     const getMonthYear = useMonthYear();
-    const monthYearStr = getMonthYear(item.date);
-    const Tag = hasLink ? 'a' : 'div';
+    const certifications = item.certifications ?? [];
+    const sortedDates = certifications
+        .map((c) => c.date)
+        .filter(Boolean)
+        .sort();
+    const earliest = sortedDates[0];
+    const latest = sortedDates[sortedDates.length - 1];
+    const headerPeriod =
+        certifications.length > 1 && earliest && latest
+            ? `${getMonthYear(earliest)} - ${getMonthYear(latest)}`
+            : undefined;
+
+    const header = (
+        <ItemHeaderRow
+            icon={{ src: item.icon, alt: 'institution icon', className: ICON }}
+            title={item.institution}
+            place={certifications[0]?.field ?? ''}
+            period={headerPeriod}
+        />
+    );
 
     return (
-        <li>
-            <Tag
-                href={hasLink ? item.link : undefined}
-                rel={hasLink ? 'noopener noreferrer' : undefined}
-                className={hasLink ? LINK_ROW : ROW}
+        <AccordionItem eventKey={eventKey} header={header}>
+            <div
+                className={`before:bg-app-border relative space-y-1 pl-6 before:absolute before:inset-y-2 before:left-[9px] before:w-[2px] before:content-['']`}
             >
-                <div className="flex items-center gap-3">
-                    <ItemHeaderRow
-                        icon={{ src: item.icon, alt: 'license icon', className: ICON }}
-                        title={item.name}
-                        place={item.institution}
-                        period={monthYearStr}
-                        className="min-w-0 flex-1"
-                    />
-                    {/* Invisible copy of AccordionItem's real chevron so this row reserves the exact same
-                    space, keeping columns aligned with the Employments/Education rows. */}
-                    <AccordionChevron open={false} className="text-app-text-muted invisible size-5" />
-                </div>
-            </Tag>
-        </li>
+                {certifications.map((cert, certIdx) => {
+                    const hasLink = Boolean(cert.link?.trim());
+                    const Tag = hasLink ? 'a' : 'div';
+                    const monthYear = getMonthYear(cert.date);
+                    return (
+                        <div
+                            key={`${index}-${certIdx}`}
+                            className={`before:border-app-surface before:bg-app-accent relative before:absolute before:top-2 before:-left-5 before:size-3 before:rounded-full before:border-2 before:shadow-[0_0_0_1px_var(--app-accent)] before:transition-transform before:duration-200 before:content-[''] hover:before:scale-[1.15]`}
+                        >
+                            <Tag
+                                href={hasLink ? cert.link : undefined}
+                                rel={hasLink ? 'noopener noreferrer' : undefined}
+                                className={hasLink ? LINK_ROW : ROW}
+                            >
+                                <ItemTitle>{cert.name}</ItemTitle>
+                                <div className="text-app-text-muted flex flex-wrap items-baseline gap-x-2">
+                                    {cert.field && <span>{cert.field}</span>}
+                                    {monthYear && <span>{monthYear}</span>}
+                                </div>
+                            </Tag>
+                        </div>
+                    );
+                })}
+            </div>
+        </AccordionItem>
     );
 };
 

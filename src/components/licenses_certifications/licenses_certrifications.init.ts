@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { LicenseCertification } from './license_certification';
+import { Certification, LicenseInstitution } from './license_certification';
 import { resolveDate } from '../common/utils';
 
 export function useMonthYear() {
@@ -14,21 +14,25 @@ export function useMonthYear() {
     };
 }
 
-export function useLicensesCertifications(): LicenseCertification[] {
+export function useLicensesCertifications(): LicenseInstitution[] {
     const { t, ready } = useTranslation(['licenses_certifications', 'dates']);
     if (!ready) return [];
 
     const list = t('licenses_certifications:list', {
         returnObjects: true,
-    }) as LicenseCertification[];
+    }) as LicenseInstitution[];
     if (!Array.isArray(list)) return [];
 
-    return list.map((item) => ({
-        name: item.name ?? '',
-        institution: item.institution ?? '',
-        field: item.field ?? '',
-        date: resolveDate(item.date, t),
-        icon: item.icon ?? '',
-        link: item.link ?? '',
+    return list.map((group) => ({
+        institution: group.institution ?? '',
+        icon: group.icon ?? '',
+        certifications: Array.isArray(group.certifications)
+            ? group.certifications.map((c): Certification => ({
+                  name: c.name ?? '',
+                  field: c.field ?? '',
+                  date: resolveDate(c.date, t),
+                  link: c.link ?? '',
+              }))
+            : [],
     }));
 }
