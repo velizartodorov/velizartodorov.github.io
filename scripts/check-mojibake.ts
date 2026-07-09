@@ -14,7 +14,7 @@ if (files.length === 0) {
     process.exit(0);
 }
 
-const C1_CONTROL_RANGE = new RegExp('[\\u0080-\\u009F]');
+const C1_CONTROL_RANGE = /[\u0080-\u009F]/;
 let hasMojibake = false;
 
 for (const file of files) {
