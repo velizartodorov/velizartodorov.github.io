@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import AccordionWrapper from '../common/accordion_wrapper';
+import DividedList from '../common/divided_list';
 import { SectionProps } from '../common/section_props';
 import { Language } from './language';
 import LanguageItem from './language_item';
@@ -14,9 +15,9 @@ const Languages: React.FC<SectionProps> = ({ className, eventKey }) => {
 
     return (
         <AccordionWrapper eventKey={eventKey} className={className} title={t('title')}>
-            <ul className="divide-app-border divide-y">
+            <DividedList>
                 {ready && languages.map((language: Language) => <LanguageItem item={language} key={language.label} />)}
-            </ul>
+            </DividedList>
         </AccordionWrapper>
     );
 };
