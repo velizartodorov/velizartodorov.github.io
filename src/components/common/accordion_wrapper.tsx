@@ -12,7 +12,7 @@ const AccordionWrapper: FC<Properties> = ({ title, children, className = '' }) =
                 type="button"
                 onClick={() => setOpen((o) => !o)}
                 aria-expanded={open}
-                className="bg-app-surface-alt flex w-full cursor-pointer items-center justify-between gap-3 rounded-t-xl px-4 py-2 text-left transition-[filter] hover:brightness-95 dark:hover:brightness-125"
+                className="bg-app-surface-alt flex w-full cursor-pointer items-center justify-between gap-3 rounded-t-xl px-4 py-1.5 text-left transition-[filter] hover:brightness-95 dark:hover:brightness-125"
             >
                 {/* Sized to keep the longest current title ("Licenses & certifications 🔖", ~27 chars)
             on one line down to ~320px viewports, with some margin to spare. If a longer title
