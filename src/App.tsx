@@ -48,11 +48,11 @@ function PageContent({ lang }: { lang: Language }) {
     return (
         <div ref={ref} className="fade-in-text">
             <Introduction className="mx-6" eventKey="0" />
-            <Employments className="mx-6 mt-4" eventKey="1" />
-            <LicensesCertifications className="mx-6 mt-4" eventKey="2" />
-            <Presentations className="mx-6 mt-4" eventKey="3" />
-            <Languages className="mx-6 mt-4" eventKey="4" />
-            <Education className="mx-6 mt-4" eventKey="5" />
+            <Employments className="mx-6 mt-2" eventKey="1" />
+            <LicensesCertifications className="mx-6 mt-2" eventKey="2" />
+            <Presentations className="mx-6 mt-2" eventKey="3" />
+            <Languages className="mx-6 mt-2" eventKey="4" />
+            <Education className="mx-6 mt-2" eventKey="5" />
         </div>
     );
 }
