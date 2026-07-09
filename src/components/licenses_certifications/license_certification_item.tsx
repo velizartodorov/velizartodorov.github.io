@@ -22,7 +22,7 @@ const LicenseCertificationItem: FC<{ item: LicenseInstitution; index: number; ev
         .filter(Boolean)
         .sort((a, b) => a.localeCompare(b));
     const earliest = sortedDates[0];
-    const latest = sortedDates[sortedDates.length - 1];
+    const latest = sortedDates.at(-1);
     const headerPeriod =
         certifications.length > 1 && earliest && latest
             ? `${getMonthYear(earliest)} - ${getMonthYear(latest)}`
