@@ -27,5 +27,10 @@ export default defineConfig({
         globals: true,
         setupFiles: ['./src/setupTests.ts'],
         maxConcurrency: 20, // let src/links.test.ts fire all its concurrent checks in one batch
+        coverage: {
+            provider: 'v8',
+            // lcov is what SonarCloud's sonar.javascript.lcov.reportPaths expects.
+            reporter: ['text', 'lcov'],
+        },
     },
 });
