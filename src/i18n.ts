@@ -52,11 +52,6 @@ export function createLangInstance(lang: Language, resources: NamespaceResources
     return instance;
 }
 
-const LANGUAGE_LOADERS: Record<Language, () => Promise<{ resources: NamespaceResources }>> = {
-    en: () => import('./translations/en'),
-    nl: () => import('./translations/nl'),
-};
-
 // Tracks in-flight loads per instance+language so concurrent callers (e.g. a prefetch effect
 // racing a `?lang=` redirect, or React StrictMode's dev-only double-invoke) share one load
 // instead of each re-running the dynamic import and the resource-bundle merge.
@@ -77,8 +72,9 @@ export function loadLanguage(instance: typeof i18n, lang: Language): Promise<voi
     let promise = pending.get(lang);
     if (!promise) {
         promise = (async () => {
-            const { resources } = await LANGUAGE_LOADERS[lang]();
-            addLanguageResources(instance, lang, resources);
+            const { loadResources } = await import('./translations/resources');
+            const resources = await loadResources(lang);
+            addLanguageResources(instance, lang, resources as NamespaceResources);
         })();
         const settled = pending;
         promise.finally(() => settled.delete(lang));

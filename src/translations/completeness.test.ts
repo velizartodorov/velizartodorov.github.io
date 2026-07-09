@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { resources as enResources } from './en';
-import { resources as nlResources } from './nl';
+import { loadResources } from './resources';
+
+const enResources = await loadResources('en');
+const nlResources = await loadResources('nl');
 
 // Each page now only loads its own language's data up front (see i18n.ts), so i18next's
 // `fallbackLng: 'en'` can no longer silently paper over a key that exists in one language's

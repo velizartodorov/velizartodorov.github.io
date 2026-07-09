@@ -1,3 +1,5 @@
+import type { EducationFile, EmploymentFile } from './resource-files';
+
 interface Index {
     title: string;
     list: string[];
@@ -42,38 +44,34 @@ function assembleEmployment(raw: RawEmployment) {
     };
 }
 
-export function buildEmployments(index: Index, items: Record<string, RawEmployment>) {
+export function buildEmployments(index: Index, items: Record<EmploymentFile, RawEmployment>) {
     return {
         title: index.title,
         list: index.list
-            .map((fileName) => items[fileName])
+            .map((fileName) => items[fileName as EmploymentFile])
             .filter((item): item is RawEmployment => Boolean(item))
             .map(assembleEmployment),
     };
 }
 
-export function buildEducation(index: Index, items: Record<string, unknown>) {
+export function buildEducation(index: Index, items: Record<EducationFile, unknown>) {
     return {
         title: index.title,
-        list: index.list.map((fileName) => items[fileName]).filter(Boolean),
+        list: index.list.map((fileName) => items[fileName as EducationFile]).filter(Boolean),
     };
 }
 
 interface LanguageModules {
     employmentsIndex: Index;
-    employmentItems: Record<string, RawEmployment>;
+    employmentItems: Record<EmploymentFile, RawEmployment>;
     educationIndex: Index;
-    educationItems: Record<string, unknown>;
+    educationItems: Record<EducationFile, unknown>;
 }
 
-// Assembles one language's full resources object from its already-imported translation modules.
-// The imports themselves can't be factored out here (static ES imports need literal per-language
-// paths for code-splitting), but this shared shape keeps en.ts/nl.ts from re-deriving the same
-// index-then-items-map boilerplate independently.
-//
-// Generic over T so each caller's individual namespace types (e.g. profile's actual shape) pass
-// through untouched instead of collapsing to `unknown` - page.tsx reads `resources.profile.name`,
-// which needs profile's real inferred type to type-check.
+// Assembles one language's full resources object from its already-loaded translation modules
+// (see loadResources() in resources.ts, the sole caller). Kept generic over T so a caller with
+// more specific namespace types than LanguageModules requires would have them pass through
+// untouched instead of collapsing to `unknown`.
 export function buildLanguageResources<T extends LanguageModules>(modules: T) {
     const { employmentsIndex, employmentItems, educationIndex, educationItems, ...rest } = modules;
     return {
