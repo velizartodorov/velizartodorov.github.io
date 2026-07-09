@@ -4,58 +4,58 @@ list:
     institution: CVO Groeipunt
     certifications:
       - name: Deelcertificaat NT2 - Effectiveness mondeling
-        field: Dutch/Flemish Language and Literature
+        field: Nederlandse taal- en letterkunde
         date: '{{dates:eff_cert}}'
       - name: Certificaat Nederlands tweede taal - richtgraad 3
-        field: Dutch/Flemish Language and Literature
+        field: Nederlandse taal- en letterkunde
         date: '{{dates:nt3_cert}}'
       - name: Deelcertificaat NT2 - Vantage schriftelijk
-        field: Dutch/Flemish Language and Literature
+        field: Nederlandse taal- en letterkunde
         date: '{{dates:vantage_schriftelijk}}'
       - name: Deelcertificaat NT2 - Vantage mondeling
-        field: Dutch/Flemish Language and Literature
+        field: Nederlandse taal- en letterkunde
         date: '{{dates:vantage_mondeling}}'
       - name: Certificaat Nederlands tweede taal - richtgraad 2
-        field: Dutch/Flemish Language and Literature
+        field: Nederlandse taal- en letterkunde
         date: '{{dates:nt2_cert}}'
       - name: Deelcertificaat NT2 - threshold 4 mondeling publiek
-        field: Dutch/Flemish Language and Literature
+        field: Nederlandse taal- en letterkunde
         date: '{{dates:threshold4_mondeling}}'
       - name: Deelcertificaat NT2 - threshold 4 schriftelijk publiek
-        field: Dutch/Flemish Language and Literature
+        field: Nederlandse taal- en letterkunde
         date: '{{dates:threshold4_schriftelijk}}'
       - name: Deelcertificaat NT2 - threshold 3 schriftelijk persoonlijk
-        field: Dutch/Flemish Language and Literature
+        field: Nederlandse taal- en letterkunde
         date: '{{dates:threshold3_schriftelijk}}'
       - name: Deelcertificaat NT2 - threshold 3 mondeling persoonlijk
-        field: Dutch/Flemish Language and Literature
+        field: Nederlandse taal- en letterkunde
         date: '{{dates:threshold3_mondeling}}'
       - name: Deelcertificaat NT2 - threshold 2 mondeling publiek
-        field: Dutch/Flemish Language and Literature
+        field: Nederlandse taal- en letterkunde
         date: '{{dates:threshold2_mondeling}}'
       - name: Deelcertificaat NT2 - threshold 2 schriftelijk publiek
-        field: Dutch/Flemish Language and Literature
+        field: Nederlandse taal- en letterkunde
         date: '{{dates:threshold2_schriftelijk}}'
       - name: Deelcertificaat NT2 - threshold 1 mondeling persoonlijk
-        field: Dutch/Flemish Language and Literature
+        field: Nederlandse taal- en letterkunde
         date: '{{dates:threshold1_mondeling}}'
       - name: Deelcertificaat NT2 - threshold 1 schriftelijk persoonlijk
-        field: Dutch/Flemish Language and Literature
+        field: Nederlandse taal- en letterkunde
         date: '{{dates:threshold1_schriftelijk}}'
       - name: Certificaat Nederlands tweede taal - richtgraad 1
-        field: Dutch/Flemish Language and Literature
+        field: Nederlandse taal- en letterkunde
         date: '{{dates:nt1_cert}}'
       - name: Deelcertificaat NT2 - Waystage mondeling
-        field: Dutch/Flemish Language and Literature
+        field: Nederlandse taal- en letterkunde
         date: '{{dates:waystage_mondeling}}'
       - name: Deelcertificaat NT2 - Waystage schriftelijk
-        field: Dutch/Flemish Language and Literature
+        field: Nederlandse taal- en letterkunde
         date: '{{dates:waystage_schriftelijk}}'
       - name: Deelcertificaat NT2 - Breakthrough persoonlijk
-        field: Dutch/Flemish Language and Literature
+        field: Nederlandse taal- en letterkunde
         date: '{{dates:breakthrough_persoonlijk}}'
       - name: Deelcertificaat NT2 - Breakthrough publiek
-        field: Dutch/Flemish Language and Literature
+        field: Nederlandse taal- en letterkunde
         date: '{{dates:breakthrough_publiek}}'
   - icon: /education/udemy_icon.svg
     institution: Udemy
@@ -68,8 +68,14 @@ list:
     institution: NARIC-Vlaanderen
     certifications:
       - name: Opleidingskwalifikatiegraad - Masters
-        field: Dutch/Flemish Language and Literature
+        field: Dutch Language and Literature
         date: '{{dates:masters_naric}}'
+  - icon: /header/driving_license.png
+    institution: Ministerie van Binnenlandse Zaken van Bulgarije
+    certifications:
+      - name: Rijbewijs B - auto's < 3,5t en max. 8 plaatsen
+        field: ''
+        date: '{{dates:driving_license}}'
   - icon: /education/deutsches-sprachdiplom.jpg
     institution: Kulturministerkonferenz Deutschland
     certifications:
