@@ -44,7 +44,7 @@ jobs:
         run: npm run lint
 
       - name: Run tests
-        run: npx vitest run --exclude src/links.test.ts
+        run: npx vitest run --exclude src/links.test.ts --exclude src/analytics.test.ts
 
       - name: Build the app
         run: npm run build
@@ -94,3 +94,6 @@ jobs:
 
       - name: Check external links
         run: npx vitest run src/links.test.ts
+
+      - name: Check Google Analytics measurement ID
+        run: npx vitest run src/analytics.test.ts
