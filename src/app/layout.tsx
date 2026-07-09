@@ -70,14 +70,14 @@ const GLOBAL_STYLES = `
   --app-surface-alt: #21262d;
   --app-border: #30363d;
   --app-text: #e6edf3;
-  --app-text-muted: #7d8590;
-  --app-accent: #2f81f7;
-  --app-accent-subtle: rgba(56, 139, 253, 0.15);
+  --app-text-muted: #8b949e;
+  --app-accent: #58a6ff;
+  --app-accent-subtle: rgba(88, 166, 255, 0.15);
   --app-shadow: rgba(0, 0, 0, 0.3);
   --app-icon-bg: #21262d;
   --app-dot-ring: #161b22;
-  --app-link: #2f81f7;
-  --app-link-hover: #58a6ff;
+  --app-link: #58a6ff;
+  --app-link-hover: #79c0ff;
 }
 
 .theme-switching,
