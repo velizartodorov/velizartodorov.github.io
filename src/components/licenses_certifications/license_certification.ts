@@ -1,8 +1,12 @@
-export interface LicenseCertification {
+export interface Certification {
     name: string;
-    institution: string;
     field: string;
     date: string;
-    icon: string;
     link?: string;
+}
+
+export interface LicenseInstitution {
+    institution: string;
+    icon: string;
+    certifications: Certification[];
 }
