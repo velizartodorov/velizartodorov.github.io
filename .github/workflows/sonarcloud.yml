@@ -11,6 +11,9 @@ on:
 jobs:
   sonarcloud:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write # lets vitest-coverage-report-action post/update its PR comment
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -41,3 +44,11 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      # SonarCloud's own PR comment only reports coverage on new/changed lines (its "Clean as You
+      # Code" model), not the overall project percentage. This posts a separate comment with the
+      # overall number plus a per-file breakdown, reading the json-summary/json reports from the
+      # coverage step above.
+      - name: Vitest Coverage Report
+        if: github.event_name == 'pull_request'
+        uses: davelosert/vitest-coverage-report-action@v2
