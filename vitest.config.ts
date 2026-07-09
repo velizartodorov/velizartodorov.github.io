@@ -29,8 +29,10 @@ export default defineConfig({
         maxConcurrency: 20, // let src/links.test.ts fire all its concurrent checks in one batch
         coverage: {
             provider: 'v8',
-            // lcov is what SonarCloud's sonar.javascript.lcov.reportPaths expects.
-            reporter: ['text', 'lcov'],
+            // lcov is what SonarCloud's sonar.javascript.lcov.reportPaths expects; json-summary
+            // and json are what davelosert/vitest-coverage-report-action reads to post the
+            // overall-coverage PR comment.
+            reporter: ['text', 'lcov', 'json-summary', 'json'],
         },
     },
 });
