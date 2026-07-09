@@ -38,6 +38,6 @@ jobs:
         run: npm run coverage -- --exclude src/links.test.ts --exclude src/analytics.test.ts
 
       - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@v5
+        uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
