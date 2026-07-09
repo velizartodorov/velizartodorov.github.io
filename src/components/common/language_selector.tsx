@@ -12,9 +12,8 @@ export const LanguageSelector: React.FC = () => {
     const isEnglish = lang !== 'nl';
 
     return (
-        <div
+        <fieldset
             className="border-app-border bg-app-surface-alt inline-flex items-center gap-0.5 rounded-3xl border p-[3px]"
-            role="group"
             aria-label="Language"
         >
             <button
@@ -33,6 +32,6 @@ export const LanguageSelector: React.FC = () => {
             >
                 NL
             </button>
-        </div>
+        </fieldset>
     );
 };
