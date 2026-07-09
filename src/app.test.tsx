@@ -1,10 +1,17 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { PortfolioApp } from './App';
 import { loadLanguage } from './i18n';
-import { resources as enResources } from './translations/en';
-import { resources as nlResources } from './translations/nl';
+import { loadResources } from './translations/resources';
+
+let enResources: Awaited<ReturnType<typeof loadResources>>;
+let nlResources: Awaited<ReturnType<typeof loadResources>>;
+
+beforeAll(async () => {
+    enResources = await loadResources('en');
+    nlResources = await loadResources('nl');
+});
 
 vi.mock('./i18n', async (importOriginal) => {
     const actual = await importOriginal<typeof import('./i18n')>();

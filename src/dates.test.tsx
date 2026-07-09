@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest';
+import { beforeAll, describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
 import type { ReactElement } from 'react';
@@ -7,7 +7,13 @@ import Education from './components/education/education';
 import LicensesCertifications from './components/licenses_certifications/licenses_certifications';
 import Introduction from './components/introduction/introduction';
 import { createLangInstance } from './i18n';
-import { resources as enResources } from './translations/en';
+import { loadResources } from './translations/resources';
+
+let enResources: Awaited<ReturnType<typeof loadResources>>;
+
+beforeAll(async () => {
+    enResources = await loadResources('en');
+});
 
 // Regression test for a real bug: date placeholders like "{{dates:collibra_start}}" must be
 // resolved through the ACTIVE per-page i18next instance (the one obtained via useTranslation()'s
