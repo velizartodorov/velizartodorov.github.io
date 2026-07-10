@@ -10,7 +10,7 @@ type Translate = (key: string, options: { ns: string }) => unknown;
 // resolving against the 'dates' namespace explicitly here. Must be resolved through the caller's
 // own `t` (i.e. the active per-page i18next instance obtained via useTranslation()) rather than
 // a module-level import of the raw i18next package: each page/language now uses its own cloned,
-// isolated instance (see src/i18n.ts), and the base i18next singleton never has any resources
+// isolated instance (see src/translations/i18n.ts), and the base i18next singleton never has any resources
 // registered on it directly.
 export function resolveDate(dateStr: string, t: Translate): string {
     if (!dateStr) return '';

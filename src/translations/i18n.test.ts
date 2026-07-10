@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { createLangInstance, loadLanguage, otherLanguages } from './i18n';
 
-vi.mock('./translations/resources', () => ({ loadResources: vi.fn() }));
+vi.mock('./resources', () => ({ loadResources: vi.fn() }));
 
 beforeEach(() => {
     vi.clearAllMocks();
@@ -17,7 +17,7 @@ describe('otherLanguages', () => {
 describe('loadLanguage', () => {
     it('is a no-op when the language is already loaded', async () => {
         const instance = createLangInstance('en', { common: { poweredBy: 'x' } });
-        const { loadResources } = await import('./translations/resources');
+        const { loadResources } = await import('./resources');
 
         await loadLanguage(instance, 'en');
 
@@ -26,7 +26,7 @@ describe('loadLanguage', () => {
 
     it('shares one in-flight load across concurrent callers for the same language', async () => {
         const instance = createLangInstance('en', { common: { poweredBy: 'x' } });
-        const { loadResources } = await import('./translations/resources');
+        const { loadResources } = await import('./resources');
         vi.mocked(loadResources).mockResolvedValue({ common: { poweredBy: 'y' } });
 
         const [first, second] = await Promise.all([loadLanguage(instance, 'nl'), loadLanguage(instance, 'nl')]);
@@ -37,7 +37,7 @@ describe('loadLanguage', () => {
 
     it('clears the in-flight-load cache after a failure, so a retry re-attempts the load', async () => {
         const instance = createLangInstance('en', { common: { poweredBy: 'x' } });
-        const { loadResources } = await import('./translations/resources');
+        const { loadResources } = await import('./resources');
         vi.mocked(loadResources).mockRejectedValueOnce(new Error('network down'));
 
         await expect(loadLanguage(instance, 'nl')).rejects.toThrow('network down');
