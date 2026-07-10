@@ -1,13 +1,13 @@
 # Velizar's portfolio 👨‍💼
 
-[![Build and Deploy](https://img.shields.io/github/actions/workflow/status/velizartodorov/portfolio/build-deploy.yml?label=build&logo=githubactions&logoColor=white)](https://github.com/velizartodorov/portfolio/actions/workflows/build-deploy.yml)
-[![Tests](https://img.shields.io/github/actions/workflow/status/velizartodorov/portfolio/sonarcloud.yml?label=tests&logo=vitest&logoColor=white)](https://github.com/velizartodorov/portfolio/actions/workflows/sonarcloud.yml)
+[![Build and Deploy](https://img.shields.io/github/actions/workflow/status/velizartodorov/velizartodorov.github.io/build-deploy.yml?label=build&logo=githubactions&logoColor=white)](https://github.com/velizartodorov/velizartodorov.github.io/actions/workflows/build-deploy.yml)
+[![Tests](https://img.shields.io/github/actions/workflow/status/velizartodorov/velizartodorov.github.io/sonarcloud.yml?label=tests&logo=vitest&logoColor=white)](https://github.com/velizartodorov/velizartodorov.github.io/actions/workflows/sonarcloud.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/quality_gate?project=velizartodorov_velizartodorov.github.io)](https://sonarcloud.io/summary/new_code?id=velizartodorov_velizartodorov.github.io)
 
-![Next.js](https://img.shields.io/github/package-json/dependency-version/velizartodorov/portfolio/next?label=Next.js&logo=nextdotjs&logoColor=white)
-![React](https://img.shields.io/github/package-json/dependency-version/velizartodorov/portfolio/react?label=React&logo=react&logoColor=white)
-![TypeScript](https://img.shields.io/github/package-json/dependency-version/velizartodorov/portfolio/dev/typescript?label=TypeScript&logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/github/package-json/dependency-version/velizartodorov/portfolio/dev/tailwindcss?label=Tailwind%20CSS&logo=tailwindcss&logoColor=white)
+![Next.js](https://img.shields.io/github/package-json/dependency-version/velizartodorov/velizartodorov.github.io/next?label=Next.js&logo=nextdotjs&logoColor=white)
+![React](https://img.shields.io/github/package-json/dependency-version/velizartodorov/velizartodorov.github.io/react?label=React&logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/github/package-json/dependency-version/velizartodorov/velizartodorov.github.io/dev/typescript?label=TypeScript&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/github/package-json/dependency-version/velizartodorov/velizartodorov.github.io/dev/tailwindcss?label=Tailwind%20CSS&logo=tailwindcss&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-24-339933?logo=nodedotjs&logoColor=white)
 
 Next.js (App Router, static export) web application representing Velizar's portfolio:
