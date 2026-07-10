@@ -46,7 +46,7 @@ vi.mock('./components/presentations/presentations', () => ({ default: () => null
 vi.mock('./components/languages/languages', () => ({ default: () => null }));
 vi.mock('./components/education/education', () => ({ default: () => null }));
 // jsdom doesn't implement window.matchMedia; the theme toggle isn't under test here.
-vi.mock('./components/common/theme_toggle', () => ({ default: () => null }));
+vi.mock('./components/header/theme_toggle', () => ({ default: () => null }));
 
 afterEach(() => {
     document.documentElement.lang = 'en';
