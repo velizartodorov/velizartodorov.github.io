@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { AccordionGroup, AccordionItem } from './accordion';
 
 describe('AccordionGroup / AccordionItem', () => {
-    it('renders all items closed by default', () => {
+    function renderTwoItems() {
         render(
             <AccordionGroup>
                 <AccordionItem eventKey="a" header="Item A">
@@ -15,50 +15,32 @@ describe('AccordionGroup / AccordionItem', () => {
                 </AccordionItem>
             </AccordionGroup>,
         );
+        const [a, b] = screen.getAllByRole('button');
+        return { a: a!, b: b! };
+    }
 
-        const buttons = screen.getAllByRole('button');
-        expect(buttons[0]).toHaveAttribute('aria-expanded', 'false');
-        expect(buttons[1]).toHaveAttribute('aria-expanded', 'false');
-    });
+    it.each([
+        { name: 'closed by default (no clicks)', clicks: [], expected: { a: 'false', b: 'false' } },
+        { name: 'opening item A opens it and leaves B closed', clicks: ['a'], expected: { a: 'true', b: 'false' } },
+        {
+            name: 'opening item B closes A and opens B',
+            clicks: ['a', 'b'],
+            expected: { a: 'false', b: 'true' },
+        },
+        {
+            name: 'clicking the open item again closes it',
+            clicks: ['a', 'a'],
+            expected: { a: 'false', b: 'false' },
+        },
+    ])('$name', async ({ clicks, expected }) => {
+        const buttons = renderTwoItems();
 
-    it('opening one item closes any other open item', async () => {
-        render(
-            <AccordionGroup>
-                <AccordionItem eventKey="a" header="Item A">
-                    content A
-                </AccordionItem>
-                <AccordionItem eventKey="b" header="Item B">
-                    content B
-                </AccordionItem>
-            </AccordionGroup>,
-        );
+        for (const key of clicks as Array<'a' | 'b'>) {
+            await userEvent.click(buttons[key]);
+        }
 
-        const [buttonA, buttonB] = screen.getAllByRole('button');
-
-        await userEvent.click(buttonA!);
-        expect(buttonA).toHaveAttribute('aria-expanded', 'true');
-        expect(buttonB).toHaveAttribute('aria-expanded', 'false');
-
-        await userEvent.click(buttonB!);
-        expect(buttonA).toHaveAttribute('aria-expanded', 'false');
-        expect(buttonB).toHaveAttribute('aria-expanded', 'true');
-    });
-
-    it('clicking the open item closes it', async () => {
-        render(
-            <AccordionGroup>
-                <AccordionItem eventKey="a" header="Item A">
-                    content A
-                </AccordionItem>
-            </AccordionGroup>,
-        );
-
-        const button = screen.getByRole('button');
-        await userEvent.click(button);
-        expect(button).toHaveAttribute('aria-expanded', 'true');
-
-        await userEvent.click(button);
-        expect(button).toHaveAttribute('aria-expanded', 'false');
+        expect(buttons.a).toHaveAttribute('aria-expanded', expected.a);
+        expect(buttons.b).toHaveAttribute('aria-expanded', expected.b);
     });
 
     it('throws when an AccordionItem is rendered outside an AccordionGroup', () => {
