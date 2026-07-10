@@ -2,18 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ThemeToggle from './theme_toggle';
-
-function mockMatchMedia() {
-    vi.stubGlobal(
-        'matchMedia',
-        vi.fn(() => ({
-            matches: false,
-            media: '(prefers-color-scheme: dark)',
-            addEventListener: vi.fn(),
-            removeEventListener: vi.fn(),
-        })),
-    );
-}
+import { mockMatchMedia } from '../../test-utils/mock-match-media';
 
 beforeEach(() => {
     localStorage.clear();

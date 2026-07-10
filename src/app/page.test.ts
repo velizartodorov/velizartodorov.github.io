@@ -1,6 +1,20 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { render, screen } from '@testing-library/react';
 import { generateMetadata as generateEnMetadata } from './page';
 import { generateMetadata as generateNlMetadata } from './nl/page';
+import EnPage from './page';
+import NlPage from './nl/page';
+import { mockMatchMedia } from '../test-utils/mock-match-media';
+
+// The rendered page includes the real ThemeToggle, whose useTheme() hook needs
+// matchMedia — jsdom doesn't implement it.
+beforeEach(() => {
+    mockMatchMedia();
+});
+
+afterEach(() => {
+    vi.unstubAllGlobals();
+});
 
 const SITE_URL = 'https://velizartodorov.github.io';
 const EN_URL = `${SITE_URL}/`;
@@ -35,5 +49,20 @@ describe('page metadata', () => {
             description: OG_DESCRIPTION,
             images: [IMAGE_URL],
         });
+    });
+});
+
+describe('page components', () => {
+    it('renders the English page with English initial language', async () => {
+        render(await EnPage());
+
+        expect(document.documentElement.lang).toBe('en');
+        expect(screen.getByRole('heading', { level: 2, name: 'Velizar Todorov' })).toBeInTheDocument();
+    });
+
+    it('renders the Dutch page with Dutch initial language', async () => {
+        render(await NlPage());
+
+        expect(document.documentElement.lang).toBe('nl');
     });
 });

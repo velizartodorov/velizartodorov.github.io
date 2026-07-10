@@ -1,7 +1,7 @@
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { PortfolioApp } from './App';
+import { PortfolioApp, useLangSwitch } from './App';
 import { loadLanguage } from './i18n';
 import { loadResources } from './translations/resources';
 
@@ -12,6 +12,22 @@ beforeAll(async () => {
     enResources = await loadResources('en');
     nlResources = await loadResources('nl');
 });
+
+function resourcesFor(lang: 'en' | 'nl') {
+    return lang === 'en' ? enResources : nlResources;
+}
+
+// A promise plus its own resolve/reject, for tests that need to control exactly when a mocked
+// async call settles (e.g. to simulate one switch staying in flight while another supersedes it).
+function deferred<T = void>() {
+    let resolve!: (value: T) => void;
+    let reject!: (error: Error) => void;
+    const promise = new Promise<T>((res, rej) => {
+        resolve = res;
+        reject = rej;
+    });
+    return { promise, resolve, reject };
+}
 
 vi.mock('./i18n', async (importOriginal) => {
     const actual = await importOriginal<typeof import('./i18n')>();
@@ -128,5 +144,161 @@ describe('language prefetching', () => {
     it('prefetches English when the initial language is Dutch', () => {
         render(<PortfolioApp initialLang="nl" initialResources={nlResources} />);
         expect(loadLanguage).toHaveBeenCalledWith(expect.anything(), 'en');
+    });
+
+    it('logs an error when prefetching the other language fails, without crashing', async () => {
+        const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
+        vi.mocked(loadLanguage).mockRejectedValueOnce(new Error('network down'));
+
+        render(<PortfolioApp initialLang="en" initialResources={enResources} />);
+
+        await waitFor(() =>
+            expect(consoleError).toHaveBeenCalledWith('Failed to prefetch language "nl":', expect.any(Error)),
+        );
+        consoleError.mockRestore();
+    });
+});
+
+describe('?lang= URL parameter backward compat', () => {
+    // jsdom's location.search isn't a configurable property (spyOn can't redefine it), but the
+    // History API is fully implemented, so pushState is the standard way to change the jsdom
+    // URL — and unlike replacing window.location outright, it leaves href/origin/etc. intact,
+    // which next/image's <Image> in the header needs.
+    function stubSearch(search: string) {
+        window.history.pushState({}, '', search || '/');
+    }
+
+    afterEach(() => {
+        window.history.pushState({}, '', '/');
+    });
+
+    it.each([
+        { from: 'en', to: 'nl' },
+        { from: 'nl', to: 'en' },
+    ] as const)('redirects to $to when the URL has ?lang=$to (starting from $from)', async ({ from, to }) => {
+        stubSearch(`?lang=${to}`);
+
+        render(<PortfolioApp initialLang={from} initialResources={resourcesFor(from)} />);
+
+        await waitFor(() => expect(document.documentElement.lang).toBe(to));
+    });
+
+    it('ignores an unrelated query string', () => {
+        stubSearch('?foo=bar');
+
+        render(<PortfolioApp initialLang="en" initialResources={enResources} />);
+
+        expect(document.documentElement.lang).toBe('en');
+    });
+
+    it('does nothing when there is no query string', () => {
+        stubSearch('');
+
+        render(<PortfolioApp initialLang="en" initialResources={enResources} />);
+
+        expect(document.documentElement.lang).toBe('en');
+    });
+});
+
+describe('useLangSwitch', () => {
+    it('throws when called outside a PortfolioApp', () => {
+        const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
+        function Outside() {
+            useLangSwitch();
+            return null;
+        }
+
+        expect(() => render(<Outside />)).toThrow('useLangSwitch must be used within PortfolioApp');
+
+        consoleError.mockRestore();
+    });
+});
+
+describe('language switching no-op', () => {
+    it('does nothing when switching to the language already targeted', async () => {
+        render(<PortfolioApp initialLang="en" initialResources={enResources} />);
+        await waitFor(() => expect(loadLanguage).toHaveBeenCalled());
+        vi.mocked(loadLanguage).mockClear();
+
+        await userEvent.click(screen.getByRole('button', { name: 'EN' }));
+
+        expect(document.documentElement.lang).toBe('en');
+        expect(loadLanguage).not.toHaveBeenCalled();
+    });
+});
+
+describe('language switch failure', () => {
+    it('logs an error and rolls back so a retry is not blocked, when switching fails', async () => {
+        const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
+        render(<PortfolioApp initialLang="en" initialResources={enResources} />);
+
+        // Let the mount-time prefetch settle first, so the mockRejectedValueOnce below targets
+        // the upcoming user-triggered switchTo call rather than that prefetch call.
+        await waitFor(() => expect(loadLanguage).toHaveBeenCalled());
+        vi.mocked(loadLanguage).mockRejectedValueOnce(new Error('boom'));
+
+        await userEvent.click(screen.getByRole('button', { name: 'NL' }));
+
+        await waitFor(() =>
+            expect(consoleError).toHaveBeenCalledWith('Failed to switch language to "nl":', expect.any(Error)),
+        );
+        expect(document.documentElement.lang).toBe('en');
+
+        // The failed switch must roll back its target-language guard so an immediate retry isn't
+        // silently swallowed by the "already switching to this language" early return.
+        await userEvent.click(screen.getByRole('button', { name: 'NL' }));
+        await waitFor(() => expect(document.documentElement.lang).toBe('nl'));
+
+        consoleError.mockRestore();
+    });
+
+    it('ignores a switch that gets superseded by a newer one before it resolves', async () => {
+        render(<PortfolioApp initialLang="en" initialResources={enResources} />);
+        await waitFor(() => expect(loadLanguage).toHaveBeenCalled());
+
+        const { promise: pendingLoad, resolve: resolveFirst } = deferred();
+        vi.mocked(loadLanguage).mockImplementationOnce(() => pendingLoad);
+
+        // Click NL: its loadLanguage() call hangs on pendingLoad until resolved below.
+        await userEvent.click(screen.getByRole('button', { name: 'NL' }));
+        // Before that resolves, click EN — this supersedes the in-flight NL switch.
+        await userEvent.click(screen.getByRole('button', { name: 'EN' }));
+
+        await waitFor(() => expect(document.documentElement.lang).toBe('en'));
+
+        // Now let the superseded NL switch resolve; it must not clobber the newer EN switch. Two
+        // microtask flushes are enough to drain its `await loadLanguage()` / `await
+        // changeLanguage()` chain — no need for a real timer since nothing here is genuinely async.
+        resolveFirst();
+        await Promise.resolve();
+        await Promise.resolve();
+        expect(document.documentElement.lang).toBe('en');
+    });
+
+    it('does not roll back the target ref for a failed switch that was already superseded', async () => {
+        const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
+        render(<PortfolioApp initialLang="en" initialResources={enResources} />);
+        await waitFor(() => expect(loadLanguage).toHaveBeenCalled());
+
+        const { promise: pendingLoad, reject: rejectFirst } = deferred();
+        vi.mocked(loadLanguage).mockImplementationOnce(() => pendingLoad);
+
+        // Click NL: its loadLanguage() call hangs on pendingLoad until rejected below.
+        await userEvent.click(screen.getByRole('button', { name: 'NL' }));
+        // Before that settles, click EN — this supersedes the in-flight NL switch and claims
+        // targetLangRef for itself.
+        await userEvent.click(screen.getByRole('button', { name: 'EN' }));
+
+        await waitFor(() => expect(document.documentElement.lang).toBe('en'));
+
+        // Now let the superseded NL switch fail; since a newer switch already claimed the target
+        // ref, its catch block must skip the rollback rather than clobbering EN's claim.
+        rejectFirst(new Error('boom'));
+        await waitFor(() =>
+            expect(consoleError).toHaveBeenCalledWith('Failed to switch language to "nl":', expect.any(Error)),
+        );
+        expect(document.documentElement.lang).toBe('en');
+
+        consoleError.mockRestore();
     });
 });

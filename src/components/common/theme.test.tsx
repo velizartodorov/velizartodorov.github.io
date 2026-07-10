@@ -1,36 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { act, renderHook } from '@testing-library/react';
 import { useTheme } from './theme';
-
-type Listener = (event: { matches: boolean }) => void;
-
-function mockMatchMedia(initialMatches: boolean) {
-    let matches = initialMatches;
-    const listeners = new Set<Listener>();
-    const mql = {
-        get matches() {
-            return matches;
-        },
-        media: '(prefers-color-scheme: dark)',
-        addEventListener: vi.fn((_event: string, listener: Listener) => {
-            listeners.add(listener);
-        }),
-        removeEventListener: vi.fn((_event: string, listener: Listener) => {
-            listeners.delete(listener);
-        }),
-    };
-    vi.stubGlobal(
-        'matchMedia',
-        vi.fn(() => mql),
-    );
-    return {
-        mql,
-        fireChange(next: boolean) {
-            matches = next;
-            listeners.forEach((listener) => listener({ matches: next }));
-        },
-    };
-}
+import { mockMatchMedia } from '../../test-utils/mock-match-media';
 
 beforeEach(() => {
     localStorage.clear();
@@ -78,6 +49,18 @@ describe('useTheme', () => {
 
         expect(result.current.theme).toBe('dark');
         expect(document.documentElement.dataset.bsTheme).toBe('dark');
+    });
+
+    it('follows OS theme changes to light when no theme is stored', () => {
+        document.documentElement.dataset.bsTheme = 'dark';
+        const { fireChange } = mockMatchMedia(false);
+
+        const { result } = renderHook(() => useTheme());
+
+        act(() => fireChange(false));
+
+        expect(result.current.theme).toBe('light');
+        expect(document.documentElement.dataset.bsTheme).toBe('light');
     });
 
     it('ignores a subsequent OS preference change once the user has explicitly toggled', () => {
