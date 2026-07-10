@@ -24,6 +24,40 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
+      - name: Rebase out-of-date Dependabot PRs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Ask Dependabot to rebase, rather than pushing ourselves - a push made with this
+          # workflow's GITHUB_TOKEN shows up as an untrusted "github-actions[bot]" actor, and
+          # GitHub gates the resulting CI run behind a manual "Approve and run" click
+          # (conclusion: action_required), which then blocks auto-merge forever. Dependabot's
+          # own pushes aren't gated this way.
+          echo "Checking open Dependabot PRs for rebase..."
+          prs=$(gh pr list --author "app/dependabot" --state open --json number,mergeStateStatus)
+          behind_prs=$(echo "$prs" | jq -r '.[] | select(.mergeStateStatus == "BEHIND" or .mergeStateStatus == "DIRTY") | .number')
+
+          if [ -z "$behind_prs" ]; then
+            echo "All open Dependabot PRs are up to date."
+          else
+            for pr in $behind_prs; do
+              echo "  PR #$pr is out of date, asking Dependabot to rebase..."
+              gh pr comment "$pr" --body "@dependabot rebase" 2>/dev/null || echo "  ⚠️ Could not request rebase for PR #$pr"
+            done
+
+            echo ""
+            echo "⏳ Waiting for Dependabot to finish rebasing (up to 5 minutes)..."
+            for i in $(seq 1 30); do
+              sleep 10
+              still_behind=$(gh pr list --author "app/dependabot" --state open --json number,mergeStateStatus --jq '[.[] | select(.mergeStateStatus == "BEHIND" or .mergeStateStatus == "DIRTY")] | length')
+              if [ "$still_behind" -eq 0 ]; then
+                echo "All PRs are now up to date."
+                break
+              fi
+              echo "  ...$still_behind PR(s) still out of date, waiting."
+            done
+          fi
+
       - name: Auto-merge Dependabot PRs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
