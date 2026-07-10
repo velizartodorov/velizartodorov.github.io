@@ -60,31 +60,27 @@ export function multiPositionEmployment(): Employment {
 
 // Raw (pre-hook) shape: what an employments:list translation entry actually looks like before
 // useEmployments() resolves period.start/end — see employments.init.test.ts, which tests that
-// resolution directly. Period dates are strings (a real ISO date or a "{{dates:x}}" placeholder),
-// not yet Date objects. Not a fit for tests that need a deliberately malformed employment/position
-// shape (missing type, non-array positions, etc.) — those stay as raw literals on purpose, since
-// this builder's own defaults would mask exactly the missing-field case being tested.
-export interface RawPosition {
-    position: string;
-    place: string;
-    description: string;
-    period: { start?: string; end?: string };
-}
-
-export interface RawEmployment {
-    company: string;
-    icon: string;
-    type?: string;
-    positions: RawPosition[];
-}
-
+// resolution directly. Reuses Position/Employment (the same types employments.init.ts itself
+// loosely casts this raw data to) rather than a parallel interface; period.start/end are actually
+// strings here (a real ISO date or a "{{dates:x}}" placeholder), not yet Date objects, hence the
+// cast. Not a fit for tests that need a deliberately malformed employment/position shape (missing
+// type, non-array positions, etc.) — those stay as raw literals on purpose, since this builder's
+// own defaults would mask exactly the missing-field case being tested.
 export function rawPosition(
-    overrides: Partial<Omit<RawPosition, 'period'>> & { start?: string; end?: string } = {},
-): RawPosition {
+    overrides: Partial<Omit<Position, 'period'>> & { start?: string; end?: string } = {},
+): Position {
     const { start, end, ...fields } = overrides;
-    return { position: 'Engineer', place: 'Remote', description: 'desc', ...fields, period: { start, end } };
+    return {
+        position: 'Engineer',
+        place: 'Remote',
+        description: 'desc',
+        ...fields,
+        period: { start, end } as unknown as Position['period'],
+    };
 }
 
-export function rawEmployment(overrides: Partial<RawEmployment> = {}): RawEmployment {
+export function rawEmployment(
+    overrides: Partial<Omit<Employment, 'positions'>> & { positions?: Position[] } = {},
+): Employment {
     return { company: 'Acme', icon: '/icon.png', type: 'Full-time', positions: [], ...overrides };
 }

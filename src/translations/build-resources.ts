@@ -1,13 +1,15 @@
 import type { EducationFile, EmploymentFile } from './resource-files';
 
-interface Index {
+// Exported so tests can build fixtures against these shapes directly (see
+// src/test-utils/build-resources-fixtures.ts) instead of maintaining a parallel copy.
+export interface Index {
     title: string;
     list: string[];
 }
 
 // Raw position frontmatter, before period placeholders (e.g. "{{dates:x}}") are resolved to real
 // Dates by useEmployments() - see components/employments/employments.init.ts.
-interface RawPosition {
+export interface RawPosition {
     position: string;
     place: string;
     period: { start: string; end?: string };
@@ -16,7 +18,7 @@ interface RawPosition {
 // Shape produced by loaders/markdown-frontmatter-loader.cjs for one employments/<company>.md:
 // frontmatter fields plus `body`, the raw markdown after the closing `---`, with each position's
 // description separated by a bare "---" line (see scripts that generated these files).
-interface RawEmployment {
+export interface RawEmployment {
     company: string;
     icon: string;
     type: string;
