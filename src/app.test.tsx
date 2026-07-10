@@ -2,7 +2,7 @@ import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vite
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { PortfolioApp } from './App';
-import { useLangSwitch } from './lang-switch-context';
+import { useLangSwitch } from './components/header/lang-switch-context';
 import { loadLanguage } from './translations/i18n';
 import { loadResources } from './translations/resources';
 

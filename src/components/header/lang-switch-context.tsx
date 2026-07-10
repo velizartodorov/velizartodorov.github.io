@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, useContext } from 'react';
-import type { Language } from './translations/i18n';
+import type { Language } from '../../translations/i18n';
 
 export interface LangSwitchValue {
     lang: Language;

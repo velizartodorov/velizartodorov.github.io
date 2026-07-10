@@ -12,7 +12,7 @@ import Introduction from './components/introduction/introduction';
 import LicensesCertifications from './components/licenses_certifications/licenses_certifications';
 import EnvBanner from './components/common/env_banner';
 import { createLangInstance, loadLanguage, otherLanguages, type Language } from './translations/i18n';
-import { LangSwitchContext, useLangSwitch } from './lang-switch-context';
+import { LangSwitchContext, useLangSwitch } from './components/header/lang-switch-context';
 import reportWebVitals from './reportWebVitals';
 
 function PageContent({ lang }: Readonly<{ lang: Language }>) {
