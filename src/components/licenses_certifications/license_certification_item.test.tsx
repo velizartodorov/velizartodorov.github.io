@@ -1,10 +1,11 @@
 import { describe, expect, it, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import { AccordionGroup } from '../common/accordion';
+import { screen } from '@testing-library/react';
 import LicenseCertificationItem from './license_certification_item';
 import { LicenseInstitution } from './license_certification';
 import { MONTHS } from '../../test-utils/i18n-fixtures';
 import { mockUseTranslation } from '../../test-utils/mock-use-translation';
+import { renderInAccordion } from '../../test-utils/render-in-accordion';
+import { certification, licenseInstitution } from '../../test-utils/certification-fixtures';
 
 vi.mock('react-i18next', () => ({ useTranslation: vi.fn() }));
 
@@ -13,24 +14,26 @@ function mockTranslation() {
 }
 
 function renderItem(item: LicenseInstitution) {
-    return render(
-        <AccordionGroup>
-            <LicenseCertificationItem item={item} index={0} eventKey="0" />
-        </AccordionGroup>,
-    );
+    return renderInAccordion(<LicenseCertificationItem item={item} index={0} eventKey="0" />);
 }
 
 describe('LicenseCertificationItem', () => {
     it('shows a header period spanning multiple certifications, links the ones with a link', () => {
         mockTranslation();
-        renderItem({
-            institution: 'AWS',
-            icon: '',
-            certifications: [
-                { name: 'Cert A', field: 'Field A', date: '2020-01-01', link: 'https://example.com/a' },
-                { name: 'Cert B', field: '', date: '2021-06-01', link: '' },
-            ],
-        });
+        renderItem(
+            licenseInstitution({
+                institution: 'AWS',
+                certifications: [
+                    certification({
+                        name: 'Cert A',
+                        field: 'Field A',
+                        date: '2020-01-01',
+                        link: 'https://example.com/a',
+                    }),
+                    certification({ name: 'Cert B', date: '2021-06-01' }),
+                ],
+            }),
+        );
 
         expect(screen.getByText(/January 2020 - June 2021/)).toBeInTheDocument();
 
@@ -46,22 +49,24 @@ describe('LicenseCertificationItem', () => {
 
     it('omits the header period for a single certification', () => {
         mockTranslation();
-        renderItem({
-            institution: 'AWS',
-            icon: '',
-            certifications: [{ name: 'Solo Cert', field: 'Field', date: '2020-01-01', link: '' }],
-        });
+        renderItem(
+            licenseInstitution({
+                institution: 'AWS',
+                certifications: [certification({ name: 'Solo Cert', field: 'Field', date: '2020-01-01' })],
+            }),
+        );
 
         expect(screen.queryByText(/January 2020 - January 2020/)).not.toBeInTheDocument();
     });
 
     it('omits the month/year and field when a certification has no date or field', () => {
         mockTranslation();
-        renderItem({
-            institution: 'AWS',
-            icon: '',
-            certifications: [{ name: 'Undated Cert', field: '', date: '', link: '' }],
-        });
+        renderItem(
+            licenseInstitution({
+                institution: 'AWS',
+                certifications: [certification({ name: 'Undated Cert' })],
+            }),
+        );
 
         expect(screen.getByText('Undated Cert')).toBeInTheDocument();
         MONTHS.forEach((month) => expect(screen.queryByText(new RegExp(month))).not.toBeInTheDocument());
@@ -69,6 +74,8 @@ describe('LicenseCertificationItem', () => {
 
     it('renders without crashing when certifications is missing', () => {
         mockTranslation();
+        // Deliberately malformed (no `certifications` key at all) — the licenseInstitution()
+        // fixture always fills that in, so this one case is a raw literal on purpose.
         renderItem({ institution: 'AWS', icon: '' } as unknown as LicenseInstitution);
 
         expect(screen.getByRole('button')).toBeInTheDocument();

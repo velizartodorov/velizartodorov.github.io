@@ -4,6 +4,7 @@ import { useEmployments } from '../employments/employments.init';
 import { useFormatBody, useIntroductionStats } from './utils';
 import { Employment } from '../employments/employment';
 import { mockUseTranslation } from '../../test-utils/mock-use-translation';
+import { employment as buildEmployment, position } from '../../test-utils/employment-fixtures';
 
 vi.mock('react-i18next', () => ({ useTranslation: vi.fn() }));
 vi.mock('../employments/employments.init', () => ({ useEmployments: vi.fn() }));
@@ -14,18 +15,11 @@ function mockT() {
     mockUseTranslation((key: string) => key.split('.').pop());
 }
 
-function employment(company: string, ...positions: Array<{ start: string; end?: string }>): Employment {
-    return {
-        company,
-        icon: '',
-        type: '',
-        positions: positions.map((p) => ({
-            position: 'role',
-            place: 'place',
-            description: '',
-            period: { start: new Date(p.start), end: p.end ? new Date(p.end) : undefined },
-        })),
-    };
+// Thin wrapper over the shared employment fixture, preserving this file's existing call-site
+// shape (`employment('Acme', { start, end })`) since only the period timing matters to these
+// duration calculations, not any position's actual title/place/description.
+function employment(company: string, ...periods: Array<{ start: string; end?: string }>): Employment {
+    return buildEmployment({ company, positions: periods.map((p) => position(p)) });
 }
 
 function mockEmployments(employments: Employment[]) {

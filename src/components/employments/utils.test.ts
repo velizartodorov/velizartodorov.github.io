@@ -2,9 +2,10 @@ import { describe, expect, it, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { combinedPeriod, useDisplayPeriod } from './utils';
 import { Period } from '../common/period';
-import { Position } from './employment';
 import { MONTHS, PERIOD_LANG } from '../../test-utils/i18n-fixtures';
 import { mockUseTranslation } from '../../test-utils/mock-use-translation';
+import { position as buildPosition } from '../../test-utils/employment-fixtures';
+import { period } from '../../test-utils/period-fixtures';
 
 vi.mock('react-i18next', () => ({ useTranslation: vi.fn() }));
 
@@ -16,13 +17,9 @@ function mockTranslation() {
     });
 }
 
-function position(start: string, end?: string): Position {
-    return {
-        position: 'p',
-        place: 'place',
-        description: 'desc',
-        period: { start: new Date(start), end: end ? new Date(end) : undefined },
-    };
+// Thin wrapper matching this file's existing 2-arg call sites; only period timing matters here.
+function position(start: string, end?: string) {
+    return buildPosition({ start, end });
 }
 
 describe('combinedPeriod', () => {
@@ -36,7 +33,7 @@ describe('combinedPeriod', () => {
             position('2019-01-01', '2021-01-01'),
             position('2020-03-01', '2020-09-01'),
         ]);
-        expect(result).toEqual({ start: new Date('2019-01-01'), end: new Date('2021-01-01') });
+        expect(result).toEqual(period('2019-01-01', '2021-01-01'));
     });
 
     it('is open-ended (undefined end) when any position has no end date', () => {
@@ -53,7 +50,7 @@ describe('useDisplayPeriod', () => {
     }
 
     it('shows "start - Present" when the period has no end', () => {
-        expect(displayPeriod({ start: new Date('2020-03-01') })).toBe('March 2020 - Present');
+        expect(displayPeriod(period('2020-03-01'))).toBe('March 2020 - Present');
     });
 
     it('shows "start - Present" when the start date is in the future', () => {
@@ -73,15 +70,11 @@ describe('useDisplayPeriod', () => {
     });
 
     it('shows "start - end (duration)" for a past, closed period', () => {
-        expect(displayPeriod({ start: new Date('2019-01-15'), end: new Date('2020-04-15') })).toBe(
-            'January 2019 - April 2020 (1 year, 3 months)',
-        );
+        expect(displayPeriod(period('2019-01-15', '2020-04-15'))).toBe('January 2019 - April 2020 (1 year, 3 months)');
     });
 
     it('omits the duration parentheses when start and end are the same month', () => {
         // periodDifference() returns '' here, leaving the trailing space from the template intact.
-        expect(displayPeriod({ start: new Date('2020-01-01'), end: new Date('2020-01-28') })).toBe(
-            'January 2020 - January 2020 ',
-        );
+        expect(displayPeriod(period('2020-01-01', '2020-01-28'))).toBe('January 2020 - January 2020 ');
     });
 });

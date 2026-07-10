@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import Education from './education';
 import { MONTHS, PERIOD_LANG } from '../../test-utils/i18n-fixtures';
 import { mockUseTranslation } from '../../test-utils/mock-use-translation';
+import { period } from '../../test-utils/period-fixtures';
 
 vi.mock('react-i18next', () => ({ useTranslation: vi.fn() }));
 
@@ -46,7 +47,7 @@ describe('Education', () => {
                 place: 'Remote',
                 icon: '',
                 body: '',
-                period: { start: new Date('2018-09-01'), end: new Date('2020-07-01') },
+                period: period('2018-09-01', '2020-07-01'),
             },
         ]);
 

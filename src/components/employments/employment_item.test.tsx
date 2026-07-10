@@ -1,10 +1,11 @@
 import { describe, expect, it, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import { AccordionGroup } from '../common/accordion';
+import { screen } from '@testing-library/react';
 import EmploymentItem from './employment_item';
 import { Employment } from './employment';
 import { MONTHS, PERIOD_LANG } from '../../test-utils/i18n-fixtures';
 import { mockUseTranslation } from '../../test-utils/mock-use-translation';
+import { renderInAccordion } from '../../test-utils/render-in-accordion';
+import { employment, position } from '../../test-utils/employment-fixtures';
 
 vi.mock('react-i18next', () => ({ useTranslation: vi.fn() }));
 
@@ -19,29 +20,27 @@ function mockTranslation() {
 }
 
 function renderItem(item: Employment) {
-    return render(
-        <AccordionGroup>
-            <EmploymentItem item={item} index={0} eventKey="0" />
-        </AccordionGroup>,
-    );
+    return renderInAccordion(<EmploymentItem item={item} index={0} eventKey="0" />);
 }
 
 describe('EmploymentItem', () => {
     it('renders a single-position employment without a per-position title, with its type', () => {
         mockTranslation();
-        renderItem({
-            company: 'Acme',
-            icon: '',
-            type: 'Full-time',
-            positions: [
-                {
-                    position: 'Engineer',
-                    place: 'Remote',
-                    description: 'Did engineering things',
-                    period: { start: new Date('2020-01-01'), end: new Date('2021-01-01') },
-                },
-            ],
-        });
+        renderItem(
+            employment({
+                company: 'Acme',
+                type: 'Full-time',
+                positions: [
+                    position({
+                        start: '2020-01-01',
+                        end: '2021-01-01',
+                        position: 'Engineer',
+                        place: 'Remote',
+                        description: 'Did engineering things',
+                    }),
+                ],
+            }),
+        );
 
         expect(screen.getByText(/Engineer at Acme/)).toBeInTheDocument();
         expect(screen.getByText(/Did engineering things/)).toBeInTheDocument();
@@ -52,25 +51,20 @@ describe('EmploymentItem', () => {
 
     it('renders a multi-position employment with a per-position title and period for each, without a type', () => {
         mockTranslation();
-        renderItem({
-            company: 'Acme',
-            icon: '',
-            type: '',
-            positions: [
-                {
-                    position: 'Engineer',
-                    place: 'Remote',
-                    description: '',
-                    period: { start: new Date('2019-01-01'), end: new Date('2020-01-01') },
-                },
-                {
-                    position: 'Senior Engineer',
-                    place: 'Remote',
-                    description: 'Led a team',
-                    period: { start: new Date('2020-01-01') }, // ongoing, no end
-                },
-            ],
-        });
+        renderItem(
+            employment({
+                company: 'Acme',
+                positions: [
+                    position({ start: '2019-01-01', end: '2020-01-01', position: 'Engineer', place: 'Remote' }),
+                    position({
+                        start: '2020-01-01', // ongoing, no end
+                        position: 'Senior Engineer',
+                        place: 'Remote',
+                        description: 'Led a team',
+                    }),
+                ],
+            }),
+        );
 
         expect(screen.getByText('Engineer')).toBeInTheDocument();
         expect(screen.getByText('Senior Engineer')).toBeInTheDocument();
@@ -80,13 +74,15 @@ describe('EmploymentItem', () => {
 
     it('renders an empty positions list without crashing', () => {
         mockTranslation();
-        renderItem({ company: 'Acme', icon: '', type: '', positions: [] });
+        renderItem(employment({ company: 'Acme' }));
 
         expect(screen.getByRole('button')).toBeInTheDocument();
     });
 
     it('defaults to an empty positions list when positions is missing entirely', () => {
         mockTranslation();
+        // Deliberately malformed (no `positions` key at all) — the employment() fixture always
+        // fills that in, so this one case is a raw literal on purpose.
         renderItem({ company: 'Acme', icon: '', type: '' } as unknown as Employment);
 
         expect(screen.getByRole('button')).toBeInTheDocument();

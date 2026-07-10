@@ -1,9 +1,9 @@
 import { describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import LicenseCertificationRow from './license_certification_row';
-import { LicenseInstitution } from './license_certification';
 import { MONTHS } from '../../test-utils/i18n-fixtures';
 import { mockUseTranslation } from '../../test-utils/mock-use-translation';
+import { certification, licenseInstitution } from '../../test-utils/certification-fixtures';
 
 vi.mock('react-i18next', () => ({ useTranslation: vi.fn() }));
 
@@ -14,9 +14,7 @@ function mockTranslation() {
 describe('LicenseCertificationRow', () => {
     it('renders nothing when there are no certifications', () => {
         mockTranslation();
-        const { container } = render(
-            <LicenseCertificationRow item={{ institution: 'AWS', icon: '', certifications: [] }} />,
-        );
+        const { container } = render(<LicenseCertificationRow item={licenseInstitution({ institution: 'AWS' })} />);
         expect(container).toBeEmptyDOMElement();
     });
 
@@ -24,13 +22,17 @@ describe('LicenseCertificationRow', () => {
         mockTranslation();
         render(
             <LicenseCertificationRow
-                item={{
+                item={licenseInstitution({
                     institution: 'AWS',
-                    icon: '',
                     certifications: [
-                        { name: 'Cert A', field: 'Field', date: '2020-01-01', link: 'https://example.com' },
+                        certification({
+                            name: 'Cert A',
+                            field: 'Field',
+                            date: '2020-01-01',
+                            link: 'https://example.com',
+                        }),
                     ],
-                }}
+                })}
             />,
         );
 
@@ -39,11 +41,10 @@ describe('LicenseCertificationRow', () => {
 
     it('renders a plain (non-linked) row for a certification without a link', () => {
         mockTranslation();
-        const item: LicenseInstitution = {
+        const item = licenseInstitution({
             institution: 'AWS',
-            icon: '',
-            certifications: [{ name: 'Cert B', field: 'Field', date: '2020-01-01', link: '' }],
-        };
+            certifications: [certification({ name: 'Cert B', field: 'Field', date: '2020-01-01' })],
+        });
         render(<LicenseCertificationRow item={item} />);
 
         expect(screen.queryByRole('link')).not.toBeInTheDocument();
