@@ -2,17 +2,17 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { I18nextProvider } from 'react-i18next';
-import Education from './components/education/education';
-import Employments from './components/employments/employments';
-import Footer from './components/footer/footer';
-import Header from './components/header/header';
-import Presentations from './components/presentations/presentations';
-import Languages from './components/languages/languages';
-import Introduction from './components/introduction/introduction';
-import LicensesCertifications from './components/licenses_certifications/licenses_certifications';
-import EnvBanner from './components/common/env_banner';
-import { createLangInstance, loadLanguage, otherLanguages, type Language } from './translations/i18n';
-import { LangSwitchContext, useLangSwitch } from './components/header/lang-switch-context';
+import Education from '../components/education/education';
+import Employments from '../components/employments/employments';
+import Footer from '../components/footer/footer';
+import Header from '../components/header/header';
+import Presentations from '../components/presentations/presentations';
+import Languages from '../components/languages/languages';
+import Introduction from '../components/introduction/introduction';
+import LicensesCertifications from '../components/licenses_certifications/licenses_certifications';
+import EnvBanner from '../components/common/env_banner';
+import { createLangInstance, loadLanguage, otherLanguages, type Language } from '../translations/i18n';
+import { LangSwitchContext, useLangSwitch } from '../components/header/lang-switch-context';
 import reportWebVitals from './reportWebVitals';
 
 function PageContent({ lang }: Readonly<{ lang: Language }>) {

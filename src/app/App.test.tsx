@@ -2,9 +2,9 @@ import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vite
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { PortfolioApp } from './App';
-import { useLangSwitch } from './components/header/lang-switch-context';
-import { loadLanguage } from './translations/i18n';
-import { loadResources } from './translations/resources';
+import { useLangSwitch } from '../components/header/lang-switch-context';
+import { loadLanguage } from '../translations/i18n';
+import { loadResources } from '../translations/resources';
 
 let enResources: Awaited<ReturnType<typeof loadResources>>;
 let nlResources: Awaited<ReturnType<typeof loadResources>>;
@@ -30,23 +30,23 @@ function deferred<T = void>() {
     return { promise, resolve, reject };
 }
 
-vi.mock('./translations/i18n', async (importOriginal) => {
-    const actual = await importOriginal<typeof import('./translations/i18n')>();
+vi.mock('../translations/i18n', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('../translations/i18n')>();
     // Spy on the real implementation (rather than replacing it) so every existing test still
     // gets real language-switching behavior; only call-tracking is added.
     return { ...actual, loadLanguage: vi.fn(actual.loadLanguage) };
 });
 
-vi.mock('./components/introduction/introduction', () => ({ default: () => null }));
-vi.mock('./components/employments/employments', () => ({ default: () => null }));
-vi.mock('./components/licenses_certifications/licenses_certifications', () => ({
+vi.mock('../components/introduction/introduction', () => ({ default: () => null }));
+vi.mock('../components/employments/employments', () => ({ default: () => null }));
+vi.mock('../components/licenses_certifications/licenses_certifications', () => ({
     default: () => null,
 }));
-vi.mock('./components/presentations/presentations', () => ({ default: () => null }));
-vi.mock('./components/languages/languages', () => ({ default: () => null }));
-vi.mock('./components/education/education', () => ({ default: () => null }));
+vi.mock('../components/presentations/presentations', () => ({ default: () => null }));
+vi.mock('../components/languages/languages', () => ({ default: () => null }));
+vi.mock('../components/education/education', () => ({ default: () => null }));
 // jsdom doesn't implement window.matchMedia; the theme toggle isn't under test here.
-vi.mock('./components/common/theme_toggle', () => ({ default: () => null }));
+vi.mock('../components/header/theme_toggle', () => ({ default: () => null }));
 
 afterEach(() => {
     document.documentElement.lang = 'en';

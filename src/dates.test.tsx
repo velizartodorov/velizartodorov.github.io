@@ -17,15 +17,16 @@ beforeAll(async () => {
 
 // Regression test for a real bug: date placeholders like "{{dates:collibra_start}}" must be
 // resolved through the ACTIVE per-page i18next instance (the one obtained via useTranslation()'s
-// `t`, passed down from src/App.tsx), not a disconnected direct import of the raw i18next
+// `t`, passed down from src/app/App.tsx), not a disconnected direct import of the raw i18next
 // package. The latter silently resolves nothing once each page/instance's resource store is
-// isolated (see forkResourceStore in src/i18n.ts), which previously made every employment show
-// today's date instead of its real start/end, every education entry show "January 1970", and the
-// introduction's total-experience calculation collapse to "0 years, 0 months, 0 days".
+// isolated (see forkResourceStore in src/translations/i18n.ts), which previously made every
+// employment show today's date instead of its real start/end, every education entry show
+// "January 1970", and the introduction's total-experience calculation collapse to
+// "0 years, 0 months, 0 days".
 //
 // These tests render the real section components against a real createLangInstance()-built
-// i18next instance (exactly how src/App.tsx builds it for production), rather than mocking `t`,
-// since a mock would not exercise the actual instance-mismatch this bug was about.
+// i18next instance (exactly how src/app/App.tsx builds it for production), rather than mocking
+// `t`, since a mock would not exercise the actual instance-mismatch this bug was about.
 
 vi.mock('./components/common/icon', () => ({ default: () => null }));
 

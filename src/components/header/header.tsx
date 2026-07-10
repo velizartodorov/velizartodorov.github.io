@@ -1,4 +1,4 @@
-import ThemeToggle from '../common/theme_toggle';
+import ThemeToggle from './theme_toggle';
 import { useProfile } from '../common/profile.init';
 import { LanguageSelector } from './language_selector';
 import ProfileItem from './profile_item';
