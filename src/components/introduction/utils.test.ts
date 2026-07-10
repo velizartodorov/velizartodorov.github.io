@@ -47,25 +47,35 @@ describe('useIntroductionStats', () => {
         expect(result.current.softwareEmployments).toEqual([]);
     });
 
-    it('borrows a month for a negative day difference, across a leap-year February', () => {
+    it.each([
+        {
+            name: 'borrows a month for a negative day difference, across a leap-year February',
+            start: '2020-01-20',
+            end: '2020-03-05',
+            // Jan 20 -> Mar 5: naive months=2, days=5-20=-15 (borrow) -> months=1, +29 (Feb 2020 has
+            // 29 days in a leap year) -> days=14.
+            expected: '0 years, 1 month, and 14 days',
+        },
+        {
+            name: 'borrows a year for a negative month difference',
+            start: '2020-03-01',
+            end: '2021-01-15',
+            // years=1, months=0-2=-2 (borrow) -> years=0, months=10; days=15-1=14.
+            expected: '0 years, 10 months, and 14 days',
+        },
+        {
+            name: 'uses the singular "day" label for a 1-day total',
+            start: '2020-01-01',
+            end: '2020-01-02',
+            expected: '0 years, 0 months, and 1 day',
+        },
+    ])('$name', ({ start, end, expected }) => {
         mockT();
-        mockEmployments([employment('Acme', { start: '2020-01-20', end: '2020-03-05' })]);
+        mockEmployments([employment('Acme', { start, end })]);
 
         const { result } = renderHook(() => useIntroductionStats());
 
-        // Jan 20 -> Mar 5: naive months=2, days=5-20=-15 (borrow) -> months=1, +29 (Feb 2020 has 29
-        // days in a leap year) -> days=14.
-        expect(result.current.totalTime).toBe('0 years, 1 month, and 14 days');
-    });
-
-    it('borrows a year for a negative month difference', () => {
-        mockT();
-        mockEmployments([employment('Acme', { start: '2020-03-01', end: '2021-01-15' })]);
-
-        const { result } = renderHook(() => useIntroductionStats());
-
-        // years=1, months=0-2=-2 (borrow) -> years=0, months=10; days=15-1=14.
-        expect(result.current.totalTime).toBe('0 years, 10 months, and 14 days');
+        expect(result.current.totalTime).toBe(expected);
     });
 
     it('rolls summed days >= 30 over into months', () => {
@@ -92,15 +102,6 @@ describe('useIntroductionStats', () => {
 
         // 7 + 7 = 14 months -> 1 year, 2 months.
         expect(result.current.totalTime).toBe('1 year, 2 months, and 0 days');
-    });
-
-    it('uses the singular "day" label for a 1-day total', () => {
-        mockT();
-        mockEmployments([employment('Acme', { start: '2020-01-01', end: '2020-01-02' })]);
-
-        const { result } = renderHook(() => useIntroductionStats());
-
-        expect(result.current.totalTime).toBe('0 years, 0 months, and 1 day');
     });
 
     it('merges overlapping periods from different companies instead of double-counting them', () => {
