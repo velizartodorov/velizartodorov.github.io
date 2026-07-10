@@ -15,9 +15,7 @@ export function position(overrides: Partial<Omit<Position, 'period'>> & { start:
     };
 }
 
-export function employment(
-    overrides: Partial<Omit<Employment, 'positions'>> & { positions?: Position[] } = {},
-): Employment {
+export function employment(overrides: Partial<Employment> = {}): Employment {
     return {
         company: 'Acme',
         icon: '',
@@ -87,8 +85,6 @@ export function rawPosition(
     return { position: 'Engineer', place: 'Remote', description: 'desc', ...fields, period: { start, end } };
 }
 
-export function rawEmployment(
-    overrides: Partial<Omit<RawEmployment, 'positions'>> & { positions?: RawPosition[] } = {},
-): RawEmployment {
+export function rawEmployment(overrides: Partial<RawEmployment> = {}): RawEmployment {
     return { company: 'Acme', icon: '/icon.png', type: 'Full-time', positions: [], ...overrides };
 }

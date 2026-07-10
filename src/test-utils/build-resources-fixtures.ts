@@ -1,3 +1,5 @@
+import { buildEmployments } from '../translations/build-resources';
+
 // The markdown-frontmatter shape produced by loaders/markdown-frontmatter-loader.cjs for one
 // employments/<company>.md file — see build-resources.ts's assembleEmployment(), the sole
 // consumer, which splits `body` by the position delimiter to derive each position's description.
@@ -46,9 +48,9 @@ export function frontmatterIndex(overrides: Partial<FrontmatterIndex> = {}): Fro
     return { title: 'Employments', list: [], ...overrides };
 }
 
-// The shape assembleEmployment() produces from frontmatterEmployment()'s defaults: `body` split
-// into a per-position `description`. Matches frontmatterEmployment()'s defaults 1:1, so the
-// no-overrides case in build-resources.test.ts is exactly `assembledEmployment()`.
+// The shape assembleEmployment() produces: `body` split into a per-position `description`.
+// Derived from the real buildEmployments() (rather than a hand-typed parallel literal) so this
+// can never silently desync from frontmatterEmployment()'s own defaults/overrides.
 export interface AssembledPosition {
     position: string;
     place: string;
@@ -63,27 +65,8 @@ export interface AssembledEmployment {
     positions: AssembledPosition[];
 }
 
-export function assembledEmployment(
-    overrides: Partial<Omit<AssembledEmployment, 'positions'>> & { positions?: AssembledPosition[] } = {},
-): AssembledEmployment {
-    return {
-        company: 'Acme',
-        icon: '/acme.png',
-        type: 'Full-time',
-        positions: [
-            {
-                position: 'Engineer',
-                place: 'Remote',
-                period: { start: '2020-01-01' },
-                description: 'First role description',
-            },
-            {
-                position: 'Senior Engineer',
-                place: 'Remote',
-                period: { start: '2021-01-01' },
-                description: 'Second role description',
-            },
-        ],
-        ...overrides,
-    };
+export function assembledEmployment(overrides: Partial<FrontmatterEmployment> = {}): AssembledEmployment {
+    const raw = frontmatterEmployment(overrides);
+    const { list } = buildEmployments({ title: '', list: ['employment'] }, { employment: raw } as never);
+    return list[0] as AssembledEmployment;
 }
