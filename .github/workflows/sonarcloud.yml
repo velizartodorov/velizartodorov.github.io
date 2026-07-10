@@ -10,6 +10,9 @@ on:
 
 jobs:
   sonarcloud:
+    # Dependabot PRs run without repo secrets (GitHub withholds them even for same-repo PRs
+    # opened by Dependabot), so SONAR_TOKEN is unavailable and the scan step always 403s.
+    if: github.actor != 'dependabot[bot]'
     runs-on: ubuntu-latest
     permissions:
       contents: read
