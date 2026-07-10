@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { useEmployments } from './employments.init';
 import { mockUseTranslation } from '../../test-utils/mock-use-translation';
+import { rawEmployment, rawPosition } from '../../test-utils/employment-fixtures';
 
 vi.mock('react-i18next', () => ({ useTranslation: vi.fn() }));
 
@@ -27,21 +28,7 @@ describe('useEmployments', () => {
     });
 
     it('resolves a real (non-placeholder) start/end date string', () => {
-        mockEmployments([
-            {
-                company: 'Acme',
-                icon: '/icon.png',
-                type: 'Full-time',
-                positions: [
-                    {
-                        position: 'Engineer',
-                        place: 'Remote',
-                        description: 'desc',
-                        period: { start: '2020-01-15', end: '2021-06-20' },
-                    },
-                ],
-            },
-        ]);
+        mockEmployments([rawEmployment({ positions: [rawPosition({ start: '2020-01-15', end: '2021-06-20' })] })]);
 
         const { result } = renderHook(() => useEmployments());
         const [position] = result.current[0]!.positions;
@@ -51,23 +38,9 @@ describe('useEmployments', () => {
     });
 
     it('resolves a {{dates:key}} placeholder through the dates namespace', () => {
-        mockEmployments(
-            [
-                {
-                    company: 'Acme',
-                    icon: '/icon.png',
-                    positions: [
-                        {
-                            position: 'Engineer',
-                            place: 'Remote',
-                            description: 'desc',
-                            period: { start: '{{dates:acme_start}}' },
-                        },
-                    ],
-                },
-            ],
-            { acme_start: '2019-03-01' },
-        );
+        mockEmployments([rawEmployment({ positions: [rawPosition({ start: '{{dates:acme_start}}' })] })], {
+            acme_start: '2019-03-01',
+        });
 
         const { result } = renderHook(() => useEmployments());
 
@@ -75,20 +48,7 @@ describe('useEmployments', () => {
     });
 
     it("falls back to today's date when the start/end resolves to an unresolved placeholder", () => {
-        mockEmployments([
-            {
-                company: 'Acme',
-                icon: '/icon.png',
-                positions: [
-                    {
-                        position: 'Engineer',
-                        place: 'Remote',
-                        description: 'desc',
-                        period: { start: '{{dates:missing}}' },
-                    },
-                ],
-            },
-        ]);
+        mockEmployments([rawEmployment({ positions: [rawPosition({ start: '{{dates:missing}}' })] })]);
         // No entry for "missing" in the dates map, so the mock's `t` echoes the key back — the
         // same "unresolved placeholder" signal resolveDate() itself treats as a non-match.
 
@@ -102,13 +62,7 @@ describe('useEmployments', () => {
     });
 
     it("falls back to today's date when the start/end is missing entirely", () => {
-        mockEmployments([
-            {
-                company: 'Acme',
-                icon: '/icon.png',
-                positions: [{ position: 'Engineer', place: 'Remote', description: 'desc', period: {} }],
-            },
-        ]);
+        mockEmployments([rawEmployment({ positions: [rawPosition()] })]);
 
         const { result } = renderHook(() => useEmployments());
         const { start, end } = result.current[0]!.positions[0]!.period;
