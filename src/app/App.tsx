@@ -10,7 +10,7 @@ import Presentations from '../components/presentations/presentations';
 import Languages from '../components/languages/languages';
 import Introduction from '../components/introduction/introduction';
 import LicensesCertifications from '../components/licenses_certifications/licenses_certifications';
-import EnvBanner from '../components/common/env_banner';
+import EnvBanner from './env_banner';
 import { createLangInstance, loadLanguage, otherLanguages, type Language } from '../translations/i18n';
 import { LangSwitchContext, useLangSwitch } from '../components/header/lang-switch-context';
 import reportWebVitals from './reportWebVitals';
