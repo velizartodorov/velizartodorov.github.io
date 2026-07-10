@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import Education from './education';
 import { MONTHS, PERIOD_LANG } from '../../test-utils/i18n-fixtures';
 import { mockUseTranslation } from '../../test-utils/mock-use-translation';
-import { period } from '../../test-utils/period-fixtures';
+import { educationEntry } from '../../test-utils/education-fixtures';
 
 vi.mock('react-i18next', () => ({ useTranslation: vi.fn() }));
 
@@ -29,7 +29,7 @@ describe('Education', () => {
 
     it('falls back to the Unix epoch when an entry has no period', () => {
         mockTranslation([
-            { occupation: 'Self-taught', institution: 'N/A', place: '', icon: '', body: '', period: undefined },
+            educationEntry({ occupation: 'Self-taught', institution: 'N/A', place: '', period: undefined }),
         ]);
 
         render(<Education eventKey="5" />);
@@ -40,16 +40,7 @@ describe('Education', () => {
     });
 
     it('renders an entry with a real period', () => {
-        mockTranslation([
-            {
-                occupation: 'Engineering',
-                institution: 'Tech University',
-                place: 'Remote',
-                icon: '',
-                body: '',
-                period: period('2018-09-01', '2020-07-01'),
-            },
-        ]);
+        mockTranslation([educationEntry()]);
 
         render(<Education eventKey="5" />);
 
