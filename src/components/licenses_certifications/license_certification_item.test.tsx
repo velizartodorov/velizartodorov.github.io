@@ -5,7 +5,11 @@ import { LicenseInstitution } from './license_certification';
 import { MONTHS } from '../../test-utils/i18n-fixtures';
 import { mockUseTranslation } from '../../test-utils/mock-use-translation';
 import { renderInAccordion } from '../../test-utils/render-in-accordion';
-import { certification, licenseInstitution } from '../../test-utils/certification-fixtures';
+import {
+    multiCertInstitution,
+    singleCertInstitution,
+    undatedCertInstitution,
+} from '../../test-utils/certification-fixtures';
 
 vi.mock('react-i18next', () => ({ useTranslation: vi.fn() }));
 
@@ -20,20 +24,7 @@ function renderItem(item: LicenseInstitution) {
 describe('LicenseCertificationItem', () => {
     it('shows a header period spanning multiple certifications, links the ones with a link', () => {
         mockTranslation();
-        renderItem(
-            licenseInstitution({
-                institution: 'AWS',
-                certifications: [
-                    certification({
-                        name: 'Cert A',
-                        field: 'Field A',
-                        date: '2020-01-01',
-                        link: 'https://example.com/a',
-                    }),
-                    certification({ name: 'Cert B', date: '2021-06-01' }),
-                ],
-            }),
-        );
+        renderItem(multiCertInstitution());
 
         expect(screen.getByText(/January 2020 - June 2021/)).toBeInTheDocument();
 
@@ -49,24 +40,14 @@ describe('LicenseCertificationItem', () => {
 
     it('omits the header period for a single certification', () => {
         mockTranslation();
-        renderItem(
-            licenseInstitution({
-                institution: 'AWS',
-                certifications: [certification({ name: 'Solo Cert', field: 'Field', date: '2020-01-01' })],
-            }),
-        );
+        renderItem(singleCertInstitution());
 
         expect(screen.queryByText(/January 2020 - January 2020/)).not.toBeInTheDocument();
     });
 
     it('omits the month/year and field when a certification has no date or field', () => {
         mockTranslation();
-        renderItem(
-            licenseInstitution({
-                institution: 'AWS',
-                certifications: [certification({ name: 'Undated Cert' })],
-            }),
-        );
+        renderItem(undatedCertInstitution());
 
         expect(screen.getByText('Undated Cert')).toBeInTheDocument();
         MONTHS.forEach((month) => expect(screen.queryByText(new RegExp(month))).not.toBeInTheDocument());

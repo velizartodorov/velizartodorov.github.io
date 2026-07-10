@@ -32,3 +32,30 @@ export function unlinkedInstitution(): LicenseInstitution {
         certifications: [certification({ name: 'Cert B', field: 'Field', date: '2020-01-01' })],
     });
 }
+
+// Concrete institutions used by license_certification_item.test.tsx — named so each test's
+// intent (multiple certs w/ mixed links, a single cert, an undated/unlabeled cert) reads at the
+// call site instead of being buried in inline overrides.
+export function multiCertInstitution(): LicenseInstitution {
+    return licenseInstitution({
+        institution: 'AWS',
+        certifications: [
+            certification({ name: 'Cert A', field: 'Field A', date: '2020-01-01', link: 'https://example.com/a' }),
+            certification({ name: 'Cert B', date: '2021-06-01' }),
+        ],
+    });
+}
+
+export function singleCertInstitution(): LicenseInstitution {
+    return licenseInstitution({
+        institution: 'AWS',
+        certifications: [certification({ name: 'Solo Cert', field: 'Field', date: '2020-01-01' })],
+    });
+}
+
+export function undatedCertInstitution(): LicenseInstitution {
+    return licenseInstitution({
+        institution: 'AWS',
+        certifications: [certification({ name: 'Undated Cert' })],
+    });
+}
