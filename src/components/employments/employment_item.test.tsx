@@ -1,37 +1,21 @@
 import { describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { useTranslation } from 'react-i18next';
 import { AccordionGroup } from '../common/accordion';
 import EmploymentItem from './employment_item';
 import { Employment } from './employment';
+import { MONTHS, PERIOD_LANG } from '../../test-utils/i18n-fixtures';
+import { mockUseTranslation } from '../../test-utils/mock-use-translation';
 
 vi.mock('react-i18next', () => ({ useTranslation: vi.fn() }));
 
-const MONTHS = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-];
-const PERIOD_LANG = { present: 'Present', year: 'year', years: 'years', month: 'month', months: 'months' };
-
 function mockTranslation() {
-    const t = vi.fn((key: string) => {
+    mockUseTranslation((key: string) => {
         if (key === 'common:months') return MONTHS;
         if (key === 'common:period') return PERIOD_LANG;
         if (key === 'common:period.at') return 'at';
         if (key === 'common:companyType') return 'Type';
         return key;
     });
-    vi.mocked(useTranslation).mockReturnValue({ t } as unknown as ReturnType<typeof useTranslation>);
 }
 
 function renderItem(item: Employment) {

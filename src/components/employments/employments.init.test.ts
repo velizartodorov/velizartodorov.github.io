@@ -1,19 +1,16 @@
 import { describe, expect, it, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
-import { useTranslation } from 'react-i18next';
 import { useEmployments } from './employments.init';
+import { mockUseTranslation } from '../../test-utils/mock-use-translation';
 
 vi.mock('react-i18next', () => ({ useTranslation: vi.fn() }));
 
-type TFn = (key: string, opts?: { ns?: string }) => unknown;
-
 function mockEmployments(list: unknown, datesMap: Record<string, string> = {}) {
-    const t: TFn = (key, opts) => {
+    mockUseTranslation((key: string, opts?: { ns?: string }) => {
         if (key === 'employments:list') return list;
         if (opts?.ns === 'dates') return key in datesMap ? datesMap[key] : key;
         return key;
-    };
-    vi.mocked(useTranslation).mockReturnValue({ t: vi.fn(t) } as unknown as ReturnType<typeof useTranslation>);
+    });
 }
 
 describe('useEmployments', () => {

@@ -13,6 +13,22 @@ beforeAll(async () => {
     nlResources = await loadResources('nl');
 });
 
+function resourcesFor(lang: 'en' | 'nl') {
+    return lang === 'en' ? enResources : nlResources;
+}
+
+// A promise plus its own resolve/reject, for tests that need to control exactly when a mocked
+// async call settles (e.g. to simulate one switch staying in flight while another supersedes it).
+function deferred<T = void>() {
+    let resolve!: (value: T) => void;
+    let reject!: (error: Error) => void;
+    const promise = new Promise<T>((res, rej) => {
+        resolve = res;
+        reject = rej;
+    });
+    return { promise, resolve, reject };
+}
+
 vi.mock('./i18n', async (importOriginal) => {
     const actual = await importOriginal<typeof import('./i18n')>();
     // Spy on the real implementation (rather than replacing it) so every existing test still
@@ -156,20 +172,15 @@ describe('?lang= URL parameter backward compat', () => {
         window.history.pushState({}, '', '/');
     });
 
-    it('redirects to Dutch when the URL has ?lang=nl', async () => {
-        stubSearch('?lang=nl');
+    it.each([
+        { from: 'en', to: 'nl' },
+        { from: 'nl', to: 'en' },
+    ] as const)('redirects to $to when the URL has ?lang=$to (starting from $from)', async ({ from, to }) => {
+        stubSearch(`?lang=${to}`);
 
-        render(<PortfolioApp initialLang="en" initialResources={enResources} />);
+        render(<PortfolioApp initialLang={from} initialResources={resourcesFor(from)} />);
 
-        await waitFor(() => expect(document.documentElement.lang).toBe('nl'));
-    });
-
-    it('redirects to English when the URL has ?lang=en', async () => {
-        stubSearch('?lang=en');
-
-        render(<PortfolioApp initialLang="nl" initialResources={nlResources} />);
-
-        await waitFor(() => expect(document.documentElement.lang).toBe('en'));
+        await waitFor(() => expect(document.documentElement.lang).toBe(to));
     });
 
     it('ignores an unrelated query string', () => {
@@ -245,10 +256,7 @@ describe('language switch failure', () => {
         render(<PortfolioApp initialLang="en" initialResources={enResources} />);
         await waitFor(() => expect(loadLanguage).toHaveBeenCalled());
 
-        let resolveFirst!: () => void;
-        const pendingLoad = new Promise<void>((resolve) => {
-            resolveFirst = resolve;
-        });
+        const { promise: pendingLoad, resolve: resolveFirst } = deferred();
         vi.mocked(loadLanguage).mockImplementationOnce(() => pendingLoad);
 
         // Click NL: its loadLanguage() call hangs on pendingLoad until resolved below.
@@ -258,9 +266,12 @@ describe('language switch failure', () => {
 
         await waitFor(() => expect(document.documentElement.lang).toBe('en'));
 
-        // Now let the superseded NL switch resolve; it must not clobber the newer EN switch.
+        // Now let the superseded NL switch resolve; it must not clobber the newer EN switch. Two
+        // microtask flushes are enough to drain its `await loadLanguage()` / `await
+        // changeLanguage()` chain — no need for a real timer since nothing here is genuinely async.
         resolveFirst();
-        await new Promise((resolve) => setTimeout(resolve, 0));
+        await Promise.resolve();
+        await Promise.resolve();
         expect(document.documentElement.lang).toBe('en');
     });
 
@@ -269,10 +280,7 @@ describe('language switch failure', () => {
         render(<PortfolioApp initialLang="en" initialResources={enResources} />);
         await waitFor(() => expect(loadLanguage).toHaveBeenCalled());
 
-        let rejectFirst!: (error: Error) => void;
-        const pendingLoad = new Promise<void>((_resolve, reject) => {
-            rejectFirst = reject;
-        });
+        const { promise: pendingLoad, reject: rejectFirst } = deferred();
         vi.mocked(loadLanguage).mockImplementationOnce(() => pendingLoad);
 
         // Click NL: its loadLanguage() call hangs on pendingLoad until rejected below.

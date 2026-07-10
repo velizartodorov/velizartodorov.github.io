@@ -1,9 +1,9 @@
 import { describe, expect, it, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
-import { useTranslation } from 'react-i18next';
 import { useEmployments } from '../employments/employments.init';
 import { useFormatBody, useIntroductionStats } from './utils';
 import { Employment } from '../employments/employment';
+import { mockUseTranslation } from '../../test-utils/mock-use-translation';
 
 vi.mock('react-i18next', () => ({ useTranslation: vi.fn() }));
 vi.mock('../employments/employments.init', () => ({ useEmployments: vi.fn() }));
@@ -11,8 +11,7 @@ vi.mock('../employments/employments.init', () => ({ useEmployments: vi.fn() }));
 function mockT() {
     // Echoes back "common:period.and" -> "and", and "common:period.<x>" -> "<x>" so the singular
     // vs. plural key selected by the source is directly visible in the assertions below.
-    const t = vi.fn((key: string) => key.split('.').pop());
-    vi.mocked(useTranslation).mockReturnValue({ t } as unknown as ReturnType<typeof useTranslation>);
+    mockUseTranslation((key: string) => key.split('.').pop());
 }
 
 function employment(company: string, ...positions: Array<{ start: string; end?: string }>): Employment {

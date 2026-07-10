@@ -1,31 +1,10 @@
 import { describe, expect, it, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
-import { useTranslation } from 'react-i18next';
 import { useLicensesCertifications, useMonthYear } from './licenses_certrifications.init';
+import { MONTHS } from '../../test-utils/i18n-fixtures';
+import { mockUseTranslation as mockTranslation } from '../../test-utils/mock-use-translation';
 
 vi.mock('react-i18next', () => ({ useTranslation: vi.fn() }));
-
-const MONTHS = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-];
-
-function mockTranslation(t: (key: string, opts?: { ns?: string }) => unknown, ready = true) {
-    vi.mocked(useTranslation).mockReturnValue({
-        t: vi.fn(t),
-        ready,
-    } as unknown as ReturnType<typeof useTranslation>);
-}
 
 describe('useMonthYear', () => {
     it('returns an empty string for a falsy date', () => {

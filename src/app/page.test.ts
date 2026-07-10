@@ -4,19 +4,12 @@ import { generateMetadata as generateEnMetadata } from './page';
 import { generateMetadata as generateNlMetadata } from './nl/page';
 import EnPage from './page';
 import NlPage from './nl/page';
+import { mockMatchMedia } from '../test-utils/mock-match-media';
 
 // The rendered page includes the real ThemeToggle, whose useTheme() hook needs
 // matchMedia — jsdom doesn't implement it.
 beforeEach(() => {
-    vi.stubGlobal(
-        'matchMedia',
-        vi.fn(() => ({
-            matches: false,
-            media: '(prefers-color-scheme: dark)',
-            addEventListener: vi.fn(),
-            removeEventListener: vi.fn(),
-        })),
-    );
+    mockMatchMedia();
 });
 
 afterEach(() => {

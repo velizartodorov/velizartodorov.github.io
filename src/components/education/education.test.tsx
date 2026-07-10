@@ -1,28 +1,13 @@
 import { describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { useTranslation } from 'react-i18next';
 import Education from './education';
+import { MONTHS, PERIOD_LANG } from '../../test-utils/i18n-fixtures';
+import { mockUseTranslation } from '../../test-utils/mock-use-translation';
 
 vi.mock('react-i18next', () => ({ useTranslation: vi.fn() }));
 
-const MONTHS = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-];
-const PERIOD_LANG = { present: 'Present', at: 'at' };
-
 function mockTranslation(list: unknown) {
-    const t = vi.fn((key: string) => {
+    mockUseTranslation((key: string) => {
         if (key === 'education:list') return list;
         if (key === 'education:title') return 'Education';
         if (key === 'common:months') return MONTHS;
@@ -30,7 +15,6 @@ function mockTranslation(list: unknown) {
         if (key === 'common:period.at') return 'at';
         return key;
     });
-    vi.mocked(useTranslation).mockReturnValue({ t } as unknown as ReturnType<typeof useTranslation>);
 }
 
 describe('Education', () => {

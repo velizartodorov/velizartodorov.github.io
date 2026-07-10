@@ -29,29 +29,28 @@ describe('useCurrentYear', () => {
         expect(fetch).not.toHaveBeenCalled();
     });
 
-    it('ignores a stale cache from a previous year and fetches fresh data', async () => {
-        localStorage.setItem(CACHE_KEY, JSON.stringify({ year: 1999, timeZone: 'Europe/Brussels', fetchedAt: 0 }));
+    it.each([
+        {
+            name: 'ignores a stale cache from a previous year and fetches fresh data',
+            cachedValue: JSON.stringify({ year: 1999, timeZone: 'Europe/Brussels', fetchedAt: 0 }),
+            fetchedYear: 2030,
+        },
+        {
+            name: 'ignores an unparseable cache entry and fetches fresh data',
+            cachedValue: '{not valid json',
+            fetchedYear: 2031,
+        },
+    ])('$name', async ({ cachedValue, fetchedYear }) => {
+        localStorage.setItem(CACHE_KEY, cachedValue);
         vi.mocked(fetch).mockResolvedValue({
             ok: true,
-            json: () => Promise.resolve({ year: 2030 }),
+            json: () => Promise.resolve({ year: fetchedYear }),
         } as Response);
 
         const { result } = renderHook(() => useCurrentYear());
 
-        await waitFor(() => expect(result.current.year).toBe(2030));
+        await waitFor(() => expect(result.current.year).toBe(fetchedYear));
         expect(fetch).toHaveBeenCalledTimes(1);
-    });
-
-    it('ignores an unparseable cache entry and fetches fresh data', async () => {
-        localStorage.setItem(CACHE_KEY, '{not valid json');
-        vi.mocked(fetch).mockResolvedValue({
-            ok: true,
-            json: () => Promise.resolve({ year: 2031 }),
-        } as Response);
-
-        const { result } = renderHook(() => useCurrentYear());
-
-        await waitFor(() => expect(result.current.year).toBe(2031));
     });
 
     it('fetches, exposes the resolved year/timeZone, and caches the result', async () => {
@@ -72,16 +71,17 @@ describe('useCurrentYear', () => {
         expect(cached.year).toBe(2032);
     });
 
-    it('falls back to the local current year when the fetch response is not ok', async () => {
-        vi.mocked(fetch).mockResolvedValue({ ok: false } as Response);
-
-        const { result } = renderHook(() => useCurrentYear());
-
-        await waitFor(() => expect(result.current.year).toBe(new Date().getFullYear()));
-    });
-
-    it('falls back to the local current year when the fetch itself rejects', async () => {
-        vi.mocked(fetch).mockRejectedValue(new Error('network down'));
+    it.each([
+        {
+            name: 'the fetch response is not ok',
+            setupFetch: () => vi.mocked(fetch).mockResolvedValue({ ok: false } as Response),
+        },
+        {
+            name: 'the fetch itself rejects',
+            setupFetch: () => vi.mocked(fetch).mockRejectedValue(new Error('network down')),
+        },
+    ])('falls back to the local current year when $name', async ({ setupFetch }) => {
+        setupFetch();
 
         const { result } = renderHook(() => useCurrentYear());
 
