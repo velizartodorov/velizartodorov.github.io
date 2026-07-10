@@ -1,6 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import { buildEducation, buildEmployments, buildLanguageResources } from './build-resources';
-import { assembledEmployment, frontmatterEmployment, frontmatterIndex } from '../test-utils/build-resources-fixtures';
+import {
+    assembledEmployment,
+    frontmatterEmployment,
+    frontmatterIndex,
+} from '../../test-utils/build-resources-fixtures';
 
 describe('buildEmployments', () => {
     it('splits the raw body by the position delimiter and assigns one segment per position', () => {

@@ -1,4 +1,4 @@
-import type { Employment, Position } from '../components/employments/employment';
+import type { Employment, Position } from '../../components/employments/employment';
 import type { EducationFile, EmploymentFile } from './resource-files';
 
 // Exported so tests can build fixtures against these shapes directly (see

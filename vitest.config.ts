@@ -19,7 +19,7 @@ function markdownFrontmatter(): Plugin {
 }
 
 export default defineConfig({
-    // Translation data lives in src/translations/**/*.{yml,md} (see src/translations/i18n.ts); these plugins
+    // Translation data lives in src/app/translations/**/*.{yml,md} (see src/app/translations/i18n.ts); these plugins
     // let Vite/Vitest import those the same way Next's bundlers do.
     plugins: [yaml(), markdownFrontmatter()],
     test: {

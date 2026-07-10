@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { PortfolioApp } from '../App';
-import { loadResources } from '../../translations/resources';
+import { loadResources } from '../translations/resources';
 
 const SITE_URL = 'https://velizartodorov.github.io';
 

@@ -26,7 +26,7 @@ const nextConfig: NextConfig = {
     env: {
         NEXT_PUBLIC_COMMIT_SHA: commitSha,
     },
-    // Translation data lives in src/translations/**/*.{yml,md} (see src/translations/i18n.ts); teach both
+    // Translation data lives in src/app/translations/**/*.{yml,md} (see src/app/translations/i18n.ts); teach both
     // bundlers Next can use how to turn those into JS modules.
     turbopack: {
         rules: {

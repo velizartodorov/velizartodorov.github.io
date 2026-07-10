@@ -3,8 +3,8 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { PortfolioApp } from './App';
 import { useLangSwitch } from '../components/header/lang-switch-context';
-import { loadLanguage } from '../translations/i18n';
-import { loadResources } from '../translations/resources';
+import { loadLanguage } from './translations/i18n';
+import { loadResources } from './translations/resources';
 
 let enResources: Awaited<ReturnType<typeof loadResources>>;
 let nlResources: Awaited<ReturnType<typeof loadResources>>;
@@ -30,8 +30,8 @@ function deferred<T = void>() {
     return { promise, resolve, reject };
 }
 
-vi.mock('../translations/i18n', async (importOriginal) => {
-    const actual = await importOriginal<typeof import('../translations/i18n')>();
+vi.mock('./translations/i18n', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('./translations/i18n')>();
     // Spy on the real implementation (rather than replacing it) so every existing test still
     // gets real language-switching behavior; only call-tracking is added.
     return { ...actual, loadLanguage: vi.fn(actual.loadLanguage) };

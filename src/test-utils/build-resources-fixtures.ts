@@ -1,4 +1,4 @@
-import { buildEmployments, Index, RawEmployment, RawPosition } from '../translations/build-resources';
+import { buildEmployments, Index, RawEmployment, RawPosition } from '../app/translations/build-resources';
 
 // Builds the markdown-frontmatter shape produced by loaders/markdown-frontmatter-loader.cjs for
 // one employments/<company>.md file — reuses build-resources.ts's own Index/RawEmployment/
