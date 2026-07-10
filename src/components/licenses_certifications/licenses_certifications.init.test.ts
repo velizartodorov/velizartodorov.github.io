@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
-import { useLicensesCertifications, useMonthYear } from './licenses_certrifications.init';
+import { useLicensesCertifications, useMonthYear } from './licenses_certifications.init';
 import { MONTHS } from '../../test-utils/i18n-fixtures';
 import { mockUseTranslation as mockTranslation } from '../../test-utils/mock-use-translation';
 

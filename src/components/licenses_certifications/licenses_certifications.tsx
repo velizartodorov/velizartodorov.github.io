@@ -5,7 +5,7 @@ import DividedList from '../common/divided_list';
 import { SectionProps } from '../common/section_props';
 import LicenseCertificationItem from './license_certification_item';
 import LicenseCertificationRow from './license_certification_row';
-import { useLicensesCertifications } from './licenses_certrifications.init';
+import { useLicensesCertifications } from './licenses_certifications.init';
 
 const LicensesCertifications = ({ className, eventKey }: SectionProps) => {
     const { t } = useTranslation();

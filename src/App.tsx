@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import Education from './components/education/education';
 import Employments from './components/employments/employments';
@@ -12,20 +12,8 @@ import Introduction from './components/introduction/introduction';
 import LicensesCertifications from './components/licenses_certifications/licenses_certifications';
 import EnvBanner from './components/common/env_banner';
 import { createLangInstance, loadLanguage, otherLanguages, type Language } from './i18n';
+import { LangSwitchContext, useLangSwitch } from './lang-switch-context';
 import reportWebVitals from './reportWebVitals';
-
-interface LangSwitchValue {
-    lang: Language;
-    switchTo: (lang: Language) => Promise<void>;
-}
-
-const LangSwitchContext = createContext<LangSwitchValue | null>(null);
-
-export function useLangSwitch(): LangSwitchValue {
-    const ctx = useContext(LangSwitchContext);
-    if (!ctx) throw new Error('useLangSwitch must be used within PortfolioApp');
-    return ctx;
-}
 
 function PageContent({ lang }: Readonly<{ lang: Language }>) {
     const ref = useRef<HTMLDivElement>(null);

@@ -3,7 +3,7 @@ import { AccordionChevron } from '../common/accordion';
 import ItemHeaderRow from '../common/item_header_row';
 import { HOVER_ROW, HOVER_ROW_LINK } from '../common/list_row';
 import { LicenseInstitution } from './license_certification';
-import { useMonthYear } from './licenses_certrifications.init';
+import { useMonthYear } from './licenses_certifications.init';
 
 const ROW = `${HOVER_ROW} px-3 py-2`;
 const LINK_ROW = `${HOVER_ROW_LINK} px-3 py-2`;

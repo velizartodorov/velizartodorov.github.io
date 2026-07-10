@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLangSwitch } from '../../App';
+import { useLangSwitch } from '../../lang-switch-context';
 
 const BASE_BTN = `rounded-[20px] border-none px-[13px] py-[5px] font-sans text-[13px] leading-[1.4] font-semibold
     cursor-pointer tracking-[0.5px] transition-colors duration-75 ease-out
