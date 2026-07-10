@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import LicenseCertificationRow from './license_certification_row';
 import { MONTHS } from '../../test-utils/i18n-fixtures';
 import { mockUseTranslation } from '../../test-utils/mock-use-translation';
-import { certification, licenseInstitution } from '../../test-utils/certification-fixtures';
+import { licenseInstitution, linkedInstitution, unlinkedInstitution } from '../../test-utils/certification-fixtures';
 
 vi.mock('react-i18next', () => ({ useTranslation: vi.fn() }));
 
@@ -20,32 +20,14 @@ describe('LicenseCertificationRow', () => {
 
     it('renders a linked row for a certification with a link', () => {
         mockTranslation();
-        render(
-            <LicenseCertificationRow
-                item={licenseInstitution({
-                    institution: 'AWS',
-                    certifications: [
-                        certification({
-                            name: 'Cert A',
-                            field: 'Field',
-                            date: '2020-01-01',
-                            link: 'https://example.com',
-                        }),
-                    ],
-                })}
-            />,
-        );
+        render(<LicenseCertificationRow item={linkedInstitution()} />);
 
         expect(screen.getByRole('link', { name: /Cert A/ })).toHaveAttribute('href', 'https://example.com');
     });
 
     it('renders a plain (non-linked) row for a certification without a link', () => {
         mockTranslation();
-        const item = licenseInstitution({
-            institution: 'AWS',
-            certifications: [certification({ name: 'Cert B', field: 'Field', date: '2020-01-01' })],
-        });
-        render(<LicenseCertificationRow item={item} />);
+        render(<LicenseCertificationRow item={unlinkedInstitution()} />);
 
         expect(screen.queryByRole('link')).not.toBeInTheDocument();
         expect(screen.getByText('Cert B')).toBeInTheDocument();

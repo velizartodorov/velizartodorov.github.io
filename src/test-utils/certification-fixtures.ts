@@ -13,3 +13,22 @@ export function licenseInstitution(
 ): LicenseInstitution {
     return { institution: 'Institution', icon: '', certifications: [], ...overrides };
 }
+
+// Concrete institutions used by license_certification_row.test.tsx — named so the
+// linked-vs-unlinked test intent reads at the call site instead of being buried in inline
+// overrides.
+export function linkedInstitution(): LicenseInstitution {
+    return licenseInstitution({
+        institution: 'AWS',
+        certifications: [
+            certification({ name: 'Cert A', field: 'Field', date: '2020-01-01', link: 'https://example.com' }),
+        ],
+    });
+}
+
+export function unlinkedInstitution(): LicenseInstitution {
+    return licenseInstitution({
+        institution: 'AWS',
+        certifications: [certification({ name: 'Cert B', field: 'Field', date: '2020-01-01' })],
+    });
+}
