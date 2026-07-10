@@ -1,5 +1,6 @@
 # TO DO 📌
 
+* check architecture for improvements
 * fix dimentions Surface Pro 7
 * create a structure where each `Employment` has a list of `Position` ✅
 * migrate project to Vite to resolve the `react-scripts` dependency ✅
