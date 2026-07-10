@@ -1,4 +1,4 @@
-import type { Language } from '../i18n';
+import type { Language } from './i18n';
 import { buildLanguageResources } from './build-resources';
 import { EDUCATION_FILES, EMPLOYMENT_FILES, type EducationFile, type EmploymentFile } from './resource-files';
 import dates from './dates.yml';

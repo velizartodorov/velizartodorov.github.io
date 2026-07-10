@@ -72,7 +72,7 @@ export function loadLanguage(instance: typeof i18n, lang: Language): Promise<voi
     let promise = pending.get(lang);
     if (!promise) {
         promise = (async () => {
-            const { loadResources } = await import('./translations/resources');
+            const { loadResources } = await import('./resources');
             const resources = await loadResources(lang);
             addLanguageResources(instance, lang, resources as NamespaceResources);
         })();

@@ -6,7 +6,7 @@ import Employments from './components/employments/employments';
 import Education from './components/education/education';
 import LicensesCertifications from './components/licenses_certifications/licenses_certifications';
 import Introduction from './components/introduction/introduction';
-import { createLangInstance } from './i18n';
+import { createLangInstance } from './translations/i18n';
 import { loadResources } from './translations/resources';
 
 let enResources: Awaited<ReturnType<typeof loadResources>>;
