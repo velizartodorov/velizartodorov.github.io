@@ -77,7 +77,7 @@ const GLOBAL_STYLES = `
   --app-accent: #58a6ff;
   --app-accent-subtle: rgba(88, 166, 255, 0.15);
   --app-shadow: rgba(0, 0, 0, 0.3);
-  --app-icon-bg: #21262d;
+  --app-icon-bg: #161b22;
   --app-dot-ring: #161b22;
   --app-link: #58a6ff;
   --app-link-hover: #79c0ff;
