@@ -1,6 +1,6 @@
 import ThemeToggle from './theme_toggle';
 import { useProfile } from '../profile/profile.init';
-import { LanguageSelector } from './language_selector';
+import { LanguageSelector } from '../../app/translations/language_selector';
 import ProfileItem from '../profile/profile_item';
 import Image from 'next/image';
 import React from 'react';
