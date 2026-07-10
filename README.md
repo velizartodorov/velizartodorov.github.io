@@ -46,8 +46,10 @@ That's it. Have fun! 😎 🎉
 ## Translation files 🔠
 
 The application uses YAML and Markdown files for translations located in the `src/translations`
-directory. Each language (en, nl) has its own set of translation files, assembled at build time
-into a single `resources` object per language (`en.ts` / `nl.ts`).
+directory. Each language (en, nl) has its own set of translation files. Rather than a static
+per-language bundle, each file is fetched on demand through a dynamic `import()` templated on the
+language, so a page only ever downloads the one language's content it actually renders; the
+results are then assembled into a single resources object for that language.
 
 ### Structure
 
@@ -62,8 +64,14 @@ into a single `resources` object per language (`en.ts` / `nl.ts`).
     - `employments/*.md`, `education/*.md` - one Markdown file per entry, with YAML frontmatter
       (company/place/period, etc.) and the description as the Markdown body. Employment entries
       with multiple positions separate each position's body with an `<!-- position -->` marker
-  - `build-resources.ts` - assembles an index file plus its Markdown entries into the final
-    `{ title, list }` shape consumed by the app
+  - `resource-files.ts` - the single source of truth for which employment/education Markdown
+    files exist (`EMPLOYMENT_FILES` / `EDUCATION_FILES`), typed so a filename present in one
+    language's folder but missing (or misspelled) in the other fails to compile
+  - `resources.ts` - `loadResources(lang)`, which dynamically imports every YAML/Markdown file for
+    a language and hands them to `build-resources.ts`
+  - `build-resources.ts` - `buildLanguageResources()` assembles the loaded index files plus their
+    Markdown entries into the final `{ title, list }` shape consumed by the app (splitting
+    multi-position employment bodies on the `<!-- position -->` marker along the way)
   - `completeness.test.ts` - Vitest check that every key path present in `en`'s resources also
     exists in `nl` (and vice versa), so a missing translation fails the build instead of silently
     falling back
@@ -76,10 +84,22 @@ fields plus a `body` string.
 
 ### Github Workflows 🏭
 
-The custom `build-deploy.yml` workflow makes sure that:
+Three workflows run in `.github/workflows/`:
 
-- when opening a PR the application will be built with clean dependencies
-- when pushing to `master`, it will be automatically deployed
+- **`build-deploy.yml`** - on PR and on push to `master`: installs dependencies, checks for
+  encoding corruption, lints, runs the Vitest suite (excluding the link-check/analytics tests,
+  which run separately), and builds the static export. Pushes to `master` (and manual
+  `workflow_dispatch` runs) additionally upload and deploy the build to GitHub Pages. To avoid
+  triggering CI/deploys for doc-only changes, both the `pull_request` and `push` triggers ignore
+  `**.md` files - except any Markdown under `src/`, since those files (translations, employment
+  and education entries) are real content consumed by the build. A separate `link-check` job in
+  the same workflow (non-blocking, `continue-on-error`) checks external links and the Google
+  Analytics measurement ID.
+- **`sonarcloud.yml`** - on PR and on push to `master`: runs the Vitest suite with coverage and
+  feeds it to a SonarCloud scan; on PRs it also posts a comment with the overall coverage
+  percentage and a per-file breakdown (SonarCloud's own PR comment only covers new/changed
+  lines).
+- **`auto-merge-dependabot.yml`** - see below.
 
 Example:
 
@@ -87,11 +107,18 @@ Example:
 
 ### Dependabot 🤖
 
-`dependabot.yml` will make sure that bumping of library happens on a regular
-basis by Dependabot with automatic opening of a PR (daily, 08:00 Brussels time).
+`dependabot.yml` bumps npm dependencies on a daily schedule (08:00 Brussels time), opening one PR
+per update (`vitest`/`@vitest/*` are grouped into a single PR) with `rebase-strategy: auto` so
+Dependabot keeps branches up to date itself.
 
-The `auto-merge-dependabot.yml` workflow merges Dependabot PRs automatically once their checks
-pass: it triggers as soon as the `Build and Deploy` workflow finishes on a Dependabot branch,
-with a periodic run every 3 hours as a fallback in case that trigger is ever missed.
+The `auto-merge-dependabot.yml` workflow then merges those PRs automatically once their checks
+pass. It triggers as soon as the `Build and Deploy` workflow finishes on a Dependabot branch
+(`workflow_run`), with a periodic run every 3 hours as a fallback in case that trigger is ever
+missed, plus a manual `workflow_dispatch` trigger. For each open Dependabot PR whose checks are
+green, it squash-merges and deletes the branch, then asks Dependabot itself (via an
+`@dependabot rebase` comment) to rebase any remaining out-of-date PRs rather than rebasing them
+itself - a push from this workflow's own token would show up as an untrusted actor and get gated
+behind a manual approval, which would block auto-merge. After merging at least one PR it also
+triggers a fresh `build-deploy.yml` run against `master` so the deployment picks up the update.
 
 This ensures dependencies are kept up-to-date automatically while maintaining code quality through automated testing.

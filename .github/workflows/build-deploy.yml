@@ -4,9 +4,15 @@ on:
   pull_request:
     branches:
       - master
+    paths-ignore:
+      - '**.md'
+      - '!src/**.md'
   push:
     branches:
       - master
+    paths-ignore:
+      - '**.md'
+      - '!src/**.md'
   workflow_dispatch: # Allows auto-merge-dependabot.yml to trigger a deploy after merging
 
 permissions:
