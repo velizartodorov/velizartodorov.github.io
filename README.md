@@ -45,7 +45,7 @@ That's it. Have fun! 😎 🎉
 
 ## Translation files 🔠
 
-The application uses YAML and Markdown files for translations located in the `src/translations`
+The application uses YAML and Markdown files for translations located in the `src/app/translations`
 directory. Each language (en, nl) has its own set of translation files. Rather than a static
 per-language bundle, each file is fetched on demand through a dynamic `import()` templated on the
 language, so a page only ever downloads the one language's content it actually renders; the
@@ -53,7 +53,7 @@ results are then assembled into a single resources object for that language.
 
 ### Structure
 
-- `src/translations/`
+- `src/app/translations/`
   - `dates.yml` - shared date placeholders (e.g. `collibra_start`), referenced from content as
     `{{dates:collibra_start}}` and resolved at runtime by `useEmployments()`
   - `en/`, `nl/` - one folder per language, each containing:

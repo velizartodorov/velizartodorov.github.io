@@ -6,8 +6,8 @@ import Employments from './components/employments/employments';
 import Education from './components/education/education';
 import LicensesCertifications from './components/licenses_certifications/licenses_certifications';
 import Introduction from './components/introduction/introduction';
-import { createLangInstance } from './translations/i18n';
-import { loadResources } from './translations/resources';
+import { createLangInstance } from './app/translations/i18n';
+import { loadResources } from './app/translations/resources';
 
 let enResources: Awaited<ReturnType<typeof loadResources>>;
 
@@ -19,7 +19,7 @@ beforeAll(async () => {
 // resolved through the ACTIVE per-page i18next instance (the one obtained via useTranslation()'s
 // `t`, passed down from src/app/App.tsx), not a disconnected direct import of the raw i18next
 // package. The latter silently resolves nothing once each page/instance's resource store is
-// isolated (see forkResourceStore in src/translations/i18n.ts), which previously made every
+// isolated (see forkResourceStore in src/app/translations/i18n.ts), which previously made every
 // employment show today's date instead of its real start/end, every education entry show
 // "January 1970", and the introduction's total-experience calculation collapse to
 // "0 years, 0 months, 0 days".

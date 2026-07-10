@@ -14,7 +14,7 @@ import type { Root, Link, List, ListItem } from 'mdast';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const require = createRequire(import.meta.url);
 const { parseFrontmatter } = require('../loaders/markdown-frontmatter-loader.cjs');
-const translationsDir = resolve(__dirname, 'translations/en');
+const translationsDir = resolve(__dirname, 'app/translations/en');
 
 function readYaml<T>(filePath: string): T {
     return load(readFileSync(filePath, 'utf8')) as T;

@@ -2,8 +2,8 @@ import { beforeAll, describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
 import Languages from './languages';
-import { createLangInstance } from '../../translations/i18n';
-import { loadResources } from '../../translations/resources';
+import { createLangInstance } from '../../app/translations/i18n';
+import { loadResources } from '../../app/translations/resources';
 
 let enResources: Awaited<ReturnType<typeof loadResources>>;
 
