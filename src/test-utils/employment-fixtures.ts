@@ -27,6 +27,39 @@ export function employment(
     };
 }
 
+// Concrete employments used by employment_item.test.tsx — named so its "single vs. multi
+// position" test intent reads at the call site instead of being buried in inline overrides.
+export function singlePositionEmployment(): Employment {
+    return employment({
+        company: 'Acme',
+        type: 'Full-time',
+        positions: [
+            position({
+                start: '2020-01-01',
+                end: '2021-01-01',
+                position: 'Engineer',
+                place: 'Remote',
+                description: 'Did engineering things',
+            }),
+        ],
+    });
+}
+
+export function multiPositionEmployment(): Employment {
+    return employment({
+        company: 'Acme',
+        positions: [
+            position({ start: '2019-01-01', end: '2020-01-01', position: 'Engineer', place: 'Remote' }),
+            position({
+                start: '2020-01-01', // ongoing, no end
+                position: 'Senior Engineer',
+                place: 'Remote',
+                description: 'Led a team',
+            }),
+        ],
+    });
+}
+
 // Raw (pre-hook) shape: what an employments:list translation entry actually looks like before
 // useEmployments() resolves period.start/end — see employments.init.test.ts, which tests that
 // resolution directly. Period dates are strings (a real ISO date or a "{{dates:x}}" placeholder),

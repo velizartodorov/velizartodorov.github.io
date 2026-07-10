@@ -5,7 +5,7 @@ import { Employment } from './employment';
 import { MONTHS, PERIOD_LANG } from '../../test-utils/i18n-fixtures';
 import { mockUseTranslation } from '../../test-utils/mock-use-translation';
 import { renderInAccordion } from '../../test-utils/render-in-accordion';
-import { employment, position } from '../../test-utils/employment-fixtures';
+import { employment, multiPositionEmployment, singlePositionEmployment } from '../../test-utils/employment-fixtures';
 
 vi.mock('react-i18next', () => ({ useTranslation: vi.fn() }));
 
@@ -26,21 +26,7 @@ function renderItem(item: Employment) {
 describe('EmploymentItem', () => {
     it('renders a single-position employment without a per-position title, with its type', () => {
         mockTranslation();
-        renderItem(
-            employment({
-                company: 'Acme',
-                type: 'Full-time',
-                positions: [
-                    position({
-                        start: '2020-01-01',
-                        end: '2021-01-01',
-                        position: 'Engineer',
-                        place: 'Remote',
-                        description: 'Did engineering things',
-                    }),
-                ],
-            }),
-        );
+        renderItem(singlePositionEmployment());
 
         expect(screen.getByText(/Engineer at Acme/)).toBeInTheDocument();
         expect(screen.getByText(/Did engineering things/)).toBeInTheDocument();
@@ -51,20 +37,7 @@ describe('EmploymentItem', () => {
 
     it('renders a multi-position employment with a per-position title and period for each, without a type', () => {
         mockTranslation();
-        renderItem(
-            employment({
-                company: 'Acme',
-                positions: [
-                    position({ start: '2019-01-01', end: '2020-01-01', position: 'Engineer', place: 'Remote' }),
-                    position({
-                        start: '2020-01-01', // ongoing, no end
-                        position: 'Senior Engineer',
-                        place: 'Remote',
-                        description: 'Led a team',
-                    }),
-                ],
-            }),
-        );
+        renderItem(multiPositionEmployment());
 
         expect(screen.getByText('Engineer')).toBeInTheDocument();
         expect(screen.getByText('Senior Engineer')).toBeInTheDocument();
