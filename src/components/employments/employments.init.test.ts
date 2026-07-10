@@ -77,7 +77,34 @@ describe('useEmployments', () => {
         expect(result.current[0]!.positions[0]!.period.start).toEqual(new Date(Date.UTC(2019, 2, 1)));
     });
 
-    it("falls back to today's date when the start/end is missing or unresolved", () => {
+    it("falls back to today's date when the start/end resolves to an unresolved placeholder", () => {
+        mockEmployments([
+            {
+                company: 'Acme',
+                icon: '/icon.png',
+                positions: [
+                    {
+                        position: 'Engineer',
+                        place: 'Remote',
+                        description: 'desc',
+                        period: { start: '{{dates:missing}}' },
+                    },
+                ],
+            },
+        ]);
+        // No entry for "missing" in the dates map, so the mock's `t` echoes the key back — the
+        // same "unresolved placeholder" signal resolveDate() itself treats as a non-match.
+
+        const { result } = renderHook(() => useEmployments());
+        const { start, end } = result.current[0]!.positions[0]!.period;
+
+        const now = new Date();
+        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        expect(start).toEqual(today);
+        expect(end).toEqual(today);
+    });
+
+    it("falls back to today's date when the start/end is missing entirely", () => {
         mockEmployments([
             {
                 company: 'Acme',

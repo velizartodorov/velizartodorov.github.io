@@ -94,6 +94,15 @@ describe('useIntroductionStats', () => {
         expect(result.current.totalTime).toBe('1 year, 2 months, and 0 days');
     });
 
+    it('uses the singular "day" label for a 1-day total', () => {
+        mockT();
+        mockEmployments([employment('Acme', { start: '2020-01-01', end: '2020-01-02' })]);
+
+        const { result } = renderHook(() => useIntroductionStats());
+
+        expect(result.current.totalTime).toBe('0 years, 0 months, and 1 day');
+    });
+
     it('merges overlapping periods from different companies instead of double-counting them', () => {
         mockT();
         mockEmployments([

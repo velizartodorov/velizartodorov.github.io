@@ -80,6 +80,18 @@ describe('useTheme', () => {
         expect(document.documentElement.dataset.bsTheme).toBe('dark');
     });
 
+    it('follows OS theme changes to light when no theme is stored', () => {
+        document.documentElement.dataset.bsTheme = 'dark';
+        const { fireChange } = mockMatchMedia(false);
+
+        const { result } = renderHook(() => useTheme());
+
+        act(() => fireChange(false));
+
+        expect(result.current.theme).toBe('light');
+        expect(document.documentElement.dataset.bsTheme).toBe('light');
+    });
+
     it('ignores a subsequent OS preference change once the user has explicitly toggled', () => {
         const { fireChange } = mockMatchMedia(false);
         const { result } = renderHook(() => useTheme());

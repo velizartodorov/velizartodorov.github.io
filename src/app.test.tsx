@@ -263,4 +263,34 @@ describe('language switch failure', () => {
         await new Promise((resolve) => setTimeout(resolve, 0));
         expect(document.documentElement.lang).toBe('en');
     });
+
+    it('does not roll back the target ref for a failed switch that was already superseded', async () => {
+        const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
+        render(<PortfolioApp initialLang="en" initialResources={enResources} />);
+        await waitFor(() => expect(loadLanguage).toHaveBeenCalled());
+
+        let rejectFirst!: (error: Error) => void;
+        const pendingLoad = new Promise<void>((_resolve, reject) => {
+            rejectFirst = reject;
+        });
+        vi.mocked(loadLanguage).mockImplementationOnce(() => pendingLoad);
+
+        // Click NL: its loadLanguage() call hangs on pendingLoad until rejected below.
+        await userEvent.click(screen.getByRole('button', { name: 'NL' }));
+        // Before that settles, click EN — this supersedes the in-flight NL switch and claims
+        // targetLangRef for itself.
+        await userEvent.click(screen.getByRole('button', { name: 'EN' }));
+
+        await waitFor(() => expect(document.documentElement.lang).toBe('en'));
+
+        // Now let the superseded NL switch fail; since a newer switch already claimed the target
+        // ref, its catch block must skip the rollback rather than clobbering EN's claim.
+        rejectFirst(new Error('boom'));
+        await waitFor(() =>
+            expect(consoleError).toHaveBeenCalledWith('Failed to switch language to "nl":', expect.any(Error)),
+        );
+        expect(document.documentElement.lang).toBe('en');
+
+        consoleError.mockRestore();
+    });
 });
