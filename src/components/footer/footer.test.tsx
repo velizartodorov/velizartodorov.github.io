@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 
 vi.mock('react-i18next', () => ({ useTranslation: vi.fn() }));
 vi.mock('./utils', () => ({ useCurrentYear: vi.fn() }));
-vi.mock('../common/profile.init', () => ({ useProfile: vi.fn() }));
+vi.mock('../profile/profile.init', () => ({ useProfile: vi.fn() }));
 
 afterEach(() => {
     vi.unstubAllEnvs();
@@ -21,7 +21,7 @@ async function renderFooter(commitSha: string) {
     >);
     const { useCurrentYear } = await import('./utils');
     vi.mocked(useCurrentYear).mockReturnValue({ year: 2026, timeZone: 'UTC' });
-    const { useProfile } = await import('../common/profile.init');
+    const { useProfile } = await import('../profile/profile.init');
     vi.mocked(useProfile).mockReturnValue({ name: 'Test User' } as unknown as ReturnType<typeof useProfile>);
 
     const { default: Footer } = await import('./footer');

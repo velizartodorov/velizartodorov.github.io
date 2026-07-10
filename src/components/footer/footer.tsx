@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useProfile } from '../common/profile.init';
+import { useProfile } from '../profile/profile.init';
 import { useCurrentYear } from './utils';
 
 const COMMIT_SHA = process.env.NEXT_PUBLIC_COMMIT_SHA;

@@ -1,7 +1,7 @@
 import ThemeToggle from './theme_toggle';
-import { useProfile } from '../common/profile.init';
+import { useProfile } from '../profile/profile.init';
 import { LanguageSelector } from './language_selector';
-import ProfileItem from './profile_item';
+import ProfileItem from '../profile/profile_item';
 import Image from 'next/image';
 import React from 'react';
 
