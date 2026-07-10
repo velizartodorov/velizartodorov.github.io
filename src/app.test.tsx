@@ -1,7 +1,8 @@
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { PortfolioApp, useLangSwitch } from './App';
+import { PortfolioApp } from './App';
+import { useLangSwitch } from './lang-switch-context';
 import { loadLanguage } from './i18n';
 import { loadResources } from './translations/resources';
 

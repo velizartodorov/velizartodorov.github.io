@@ -4,7 +4,7 @@ import ItemHeaderRow from '../common/item_header_row';
 import ItemTitle from '../common/item_title';
 import { HOVER_ROW, HOVER_ROW_LINK } from '../common/list_row';
 import { LicenseInstitution } from './license_certification';
-import { useMonthYear } from './licenses_certrifications.init';
+import { useMonthYear } from './licenses_certifications.init';
 
 const ICON = 'bg-app-icon-bg h-[25px] w-[30px] rounded shadow-[0_1px_4px_var(--app-shadow)]';
 const ROW = `${HOVER_ROW} px-3 py-1`;

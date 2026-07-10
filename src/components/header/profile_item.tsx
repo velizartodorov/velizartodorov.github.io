@@ -1,4 +1,4 @@
-import { Link } from './link';
+import { Link } from '../common/link';
 import React from 'react';
 
 const ProfileItem: React.FC<{ link: Link }> = ({ link }) => {
