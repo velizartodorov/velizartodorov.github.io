@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { buildEducation, buildEmployments, buildLanguageResources } from './build-resources';
-import { frontmatterEmployment, frontmatterIndex } from '../test-utils/build-resources-fixtures';
+import { assembledEmployment, frontmatterEmployment, frontmatterIndex } from '../test-utils/build-resources-fixtures';
 
 describe('buildEmployments', () => {
     it('splits the raw body by the position delimiter and assigns one segment per position', () => {
@@ -8,30 +8,7 @@ describe('buildEmployments', () => {
             'acme.md': frontmatterEmployment(),
         } as never);
 
-        expect(result).toEqual({
-            title: 'Employments',
-            list: [
-                {
-                    company: 'Acme',
-                    icon: '/acme.png',
-                    type: 'Full-time',
-                    positions: [
-                        {
-                            position: 'Engineer',
-                            place: 'Remote',
-                            period: { start: '2020-01-01' },
-                            description: 'First role description',
-                        },
-                        {
-                            position: 'Senior Engineer',
-                            place: 'Remote',
-                            period: { start: '2021-01-01' },
-                            description: 'Second role description',
-                        },
-                    ],
-                },
-            ],
-        });
+        expect(result).toEqual({ title: 'Employments', list: [assembledEmployment()] });
     });
 
     it('throws when the body has a different number of segments than positions', () => {

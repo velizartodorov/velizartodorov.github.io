@@ -45,3 +45,45 @@ export function frontmatterEmployment(overrides: Partial<FrontmatterEmployment> 
 export function frontmatterIndex(overrides: Partial<FrontmatterIndex> = {}): FrontmatterIndex {
     return { title: 'Employments', list: [], ...overrides };
 }
+
+// The shape assembleEmployment() produces from frontmatterEmployment()'s defaults: `body` split
+// into a per-position `description`. Matches frontmatterEmployment()'s defaults 1:1, so the
+// no-overrides case in build-resources.test.ts is exactly `assembledEmployment()`.
+export interface AssembledPosition {
+    position: string;
+    place: string;
+    period: { start: string; end?: string };
+    description: string;
+}
+
+export interface AssembledEmployment {
+    company: string;
+    icon: string;
+    type: string;
+    positions: AssembledPosition[];
+}
+
+export function assembledEmployment(
+    overrides: Partial<Omit<AssembledEmployment, 'positions'>> & { positions?: AssembledPosition[] } = {},
+): AssembledEmployment {
+    return {
+        company: 'Acme',
+        icon: '/acme.png',
+        type: 'Full-time',
+        positions: [
+            {
+                position: 'Engineer',
+                place: 'Remote',
+                period: { start: '2020-01-01' },
+                description: 'First role description',
+            },
+            {
+                position: 'Senior Engineer',
+                place: 'Remote',
+                period: { start: '2021-01-01' },
+                description: 'Second role description',
+            },
+        ],
+        ...overrides,
+    };
+}
