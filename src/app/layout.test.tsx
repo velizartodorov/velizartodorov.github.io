@@ -29,8 +29,11 @@ describe('RootLayout', () => {
         expect(screen.getByText('hello world')).toBeInTheDocument();
     });
 
-    it('does not load the GA scripts outside production', () => {
-        vi.stubEnv('NODE_ENV', 'test');
+    it.each([
+        { name: 'does not load the GA scripts outside production', env: 'test', rendered: false },
+        { name: 'loads the GA scripts in production', env: 'production', rendered: true },
+    ])('$name', ({ env, rendered }) => {
+        vi.stubEnv('NODE_ENV', env);
 
         render(
             <RootLayout>
@@ -38,18 +41,10 @@ describe('RootLayout', () => {
             </RootLayout>,
         );
 
-        expect(document.getElementById('ga4-init')).not.toBeInTheDocument();
-    });
-
-    it('loads the GA scripts in production', () => {
-        vi.stubEnv('NODE_ENV', 'production');
-
-        render(
-            <RootLayout>
-                <p>content</p>
-            </RootLayout>,
-        );
-
-        expect(document.querySelector('script[src*="googletagmanager.com/gtag/js"]')).not.toBeNull();
+        if (rendered) {
+            expect(document.getElementById('ga4-init')).toBeInTheDocument();
+        } else {
+            expect(document.getElementById('ga4-init')).not.toBeInTheDocument();
+        }
     });
 });
