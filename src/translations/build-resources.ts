@@ -1,3 +1,4 @@
+import type { Employment, Position } from '../components/employments/employment';
 import type { EducationFile, EmploymentFile } from './resource-files';
 
 // Exported so tests can build fixtures against these shapes directly (see
@@ -7,24 +8,17 @@ export interface Index {
     list: string[];
 }
 
-// Raw position frontmatter, before period placeholders (e.g. "{{dates:x}}") are resolved to real
-// Dates by useEmployments() - see components/employments/employments.init.ts.
-export interface RawPosition {
-    position: string;
-    place: string;
-    period: { start: string; end?: string };
-}
+// Raw position frontmatter: derived from Position (rather than a hand-copied parallel shape) so
+// a field added there is picked up here too, minus `description` (not yet split from `body` - see
+// assembleEmployment() below) and with `period` still string-dated, before useEmployments()
+// resolves period placeholders (e.g. "{{dates:x}}") to real Dates.
+export type RawPosition = Omit<Position, 'period' | 'description'> & { period: { start: string; end?: string } };
 
 // Shape produced by loaders/markdown-frontmatter-loader.cjs for one employments/<company>.md:
-// frontmatter fields plus `body`, the raw markdown after the closing `---`, with each position's
-// description separated by a bare "---" line (see scripts that generated these files).
-export interface RawEmployment {
-    company: string;
-    icon: string;
-    type: string;
-    positions: RawPosition[];
-    body: string;
-}
+// derived from Employment, swapping in RawPosition and adding `body`, the raw markdown after the
+// closing `---` with each position's description separated by a bare "---" line (see scripts
+// that generated these files).
+export type RawEmployment = Omit<Employment, 'positions'> & { positions: RawPosition[]; body: string };
 
 // An HTML comment (not a bare "---") so it can't collide with a real markdown horizontal rule
 // that an author might legitimately add inside a single position's own description.
