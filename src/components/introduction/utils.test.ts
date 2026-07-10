@@ -50,93 +50,82 @@ describe('useIntroductionStats', () => {
     it.each([
         {
             name: 'borrows a month for a negative day difference, across a leap-year February',
-            start: '2020-01-20',
-            end: '2020-03-05',
+            employments: [employment('Acme', { start: '2020-01-20', end: '2020-03-05' })],
             // Jan 20 -> Mar 5: naive months=2, days=5-20=-15 (borrow) -> months=1, +29 (Feb 2020 has
             // 29 days in a leap year) -> days=14.
             expected: '0 years, 1 month, and 14 days',
         },
         {
             name: 'borrows a year for a negative month difference',
-            start: '2020-03-01',
-            end: '2021-01-15',
+            employments: [employment('Acme', { start: '2020-03-01', end: '2021-01-15' })],
             // years=1, months=0-2=-2 (borrow) -> years=0, months=10; days=15-1=14.
             expected: '0 years, 10 months, and 14 days',
         },
         {
             name: 'uses the singular "day" label for a 1-day total',
-            start: '2020-01-01',
-            end: '2020-01-02',
+            employments: [employment('Acme', { start: '2020-01-01', end: '2020-01-02' })],
             expected: '0 years, 0 months, and 1 day',
         },
-    ])('$name', ({ start, end, expected }) => {
+        {
+            name: 'rolls summed days >= 30 over into months',
+            employments: [
+                employment('Acme', { start: '2015-01-01', end: '2015-01-20' }), // 19 days
+                employment('Other Co', { start: '2016-05-01', end: '2016-05-20' }), // 19 days
+            ],
+            // 19 + 19 = 38 days -> 1 month, 8 days.
+            expected: '0 years, 1 month, and 8 days',
+        },
+        {
+            name: 'rolls summed months >= 12 over into years',
+            employments: [
+                employment('Acme', { start: '2010-01-01', end: '2010-08-01' }), // 7 months
+                employment('Other Co', { start: '2012-01-01', end: '2012-08-01' }), // 7 months
+            ],
+            // 7 + 7 = 14 months -> 1 year, 2 months.
+            expected: '1 year, 2 months, and 0 days',
+        },
+        {
+            name: 'merges overlapping periods from different companies instead of double-counting them',
+            employments: [
+                employment('Acme', { start: '2019-01-01', end: '2019-07-01' }),
+                employment('Other Co', { start: '2019-04-01', end: '2019-10-01' }), // overlaps Acme's
+            ],
+            // Merged: 2019-01-01 - 2019-10-01 = 9 months (not 6 + 6 = 12).
+            expected: '0 years, 9 months, and 0 days',
+        },
+    ])('$name', ({ employments, expected }) => {
         mockT();
-        mockEmployments([employment('Acme', { start, end })]);
+        mockEmployments(employments);
 
         const { result } = renderHook(() => useIntroductionStats());
 
         expect(result.current.totalTime).toBe(expected);
     });
-
-    it('rolls summed days >= 30 over into months', () => {
-        mockT();
-        mockEmployments([
-            employment('Acme', { start: '2015-01-01', end: '2015-01-20' }), // 19 days
-            employment('Other Co', { start: '2016-05-01', end: '2016-05-20' }), // 19 days
-        ]);
-
-        const { result } = renderHook(() => useIntroductionStats());
-
-        // 19 + 19 = 38 days -> 1 month, 8 days.
-        expect(result.current.totalTime).toBe('0 years, 1 month, and 8 days');
-    });
-
-    it('rolls summed months >= 12 over into years', () => {
-        mockT();
-        mockEmployments([
-            employment('Acme', { start: '2010-01-01', end: '2010-08-01' }), // 7 months
-            employment('Other Co', { start: '2012-01-01', end: '2012-08-01' }), // 7 months
-        ]);
-
-        const { result } = renderHook(() => useIntroductionStats());
-
-        // 7 + 7 = 14 months -> 1 year, 2 months.
-        expect(result.current.totalTime).toBe('1 year, 2 months, and 0 days');
-    });
-
-    it('merges overlapping periods from different companies instead of double-counting them', () => {
-        mockT();
-        mockEmployments([
-            employment('Acme', { start: '2019-01-01', end: '2019-07-01' }),
-            employment('Other Co', { start: '2019-04-01', end: '2019-10-01' }), // overlaps Acme's
-        ]);
-
-        const { result } = renderHook(() => useIntroductionStats());
-
-        // Merged: 2019-01-01 - 2019-10-01 = 9 months (not 6 + 6 = 12).
-        expect(result.current.totalTime).toBe('0 years, 9 months, and 0 days');
-    });
 });
 
 describe('useFormatBody', () => {
-    it('joins an array body with spaces before interpolating', () => {
+    it.each([
+        {
+            name: 'joins an array body with spaces before interpolating',
+            body: ['Hello', '{totalYears} years.'],
+            expected: 'Hello 0 years.',
+        },
+        {
+            name: 'stringifies a non-array body before interpolating',
+            body: 'Experience: {totalTime}',
+            expected: 'Experience: 0 years, 0 months, and 0 days',
+        },
+        {
+            name: 'leaves an unknown placeholder untouched',
+            body: '{unknownVar} stays literal',
+            expected: '{unknownVar} stays literal',
+        },
+    ])('$name', ({ body, expected }) => {
         mockT();
         mockEmployments([]);
-        const { result } = renderHook(() => useFormatBody(['Hello', '{totalYears} years.']));
-        expect(result.current).toBe('Hello 0 years.');
-    });
 
-    it('stringifies a non-array body before interpolating', () => {
-        mockT();
-        mockEmployments([]);
-        const { result } = renderHook(() => useFormatBody('Experience: {totalTime}'));
-        expect(result.current).toBe('Experience: 0 years, 0 months, and 0 days');
-    });
+        const { result } = renderHook(() => useFormatBody(body));
 
-    it('leaves an unknown placeholder untouched', () => {
-        mockT();
-        mockEmployments([]);
-        const { result } = renderHook(() => useFormatBody('{unknownVar} stays literal'));
-        expect(result.current).toBe('{unknownVar} stays literal');
+        expect(result.current).toBe(expected);
     });
 });
