@@ -4,7 +4,8 @@
   "version": "0.1.0",
   "private": true,
   "overrides": {
-    "postcss": "^8.5.10"
+    "postcss": "^8.5.10",
+    "sharp": "^0.35.3"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
