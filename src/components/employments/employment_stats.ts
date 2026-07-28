@@ -13,7 +13,7 @@ export function useEmploymentStats() {
         .filter((p) => p.period.end)
         .map((p) => ({
             start: new Date(p.period.start),
-            end: new Date(p.period.end!), // Safe to use ! because we filtered for existence
+            end: new Date(p.period.end!),
         }));
 
     const mergedPeriods = mergeOverlappingPeriods(softwareEmployments);
@@ -35,10 +35,8 @@ function mergeOverlappingPeriods(periods: { start: Date; end: Date }[]): { start
 
     const sorted = periods.slice().sort((a, b) => a.start.getTime() - b.start.getTime());
 
-    // We know first element exists because we checked length above
     const firstPeriod = sorted[0]!;
 
-    // Initialize with a deep copy of the first period
     const merged: { start: Date; end: Date }[] = [
         {
             start: new Date(firstPeriod.start),
@@ -46,18 +44,15 @@ function mergeOverlappingPeriods(periods: { start: Date; end: Date }[]): { start
         },
     ];
 
-    // Process the rest of the periods
     for (const currentPeriod of sorted.slice(1)) {
-        const lastMerged = merged.at(-1)!; // We know this exists as we initialized it
+        const lastMerged = merged.at(-1)!;
 
         if (lastMerged.end.getTime() < currentPeriod.start.getTime()) {
-            // No overlap, add as new period
             merged.push({
                 start: new Date(currentPeriod.start),
                 end: new Date(currentPeriod.end),
             });
         } else {
-            // Overlap exists, extend the end date if necessary
             lastMerged.end = new Date(Math.max(lastMerged.end.getTime(), currentPeriod.end.getTime()));
         }
     }

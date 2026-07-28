@@ -1,7 +1,3 @@
-// Single source of truth for which employment/education markdown files exist. Both en.ts and
-// nl.ts must provide exactly these keys in their employmentItems/educationItems maps - see
-// build-resources.ts, which types those maps against EmploymentFile/EducationFile so a missing
-// or misspelled key in either language fails to compile instead of silently dropping content.
 export const EMPLOYMENT_FILES = [
     'collibra.md',
     'continuum.md',

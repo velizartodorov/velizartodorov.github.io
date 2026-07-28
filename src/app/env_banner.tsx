@@ -17,6 +17,7 @@ const EnvBanner: React.FC = () => {
                 top: 0,
                 zIndex: 9999,
                 fontWeight: 'bold',
+                pointerEvents: 'none',
             }}
         >
             Local Development Environment

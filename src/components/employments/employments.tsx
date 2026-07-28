@@ -1,20 +1,20 @@
 import { useTranslation } from 'react-i18next';
-import AccordionWrapper from '../common/accordion_wrapper';
-import { AccordionGroup } from '../common/accordion';
+import Section from '../common/section';
+import { Timeline } from '../common/timeline';
 import { SectionProps } from '../common/section_props';
 import EmploymentItem from './employment_item';
 import { useEmployments } from './employments.init';
 
-const Employments = ({ className, eventKey }: SectionProps) => {
+const Employments = ({ className, id }: SectionProps) => {
     const { t } = useTranslation();
     return (
-        <AccordionWrapper title={t('employments:title')} eventKey={eventKey} className={className}>
-            <AccordionGroup className="space-y-1">
+        <Section title={t('employments:title')} className={className} id={id}>
+            <Timeline>
                 {useEmployments().map((item, index) => (
-                    <EmploymentItem item={item} index={index} eventKey={String(index)} key={index.valueOf()} />
+                    <EmploymentItem item={item} index={index} key={index.valueOf()} />
                 ))}
-            </AccordionGroup>
-        </AccordionWrapper>
+            </Timeline>
+        </Section>
     );
 };
 

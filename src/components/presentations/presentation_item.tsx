@@ -1,20 +1,19 @@
 import { FC } from 'react';
-import { BADGE_ICON } from '../common/icon';
 import ItemHeaderRow from '../common/item_header_row';
 import { HOVER_ROW_LINK } from '../common/list_row';
+import { TimelineEntry } from '../common/timeline';
 import { Presentation } from './presentation';
 
-const PresentationItem: FC<{ item: Presentation }> = ({ item }) => {
-    return (
-        <li>
-            <a href={item.link} rel="noopener noreferrer" className={`${HOVER_ROW_LINK} px-4 py-2`}>
-                <ItemHeaderRow
-                    icon={{ src: item.icon, alt: 'presentation icon', className: BADGE_ICON }}
-                    title={item.name}
-                />
+const PresentationItem: FC<{ item: Presentation; index: number }> = ({ item, index }) => (
+    <TimelineEntry
+        id={String(index)}
+        icon={{ src: item.icon, alt: `${item.name} icon` }}
+        header={
+            <a href={item.link} rel="noopener noreferrer" className={HOVER_ROW_LINK}>
+                <ItemHeaderRow title={item.name} titleClassName="w-full text-left" />
             </a>
-        </li>
-    );
-};
+        }
+    />
+);
 
 export default PresentationItem;
