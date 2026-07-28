@@ -1,25 +1,16 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import NotFound from './not-found';
 
 describe('NotFound', () => {
-    let replace: ReturnType<typeof vi.fn>;
+    it('renders a synchronous redirect-to-root script', () => {
+        // jsdom doesn't execute scripts inserted via dangerouslySetInnerHTML (per spec, only
+        // scripts present in the initial HTML parse run automatically), so this checks the
+        // script's content rather than observed navigation - same approach layout.test.tsx uses
+        // for its GA scripts.
+        const { container } = render(<NotFound />);
 
-    beforeEach(() => {
-        replace = vi.fn();
-        // jsdom's location.replace can't be spied on directly (not a configurable property), so
-        // stub the whole global instead.
-        vi.stubGlobal('location', { ...window.location, replace });
-    });
-
-    afterEach(() => {
-        vi.unstubAllGlobals();
-    });
-
-    it('redirects to the root', () => {
-        render(<NotFound />);
-
-        expect(replace).toHaveBeenCalledWith('/');
+        expect(container.querySelector('script')).toHaveTextContent("location.replace('/');");
     });
 
     it('renders a heading and a link back home as a no-JS fallback', () => {
