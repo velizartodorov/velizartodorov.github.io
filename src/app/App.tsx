@@ -2,18 +2,22 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { I18nextProvider } from 'react-i18next';
+import { AccordionProvider } from '../components/common/accordion_provider';
 import Education from '../components/education/education';
 import Employments from '../components/employments/employments';
 import Footer from '../components/footer/footer';
 import Header from '../components/header/header';
+import Nav from '../components/nav/nav';
 import Presentations from '../components/presentations/presentations';
 import Languages from '../components/languages/languages';
 import Introduction from '../components/introduction/introduction';
 import LicensesCertifications from '../components/licenses_certifications/licenses_certifications';
 import EnvBanner from './env_banner';
+import { sectionFromPathname, sectionPath, type SectionSlug } from './sections';
 import { createLangInstance, loadLanguage, otherLanguages, type Language } from './translations/i18n';
 import { LangSwitchContext, useLangSwitch } from './translations/lang-switch-context';
 import reportWebVitals from './reportWebVitals';
+import type { ActiveSection } from '../components/nav/use_active_section';
 
 function PageContent({ lang }: Readonly<{ lang: Language }>) {
     const ref = useRef<HTMLDivElement>(null);
@@ -27,7 +31,7 @@ function PageContent({ lang }: Readonly<{ lang: Language }>) {
         const el = ref.current;
         if (!el) return;
         // Replay the fade-in on every language switch without remounting
-        // (remounting would reset accordion open/closed state).
+        // (remounting would reset each Timeline's scroll-computed fade/active state).
         el.classList.remove('fade-in-text');
         el.getBoundingClientRect();
         el.classList.add('fade-in-text');
@@ -35,17 +39,19 @@ function PageContent({ lang }: Readonly<{ lang: Language }>) {
 
     return (
         <div ref={ref} className="fade-in-text">
-            <Introduction className="mx-6" eventKey="0" />
-            <Employments className="mx-6 mt-2" eventKey="1" />
-            <LicensesCertifications className="mx-6 mt-2" eventKey="2" />
-            <Presentations className="mx-6 mt-2" eventKey="3" />
-            <Languages className="mx-6 mt-2" eventKey="4" />
-            <Education className="mx-6 mt-2" eventKey="5" />
+            <AccordionProvider>
+                <Introduction className="mx-6" id={'introduction' satisfies ActiveSection} />
+                <Employments className="mx-6" id={'experience' satisfies ActiveSection} />
+                <LicensesCertifications className="mx-6" id={'certifications' satisfies ActiveSection} />
+                <Presentations className="mx-6" id={'presentations' satisfies ActiveSection} />
+                <Languages className="mx-6" id={'languages' satisfies ActiveSection} />
+                <Education className="mx-6" id={'education' satisfies ActiveSection} />
+            </AccordionProvider>
         </div>
     );
 }
 
-function PortfolioAppInner() {
+function PortfolioAppInner({ initialSection }: Readonly<{ initialSection?: SectionSlug }>) {
     const { lang, switchTo } = useLangSwitch();
 
     useEffect(() => {
@@ -54,6 +60,27 @@ function PortfolioAppInner() {
 
     useEffect(() => {
         reportWebVitals();
+    }, []);
+
+    useEffect(() => {
+        if (!initialSection) return;
+        document.getElementById(initialSection)?.scrollIntoView({ block: 'start' });
+        // Mount-only: this is a one-time "land on the right section" jump for a page loaded
+        // directly at /<section>/, not a general-purpose scroll-follow.
+    }, [initialSection]);
+
+    useEffect(() => {
+        // Nav's handleClick does a pushState-only "navigation" (no full reload) when a nav link is
+        // clicked, so the browser's Back/Forward buttons need their own listener to scroll to
+        // whatever section the (now-reverted) URL indicates - otherwise Back changes the URL but
+        // leaves the page scrolled wherever it already was.
+        const onPopState = () => {
+            const slug = sectionFromPathname(globalThis.location.pathname);
+            const el = slug ? document.getElementById(slug) : document.getElementById('introduction');
+            el?.scrollIntoView({ block: 'start' });
+        };
+        globalThis.addEventListener('popstate', onPopState);
+        return () => globalThis.removeEventListener('popstate', onPopState);
     }, []);
 
     useEffect(() => {
@@ -72,6 +99,7 @@ function PortfolioAppInner() {
         <>
             <EnvBanner />
             <Header />
+            <Nav />
             <PageContent lang={lang} />
             <Footer />
         </>
@@ -84,9 +112,12 @@ interface PortfolioAppProps {
     // page component. Keeping this per-page rather than importing both languages here is what
     // keeps the other language's (larger) translation payload out of this page's JS bundle.
     initialResources: Parameters<typeof createLangInstance>[1];
+    // Set by the /<section>/ and /nl/<section>/ static routes so a fresh load lands scrolled to
+    // that section instead of the top of the page.
+    initialSection?: SectionSlug;
 }
 
-export function PortfolioApp({ initialLang, initialResources }: Readonly<PortfolioAppProps>) {
+export function PortfolioApp({ initialLang, initialResources, initialSection }: Readonly<PortfolioAppProps>) {
     const [instance] = useState(() => createLangInstance(initialLang, initialResources));
     const [lang, setLang] = useState<Language>(initialLang);
     // The most recently REQUESTED language, updated synchronously on every call — distinct from
@@ -141,7 +172,11 @@ export function PortfolioApp({ initialLang, initialResources }: Readonly<Portfol
             if (latestSwitchRef.current !== requestId) return;
 
             setLang(next);
-            globalThis.history.replaceState(null, '', next === 'nl' ? '/nl/' : '/');
+            globalThis.history.replaceState(
+                null,
+                '',
+                sectionPath(next, sectionFromPathname(globalThis.location.pathname)),
+            );
             // `instance` is referentially stable for the component's lifetime (see the useState
             // initializer above); everything else referenced is a ref or a stable setter.
         },
@@ -153,7 +188,7 @@ export function PortfolioApp({ initialLang, initialResources }: Readonly<Portfol
     return (
         <I18nextProvider i18n={instance}>
             <LangSwitchContext.Provider value={langSwitchValue}>
-                <PortfolioAppInner />
+                <PortfolioAppInner initialSection={initialSection} />
             </LangSwitchContext.Provider>
         </I18nextProvider>
     );

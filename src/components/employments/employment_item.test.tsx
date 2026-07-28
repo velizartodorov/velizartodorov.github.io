@@ -1,10 +1,13 @@
 import { describe, expect, it, vi } from 'vitest';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import EmploymentItem from './employment_item';
 import { Employment } from './employment';
 import { MONTHS, PERIOD_LANG } from '../../test-utils/i18n-fixtures';
 import { mockUseTranslation } from '../../test-utils/mock-use-translation';
-import { renderInAccordion } from '../../test-utils/render-in-accordion';
+import { mockIntersectionObserver } from '../../test-utils/mock-intersection-observer';
+import { mockMatchMedia } from '../../test-utils/mock-match-media';
+import { renderInTimeline } from '../../test-utils/render-in-timeline';
 import { employment, multiPositionEmployment, singlePositionEmployment } from '../../test-utils/employment-fixtures';
 
 vi.mock('react-i18next', () => ({ useTranslation: vi.fn() }));
@@ -20,7 +23,9 @@ function mockTranslation() {
 }
 
 function renderItem(item: Employment) {
-    return renderInAccordion(<EmploymentItem item={item} index={0} eventKey="0" />);
+    mockIntersectionObserver();
+    mockMatchMedia();
+    return renderInTimeline(<EmploymentItem item={item} index={0} />);
 }
 
 describe('EmploymentItem', () => {
@@ -49,7 +54,7 @@ describe('EmploymentItem', () => {
         mockTranslation();
         renderItem(employment({ company: 'Acme' }));
 
-        expect(screen.getByRole('button')).toBeInTheDocument();
+        expect(screen.getAllByRole('button').length).toBeGreaterThan(0);
     });
 
     it('defaults to an empty positions list when positions is missing entirely', () => {
@@ -58,6 +63,35 @@ describe('EmploymentItem', () => {
         // fills that in, so this one case is a raw literal on purpose.
         renderItem({ company: 'Acme', icon: '', type: '' } as unknown as Employment);
 
-        expect(screen.getByRole('button')).toBeInTheDocument();
+        expect(screen.getAllByRole('button').length).toBeGreaterThan(0);
+    });
+
+    it("renders only the entry's own chevron toggle for a single position, with no internal timeline", () => {
+        mockTranslation();
+        renderItem(singlePositionEmployment());
+
+        // Single position: no nested TimelineRail/TimelineRow, so no per-position chevron.
+        expect(screen.getAllByRole('button', { name: 'Expand' })).toHaveLength(1);
+    });
+
+    it("renders only the entry's own chevron toggle, since position rows have no separate collapse", () => {
+        mockTranslation();
+        renderItem(multiPositionEmployment());
+
+        // 1 for the entry itself - each position's description is part of its row's always-visible
+        // header now, not collapsible content, so no per-position chevron.
+        expect(screen.getAllByRole('button', { name: 'Expand' })).toHaveLength(1);
+    });
+
+    it("the entry's chevron pins its own header open, revealing all position rows immediately", async () => {
+        mockTranslation();
+        renderItem(multiPositionEmployment());
+
+        const entryChevron = screen.getByRole('button', { name: 'Expand' });
+        await userEvent.click(entryChevron);
+
+        expect(screen.getByRole('button', { name: 'Collapse' })).toBeInTheDocument();
+        expect(screen.getByText('Engineer')).toBeInTheDocument();
+        expect(screen.getByText('Senior Engineer')).toBeInTheDocument();
     });
 });

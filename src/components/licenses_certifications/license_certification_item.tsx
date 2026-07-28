@@ -1,20 +1,58 @@
 import { FC } from 'react';
-import { AccordionItem } from '../common/accordion';
 import ItemHeaderRow from '../common/item_header_row';
-import ItemTitle from '../common/item_title';
 import { HOVER_ROW, HOVER_ROW_LINK } from '../common/list_row';
-import { LicenseInstitution } from './license_certification';
+import { TimelineEntry } from '../common/timeline';
+import { TimelineRail, TimelineRow } from '../common/timeline_row';
+import { Certification, LicenseInstitution } from './license_certification';
 import { useMonthYear } from './licenses_certifications.init';
 
-const ICON = 'bg-app-icon-bg h-[25px] w-[30px] rounded shadow-[0_1px_4px_var(--app-shadow)]';
 const ROW = `${HOVER_ROW} px-3 py-1`;
 const LINK_ROW = `${HOVER_ROW_LINK} px-3 py-1`;
 
-const LicenseCertificationItem: FC<{ item: LicenseInstitution; index: number; eventKey: string }> = ({
-    item,
-    index,
-    eventKey,
+// Field/date go through ItemHeaderRow's own place/period columns, same as every other row in the
+// app, instead of a stacked freeform line - so they line up horizontally like the entry header.
+const CertificationContent: FC<{ cert: Certification; monthYear: string }> = ({ cert, monthYear }) => {
+    const hasLink = Boolean(cert.link?.trim());
+    const Tag = hasLink ? 'a' : 'div';
+
+    return (
+        <Tag
+            href={hasLink ? cert.link : undefined}
+            rel={hasLink ? 'noopener noreferrer' : undefined}
+            className={hasLink ? LINK_ROW : ROW}
+        >
+            <ItemHeaderRow title={cert.name} place={cert.field || undefined} period={monthYear || undefined} />
+        </Tag>
+    );
+};
+
+const CertificationRow: FC<{ cert: Certification; monthYear: string; id: string }> = ({ cert, monthYear, id }) => (
+    <TimelineRow id={id} header={<CertificationContent cert={cert} monthYear={monthYear} />} />
+);
+
+// A single-certification institution has nothing left to reveal behind the entry's chevron, so
+// its one certification becomes the always-visible header itself (name/institution/date) instead
+// of an institution-only header hiding the actual certification a click away.
+const SingleCertificationHeader: FC<{ institution: string; cert: Certification; monthYear: string }> = ({
+    institution,
+    cert,
+    monthYear,
 }) => {
+    const hasLink = Boolean(cert.link?.trim());
+    const Tag = hasLink ? 'a' : 'div';
+
+    return (
+        <Tag
+            href={hasLink ? cert.link : undefined}
+            rel={hasLink ? 'noopener noreferrer' : undefined}
+            className={hasLink ? HOVER_ROW_LINK : undefined}
+        >
+            <ItemHeaderRow title={cert.name} place={institution} period={monthYear || undefined} />
+        </Tag>
+    );
+};
+
+const LicenseCertificationItem: FC<{ item: LicenseInstitution; index: number }> = ({ item, index }) => {
     const getMonthYear = useMonthYear();
     const certifications = item.certifications ?? [];
     const sortedDates = certifications
@@ -23,50 +61,46 @@ const LicenseCertificationItem: FC<{ item: LicenseInstitution; index: number; ev
         .sort((a, b) => a.localeCompare(b));
     const earliest = sortedDates[0];
     const latest = sortedDates.at(-1);
+    const hasMultipleCertifications = certifications.length > 1;
     const headerPeriod =
-        certifications.length > 1 && earliest && latest
+        hasMultipleCertifications && earliest && latest
             ? `${getMonthYear(earliest)} - ${getMonthYear(latest)}`
             : undefined;
-
-    const header = (
-        <ItemHeaderRow
-            icon={{ src: item.icon, alt: 'institution icon', className: ICON }}
-            title={item.institution}
-            place={certifications[0]?.field ?? ''}
-            period={headerPeriod}
-        />
-    );
+    const singleCert = certifications[0];
 
     return (
-        <AccordionItem eventKey={eventKey} header={header}>
-            <div
-                className={`before:bg-app-border relative space-y-1 pl-6 before:absolute before:inset-y-2 before:left-[9px] before:w-[2px] before:content-['']`}
-            >
-                {certifications.map((cert, certIdx) => {
-                    const hasLink = Boolean(cert.link?.trim());
-                    const Tag = hasLink ? 'a' : 'div';
-                    const monthYear = getMonthYear(cert.date);
-                    return (
-                        <div
+        <TimelineEntry
+            id={String(index)}
+            icon={{ src: item.icon, alt: `${item.institution} logo` }}
+            header={
+                hasMultipleCertifications || !singleCert ? (
+                    <ItemHeaderRow
+                        title={item.institution}
+                        place={certifications[0]?.field ?? ''}
+                        period={headerPeriod}
+                    />
+                ) : (
+                    <SingleCertificationHeader
+                        institution={item.institution}
+                        cert={singleCert}
+                        monthYear={getMonthYear(singleCert.date)}
+                    />
+                )
+            }
+        >
+            {hasMultipleCertifications && (
+                <TimelineRail className="space-y-1">
+                    {certifications.map((cert, certIdx) => (
+                        <CertificationRow
                             key={`${index}-${certIdx}`}
-                            className={`before:border-app-surface before:bg-app-accent relative before:absolute before:top-2 before:-left-5 before:size-3 before:rounded-full before:border-2 before:shadow-[0_0_0_1px_var(--app-accent)] before:transition-transform before:duration-200 before:content-[''] hover:before:scale-[1.15]`}
-                        >
-                            <Tag
-                                href={hasLink ? cert.link : undefined}
-                                rel={hasLink ? 'noopener noreferrer' : undefined}
-                                className={hasLink ? LINK_ROW : ROW}
-                            >
-                                <ItemTitle>{cert.name}</ItemTitle>
-                                <div className="text-app-text-muted flex flex-wrap items-baseline gap-x-2">
-                                    {cert.field && <span>{cert.field}</span>}
-                                    {monthYear && <span>{monthYear}</span>}
-                                </div>
-                            </Tag>
-                        </div>
-                    );
-                })}
-            </div>
-        </AccordionItem>
+                            id={String(certIdx)}
+                            cert={cert}
+                            monthYear={getMonthYear(cert.date)}
+                        />
+                    ))}
+                </TimelineRail>
+            )}
+        </TimelineEntry>
     );
 };
 

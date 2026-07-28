@@ -47,6 +47,9 @@ vi.mock('../components/languages/languages', () => ({ default: () => null }));
 vi.mock('../components/education/education', () => ({ default: () => null }));
 // jsdom doesn't implement window.matchMedia; the theme toggle isn't under test here.
 vi.mock('../components/header/theme_toggle', () => ({ default: () => null }));
+// jsdom doesn't implement IntersectionObserver; Nav's scrollspy isn't under test here (see
+// src/components/nav/nav.test.tsx and use_active_section.test.ts).
+vi.mock('../components/nav/nav', () => ({ default: () => null }));
 
 afterEach(() => {
     document.documentElement.lang = 'en';
@@ -301,5 +304,99 @@ describe('language switch failure', () => {
         expect(document.documentElement.lang).toBe('en');
 
         consoleError.mockRestore();
+    });
+});
+
+describe('initial section scroll', () => {
+    it('scrolls the target section into view on mount when initialSection is given', () => {
+        const el = document.createElement('div');
+        el.id = 'experience';
+        el.scrollIntoView = vi.fn();
+        document.body.appendChild(el);
+
+        render(<PortfolioApp initialLang="en" initialResources={enResources} initialSection="experience" />);
+
+        expect(el.scrollIntoView).toHaveBeenCalledWith({ block: 'start' });
+        el.remove();
+    });
+
+    it('does not scroll when no initialSection is given', () => {
+        const el = document.createElement('div');
+        el.id = 'experience';
+        el.scrollIntoView = vi.fn();
+        document.body.appendChild(el);
+
+        render(<PortfolioApp initialLang="en" initialResources={enResources} />);
+
+        expect(el.scrollIntoView).not.toHaveBeenCalled();
+        el.remove();
+    });
+});
+
+describe('browser back/forward after in-page nav clicks', () => {
+    afterEach(() => {
+        window.history.pushState({}, '', '/');
+    });
+
+    it('scrolls to the section indicated by the URL on a popstate event', () => {
+        const el = document.createElement('div');
+        el.id = 'experience';
+        el.scrollIntoView = vi.fn();
+        document.body.appendChild(el);
+
+        render(<PortfolioApp initialLang="en" initialResources={enResources} />);
+
+        // Simulate the browser restoring a prior history entry (e.g. the user pressing Back)
+        // after Nav's handleClick had pushed /experience/ onto the history stack.
+        window.history.pushState({}, '', '/experience/');
+        window.dispatchEvent(new PopStateEvent('popstate'));
+
+        expect(el.scrollIntoView).toHaveBeenCalledWith({ block: 'start' });
+        el.remove();
+    });
+
+    it('scrolls to the introduction when popstate reverts to a URL with no section', () => {
+        const el = document.createElement('div');
+        el.id = 'introduction';
+        el.scrollIntoView = vi.fn();
+        document.body.appendChild(el);
+
+        render(<PortfolioApp initialLang="en" initialResources={enResources} />);
+
+        window.history.pushState({}, '', '/');
+        window.dispatchEvent(new PopStateEvent('popstate'));
+
+        expect(el.scrollIntoView).toHaveBeenCalledWith({ block: 'start' });
+        el.remove();
+    });
+});
+
+describe('language switching preserves the current section', () => {
+    afterEach(() => {
+        window.history.pushState({}, '', '/');
+    });
+
+    it('keeps the section slug when switching from an English section page to Dutch', async () => {
+        window.history.pushState({}, '', '/experience/');
+        const replaceStateSpy = vi.spyOn(window.history, 'replaceState');
+        render(<PortfolioApp initialLang="en" initialResources={enResources} />);
+
+        await userEvent.click(screen.getByRole('button', { name: 'NL' }));
+
+        await waitFor(() => expect(document.documentElement.lang).toBe('nl'));
+        expect(replaceStateSpy).toHaveBeenCalledWith(null, '', '/nl/experience/');
+        replaceStateSpy.mockRestore();
+    });
+
+    it('keeps the section slug when switching from a Dutch section page to English', async () => {
+        window.history.pushState({}, '', '/nl/experience/');
+        const replaceStateSpy = vi.spyOn(window.history, 'replaceState');
+        render(<PortfolioApp initialLang="nl" initialResources={nlResources} />);
+
+        await userEvent.click(screen.getByRole('button', { name: 'EN' }));
+
+        await waitFor(() => expect(document.documentElement.lang).toBe('en'));
+        expect(replaceStateSpy).toHaveBeenCalledWith(null, '', '/experience/');
+        replaceStateSpy.mockRestore();
     });
 });

@@ -1,14 +1,14 @@
 import { FC } from 'react';
-import { BADGE_ICON } from '../common/icon';
 import ItemHeaderRow from '../common/item_header_row';
-import { HOVER_ROW } from '../common/list_row';
+import { TimelineEntry } from '../common/timeline';
 import { Language } from './language';
 
-const LanguageItem: FC<{ item: Language }> = ({ item }) => {
-    return (
-        <li className={`${HOVER_ROW} px-4 py-2`}>
+const LanguageItem: FC<{ item: Language; index: number }> = ({ item, index }) => (
+    <TimelineEntry
+        id={String(index)}
+        icon={{ src: item.icon, alt: `${item.label} language icon` }}
+        header={
             <ItemHeaderRow
-                icon={{ src: item.icon, alt: 'language icon', className: BADGE_ICON }}
                 title={item.label}
                 titleClassName="w-1/3 text-left"
                 trailing={
@@ -17,8 +17,8 @@ const LanguageItem: FC<{ item: Language }> = ({ item }) => {
                     </div>
                 }
             />
-        </li>
-    );
-};
+        }
+    />
+);
 
 export default LanguageItem;

@@ -31,3 +31,16 @@
    fade-in animation live in an inline <style> tag in src/app/layout.tsx instead of here —
    none of them need Tailwind's build-time processing (they're plain custom properties and
    keyframes), so this file only holds what Tailwind actually requires to run. */
+
+/* Timeline entries/rows across the page resize themselves based on scroll position (see
+   useScrollFade). Without this, the browser's scroll anchoring picks some nearby element as an
+   anchor and adjusts scrollY to compensate whenever content shifts above the viewport - which is
+   itself a scroll event, so it retriggers our own recompute, which can flip more entries across
+   their threshold, changing height again, and so on: a resonant feedback loop between our JS and
+   the browser's own compensation, visible as a flickering/oscillating scrollbar or the page
+   jumping to a blank scroll position. Scoping this to just the timeline elements isn't enough -
+   the browser can anchor on any nearby element (a section heading, a marker) whose position shifts
+   as sibling timeline content resizes - so it's disabled document-wide instead. */
+html {
+    overflow-anchor: none;
+}

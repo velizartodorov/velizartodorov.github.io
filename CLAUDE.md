@@ -20,9 +20,15 @@
 - `mock-match-media.ts` → `mockMatchMedia(initialMatches?)`. Stubs `window.matchMedia` (jsdom has
   none). Returns `{ mql, fireChange }` for tests that simulate an OS theme-preference change;
   ignore the return value if you just need real code touching `matchMedia` to not crash.
+- `mock-intersection-observer.ts` → `mockIntersectionObserver()`. Stubs `window.IntersectionObserver`
+  (jsdom has none). Returns `{ observe, disconnect, trigger }` — call `trigger(entries)` to simulate
+  the browser firing the observer's callback (e.g. a section scrolling into view).
 - `i18n-fixtures.ts` → `MONTHS`, `PERIOD_LANG`. Shared literals for mocked translation lookups.
-- `render-in-accordion.tsx` → `renderInAccordion(children)`. Wraps children in a real
-  `<AccordionGroup>`, required by any `AccordionItem`-based component under test.
+- `render-in-timeline.tsx` → `renderInTimeline(children)`. Wraps children in a real
+  `<AccordionProvider><Timeline>`, required by any `TimelineEntry`-based component under test.
+- `render-in-timeline-entry.tsx` → `renderInTimelineEntry(children)`. Wraps children in a real
+  `<AccordionProvider><Timeline><TimelineEntry>`, required by any `TimelineRow`/`TimelineRail`-based
+  component under test.
 - `period-fixtures.ts` → `period(start, end?)`. A resolved `Period` (real `Date`s) from ISO date
   strings.
 - `employment-fixtures.ts` → `position()` / `employment()` (resolved, post-hook shape) and

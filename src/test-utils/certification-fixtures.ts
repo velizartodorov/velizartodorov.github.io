@@ -15,25 +15,6 @@ export function licenseInstitution(overrides: Partial<LicenseInstitution> = {}):
 // All named institution fixtures below use the same real-world institution.
 const AWS = 'AWS';
 
-// Concrete institutions used by license_certification_row.test.tsx — named so the
-// linked-vs-unlinked test intent reads at the call site instead of being buried in inline
-// overrides.
-export function linkedInstitution(): LicenseInstitution {
-    return licenseInstitution({
-        institution: AWS,
-        certifications: [
-            certification({ name: 'Cert A', field: 'Field', date: '2020-01-01', link: 'https://example.com' }),
-        ],
-    });
-}
-
-export function unlinkedInstitution(): LicenseInstitution {
-    return licenseInstitution({
-        institution: AWS,
-        certifications: [certification({ name: 'Cert B', field: 'Field', date: '2020-01-01' })],
-    });
-}
-
 // Concrete institutions used by license_certification_item.test.tsx — named so each test's
 // intent (multiple certs w/ mixed links, a single cert, an undated/unlabeled cert) reads at the
 // call site instead of being buried in inline overrides.

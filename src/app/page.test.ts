@@ -5,11 +5,15 @@ import { generateMetadata as generateNlMetadata } from './nl/page';
 import EnPage from './page';
 import NlPage from './nl/page';
 import { mockMatchMedia } from '../test-utils/mock-match-media';
+import { mockIntersectionObserver } from '../test-utils/mock-intersection-observer';
+import { SECTIONS } from './sections';
 
 // The rendered page includes the real ThemeToggle, whose useTheme() hook needs
-// matchMedia — jsdom doesn't implement it.
+// matchMedia — jsdom doesn't implement it. It also includes the real Nav, whose
+// scrollspy hook needs IntersectionObserver — jsdom doesn't implement that either.
 beforeEach(() => {
     mockMatchMedia();
+    mockIntersectionObserver();
 });
 
 afterEach(() => {
@@ -64,5 +68,22 @@ describe('page components', () => {
         render(await NlPage());
 
         expect(document.documentElement.lang).toBe('nl');
+    });
+});
+
+describe('section anchors', () => {
+    it('gives each top-level section its anchor id', async () => {
+        render(await EnPage());
+
+        for (const id of ['introduction', ...SECTIONS]) {
+            expect(document.getElementById(id)).not.toBeNull();
+        }
+    });
+});
+
+describe('nav', () => {
+    it('renders the sticky section nav', async () => {
+        render(await EnPage());
+        expect(screen.getByRole('navigation', { name: 'Sections' })).toBeInTheDocument();
     });
 });

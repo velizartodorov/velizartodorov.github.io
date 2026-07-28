@@ -3,7 +3,7 @@ import Icon from './icon';
 import ItemTitle from './item_title';
 
 interface ItemHeaderRowProps {
-    icon: { src: string; alt: string; className: string };
+    icon?: { src: string; alt: string; className: string };
     title: ReactNode;
     titleClassName?: string;
     place?: ReactNode;
@@ -28,9 +28,11 @@ const ItemHeaderRow: FC<ItemHeaderRowProps> = ({
     className = 'w-full',
 }) => (
     <div className={`flex items-center gap-3 ${className}`}>
-        <div className="shrink-0 text-left">
-            <Icon src={icon.src} alt={icon.alt} className={icon.className} />
-        </div>
+        {icon && (
+            <div className="shrink-0 text-left">
+                <Icon src={icon.src} alt={icon.alt} className={icon.className} />
+            </div>
+        )}
         <div className={titleClassName}>
             <ItemTitle>{title}</ItemTitle>
         </div>
