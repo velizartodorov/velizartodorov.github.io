@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Employment, Position } from './employment';
-import { resolveDate, currentDate } from '../common/utils';
+import { resolveDate, currentDate, iconInvertsOnDark, iconFit } from '../common/utils';
 
 type Translate = (key: string, options: { ns: string }) => unknown;
 
@@ -13,6 +13,8 @@ export function useEmployments(): Employment[] {
     return data.map((c: Employment): Employment => ({
         company: c.company,
         icon: c.icon,
+        invertOnDark: iconInvertsOnDark(c.icon),
+        iconFit: iconFit(c.icon),
         type: c.type ?? '',
         positions: Array.isArray(c.positions) ? c.positions.map((p) => toPosition(p, t)) : [],
     }));

@@ -1,8 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { renderHook, waitFor } from '@testing-library/react';
-import { useCurrentYear } from './utils';
-
-const CACHE_KEY = 'currentYearWithTZ';
+import { TIME_API_BASE_URL, YEAR_CACHE_KEY, useCurrentYear } from './utils';
 
 beforeEach(() => {
     localStorage.clear();
@@ -18,7 +16,7 @@ describe('useCurrentYear', () => {
     it('uses the cached year/timeZone without fetching when the cache is for the current year', async () => {
         const thisYear = new Date().getFullYear();
         localStorage.setItem(
-            CACHE_KEY,
+            YEAR_CACHE_KEY,
             JSON.stringify({ year: thisYear, timeZone: 'Europe/Brussels', fetchedAt: Date.now() }),
         );
 
@@ -41,7 +39,7 @@ describe('useCurrentYear', () => {
             fetchedYear: 2031,
         },
     ])('$name', async ({ cachedValue, fetchedYear }) => {
-        localStorage.setItem(CACHE_KEY, cachedValue);
+        localStorage.setItem(YEAR_CACHE_KEY, cachedValue);
         vi.mocked(fetch).mockResolvedValue({
             ok: true,
             json: () => Promise.resolve({ year: fetchedYear }),
@@ -63,11 +61,9 @@ describe('useCurrentYear', () => {
 
         await waitFor(() => expect(result.current.year).toBe(2032));
         expect(result.current.timeZone).toBeTruthy();
-        expect(fetch).toHaveBeenCalledWith(
-            expect.stringContaining('https://timeapi.io/api/Time/current/zone?timeZone='),
-        );
+        expect(fetch).toHaveBeenCalledWith(expect.stringContaining(`${TIME_API_BASE_URL}?timeZone=`));
 
-        const cached = JSON.parse(localStorage.getItem(CACHE_KEY)!);
+        const cached = JSON.parse(localStorage.getItem(YEAR_CACHE_KEY)!);
         expect(cached.year).toBe(2032);
     });
 

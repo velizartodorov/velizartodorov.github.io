@@ -1,7 +1,10 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { loadAllStrings } from '../../app/translations/resources';
 
 vi.mock('react-i18next', () => ({ useTranslation: vi.fn() }));
+
+const strings = await loadAllStrings();
 vi.mock('./utils', () => ({ useCurrentYear: vi.fn() }));
 vi.mock('../profile/profile.init', () => ({ useProfile: vi.fn() }));
 
@@ -16,7 +19,7 @@ async function renderFooter(commitSha: string) {
     vi.stubEnv('NEXT_PUBLIC_COMMIT_SHA', commitSha);
 
     const { useTranslation } = await import('react-i18next');
-    vi.mocked(useTranslation).mockReturnValue({ t: () => 'Powered by' } as unknown as ReturnType<
+    vi.mocked(useTranslation).mockReturnValue({ t: (key: string) => strings('en', key) } as unknown as ReturnType<
         typeof useTranslation
     >);
     const { useCurrentYear } = await import('./utils');
@@ -24,8 +27,8 @@ async function renderFooter(commitSha: string) {
     const { useProfile } = await import('../profile/profile.init');
     vi.mocked(useProfile).mockReturnValue({ name: 'Test User' } as unknown as ReturnType<typeof useProfile>);
 
-    const { default: Footer } = await import('./footer');
-    return render(<Footer />);
+    const { default: Footer, REPO_URL } = await import('./footer');
+    return { ...render(<Footer />), REPO_URL };
 }
 
 describe('Footer', () => {
@@ -35,12 +38,10 @@ describe('Footer', () => {
     });
 
     it('renders a shortened commit link when NEXT_PUBLIC_COMMIT_SHA is set', async () => {
-        await renderFooter('abcdef1234567890');
+        const sha = 'abcdef1234567890';
+        const { REPO_URL } = await renderFooter(sha);
 
-        const link = screen.getByRole('link', { name: 'abcdef1' });
-        expect(link).toHaveAttribute(
-            'href',
-            'https://github.com/velizartodorov/velizartodorov.github.io/commit/abcdef1234567890',
-        );
+        const link = screen.getByRole('link', { name: sha.slice(0, 7) });
+        expect(link).toHaveAttribute('href', `${REPO_URL}/commit/${sha}`);
     });
 });

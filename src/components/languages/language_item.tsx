@@ -1,24 +1,15 @@
 import { FC } from 'react';
-import { BADGE_ICON } from '../common/icon';
-import ItemHeaderRow from '../common/item_header_row';
-import { HOVER_ROW } from '../common/list_row';
+import Icon, { BADGE_ICON } from '../common/icon';
 import { Language } from './language';
 
-const LanguageItem: FC<{ item: Language }> = ({ item }) => {
-    return (
-        <li className={`${HOVER_ROW} px-4 py-2`}>
-            <ItemHeaderRow
-                icon={{ src: item.icon, alt: 'language icon', className: BADGE_ICON }}
-                title={item.label}
-                titleClassName="w-1/3 text-left"
-                trailing={
-                    <div className="text-app-text-muted flex-1 text-right max-sm:text-base">
-                        <span>{item.proficiency}</span>
-                    </div>
-                }
-            />
-        </li>
-    );
-};
+const LanguageItem: FC<{ item: Language }> = ({ item }) => (
+    <li className="flex items-center gap-2">
+        <Icon src={item.icon} alt={`${item.label} language icon`} className={BADGE_ICON} />
+        <div>
+            <span className="font-semibold tracking-[-0.02em] max-sm:font-normal">{item.label}</span>
+            <span className="text-app-text-muted block text-sm">{item.proficiency}</span>
+        </div>
+    </li>
+);
 
 export default LanguageItem;

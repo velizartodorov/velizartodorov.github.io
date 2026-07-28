@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { currentDate, parsePeriod, resolveDate } from './utils';
+import { currentDate, iconFit, iconInvertsOnDark, parsePeriod, resolveDate } from './utils';
 import { Period } from './period';
 
 // The real callers pass raw "{{dates:...}}" placeholder strings through fields typed as `Date`
@@ -49,6 +49,38 @@ describe('parsePeriod', () => {
         const result = parsePeriod(period('{{dates:missing}}'), t);
         expect(result.start).toEqual(new Date(0));
     });
+});
+
+describe('iconInvertsOnDark', () => {
+    it.each(['/employments/dsi.png', '/education/udemy_icon.svg'])(
+        'returns true for the dark-glyph icon %s',
+        (icon) => {
+            expect(iconInvertsOnDark(icon)).toBe(true);
+        },
+    );
+
+    it.each(['/employments/collibra.jpeg', '/education/naric.svg', ''])(
+        'returns undefined (not false) for a regular icon %s',
+        (icon) => {
+            expect(iconInvertsOnDark(icon)).toBeUndefined();
+        },
+    );
+});
+
+describe('iconFit', () => {
+    it.each(['/employments/dsi.png', '/employments/telnet.png', '/education/udemy_icon.svg', '/education/naric.svg'])(
+        'returns "contain" for the wide/tall mark %s',
+        (icon) => {
+            expect(iconFit(icon)).toBe('contain');
+        },
+    );
+
+    it.each(['/employments/collibra.jpeg', '/education/cvo_gent.png', ''])(
+        'returns undefined (not "cover") for a regular icon %s',
+        (icon) => {
+            expect(iconFit(icon)).toBeUndefined();
+        },
+    );
 });
 
 describe('currentDate', () => {

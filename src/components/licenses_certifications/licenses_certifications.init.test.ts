@@ -1,20 +1,22 @@
 import { describe, expect, it, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { useLicensesCertifications, useMonthYear } from './licenses_certifications.init';
-import { MONTHS } from '../../test-utils/i18n-fixtures';
+import { loadAllStrings } from '../../app/translations/resources';
 import { mockUseTranslation as mockTranslation } from '../../test-utils/mock-use-translation';
 
 vi.mock('react-i18next', () => ({ useTranslation: vi.fn() }));
 
+const strings = await loadAllStrings();
+
 describe('useMonthYear', () => {
     it('returns an empty string for a falsy date', () => {
-        mockTranslation(() => MONTHS);
+        mockTranslation((key: string) => strings('en', key));
         const { result } = renderHook(() => useMonthYear());
         expect(result.current('')).toBe('');
     });
 
     it('formats a date string as "Month Year"', () => {
-        mockTranslation(() => MONTHS);
+        mockTranslation((key: string) => strings('en', key));
         const { result } = renderHook(() => useMonthYear());
         expect(result.current('2025-02-10')).toBe('February 2025');
     });

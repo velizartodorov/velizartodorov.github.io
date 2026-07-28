@@ -1,14 +1,11 @@
 title: "Languages\_🌐"
 list:
   - label: English
-    icon: /header/speak.png
-    width: 27
+    icon: /languages/united_kingdom.webp
     proficiency: Professional working proficiency
   - label: Dutch
-    icon: /header/speak.png
-    width: 27
+    icon: /languages/netherlands.webp
     proficiency: Professional working proficiency
   - label: Bulgarian
-    icon: /header/speak.png
-    width: 27
+    icon: /languages/bulgaria.webp
     proficiency: Native

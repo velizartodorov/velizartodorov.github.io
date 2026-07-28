@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Certification, LicenseInstitution } from './license_certification';
-import { resolveDate } from '../common/utils';
+import { resolveDate, iconInvertsOnDark, iconFit } from '../common/utils';
 
 export function useMonthYear() {
     const { t } = useTranslation();
@@ -26,6 +26,8 @@ export function useLicensesCertifications(): LicenseInstitution[] {
     return list.map((group) => ({
         institution: group.institution ?? '',
         icon: group.icon ?? '',
+        invertOnDark: iconInvertsOnDark(group.icon ?? ''),
+        iconFit: iconFit(group.icon ?? ''),
         certifications: Array.isArray(group.certifications)
             ? group.certifications.map((c): Certification => ({
                   name: c.name ?? '',

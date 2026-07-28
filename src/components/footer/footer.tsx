@@ -3,7 +3,7 @@ import { useProfile } from '../profile/profile.init';
 import { useCurrentYear } from './utils';
 
 const COMMIT_SHA = process.env.NEXT_PUBLIC_COMMIT_SHA;
-const REPO_URL = 'https://github.com/velizartodorov/velizartodorov.github.io';
+export const REPO_URL = 'https://github.com/velizartodorov/velizartodorov.github.io';
 
 const Footer = () => {
     const { year } = useCurrentYear();

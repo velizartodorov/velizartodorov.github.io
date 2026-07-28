@@ -1,14 +1,36 @@
 import { FC } from 'react';
-
 import { useTranslation } from 'react-i18next';
-import { AccordionItem } from '../common/accordion';
 import ItemHeaderRow from '../common/item_header_row';
-import ItemTitle from '../common/item_title';
 import Markdown from '../common/markdown';
-import { Employment } from './employment';
+import { TimelineEntry } from '../common/timeline';
+import { TimelineRail, TimelineRow } from '../common/timeline_row';
+import { Employment, Position } from './employment';
 import { combinedPeriod, useDisplayPeriod } from './utils';
 
-const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> = ({ item, index, eventKey }) => {
+const PositionRow: FC<{
+    position: Position;
+    display: ReturnType<typeof useDisplayPeriod>['display'];
+    id: string;
+}> = ({ position, display, id }) => (
+    <TimelineRow
+        id={id}
+        header={
+            <div className="space-y-2">
+                <ItemHeaderRow
+                    title={position.position}
+                    place={position.place || undefined}
+                    period={display({
+                        start: new Date(position.period.start),
+                        end: position.period.end ? new Date(position.period.end) : undefined,
+                    })}
+                />
+                {position.description && <Markdown>{position.description}</Markdown>}
+            </div>
+        }
+    />
+);
+
+const EmploymentItem: FC<{ item: Employment; index: number }> = ({ item, index }) => {
     const { t } = useTranslation();
     const { display } = useDisplayPeriod();
     const positions = item.positions ?? [];
@@ -17,45 +39,50 @@ const EmploymentItem: FC<{ item: Employment; index: number; eventKey: string }> 
     const headerPeriod = combinedPeriod(positions);
     const at = t('common:period.at');
     const headerTitle = headerPosition ? `${headerPosition.position} ${at} ${item.company}` : '';
+    const hasMultiplePositions = positions.length > 1;
+    const hasContent = hasMultiplePositions || Boolean(headerPosition?.description) || Boolean(item.type);
 
-    const header = (
-        <ItemHeaderRow
-            icon={{ src: item.icon, alt: 'company icon', className: 'w-[30px] rounded-lg' }}
-            title={headerTitle}
-            place={headerPlace}
-            period={headerPeriod ? display(headerPeriod) : ''}
-        />
-    );
     return (
-        <AccordionItem eventKey={eventKey} header={header}>
-            <div
-                className={`before:bg-app-border relative space-y-7 pl-6 before:absolute before:inset-y-2 before:left-[9px] before:w-[2px] before:content-['']`}
-            >
-                {positions.map((position, posIdx) => {
-                    const showTitle = positions.length > 1;
-                    return (
-                        <div
-                            key={`${index}-${posIdx}`}
-                            className={`before:border-app-surface before:bg-app-accent relative before:absolute before:top-2 before:-left-5 before:size-3 before:rounded-full before:border-2 before:shadow-[0_0_0_1px_var(--app-accent)] before:transition-transform before:duration-200 before:content-[''] hover:before:scale-[1.15]`}
-                        >
-                            {showTitle && (
-                                <div className="mb-2 flex flex-col gap-1">
-                                    <ItemTitle>{`${position.position}`}</ItemTitle>
-                                    <div className="text-app-text-muted">
-                                        {display({
-                                            start: new Date(position.period.start),
-                                            end: position.period.end ? new Date(position.period.end) : undefined,
-                                        })}
-                                    </div>
-                                </div>
-                            )}
-                            {position.description && <Markdown>{position.description}</Markdown>}
-                        </div>
-                    );
-                })}
-            </div>
-            {item.type && <div className="mt-3">{`🏢 ${t('common:companyType')}: ${item.type}`}</div>}
-        </AccordionItem>
+        <TimelineEntry
+            id={String(index)}
+            icon={{
+                src: item.icon,
+                alt: `${item.company} logo`,
+                invertOnDark: item.invertOnDark,
+                fit: item.iconFit,
+            }}
+            header={
+                <ItemHeaderRow
+                    title={headerTitle}
+                    place={headerPlace}
+                    period={headerPeriod ? display(headerPeriod) : ''}
+                />
+            }
+        >
+            {hasContent && (
+                <>
+                    {hasMultiplePositions ? (
+                        <TimelineRail className="space-y-7">
+                            {positions.map((position, posIdx) => (
+                                <PositionRow
+                                    key={`${index}-${posIdx}`}
+                                    id={String(posIdx)}
+                                    position={position}
+                                    display={display}
+                                />
+                            ))}
+                        </TimelineRail>
+                    ) : (
+                        headerPosition?.description && (
+                            <div className="mt-3">
+                                <Markdown>{headerPosition.description}</Markdown>
+                            </div>
+                        )
+                    )}
+                    {item.type && <div className="mt-3">{`🏢 ${t('common:companyType')}: ${item.type}`}</div>}
+                </>
+            )}
+        </TimelineEntry>
     );
 };
 

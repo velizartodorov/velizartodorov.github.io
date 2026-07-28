@@ -1,15 +1,15 @@
 import { useTranslation } from 'react-i18next';
-import AccordionWrapper from '../common/accordion_wrapper';
+import Section from '../common/section';
 import { Properties } from '../common/properties';
 import { useFormatBody } from './utils';
 
-const Introduction = ({ className, eventKey }: Properties) => {
+const Introduction = ({ className, id }: Properties) => {
     const { t } = useTranslation();
     const body = useFormatBody(t('introduction:body', { returnObjects: true }));
     return (
-        <AccordionWrapper title={t('introduction:title')} eventKey={eventKey} className={className}>
+        <Section title={t('introduction:title')} className={className} id={id}>
             {body}
-        </AccordionWrapper>
+        </Section>
     );
 };
 
