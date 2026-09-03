@@ -10,6 +10,8 @@ export interface Position {
 export interface Employment {
     company: string;
     icon: string;
+    invertOnDark?: boolean;
+    iconFit?: 'contain';
     type: string;
     positions: Array<Position>;
 }

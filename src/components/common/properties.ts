@@ -4,6 +4,6 @@ export interface Properties {
     title?: string;
     children?: ReactNode;
     className?: string;
-    eventKey?: string;
     language?: string;
+    id?: string;
 }

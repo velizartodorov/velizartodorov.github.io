@@ -1,11 +1,14 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { act, renderHook } from '@testing-library/react';
-import { useTheme } from './theme';
+import { THEME_ATTR, THEME_STORAGE_KEY, THEME_SWITCHING_CLASS, THEME_TRANSITION_MS, useTheme } from './theme';
 import { mockMatchMedia } from '../../test-utils/mock-match-media';
+
+const readAppliedTheme = () => document.documentElement.getAttribute(THEME_ATTR);
+const applyTheme = (theme: string) => document.documentElement.setAttribute(THEME_ATTR, theme);
 
 beforeEach(() => {
     localStorage.clear();
-    delete document.documentElement.dataset.bsTheme;
+    document.documentElement.removeAttribute(THEME_ATTR);
 });
 
 afterEach(() => {
@@ -15,7 +18,7 @@ afterEach(() => {
 
 describe('useTheme', () => {
     it('syncs to the theme already applied to the document (set by the FOUC-prevention script)', () => {
-        document.documentElement.dataset.bsTheme = 'dark';
+        applyTheme('dark');
         mockMatchMedia(false);
 
         const { result } = renderHook(() => useTheme());
@@ -32,7 +35,7 @@ describe('useTheme', () => {
     });
 
     it('does not listen for OS theme changes when a theme is already stored', () => {
-        localStorage.setItem('theme', 'dark');
+        localStorage.setItem(THEME_STORAGE_KEY, 'dark');
         const { mql } = mockMatchMedia(false);
 
         renderHook(() => useTheme());
@@ -48,11 +51,11 @@ describe('useTheme', () => {
         act(() => fireChange(true));
 
         expect(result.current.theme).toBe('dark');
-        expect(document.documentElement.dataset.bsTheme).toBe('dark');
+        expect(readAppliedTheme()).toBe('dark');
     });
 
     it('follows OS theme changes to light when no theme is stored', () => {
-        document.documentElement.dataset.bsTheme = 'dark';
+        applyTheme('dark');
         const { fireChange } = mockMatchMedia(false);
 
         const { result } = renderHook(() => useTheme());
@@ -60,7 +63,7 @@ describe('useTheme', () => {
         act(() => fireChange(false));
 
         expect(result.current.theme).toBe('light');
-        expect(document.documentElement.dataset.bsTheme).toBe('light');
+        expect(readAppliedTheme()).toBe('light');
     });
 
     it('ignores a subsequent OS preference change once the user has explicitly toggled', () => {
@@ -103,18 +106,18 @@ describe('useTheme', () => {
         act(() => result.current.toggle());
 
         expect(result.current.theme).toBe('dark');
-        expect(document.documentElement.dataset.bsTheme).toBe('dark');
-        expect(localStorage.getItem('theme')).toBe('dark');
-        expect(document.documentElement.classList.contains('theme-switching')).toBe(true);
+        expect(readAppliedTheme()).toBe('dark');
+        expect(localStorage.getItem(THEME_STORAGE_KEY)).toBe('dark');
+        expect(document.documentElement.classList.contains(THEME_SWITCHING_CLASS)).toBe(true);
 
-        act(() => vi.advanceTimersByTime(300));
+        act(() => vi.advanceTimersByTime(THEME_TRANSITION_MS));
 
-        expect(document.documentElement.classList.contains('theme-switching')).toBe(false);
+        expect(document.documentElement.classList.contains(THEME_SWITCHING_CLASS)).toBe(false);
         vi.useRealTimers();
     });
 
     it('toggle() back to light works and ignores a localStorage write failure', () => {
-        document.documentElement.dataset.bsTheme = 'dark';
+        applyTheme('dark');
         mockMatchMedia(false);
         vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
             throw new Error('quota exceeded');
@@ -124,6 +127,6 @@ describe('useTheme', () => {
         act(() => result.current.toggle());
 
         expect(result.current.theme).toBe('light');
-        expect(document.documentElement.dataset.bsTheme).toBe('light');
+        expect(readAppliedTheme()).toBe('light');
     });
 });

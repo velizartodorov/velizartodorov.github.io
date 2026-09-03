@@ -8,5 +8,7 @@ export interface Certification {
 export interface LicenseInstitution {
     institution: string;
     icon: string;
+    invertOnDark?: boolean;
+    iconFit?: 'contain';
     certifications: Certification[];
 }

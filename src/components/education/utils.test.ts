@@ -1,14 +1,17 @@
 import { describe, expect, it, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { useDisplayPeriod } from './utils';
-import { MONTHS, PERIOD_LANG } from '../../test-utils/i18n-fixtures';
+import { loadAllStrings } from '../../app/translations/resources';
 import { mockUseTranslation } from '../../test-utils/mock-use-translation';
 import { period } from '../../test-utils/period-fixtures';
 
 vi.mock('react-i18next', () => ({ useTranslation: vi.fn() }));
 
+const strings = await loadAllStrings();
+const MONTHS = strings('en', 'common:months') as string[];
+
 function mockTranslation() {
-    mockUseTranslation((key: string) => (key === 'common:months' ? MONTHS : PERIOD_LANG));
+    mockUseTranslation((key: string) => strings('en', key));
 }
 
 describe('useDisplayPeriod (education)', () => {

@@ -1,17 +1,7 @@
 import { Period } from './period';
 
-// Minimal shape actually needed from react-i18next's `t` — avoids fighting i18next's generic
-// TFunction typing across the several differently-namespaced `useTranslation()` call sites that
-// call into this.
 type Translate = (key: string, options: { ns: string }) => unknown;
 
-// `dates.json` values are injected into other translation strings as literal
-// "{{dates:some_key}}" placeholders (not i18next's own $t()-based nesting syntax), so they need
-// resolving against the 'dates' namespace explicitly here. Must be resolved through the caller's
-// own `t` (i.e. the active per-page i18next instance obtained via useTranslation()) rather than
-// a module-level import of the raw i18next package: each page/language now uses its own cloned,
-// isolated instance (see src/app/translations/i18n.ts), and the base i18next singleton never has any resources
-// registered on it directly.
 export function resolveDate(dateStr: string, t: Translate): string {
     if (!dateStr) return '';
     const match = new RegExp(/^\{\{\s*dates:([\w-]+)\s*}}$/).exec(dateStr);
@@ -30,6 +20,23 @@ export function parsePeriod(period: Period, t: Translate) {
         start: startStr ? new Date(startStr) : new Date(0),
         end: endStr ? new Date(endStr) : undefined,
     };
+}
+
+const DARK_GLYPH_ICONS = new Set(['/employments/dsi.png', '/education/udemy_icon.svg']);
+
+export function iconInvertsOnDark(icon: string): true | undefined {
+    return DARK_GLYPH_ICONS.has(icon) ? true : undefined;
+}
+
+const CONTAIN_FIT_ICONS = new Set([
+    '/employments/dsi.png',
+    '/employments/telnet.png',
+    '/education/udemy_icon.svg',
+    '/education/naric.svg',
+]);
+
+export function iconFit(icon: string): 'contain' | undefined {
+    return CONTAIN_FIT_ICONS.has(icon) ? 'contain' : undefined;
 }
 
 export function currentDate(): Date {

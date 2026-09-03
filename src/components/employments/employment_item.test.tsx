@@ -1,26 +1,29 @@
 import { describe, expect, it, vi } from 'vitest';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import EmploymentItem from './employment_item';
 import { Employment } from './employment';
-import { MONTHS, PERIOD_LANG } from '../../test-utils/i18n-fixtures';
+import { loadAllStrings } from '../../app/translations/resources';
 import { mockUseTranslation } from '../../test-utils/mock-use-translation';
-import { renderInAccordion } from '../../test-utils/render-in-accordion';
+import { mockIntersectionObserver } from '../../test-utils/mock-intersection-observer';
+import { mockMatchMedia } from '../../test-utils/mock-match-media';
+import { renderInTimeline } from '../../test-utils/render-in-timeline';
 import { employment, multiPositionEmployment, singlePositionEmployment } from '../../test-utils/employment-fixtures';
+import { CHEVRON_TOGGLE_LABEL } from '../common/chevron_toggle_button';
 
 vi.mock('react-i18next', () => ({ useTranslation: vi.fn() }));
 
+const strings = await loadAllStrings();
+const companyType = String(strings('en', 'common:companyType'));
+
 function mockTranslation() {
-    mockUseTranslation((key: string) => {
-        if (key === 'common:months') return MONTHS;
-        if (key === 'common:period') return PERIOD_LANG;
-        if (key === 'common:period.at') return 'at';
-        if (key === 'common:companyType') return 'Type';
-        return key;
-    });
+    mockUseTranslation((key: string) => strings('en', key));
 }
 
 function renderItem(item: Employment) {
-    return renderInAccordion(<EmploymentItem item={item} index={0} eventKey="0" />);
+    mockIntersectionObserver();
+    mockMatchMedia();
+    return renderInTimeline(<EmploymentItem item={item} index={0} />);
 }
 
 describe('EmploymentItem', () => {
@@ -30,7 +33,7 @@ describe('EmploymentItem', () => {
 
         expect(screen.getByText(/Engineer at Acme/)).toBeInTheDocument();
         expect(screen.getByText(/Did engineering things/)).toBeInTheDocument();
-        expect(screen.getByText(/Type: Full-time/)).toBeInTheDocument();
+        expect(screen.getByText(new RegExp(`${companyType}: Full-time`))).toBeInTheDocument();
         // Single position: no separate per-position title is rendered.
         expect(screen.queryByText('Engineer', { selector: 'h3, h4, h5, h6' })).not.toBeInTheDocument();
     });
@@ -42,14 +45,14 @@ describe('EmploymentItem', () => {
         expect(screen.getByText('Engineer')).toBeInTheDocument();
         expect(screen.getByText('Senior Engineer')).toBeInTheDocument();
         expect(screen.getByText(/Led a team/)).toBeInTheDocument();
-        expect(screen.queryByText(/Type:/)).not.toBeInTheDocument();
+        expect(screen.queryByText(new RegExp(`${companyType}:`))).not.toBeInTheDocument();
     });
 
     it('renders an empty positions list without crashing', () => {
         mockTranslation();
         renderItem(employment({ company: 'Acme' }));
 
-        expect(screen.getByRole('button')).toBeInTheDocument();
+        expect(screen.getAllByRole('button').length).toBeGreaterThan(0);
     });
 
     it('defaults to an empty positions list when positions is missing entirely', () => {
@@ -58,6 +61,35 @@ describe('EmploymentItem', () => {
         // fills that in, so this one case is a raw literal on purpose.
         renderItem({ company: 'Acme', icon: '', type: '' } as unknown as Employment);
 
-        expect(screen.getByRole('button')).toBeInTheDocument();
+        expect(screen.getAllByRole('button').length).toBeGreaterThan(0);
+    });
+
+    it("renders only the entry's own chevron toggle for a single position, with no internal timeline", () => {
+        mockTranslation();
+        renderItem(singlePositionEmployment());
+
+        // Single position: no nested TimelineRail/TimelineRow, so no per-position chevron.
+        expect(screen.getAllByRole('button', { name: CHEVRON_TOGGLE_LABEL.closed })).toHaveLength(1);
+    });
+
+    it("renders only the entry's own chevron toggle, since position rows have no separate collapse", () => {
+        mockTranslation();
+        renderItem(multiPositionEmployment());
+
+        // 1 for the entry itself - each position's description is part of its row's always-visible
+        // header now, not collapsible content, so no per-position chevron.
+        expect(screen.getAllByRole('button', { name: CHEVRON_TOGGLE_LABEL.closed })).toHaveLength(1);
+    });
+
+    it("the entry's chevron pins its own header open, revealing all position rows immediately", async () => {
+        mockTranslation();
+        renderItem(multiPositionEmployment());
+
+        const entryChevron = screen.getByRole('button', { name: CHEVRON_TOGGLE_LABEL.closed });
+        await userEvent.click(entryChevron);
+
+        expect(screen.getByRole('button', { name: CHEVRON_TOGGLE_LABEL.open })).toBeInTheDocument();
+        expect(screen.getByText('Engineer')).toBeInTheDocument();
+        expect(screen.getByText('Senior Engineer')).toBeInTheDocument();
     });
 });

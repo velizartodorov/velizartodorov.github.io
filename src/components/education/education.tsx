@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next';
-import AccordionWrapper from '../common/accordion_wrapper';
-import { AccordionGroup } from '../common/accordion';
+import Section from '../common/section';
+import { Timeline } from '../common/timeline';
 import { SectionProps } from '../common/section_props';
 import { parsePeriod } from '../common/utils';
 import EducationItem from './education_item';
 import { IEducation } from './education.init';
 
-const Education = ({ className, eventKey }: Omit<SectionProps, 'title'>) => {
+const Education = ({ className, id }: Omit<SectionProps, 'title'>) => {
     const { t } = useTranslation();
     const title = t('education:title');
     const list = t('education:list', { returnObjects: true }) as IEducation[];
@@ -17,13 +17,13 @@ const Education = ({ className, eventKey }: Omit<SectionProps, 'title'>) => {
           }))
         : [];
     return (
-        <AccordionWrapper title={title} eventKey={eventKey} className={className}>
-            <AccordionGroup className="space-y-1">
+        <Section title={title} className={className} id={id}>
+            <Timeline>
                 {educations.map((item, index) => (
                     <EducationItem item={item} index={index} key={index.valueOf()} />
                 ))}
-            </AccordionGroup>
-        </AccordionWrapper>
+            </Timeline>
+        </Section>
     );
 };
 
