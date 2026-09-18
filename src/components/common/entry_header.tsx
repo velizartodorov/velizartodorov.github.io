@@ -22,20 +22,24 @@ export const EntryHeader: FC<{
     revealed: boolean;
     toggle: () => void;
     children: ReactNode;
-}> = ({ collapsible, boxed = collapsible, revealed, toggle, children }) => (
-    <div
-        {...(collapsible ? revealTriggerProps(toggle, revealed) : {})}
-        className={`relative py-2 pr-8 pl-3 transition-[filter,border-radius] duration-300 ${
-            boxed ? `${ACCORDION_HEADER_BASE} ${collapsible ? 'cursor-pointer' : ''}` : ''
-        } ${collapsible && revealed ? 'rounded-t-lg' : 'rounded-lg'}`}
-    >
-        {children}
-        {collapsible && (
-            <ChevronToggleButton
-                open={revealed}
-                onToggle={toggle}
-                className="absolute top-1/2 right-2 z-10 -translate-y-1/2"
-            />
-        )}
-    </div>
-);
+}> = ({ collapsible, boxed = collapsible, revealed, toggle, children }) => {
+    const boxClassName = boxed ? ACCORDION_HEADER_BASE : '';
+    const cursorClassName = boxed && collapsible ? 'cursor-pointer' : '';
+    const roundedClassName = collapsible && revealed ? 'rounded-t-lg' : 'rounded-lg';
+
+    return (
+        <div
+            {...(collapsible ? revealTriggerProps(toggle, revealed) : {})}
+            className={`relative py-2 pr-8 pl-3 transition-[filter,border-radius] duration-300 ${boxClassName} ${cursorClassName} ${roundedClassName}`}
+        >
+            {children}
+            {collapsible && (
+                <ChevronToggleButton
+                    open={revealed}
+                    onToggle={toggle}
+                    className="absolute top-1/2 right-2 z-10 -translate-y-1/2"
+                />
+            )}
+        </div>
+    );
+};
