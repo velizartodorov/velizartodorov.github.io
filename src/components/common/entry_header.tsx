@@ -30,7 +30,7 @@ export const EntryHeader: FC<{
     return (
         <div
             {...(collapsible ? revealTriggerProps(toggle, revealed) : {})}
-            className={`relative py-2 pr-8 pl-3 transition-[filter,border-radius] duration-300 ${boxClassName} ${cursorClassName} ${roundedClassName}`}
+            className={`relative py-2 pr-8 pl-3 transition-all duration-300 ${boxClassName} ${cursorClassName} ${roundedClassName}`}
         >
             {children}
             {collapsible && (
