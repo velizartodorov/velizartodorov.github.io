@@ -4,6 +4,8 @@ import { I18nextProvider } from 'react-i18next';
 import Presentations from './presentations';
 import { createLangInstance } from '../../app/translations/i18n';
 import { loadResources } from '../../app/translations/resources';
+import { mockIntersectionObserver } from '../../test-utils/mock-intersection-observer';
+import { mockMatchMedia } from '../../test-utils/mock-match-media';
 
 let enResources: Awaited<ReturnType<typeof loadResources>>;
 
@@ -13,16 +15,19 @@ beforeAll(async () => {
 
 describe('Presentations', () => {
     it('renders the section title and each presentation as a link', () => {
+        mockIntersectionObserver();
+        mockMatchMedia();
         const instance = createLangInstance('en', enResources);
         render(
             <I18nextProvider i18n={instance}>
-                <Presentations eventKey="3" />
+                <Presentations />
             </I18nextProvider>,
         );
 
         expect(screen.getByRole('heading', { level: 4, name: /Presentations/ })).toBeInTheDocument();
 
-        const link = screen.getByRole('link', { name: /Git workflows presentation/ });
-        expect(link).toHaveAttribute('href', 'https://www.slideshare.net/slideshow/git-workflows-256351424/256351424');
+        const [firstPresentation] = enResources.presentations.list;
+        const link = screen.getByRole('link', { name: new RegExp(firstPresentation.name) });
+        expect(link).toHaveAttribute('href', firstPresentation.link);
     });
 });

@@ -11,8 +11,6 @@ export function useProfile(): Profile {
         address: t('profile:address', { returnObjects: true }) as Link,
         drivingLicense: t('profile:drivingLicense', { returnObjects: true }) as Link,
         linkedIn: t('profile:linkedIn', { returnObjects: true }) as Link,
-        // These icon assets are dark-on-transparent glyphs (not language-dependent), so they
-        // need inverting in dark mode regardless of translation content.
         gitHub: {
             ...(t('profile:gitHub', { returnObjects: true }) as Link),
             invertInDarkMode: true,

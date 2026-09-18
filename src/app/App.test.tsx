@@ -3,6 +3,8 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { PortfolioApp } from './App';
 import { useLangSwitch } from './translations/lang-switch-context';
+import { LANGUAGE_LABEL } from './translations/language_selector';
+import type { Language } from './translations/languages';
 import { loadLanguage } from './translations/i18n';
 import { loadResources } from './translations/resources';
 
@@ -14,7 +16,7 @@ beforeAll(async () => {
     nlResources = await loadResources('nl');
 });
 
-function resourcesFor(lang: 'en' | 'nl') {
+function resourcesFor(lang: Language) {
     return lang === 'en' ? enResources : nlResources;
 }
 
@@ -47,6 +49,9 @@ vi.mock('../components/languages/languages', () => ({ default: () => null }));
 vi.mock('../components/education/education', () => ({ default: () => null }));
 // jsdom doesn't implement window.matchMedia; the theme toggle isn't under test here.
 vi.mock('../components/header/theme_toggle', () => ({ default: () => null }));
+// jsdom doesn't implement IntersectionObserver; Nav's scrollspy isn't under test here (see
+// src/components/nav/nav.test.tsx and use_active_section.test.ts).
+vi.mock('../components/nav/nav', () => ({ default: () => null }));
 
 afterEach(() => {
     document.documentElement.lang = 'en';
@@ -56,7 +61,7 @@ describe('PortfolioApp', () => {
     it('renders English content and sets document.documentElement.lang', () => {
         render(<PortfolioApp initialLang="en" initialResources={enResources} />);
         expect(document.documentElement.lang).toBe('en');
-        expect(screen.getByRole('heading', { level: 2, name: 'Velizar Todorov' })).toBeInTheDocument();
+        expect(screen.getByRole('heading', { level: 2, name: enResources.profile.name })).toBeInTheDocument();
     });
 
     it('renders Dutch content and sets document.documentElement.lang', () => {
@@ -70,7 +75,7 @@ describe('language switching', () => {
         const replaceStateSpy = vi.spyOn(window.history, 'replaceState');
         render(<PortfolioApp initialLang="en" initialResources={enResources} />);
 
-        await userEvent.click(screen.getByRole('button', { name: 'NL' }));
+        await userEvent.click(screen.getByRole('button', { name: LANGUAGE_LABEL.nl }));
 
         // Switching lazy-loads the other language's data via a dynamic import, so the update
         // lands a tick or two after the click resolves rather than perfectly synchronously.
@@ -83,7 +88,7 @@ describe('language switching', () => {
         const replaceStateSpy = vi.spyOn(window.history, 'replaceState');
         render(<PortfolioApp initialLang="nl" initialResources={nlResources} />);
 
-        await userEvent.click(screen.getByRole('button', { name: 'EN' }));
+        await userEvent.click(screen.getByRole('button', { name: LANGUAGE_LABEL.en }));
 
         await waitFor(() => expect(document.documentElement.lang).toBe('en'));
         expect(replaceStateSpy).toHaveBeenCalledWith(null, '', '/');
@@ -92,12 +97,12 @@ describe('language switching', () => {
 
     it('marks the NL button pressed when the initial language is nl', () => {
         render(<PortfolioApp initialLang="nl" initialResources={nlResources} />);
-        expect(screen.getByRole('button', { name: 'NL' })).toHaveAttribute('aria-pressed', 'true');
+        expect(screen.getByRole('button', { name: LANGUAGE_LABEL.nl })).toHaveAttribute('aria-pressed', 'true');
     });
 
     it('marks the EN button pressed when the initial language is en', () => {
         render(<PortfolioApp initialLang="en" initialResources={enResources} />);
-        expect(screen.getByRole('button', { name: 'EN' })).toHaveAttribute('aria-pressed', 'true');
+        expect(screen.getByRole('button', { name: LANGUAGE_LABEL.en })).toHaveAttribute('aria-pressed', 'true');
     });
 });
 
@@ -117,7 +122,7 @@ describe('language switching performance', () => {
 
         for (const target of targets) {
             const start = performance.now();
-            await userEvent.click(screen.getByRole('button', { name: target.toUpperCase() }));
+            await userEvent.click(screen.getByRole('button', { name: LANGUAGE_LABEL[target] }));
             await waitFor(() => expect(document.documentElement.lang).toBe(target));
             samples.push(performance.now() - start);
         }
@@ -221,7 +226,7 @@ describe('language switching no-op', () => {
         await waitFor(() => expect(loadLanguage).toHaveBeenCalled());
         vi.mocked(loadLanguage).mockClear();
 
-        await userEvent.click(screen.getByRole('button', { name: 'EN' }));
+        await userEvent.click(screen.getByRole('button', { name: LANGUAGE_LABEL.en }));
 
         expect(document.documentElement.lang).toBe('en');
         expect(loadLanguage).not.toHaveBeenCalled();
@@ -238,7 +243,7 @@ describe('language switch failure', () => {
         await waitFor(() => expect(loadLanguage).toHaveBeenCalled());
         vi.mocked(loadLanguage).mockRejectedValueOnce(new Error('boom'));
 
-        await userEvent.click(screen.getByRole('button', { name: 'NL' }));
+        await userEvent.click(screen.getByRole('button', { name: LANGUAGE_LABEL.nl }));
 
         await waitFor(() =>
             expect(consoleError).toHaveBeenCalledWith('Failed to switch language to "nl":', expect.any(Error)),
@@ -247,7 +252,7 @@ describe('language switch failure', () => {
 
         // The failed switch must roll back its target-language guard so an immediate retry isn't
         // silently swallowed by the "already switching to this language" early return.
-        await userEvent.click(screen.getByRole('button', { name: 'NL' }));
+        await userEvent.click(screen.getByRole('button', { name: LANGUAGE_LABEL.nl }));
         await waitFor(() => expect(document.documentElement.lang).toBe('nl'));
 
         consoleError.mockRestore();
@@ -261,9 +266,9 @@ describe('language switch failure', () => {
         vi.mocked(loadLanguage).mockImplementationOnce(() => pendingLoad);
 
         // Click NL: its loadLanguage() call hangs on pendingLoad until resolved below.
-        await userEvent.click(screen.getByRole('button', { name: 'NL' }));
+        await userEvent.click(screen.getByRole('button', { name: LANGUAGE_LABEL.nl }));
         // Before that resolves, click EN — this supersedes the in-flight NL switch.
-        await userEvent.click(screen.getByRole('button', { name: 'EN' }));
+        await userEvent.click(screen.getByRole('button', { name: LANGUAGE_LABEL.en }));
 
         await waitFor(() => expect(document.documentElement.lang).toBe('en'));
 
@@ -285,10 +290,10 @@ describe('language switch failure', () => {
         vi.mocked(loadLanguage).mockImplementationOnce(() => pendingLoad);
 
         // Click NL: its loadLanguage() call hangs on pendingLoad until rejected below.
-        await userEvent.click(screen.getByRole('button', { name: 'NL' }));
+        await userEvent.click(screen.getByRole('button', { name: LANGUAGE_LABEL.nl }));
         // Before that settles, click EN — this supersedes the in-flight NL switch and claims
         // targetLangRef for itself.
-        await userEvent.click(screen.getByRole('button', { name: 'EN' }));
+        await userEvent.click(screen.getByRole('button', { name: LANGUAGE_LABEL.en }));
 
         await waitFor(() => expect(document.documentElement.lang).toBe('en'));
 
@@ -301,5 +306,99 @@ describe('language switch failure', () => {
         expect(document.documentElement.lang).toBe('en');
 
         consoleError.mockRestore();
+    });
+});
+
+describe('initial section scroll', () => {
+    it('scrolls the target section into view on mount when initialSection is given', () => {
+        const el = document.createElement('div');
+        el.id = 'employments';
+        el.scrollIntoView = vi.fn();
+        document.body.appendChild(el);
+
+        render(<PortfolioApp initialLang="en" initialResources={enResources} initialSection="employments" />);
+
+        expect(el.scrollIntoView).toHaveBeenCalledWith({ block: 'start' });
+        el.remove();
+    });
+
+    it('does not scroll when no initialSection is given', () => {
+        const el = document.createElement('div');
+        el.id = 'employments';
+        el.scrollIntoView = vi.fn();
+        document.body.appendChild(el);
+
+        render(<PortfolioApp initialLang="en" initialResources={enResources} />);
+
+        expect(el.scrollIntoView).not.toHaveBeenCalled();
+        el.remove();
+    });
+});
+
+describe('browser back/forward after in-page nav clicks', () => {
+    afterEach(() => {
+        window.history.pushState({}, '', '/');
+    });
+
+    it('scrolls to the section indicated by the URL on a popstate event', () => {
+        const el = document.createElement('div');
+        el.id = 'employments';
+        el.scrollIntoView = vi.fn();
+        document.body.appendChild(el);
+
+        render(<PortfolioApp initialLang="en" initialResources={enResources} />);
+
+        // Simulate the browser restoring a prior history entry (e.g. the user pressing Back)
+        // after Nav's handleClick had pushed /employments/ onto the history stack.
+        window.history.pushState({}, '', '/employments/');
+        window.dispatchEvent(new PopStateEvent('popstate'));
+
+        expect(el.scrollIntoView).toHaveBeenCalledWith({ block: 'start' });
+        el.remove();
+    });
+
+    it('scrolls to the introduction when popstate reverts to a URL with no section', () => {
+        const el = document.createElement('div');
+        el.id = 'introduction';
+        el.scrollIntoView = vi.fn();
+        document.body.appendChild(el);
+
+        render(<PortfolioApp initialLang="en" initialResources={enResources} />);
+
+        window.history.pushState({}, '', '/');
+        window.dispatchEvent(new PopStateEvent('popstate'));
+
+        expect(el.scrollIntoView).toHaveBeenCalledWith({ block: 'start' });
+        el.remove();
+    });
+});
+
+describe('language switching preserves the current section', () => {
+    afterEach(() => {
+        window.history.pushState({}, '', '/');
+    });
+
+    it('keeps the section slug when switching from an English section page to Dutch', async () => {
+        window.history.pushState({}, '', '/employments/');
+        const replaceStateSpy = vi.spyOn(window.history, 'replaceState');
+        render(<PortfolioApp initialLang="en" initialResources={enResources} />);
+
+        await userEvent.click(screen.getByRole('button', { name: LANGUAGE_LABEL.nl }));
+
+        await waitFor(() => expect(document.documentElement.lang).toBe('nl'));
+        expect(replaceStateSpy).toHaveBeenCalledWith(null, '', '/nl/employments/');
+        replaceStateSpy.mockRestore();
+    });
+
+    it('keeps the section slug when switching from a Dutch section page to English', async () => {
+        window.history.pushState({}, '', '/nl/employments/');
+        const replaceStateSpy = vi.spyOn(window.history, 'replaceState');
+        render(<PortfolioApp initialLang="nl" initialResources={nlResources} />);
+
+        await userEvent.click(screen.getByRole('button', { name: LANGUAGE_LABEL.en }));
+
+        await waitFor(() => expect(document.documentElement.lang).toBe('en'));
+        expect(replaceStateSpy).toHaveBeenCalledWith(null, '', '/employments/');
+        replaceStateSpy.mockRestore();
     });
 });

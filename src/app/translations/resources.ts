@@ -1,22 +1,13 @@
-import type { Language } from './i18n';
+import { type Language, LANGUAGES } from './languages';
 import { buildLanguageResources } from './build-resources';
 import { EDUCATION_FILES, EMPLOYMENT_FILES, type EducationFile, type EmploymentFile } from './resource-files';
 import dates from './dates.yml';
 
-// en/ and nl/ mirror each other file-for-file, so rather than one static-import list per
-// language, each yaml/markdown file is fetched through a dynamic import() templated on `lang`.
-// Webpack/Turbopack resolve the enumerable set of possible paths (2 languages x N known file
-// names) into separate per-file chunks, so a page still only downloads the one language's
-// content it actually renders (verified via `npm run build` - each language's data lands in its
-// own chunk, not both).
 async function importYaml(lang: Language, name: string): Promise<any> {
     const mod = await import(`./${lang}/${name}.yml`);
     return mod.default;
 }
 
-// The ".md" suffix must stay literal in the template (not folded into the interpolated `file`
-// value) - bundlers that resolve dynamic import() expressions with variables (e.g. Vite's
-// dynamic-import-vars) require the extension to be part of the static text, not the variable.
 async function importEmployment(lang: Language, file: EmploymentFile): Promise<any> {
     const mod = await import(`./${lang}/employments/${file.replace(/\.md$/, '')}.md`);
     return mod.default;
@@ -68,4 +59,22 @@ export async function loadResources(lang: Language) {
         profile,
         dates,
     });
+}
+
+export type Strings = (lang: Language, key: string) => unknown;
+
+export async function loadAllStrings(): Promise<Strings> {
+    const entries = await Promise.all(LANGUAGES.map(async (lang) => [lang, await loadResources(lang)] as const));
+    const byLang = Object.fromEntries(entries) as Record<Language, Awaited<ReturnType<typeof loadResources>>>;
+
+    return (lang, key) => {
+        const colon = key.indexOf(':');
+        const namespace = colon === -1 ? key : key.slice(0, colon);
+        const dottedPath = colon === -1 ? '' : key.slice(colon + 1);
+        const root = (byLang[lang] as Record<string, unknown>)[namespace];
+        if (dottedPath === '') return root;
+        return dottedPath
+            .split('.')
+            .reduce<unknown>((node, part) => (node as Record<string, unknown> | undefined)?.[part], root);
+    };
 }

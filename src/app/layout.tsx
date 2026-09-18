@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import Script from 'next/script';
 import '../index.css';
+import { SITE_URL } from './metadata';
+import { THEME_ATTR, THEME_STORAGE_KEY } from '../components/header/theme_constants';
 
 const GA_MEASUREMENT_ID = 'G-LQLRCX9MKL';
 
@@ -11,8 +13,6 @@ const inter = Inter({
     variable: '--font-sans-loaded',
     display: 'swap',
 });
-
-const SITE_URL = 'https://velizartodorov.github.io';
 
 export const metadata: Metadata = {
     title: 'Velizar Todorov',
@@ -29,28 +29,21 @@ export const viewport: Viewport = {
     initialScale: 1,
 };
 
-// Sets data-bs-theme before hydration/paint to avoid a flash of the wrong theme.
 const THEME_INIT_SCRIPT = `
 (function () {
   try {
-    var stored = localStorage.getItem('theme');
+    var stored = localStorage.getItem('${THEME_STORAGE_KEY}');
     var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     var theme = stored || (prefersDark ? 'dark' : 'light');
-    document.documentElement.setAttribute('data-bs-theme', theme);
+    document.documentElement.setAttribute('${THEME_ATTR}', theme);
   } catch (e) {
-    document.documentElement.setAttribute('data-bs-theme', 'light');
+    document.documentElement.setAttribute('${THEME_ATTR}', 'light');
   }
 })();
 `;
 
-// Doesn't need Tailwind's build-time processing (plain custom properties and keyframes),
-// so it lives here instead of in index.css: the light/dark palette, the theme-switch
-// transition (fades backgrounds/borders uniformly; text color snaps instantly to avoid the
-// low-contrast midtone "blink"), and the language-switch fade-in (scoped to text-bearing
-// tags rather than every descendant, so only the translated content itself dissolves).
 const GLOBAL_STYLES = `
 :root {
-  /* GitHub Primer light palette */
   --app-bg: #ffffff;
   --app-surface: #ffffff;
   --app-surface-alt: #f6f8fa;
@@ -67,7 +60,6 @@ const GLOBAL_STYLES = `
 }
 
 [data-bs-theme='dark'] {
-  /* GitHub Primer dark palette */
   --app-bg: #0d1117;
   --app-surface: #161b22;
   --app-surface-alt: #21262d;
@@ -107,13 +99,17 @@ const GLOBAL_STYLES = `
 .fade-in-text :is(h1, h2, h3, h4, h5, h6, p, span, a, li) {
   animation: fade-in 0.1s ease-in-out;
 }
+
+body[data-nav-menu-open] [data-chevron-toggle] {
+  visibility: hidden;
+}
 `;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
         <html lang="en" className={inter.variable} suppressHydrationWarning>
             <body
-                className="text-app-text bg-app-bg font-sans [font-feature-settings:'cv11','ss01'] tracking-[-0.01em] antialiased transition-colors duration-200 ease-in-out"
+                className="text-app-text bg-app-bg font-sans font-features-['cv11','ss01'] tracking-[-0.01em] antialiased transition-colors duration-200 ease-in-out"
                 suppressHydrationWarning
             >
                 <style>{GLOBAL_STYLES}</style>

@@ -1,24 +1,33 @@
 import { describe, expect, it, vi } from 'vitest';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import LicenseCertificationItem from './license_certification_item';
 import { LicenseInstitution } from './license_certification';
-import { MONTHS } from '../../test-utils/i18n-fixtures';
+import { loadAllStrings } from '../../app/translations/resources';
 import { mockUseTranslation } from '../../test-utils/mock-use-translation';
-import { renderInAccordion } from '../../test-utils/render-in-accordion';
+import { mockIntersectionObserver } from '../../test-utils/mock-intersection-observer';
+import { mockMatchMedia } from '../../test-utils/mock-match-media';
+import { renderInTimeline } from '../../test-utils/render-in-timeline';
 import {
     multiCertInstitution,
     singleCertInstitution,
     undatedCertInstitution,
 } from '../../test-utils/certification-fixtures';
+import { CHEVRON_TOGGLE_LABEL } from '../common/chevron_toggle_button';
 
 vi.mock('react-i18next', () => ({ useTranslation: vi.fn() }));
 
+const strings = await loadAllStrings();
+const months = strings('en', 'common:months') as string[];
+
 function mockTranslation() {
-    mockUseTranslation((key: string) => (key === 'common:months' ? MONTHS : key));
+    mockUseTranslation((key: string) => strings('en', key));
 }
 
 function renderItem(item: LicenseInstitution) {
-    return renderInAccordion(<LicenseCertificationItem item={item} index={0} eventKey="0" />);
+    mockIntersectionObserver();
+    mockMatchMedia();
+    return renderInTimeline(<LicenseCertificationItem item={item} index={0} />);
 }
 
 describe('LicenseCertificationItem', () => {
@@ -30,10 +39,8 @@ describe('LicenseCertificationItem', () => {
 
         const link = screen.getByRole('link', { name: /Cert A/ });
         expect(link).toHaveAttribute('href', 'https://example.com/a');
-        // Appears twice: once as the header row's place, once in Cert A's own field span.
         expect(screen.getAllByText('Field A')).toHaveLength(2);
 
-        // Cert B has no link, so it's rendered as a plain row, not an anchor.
         expect(screen.queryByRole('link', { name: /Cert B/ })).not.toBeInTheDocument();
         expect(screen.getByText('Cert B')).toBeInTheDocument();
     });
@@ -50,15 +57,34 @@ describe('LicenseCertificationItem', () => {
         renderItem(undatedCertInstitution());
 
         expect(screen.getByText('Undated Cert')).toBeInTheDocument();
-        MONTHS.forEach((month) => expect(screen.queryByText(new RegExp(month))).not.toBeInTheDocument());
+        months.forEach((month) => expect(screen.queryByText(new RegExp(month))).not.toBeInTheDocument());
     });
 
     it('renders without crashing when certifications is missing', () => {
         mockTranslation();
-        // Deliberately malformed (no `certifications` key at all) — the licenseInstitution()
-        // fixture always fills that in, so this one case is a raw literal on purpose.
         renderItem({ institution: 'AWS', icon: '' } as unknown as LicenseInstitution);
 
-        expect(screen.getByRole('button')).toBeInTheDocument();
+        expect(screen.getAllByRole('button').length).toBeGreaterThan(0);
+    });
+
+    it("renders only the entry's own chevron toggle, since certification rows have no extra content to collapse", () => {
+        mockTranslation();
+        renderItem(multiCertInstitution());
+
+        // Certification rows are just a title/field/date header with nothing else behind them,
+        // so TimelineRow renders no chevron for them - only the entry itself has one.
+        expect(screen.getAllByRole('button', { name: CHEVRON_TOGGLE_LABEL.closed })).toHaveLength(1);
+    });
+
+    it("the entry's chevron pins its own header open, revealing all certification rows immediately", async () => {
+        mockTranslation();
+        renderItem(multiCertInstitution());
+
+        const entryChevron = screen.getByRole('button', { name: CHEVRON_TOGGLE_LABEL.closed });
+        await userEvent.click(entryChevron);
+
+        expect(screen.getByRole('button', { name: CHEVRON_TOGGLE_LABEL.open })).toBeInTheDocument();
+        expect(screen.getByText('Cert A')).toBeInTheDocument();
+        expect(screen.getByText('Cert B')).toBeInTheDocument();
     });
 });

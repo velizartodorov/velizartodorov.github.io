@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
-const CACHE_KEY = 'currentYearWithTZ';
+export const YEAR_CACHE_KEY = 'currentYearWithTZ';
+export const TIME_API_BASE_URL = 'https://timeapi.io/api/Time/current/zone';
 
 type CacheData = {
     year: number;
@@ -16,7 +17,7 @@ export function useCurrentYear(): {
     const [timeZone, setTimeZone] = useState<string | null>(null);
 
     useEffect(() => {
-        const cached = localStorage.getItem(CACHE_KEY);
+        const cached = localStorage.getItem(YEAR_CACHE_KEY);
         if (cached) {
             try {
                 const data: CacheData = JSON.parse(cached);
@@ -26,9 +27,7 @@ export function useCurrentYear(): {
                     setTimeZone(data.timeZone);
                     return;
                 }
-            } catch {
-                // Ignore parsing error, fetch fresh
-            }
+            } catch {}
         }
 
         fetchYearFromAPI();
@@ -40,7 +39,7 @@ export function useCurrentYear(): {
         const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
         setTimeZone(timeZone);
 
-        fetch(`https://timeapi.io/api/Time/current/zone?timeZone=${encodeURIComponent(timeZone)}`)
+        fetch(`${TIME_API_BASE_URL}?timeZone=${encodeURIComponent(timeZone)}`)
             .then((res) => {
                 if (!res.ok) throw new Error('Failed to fetch time');
                 return res.json();
@@ -54,10 +53,9 @@ export function useCurrentYear(): {
                     timeZone: timeZone,
                     fetchedAt: Date.now(),
                 };
-                localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData));
+                localStorage.setItem(YEAR_CACHE_KEY, JSON.stringify(cacheData));
             })
             .catch(() => {
-                // fallback
                 setYear(new Date().getFullYear());
             });
     }

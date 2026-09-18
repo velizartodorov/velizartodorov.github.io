@@ -8,6 +8,8 @@ import LicensesCertifications from './components/licenses_certifications/license
 import Introduction from './components/introduction/introduction';
 import { createLangInstance } from './app/translations/i18n';
 import { loadResources } from './app/translations/resources';
+import { mockIntersectionObserver } from './test-utils/mock-intersection-observer';
+import { mockMatchMedia } from './test-utils/mock-match-media';
 
 let enResources: Awaited<ReturnType<typeof loadResources>>;
 
@@ -37,7 +39,9 @@ function renderWithI18n(ui: ReactElement) {
 
 describe('date resolution and calculation', () => {
     it("renders each employment with its own real historical dates, not today's date", () => {
-        renderWithI18n(<Employments eventKey="1" />);
+        mockIntersectionObserver();
+        mockMatchMedia();
+        renderWithI18n(<Employments />);
 
         expect(screen.getByText(/October 2025 - June 2026 \(8 months\)/)).toBeInTheDocument(); // Collibra
         expect(screen.getByText(/April 2024 - April 2025 \(1 year\)/)).toBeInTheDocument(); // Docbyte
@@ -50,7 +54,7 @@ describe('date resolution and calculation', () => {
     });
 
     it('renders each education entry with its own real historical dates, not the Unix epoch', () => {
-        renderWithI18n(<Education eventKey="5" />);
+        renderWithI18n(<Education />);
 
         expect(screen.getByText('September 2017 - July 2018')).toBeInTheDocument(); // Software Engineering
         expect(screen.getByText('September 2013 - July 2017')).toBeInTheDocument(); // Computer Engineering
@@ -60,14 +64,16 @@ describe('date resolution and calculation', () => {
     });
 
     it('renders license/certification dates correctly resolved, not blank or invalid', () => {
-        renderWithI18n(<LicensesCertifications eventKey="2" />);
+        renderWithI18n(<LicensesCertifications />);
 
         expect(screen.getByText('February 2025')).toBeInTheDocument(); // AWS Essentials
         expect(screen.getByText('December 2012')).toBeInTheDocument(); // Deutsches Sprachdiplom (DSD)
     });
 
     it('calculates a realistic total years of experience, not zero', () => {
-        renderWithI18n(<Introduction eventKey="0" />);
+        mockIntersectionObserver();
+        mockMatchMedia();
+        renderWithI18n(<Introduction />);
 
         const match = screen.getByText(/years of experience/i).textContent ?? '';
         const years = Number(/with (\d+) years? of experience/i.exec(match)?.[1]);
@@ -76,12 +82,14 @@ describe('date resolution and calculation', () => {
     });
 
     it('never renders "Invalid Date" or "NaN" anywhere in these sections', () => {
+        mockIntersectionObserver();
+        mockMatchMedia();
         renderWithI18n(
             <>
-                <Introduction eventKey="0" />
-                <Employments eventKey="1" />
-                <LicensesCertifications eventKey="2" />
-                <Education eventKey="5" />
+                <Introduction />
+                <Employments />
+                <LicensesCertifications />
+                <Education />
             </>,
         );
 

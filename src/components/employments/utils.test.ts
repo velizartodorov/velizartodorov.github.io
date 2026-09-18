@@ -2,19 +2,18 @@ import { describe, expect, it, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { combinedPeriod, useDisplayPeriod } from './utils';
 import { Period } from '../common/period';
-import { MONTHS, PERIOD_LANG } from '../../test-utils/i18n-fixtures';
+import { loadAllStrings } from '../../app/translations/resources';
 import { mockUseTranslation } from '../../test-utils/mock-use-translation';
 import { position as buildPosition } from '../../test-utils/employment-fixtures';
 import { period } from '../../test-utils/period-fixtures';
 
 vi.mock('react-i18next', () => ({ useTranslation: vi.fn() }));
 
+const strings = await loadAllStrings();
+const MONTHS = strings('en', 'common:months') as string[];
+
 function mockTranslation() {
-    mockUseTranslation((key: string) => {
-        if (key === 'common:months') return MONTHS;
-        if (key === 'common:period') return PERIOD_LANG;
-        return key;
-    });
+    mockUseTranslation((key: string) => strings('en', key));
 }
 
 // Thin wrapper matching this file's existing 2-arg call sites; only period timing matters here.
