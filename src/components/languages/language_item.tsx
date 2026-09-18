@@ -8,7 +8,7 @@ const LanguageItem: FC<{ item: Language }> = ({ item }) => (
         <Icon src={item.icon} alt={`${item.label} language icon`} className={BADGE_ICON} />
         <div className="flex flex-col md:flex-row md:items-baseline md:gap-2">
             <ItemTitle>{item.label}</ItemTitle>
-            <span className="text-app-text-muted text-sm">{item.proficiency}</span>
+            <span>{item.proficiency}</span>
         </div>
     </li>
 );
