@@ -15,7 +15,7 @@ const LINK_VARIANT = {
         inactive: 'text-app-text-muted hover:text-app-text',
     },
     overlay: {
-        base: 'block w-full rounded-lg px-4 py-3 text-lg font-medium transition-colors',
+        base: 'block w-full rounded-lg px-4 py-3 text-2xl font-medium transition-colors',
         inactive: 'text-app-text hover:bg-app-surface-alt',
     },
 } as const;

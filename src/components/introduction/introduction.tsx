@@ -7,7 +7,7 @@ const Introduction = ({ className, id }: Properties) => {
     const { t } = useTranslation();
     const body = useFormatBody(t('introduction:body', { returnObjects: true }));
     return (
-        <Section title={t('introduction:title')} className={className} id={id}>
+        <Section title={t('introduction:title')} className={className} id={id} card topPadding={false}>
             {body}
         </Section>
     );

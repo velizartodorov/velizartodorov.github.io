@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import ItemHeaderRow from '../common/item_header_row';
-import { HOVER_ROW, HOVER_ROW_LINK } from '../common/list_row';
+import { HOVER_ROW, HOVER_ROW_LINK, PLAIN_LINK } from '../common/list_row';
 import { TimelineEntry } from '../common/timeline';
 import { TimelineRail, TimelineRow } from '../common/timeline_row';
 import { Certification, LicenseInstitution } from './license_certification';
@@ -40,7 +40,7 @@ const SingleCertificationHeader: FC<{ institution: string; cert: Certification; 
         <Tag
             href={hasLink ? cert.link : undefined}
             rel={hasLink ? 'noopener noreferrer' : undefined}
-            className={hasLink ? HOVER_ROW_LINK : undefined}
+            className={hasLink ? PLAIN_LINK : undefined}
         >
             <ItemHeaderRow title={cert.name} place={institution} period={monthYear || undefined} />
         </Tag>
@@ -72,6 +72,7 @@ const LicenseCertificationItem: FC<{ item: LicenseInstitution; index: number }> 
                 invertOnDark: item.invertOnDark,
                 fit: item.iconFit,
             }}
+            boxed
             header={
                 hasMultipleCertifications || !singleCert ? (
                     <ItemHeaderRow

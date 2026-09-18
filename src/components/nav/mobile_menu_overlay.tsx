@@ -29,7 +29,7 @@ const MobileMenuOverlay: React.FC<MobileMenuOverlayProps> = ({
         data-state={menuOpen ? 'open' : 'closed'}
         aria-hidden={!menuOpen}
         inert={!menuOpen}
-        className={`bg-app-surface/50 fixed inset-0 z-10 flex flex-col backdrop-blur-lg transition duration-200 ease-out motion-reduce:transition-none md:hidden ${stateClassName(menuOpen)}`}
+        className={`bg-app-surface/50 fixed inset-0 z-10 flex flex-col backdrop-blur-lg transition duration-300 ease-out motion-reduce:transition-none md:hidden ${stateClassName(menuOpen)}`}
     >
         <div className="flex items-center justify-end px-4 py-2 sm:px-6">
             <CloseMenuButton onCloseMenu={onCloseMenu} buttonRef={closeButtonRef} />

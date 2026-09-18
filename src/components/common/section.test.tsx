@@ -30,4 +30,25 @@ describe('Section', () => {
 
         expect(container.querySelector('#my-section')).not.toBeNull();
     });
+
+    it('applies a smaller top padding when topPadding is false', () => {
+        mockIntersectionObserver();
+        mockMatchMedia();
+        const { container, rerender } = render(
+            <Section title="My Section" id="my-section">
+                <p>section content</p>
+            </Section>,
+        );
+
+        expect(container.querySelector('#my-section')).toHaveClass('pt-6');
+
+        rerender(
+            <Section title="My Section" id="my-section" topPadding={false}>
+                <p>section content</p>
+            </Section>,
+        );
+
+        expect(container.querySelector('#my-section')).toHaveClass('pt-2');
+        expect(container.querySelector('#my-section')).not.toHaveClass('pt-6');
+    });
 });

@@ -233,7 +233,7 @@ describe('Nav — narrow-viewport menu', () => {
     it('keeps the overlay mounted and eases it in and out instead of swapping it instantly', async () => {
         renderNav();
 
-        expect(menuOverlay()).toHaveClass('transition', 'duration-200', 'motion-reduce:transition-none');
+        expect(menuOverlay()).toHaveClass('transition', 'duration-300', 'motion-reduce:transition-none');
         expect(menuOverlay()).toHaveAttribute('data-state', 'closed');
         expect(menuOverlay()).toHaveClass('opacity-0', '-translate-x-2', 'pointer-events-none');
 
@@ -295,6 +295,6 @@ describe('Nav — narrow-viewport menu', () => {
 
         await openMenu();
 
-        expect(link(EMPLOYMENTS)).toHaveClass('px-4', 'py-3', 'text-lg');
+        expect(link(EMPLOYMENTS)).toHaveClass('px-4', 'py-3', 'text-2xl');
     });
 });

@@ -1,5 +1,8 @@
 import { FC, KeyboardEvent, ReactNode } from 'react';
 import ChevronToggleButton from './chevron_toggle_button';
+import { SURFACE_PANEL_ALT_BASE } from './surface_panel';
+
+export const ACCORDION_HEADER_BASE = `${SURFACE_PANEL_ALT_BASE} hover:brightness-95 dark:hover:brightness-125`;
 
 const revealTriggerProps = (toggle: () => void, revealed: boolean) => ({
     onClick: toggle,
@@ -13,18 +16,17 @@ const revealTriggerProps = (toggle: () => void, revealed: boolean) => ({
     'aria-expanded': revealed,
 });
 
-export const EntryHeader: FC<{ collapsible: boolean; revealed: boolean; toggle: () => void; children: ReactNode }> = ({
-    collapsible,
-    revealed,
-    toggle,
-    children,
-}) => (
+export const EntryHeader: FC<{
+    collapsible: boolean;
+    boxed?: boolean;
+    revealed: boolean;
+    toggle: () => void;
+    children: ReactNode;
+}> = ({ collapsible, boxed = collapsible, revealed, toggle, children }) => (
     <div
         {...(collapsible ? revealTriggerProps(toggle, revealed) : {})}
         className={`relative py-2 pr-8 pl-3 transition-[filter,border-radius] duration-300 ${
-            collapsible
-                ? 'bg-app-surface-alt border-app-border cursor-pointer border hover:brightness-95 dark:hover:brightness-125'
-                : ''
+            boxed ? `${ACCORDION_HEADER_BASE} ${collapsible ? 'cursor-pointer' : ''}` : ''
         } ${collapsible && revealed ? 'rounded-t-lg' : 'rounded-lg'}`}
     >
         {children}

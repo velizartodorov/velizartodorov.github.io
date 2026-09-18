@@ -73,7 +73,7 @@ list:
   - icon: /header/driving_license.png
     institution: Ministry of Interior of Bulgaria
     certifications:
-      - name: Driving license B - cars < 3.5t and max. 8 seats
+      - name: Driving license B
         field: ''
         date: '{{dates:driving_license}}'
   - icon: /education/deutsches-sprachdiplom.jpg
