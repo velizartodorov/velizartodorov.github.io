@@ -1,0 +1,3 @@
+[submodule "src/app/translations/data"]
+	path = src/app/translations/data
+	url = https://github.com/velizartodorov/portfolio-resources.git

@@ -1,5 +1,5 @@
 import type { Employment, Position } from '../../components/employments/employment';
-import type { EducationFile, EmploymentFile } from './resource-files';
+import type { EducationFile, EmploymentFile } from './data/resource-files';
 
 export interface Index {
     title: string;

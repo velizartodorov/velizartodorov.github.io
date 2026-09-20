@@ -16,6 +16,7 @@
 /out
 /.next
 next-env.d.ts
+/public/resources
 
 # misc
 .DS_Store
