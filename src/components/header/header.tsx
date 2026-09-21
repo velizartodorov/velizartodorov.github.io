@@ -5,19 +5,42 @@ import ProfileItem from '../profile/profile_item';
 import Image from 'next/image';
 import React from 'react';
 
-const Header: React.FC = () => {
+const Header: React.FC<{ minimalMode?: boolean }> = ({ minimalMode = false }) => {
     const profile = useProfile();
+
+    const photo = (
+        <Image
+            className="border-app-surface-alt hover:scale-1.01 size-[200px] rounded-full border-[3px] object-cover shadow-[0_4px_16px_var(--app-shadow)] transition-[scale,box-shadow] duration-500 ease-out hover:shadow-[0_6px_24px_var(--app-shadow)]"
+            src={profile.imageUrl}
+            alt=""
+            width={200}
+            height={200}
+            priority
+        />
+    );
+
+    if (minimalMode) {
+        return (
+            <header className="mt-3 ml-0 md:ml-6">
+                <div className="mb-2 flex flex-col items-center gap-4 text-center sm:flex-row sm:items-center sm:text-left">
+                    {photo}
+                    <div className="flex flex-col items-center gap-2 sm:items-start">
+                        <h2 className="m-0 text-[2rem] font-bold tracking-tight">{profile.name}</h2>
+                        <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:justify-start">
+                            <ProfileItem link={profile.email} />
+                            <ProfileItem link={profile.gitHub} />
+                            <ProfileItem link={profile.blog} />
+                        </div>
+                    </div>
+                </div>
+            </header>
+        );
+    }
+
     return (
         <header className="mt-3 ml-0 md:ml-6">
             <div className="mb-2 grid grid-cols-1 items-center justify-items-center gap-x-4 gap-y-2 text-center sm:grid-cols-[240px_repeat(3,1fr)] sm:justify-items-start sm:text-left">
-                <Image
-                    className="border-app-surface-alt row-start-1 size-[200px] rounded-full border-[3px] object-cover shadow-[0_4px_16px_var(--app-shadow)] transition-[scale,box-shadow] duration-500 ease-out hover:scale-[1.01] hover:shadow-[0_6px_24px_var(--app-shadow)] sm:col-start-1 sm:row-span-3"
-                    src={profile.imageUrl}
-                    alt=""
-                    width={200}
-                    height={200}
-                    priority
-                />
+                <div className="row-start-1 sm:col-start-1 sm:row-span-3">{photo}</div>
                 <div className="row-start-2 flex items-center gap-4 sm:col-span-3 sm:col-start-2 sm:row-start-1">
                     <h2 className="m-0 text-[2rem] font-bold tracking-tight">{profile.name}</h2>
                     <ThemeToggle />

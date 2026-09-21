@@ -85,3 +85,28 @@ describe('nav', () => {
         expect(screen.getByRole('navigation', { name: 'Sections' })).toBeInTheDocument();
     });
 });
+
+describe('minimal mode', () => {
+    afterEach(() => {
+        vi.unstubAllEnvs();
+    });
+
+    it('renders the English page without Nav or any section anchors', async () => {
+        vi.stubEnv('MINIMAL_MODE', 'true');
+
+        render(await EnPage());
+
+        expect(screen.queryByRole('navigation', { name: 'Sections' })).not.toBeInTheDocument();
+        for (const id of ['introduction', ...SECTIONS]) {
+            expect(document.getElementById(id)).toBeNull();
+        }
+    });
+
+    it('redirects the Dutch page to the site root instead of rendering it', async () => {
+        vi.stubEnv('MINIMAL_MODE', 'true');
+
+        const { container } = render(await NlPage());
+
+        expect(container.querySelector('script')).toHaveTextContent("location.replace('/');");
+    });
+});
