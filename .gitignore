@@ -16,6 +16,7 @@
 /out
 /.next
 next-env.d.ts
+/public/resources
 
 # misc
 .DS_Store
@@ -33,3 +34,5 @@ yarn-error.log*
 
 # superpowers brainstorming companion
 .superpowers/
+.vercel
+.env*

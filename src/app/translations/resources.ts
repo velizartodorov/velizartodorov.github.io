@@ -1,20 +1,20 @@
 import { type Language, LANGUAGES } from './languages';
 import { buildLanguageResources } from './build-resources';
-import { EDUCATION_FILES, EMPLOYMENT_FILES, type EducationFile, type EmploymentFile } from './resource-files';
-import dates from './dates.yml';
+import { EDUCATION_FILES, EMPLOYMENT_FILES, type EducationFile, type EmploymentFile } from './data/resource-files';
+import dates from './data/dates.yml';
 
 async function importYaml(lang: Language, name: string): Promise<any> {
-    const mod = await import(`./${lang}/${name}.yml`);
+    const mod = await import(`./data/${lang}/${name}.yml`);
     return mod.default;
 }
 
 async function importEmployment(lang: Language, file: EmploymentFile): Promise<any> {
-    const mod = await import(`./${lang}/employments/${file.replace(/\.md$/, '')}.md`);
+    const mod = await import(`./data/${lang}/employments/${file.replace(/\.md$/, '')}.md`);
     return mod.default;
 }
 
 async function importEducation(lang: Language, file: EducationFile): Promise<any> {
-    const mod = await import(`./${lang}/education/${file.replace(/\.md$/, '')}.md`);
+    const mod = await import(`./data/${lang}/education/${file.replace(/\.md$/, '')}.md`);
     return mod.default;
 }
 
