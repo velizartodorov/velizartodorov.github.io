@@ -8,20 +8,14 @@ const rootDir = join(dirname(fileURLToPath(import.meta.url)), '..');
 const assetsDir = join(rootDir, 'src', 'app', 'translations', 'data', 'assets');
 const publicResourcesDir = join(rootDir, 'public', 'resources');
 
-if (process.env.RESOURCES_REPO_TOKEN) {
-    execFileSync(
-        'git',
-        [
-            'config',
-            '--global',
-            `url.https://x-access-token:${process.env.RESOURCES_REPO_TOKEN}@github.com/.insteadOf`,
-            'https://github.com/',
-        ],
-        { cwd: rootDir, stdio: 'inherit' },
-    );
-}
+const credentialRewrite = process.env.RESOURCES_REPO_TOKEN
+    ? ['-c', `url.https://x-access-token:${process.env.RESOURCES_REPO_TOKEN}@github.com/.insteadOf=https://github.com/`]
+    : [];
 
-execFileSync('git', ['submodule', 'update', '--init', '--recursive'], { cwd: rootDir, stdio: 'inherit' });
+execFileSync('git', [...credentialRewrite, 'submodule', 'update', '--init', '--recursive'], {
+    cwd: rootDir,
+    stdio: 'inherit',
+});
 
 rmSync(publicResourcesDir, { recursive: true, force: true });
 cpSync(assetsDir, publicResourcesDir, { recursive: true });
