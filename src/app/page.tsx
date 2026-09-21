@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { PortfolioApp } from './App';
 import { loadResources } from './translations/resources';
 import { buildMetadata } from './metadata';
+import { isMinimalMode } from './feature_flags';
 
 export async function generateMetadata(): Promise<Metadata> {
     const resources = await loadResources('en');
@@ -10,5 +11,5 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Page() {
     const resources = await loadResources('en');
-    return <PortfolioApp initialLang="en" initialResources={resources} />;
+    return <PortfolioApp initialLang="en" initialResources={resources} minimalMode={isMinimalMode()} />;
 }
