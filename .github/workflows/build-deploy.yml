@@ -27,11 +27,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
-      - name: Configure access to private resources repo
-        run: git config --global url."https://x-access-token:${{ secrets.RESOURCES_REPO_TOKEN }}@github.com/".insteadOf "https://github.com/"
-
       - name: Fetch private resources
         run: node scripts/prepare-resources.mjs
+        env:
+          RESOURCES_REPO_TOKEN: ${{ secrets.RESOURCES_REPO_TOKEN }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v5
@@ -88,11 +87,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
-      - name: Configure access to private resources repo
-        run: git config --global url."https://x-access-token:${{ secrets.RESOURCES_REPO_TOKEN }}@github.com/".insteadOf "https://github.com/"
-
       - name: Fetch private resources
         run: node scripts/prepare-resources.mjs
+        env:
+          RESOURCES_REPO_TOKEN: ${{ secrets.RESOURCES_REPO_TOKEN }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v5
