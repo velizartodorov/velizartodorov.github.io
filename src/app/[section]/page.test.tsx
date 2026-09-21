@@ -15,6 +15,7 @@ beforeEach(() => {
 
 afterEach(() => {
     vi.unstubAllGlobals();
+    vi.unstubAllEnvs();
 });
 
 const { en: EN_URL } = HREFLANG_ALTERNATES;
@@ -73,4 +74,12 @@ describe('section page component', () => {
             }
         },
     );
+
+    it('redirects to the site root instead of rendering the app when minimal mode is on', async () => {
+        vi.stubEnv('MINIMAL_MODE', 'true');
+
+        const { container } = render(await SectionPage({ params: params('employments') }));
+
+        expect(container.querySelector('script')).toHaveTextContent("location.replace('/');");
+    });
 });

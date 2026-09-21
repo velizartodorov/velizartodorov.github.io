@@ -2,6 +2,8 @@ import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vite
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { PortfolioApp } from './App';
+import Nav from '../components/nav/nav';
+import Introduction from '../components/introduction/introduction';
 import { useLangSwitch } from './translations/lang-switch-context';
 import { LANGUAGE_LABEL } from './translations/language_selector';
 import type { Language } from './translations/languages';
@@ -39,7 +41,7 @@ vi.mock('./translations/i18n', async (importOriginal) => {
     return { ...actual, loadLanguage: vi.fn(actual.loadLanguage) };
 });
 
-vi.mock('../components/introduction/introduction', () => ({ default: () => null }));
+vi.mock('../components/introduction/introduction', () => ({ default: vi.fn(() => null) }));
 vi.mock('../components/employments/employments', () => ({ default: () => null }));
 vi.mock('../components/licenses_certifications/licenses_certifications', () => ({
     default: () => null,
@@ -51,7 +53,7 @@ vi.mock('../components/education/education', () => ({ default: () => null }));
 vi.mock('../components/header/theme_toggle', () => ({ default: () => null }));
 // jsdom doesn't implement IntersectionObserver; Nav's scrollspy isn't under test here (see
 // src/components/nav/nav.test.tsx and use_active_section.test.ts).
-vi.mock('../components/nav/nav', () => ({ default: () => null }));
+vi.mock('../components/nav/nav', () => ({ default: vi.fn(() => null) }));
 
 afterEach(() => {
     document.documentElement.lang = 'en';
@@ -203,6 +205,33 @@ describe('?lang= URL parameter backward compat', () => {
         render(<PortfolioApp initialLang="en" initialResources={enResources} />);
 
         expect(document.documentElement.lang).toBe('en');
+    });
+});
+
+describe('minimal mode', () => {
+    beforeEach(() => {
+        vi.mocked(Nav).mockClear();
+        vi.mocked(Introduction).mockClear();
+    });
+
+    it('skips Nav and page sections when minimalMode is true', () => {
+        render(<PortfolioApp initialLang="en" initialResources={enResources} minimalMode />);
+
+        expect(Nav).not.toHaveBeenCalled();
+        expect(Introduction).not.toHaveBeenCalled();
+    });
+
+    it('hides header chrome that minimalMode also disables, confirming the prop reaches Header', () => {
+        render(<PortfolioApp initialLang="en" initialResources={enResources} minimalMode />);
+
+        expect(screen.queryByRole('button', { name: LANGUAGE_LABEL.en })).not.toBeInTheDocument();
+    });
+
+    it('renders Nav and page sections when minimalMode is omitted', () => {
+        render(<PortfolioApp initialLang="en" initialResources={enResources} />);
+
+        expect(Nav).toHaveBeenCalled();
+        expect(Introduction).toHaveBeenCalled();
     });
 });
 
