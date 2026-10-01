@@ -9,6 +9,7 @@ import { LANGUAGE_LABEL } from './translations/language_selector';
 import type { Language } from './translations/languages';
 import { loadLanguage } from './translations/i18n';
 import { loadResources } from './translations/resources';
+import { YEAR_CACHE_KEY } from '../components/footer/utils';
 
 let enResources: Awaited<ReturnType<typeof loadResources>>;
 let nlResources: Awaited<ReturnType<typeof loadResources>>;
@@ -214,6 +215,10 @@ describe('minimal mode', () => {
         vi.mocked(Introduction).mockClear();
     });
 
+    afterEach(() => {
+        localStorage.removeItem(YEAR_CACHE_KEY);
+    });
+
     it('skips Nav and page sections when minimalMode is true', () => {
         render(<PortfolioApp initialLang="en" initialResources={enResources} minimalMode />);
 
@@ -235,6 +240,11 @@ describe('minimal mode', () => {
     });
 
     it('centers the header and footer together as one block on the viewport', () => {
+        localStorage.setItem(
+            YEAR_CACHE_KEY,
+            JSON.stringify({ year: new Date().getFullYear(), timeZone: 'UTC', fetchedAt: Date.now() }),
+        );
+
         render(<PortfolioApp initialLang="en" initialResources={enResources} minimalMode />);
 
         const heading = screen.getByRole('heading', { level: 2, name: enResources.profile.name });
