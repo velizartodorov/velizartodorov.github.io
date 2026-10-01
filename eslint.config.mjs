@@ -23,6 +23,12 @@ export default tseslint.config(
             // `fade-in-text` is a plain custom CSS class (defined in the inline <style> in
             // layout.tsx), not a Tailwind utility.
             'tailwindcss/no-custom-classname': ['warn', { whitelist: ['fade-in-text'] }],
+            // This plugin doesn't fully understand Tailwind v4's arbitrary-value syntax for
+            // decimal scale steps: it flags `scale-[1.01]` as unnecessary and offers to
+            // "fix" it to `scale-1.01`, but that bare form compiles to no CSS rule at all
+            // (verified against the built output) - it's a false positive, not a real
+            // simplification.
+            'tailwindcss/no-unnecessary-arbitrary-value': 'off',
         },
     },
 );
