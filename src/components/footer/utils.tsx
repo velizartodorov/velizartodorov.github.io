@@ -19,9 +19,9 @@ export function useCurrentYear(): {
     const [timeZone, setTimeZone] = useState<string | null>(null);
 
     useIsomorphicLayoutEffect(() => {
-        const cached = localStorage.getItem(YEAR_CACHE_KEY);
-        if (cached) {
-            try {
+        try {
+            const cached = localStorage.getItem(YEAR_CACHE_KEY);
+            if (cached) {
                 const data: CacheData = JSON.parse(cached);
                 const now = new Date();
                 if (now.getFullYear() === data.year) {
@@ -29,8 +29,8 @@ export function useCurrentYear(): {
                     setTimeZone(data.timeZone);
                     return;
                 }
-            } catch {}
-        }
+            }
+        } catch {}
 
         fetchYearFromAPI();
     }, []);

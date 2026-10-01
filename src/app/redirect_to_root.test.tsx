@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { RedirectToRoot } from './redirect_to_root';
+import { REDIRECT_SCRIPT, RedirectToRoot } from './redirect_to_root';
 
 describe('RedirectToRoot', () => {
     it('renders a synchronous redirect-to-root script', () => {
@@ -10,7 +10,7 @@ describe('RedirectToRoot', () => {
         // layout.test.tsx use for their scripts.
         const { container } = render(<RedirectToRoot>fallback content</RedirectToRoot>);
 
-        expect(container.querySelector('script')).toHaveTextContent("location.replace('/');");
+        expect(container.querySelector('script')).toHaveTextContent(REDIRECT_SCRIPT);
     });
 
     it('renders the given fallback content for no-JS visitors', () => {
@@ -23,9 +23,15 @@ describe('RedirectToRoot', () => {
         expect(screen.getByText('fallback content')).toBeInTheDocument();
     });
 
-    it('renders a default redirecting message when no children are given', () => {
+    it('renders a default English redirecting message when no children are given', () => {
         render(<RedirectToRoot />);
 
         expect(screen.getByText('Redirecting…')).toBeInTheDocument();
+    });
+
+    it('renders a Dutch redirecting message when lang is "nl" and no children are given', () => {
+        render(<RedirectToRoot lang="nl" />);
+
+        expect(screen.getByText('Omleiden…')).toBeInTheDocument();
     });
 });

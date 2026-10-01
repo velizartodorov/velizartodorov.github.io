@@ -9,6 +9,7 @@ import { mockIntersectionObserver } from '../test-utils/mock-intersection-observ
 import { loadResources } from './translations/resources';
 import { SECTIONS } from './sections';
 import { HREFLANG_ALTERNATES, OG_DESCRIPTION, OG_IMAGE, OG_TITLE } from './metadata';
+import { REDIRECT_SCRIPT } from './redirect_to_root';
 
 // The rendered page includes the real ThemeToggle, whose useTheme() hook needs
 // matchMedia — jsdom doesn't implement it. It also includes the real Nav, whose
@@ -107,6 +108,15 @@ describe('minimal mode', () => {
 
         const { container } = render(await NlPage());
 
-        expect(container.querySelector('script')).toHaveTextContent("location.replace('/');");
+        expect(container.querySelector('script')).toHaveTextContent(REDIRECT_SCRIPT);
+        expect(screen.getByText('Omleiden…')).toBeInTheDocument();
+    });
+
+    it('uses a static title for the Dutch page metadata without loading resources', async () => {
+        vi.stubEnv('MINIMAL_MODE', 'true');
+
+        const metadata = await generateNlMetadata();
+
+        expect(metadata.title).toBe(OG_TITLE);
     });
 });
