@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { loadAllStrings } from '../../app/translations/resources';
+import type { useCurrentYear } from './utils';
 
 vi.mock('react-i18next', () => ({ useTranslation: vi.fn() }));
 
@@ -14,7 +15,10 @@ afterEach(() => {
 
 // COMMIT_SHA is read from process.env at module load time, so a fresh module instance (via
 // resetModules) is required for each value to actually take effect.
-async function renderFooter(commitSha: string) {
+async function renderFooter(
+    commitSha: string,
+    currentYear: ReturnType<typeof useCurrentYear> = { year: 2026, timeZone: 'UTC' },
+) {
     vi.resetModules();
     vi.stubEnv('NEXT_PUBLIC_COMMIT_SHA', commitSha);
 
@@ -23,7 +27,7 @@ async function renderFooter(commitSha: string) {
         typeof useTranslation
     >);
     const { useCurrentYear } = await import('./utils');
-    vi.mocked(useCurrentYear).mockReturnValue({ year: 2026, timeZone: 'UTC' });
+    vi.mocked(useCurrentYear).mockReturnValue(currentYear);
     const { useProfile } = await import('../profile/profile.init');
     vi.mocked(useProfile).mockReturnValue({ name: 'Test User' } as unknown as ReturnType<typeof useProfile>);
 
@@ -43,5 +47,10 @@ describe('Footer', () => {
 
         const link = screen.getByRole('link', { name: sha.slice(0, 7) });
         expect(link).toHaveAttribute('href', `${REPO_URL}/commit/${sha}`);
+    });
+
+    it('renders nothing while the year has not loaded yet, instead of the text without a year', async () => {
+        const { container } = await renderFooter('', { year: null, timeZone: null });
+        expect(container).toBeEmptyDOMElement();
     });
 });

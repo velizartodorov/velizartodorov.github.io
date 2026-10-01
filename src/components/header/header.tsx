@@ -21,8 +21,8 @@ const Header: React.FC<{ minimalMode?: boolean }> = ({ minimalMode = false }) =>
 
     if (minimalMode) {
         return (
-            <header className="mt-3 ml-0 md:ml-6">
-                <div className="mb-2 flex flex-col items-center gap-4 text-center sm:flex-row sm:items-center sm:text-left">
+            <header>
+                <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:text-left">
                     {photo}
                     <div className="flex flex-col items-center gap-2 sm:items-start">
                         <h2 className="m-0 text-[2rem] font-bold tracking-tight">{profile.name}</h2>

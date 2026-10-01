@@ -9,9 +9,14 @@ const Footer = () => {
     const { year } = useCurrentYear();
     const { t } = useTranslation();
     const profile = useProfile();
+
+    if (year === null) {
+        return null;
+    }
+
     return (
         <div className="my-2 text-center max-sm:text-[0.9rem]">
-            {t('common:poweredBy')} {profile.name} ® {year ?? ''} 😉 🚀
+            {t('common:poweredBy')} {profile.name} ® {year} 😉 🚀
             {COMMIT_SHA && (
                 <a
                     className="text-app-text-muted hover:text-app-text-muted ml-2 font-mono text-xs no-underline opacity-60 hover:opacity-100"
