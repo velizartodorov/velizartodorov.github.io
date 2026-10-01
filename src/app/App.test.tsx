@@ -233,6 +233,16 @@ describe('minimal mode', () => {
         expect(Nav).toHaveBeenCalled();
         expect(Introduction).toHaveBeenCalled();
     });
+
+    it('centers the header and footer together as one block on the viewport', () => {
+        render(<PortfolioApp initialLang="en" initialResources={enResources} minimalMode />);
+
+        const heading = screen.getByRole('heading', { level: 2, name: enResources.profile.name });
+        const footer = screen.getByText(/Powered by/);
+
+        expect(heading.closest('header')?.parentElement).toBe(footer.parentElement);
+        expect(footer.parentElement).toHaveClass('items-center', 'justify-center');
+    });
 });
 
 describe('useLangSwitch', () => {

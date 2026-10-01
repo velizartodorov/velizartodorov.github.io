@@ -82,16 +82,24 @@ function PortfolioAppInner({
         }
     }, []);
 
+    if (minimalMode) {
+        return (
+            <>
+                <EnvBanner />
+                <div className="flex min-h-dvh flex-col items-center justify-center gap-4 px-6">
+                    <Header minimalMode />
+                    <Footer />
+                </div>
+            </>
+        );
+    }
+
     return (
         <>
             <EnvBanner />
-            <Header minimalMode={minimalMode} />
-            {!minimalMode && (
-                <>
-                    <Nav initialSection={initialSection} />
-                    <PageContent lang={lang} />
-                </>
-            )}
+            <Header />
+            <Nav initialSection={initialSection} />
+            <PageContent lang={lang} />
             <Footer />
         </>
     );
