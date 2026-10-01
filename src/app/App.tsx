@@ -82,25 +82,22 @@ function PortfolioAppInner({
         }
     }, []);
 
-    if (minimalMode) {
-        return (
-            <>
-                <EnvBanner />
+    return (
+        <>
+            <EnvBanner />
+            {minimalMode ? (
                 <div className="flex min-h-dvh flex-col items-center justify-center gap-4 px-6">
                     <Header minimalMode />
                     <Footer />
                 </div>
-            </>
-        );
-    }
-
-    return (
-        <>
-            <EnvBanner />
-            <Header />
-            <Nav initialSection={initialSection} />
-            <PageContent lang={lang} />
-            <Footer />
+            ) : (
+                <>
+                    <Header />
+                    <Nav initialSection={initialSection} />
+                    <PageContent lang={lang} />
+                    <Footer />
+                </>
+            )}
         </>
     );
 }
@@ -124,6 +121,7 @@ export function PortfolioApp({
     const latestSwitchRef = useRef(0);
 
     useEffect(() => {
+        if (minimalMode) return;
         for (const other of otherLanguages(initialLang)) {
             loadLanguage(instance, other).catch((error: unknown) => {
                 console.error(`Failed to prefetch language "${other}":`, error);

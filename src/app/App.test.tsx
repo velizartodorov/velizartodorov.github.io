@@ -155,6 +155,11 @@ describe('language prefetching', () => {
         expect(loadLanguage).toHaveBeenCalledWith(expect.anything(), 'en');
     });
 
+    it('does not prefetch the other language in minimal mode, which has no language switcher', () => {
+        render(<PortfolioApp initialLang="en" initialResources={enResources} minimalMode />);
+        expect(loadLanguage).not.toHaveBeenCalled();
+    });
+
     it('logs an error when prefetching the other language fails, without crashing', async () => {
         const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
         vi.mocked(loadLanguage).mockRejectedValueOnce(new Error('network down'));

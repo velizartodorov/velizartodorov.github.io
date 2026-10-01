@@ -19,13 +19,15 @@ const Header: React.FC<{ minimalMode?: boolean }> = ({ minimalMode = false }) =>
         />
     );
 
+    const nameHeading = <h2 className="m-0 text-[2rem] font-bold tracking-tight">{profile.name}</h2>;
+
     if (minimalMode) {
         return (
             <header>
                 <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:text-left">
                     {photo}
                     <div className="flex flex-col items-center gap-2 sm:items-start">
-                        <h2 className="m-0 text-[2rem] font-bold tracking-tight">{profile.name}</h2>
+                        {nameHeading}
                         <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:justify-start">
                             <ProfileItem link={profile.email} />
                             <ProfileItem link={profile.gitHub} />
@@ -42,7 +44,7 @@ const Header: React.FC<{ minimalMode?: boolean }> = ({ minimalMode = false }) =>
             <div className="mb-2 grid grid-cols-1 items-center justify-items-center gap-x-4 gap-y-2 text-center sm:grid-cols-[240px_repeat(3,1fr)] sm:justify-items-start sm:text-left">
                 <div className="row-start-1 sm:col-start-1 sm:row-span-3">{photo}</div>
                 <div className="row-start-2 flex items-center gap-4 sm:col-span-3 sm:col-start-2 sm:row-start-1">
-                    <h2 className="m-0 text-[2rem] font-bold tracking-tight">{profile.name}</h2>
+                    {nameHeading}
                     <ThemeToggle />
                 </div>
                 <div className="sm:col-start-2 sm:row-start-2">

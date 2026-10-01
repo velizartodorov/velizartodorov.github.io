@@ -1,12 +1,23 @@
 import React from 'react';
+import { isMinimalMode } from './feature_flags';
+import type { Language } from './translations/languages';
 
-const REDIRECT_SCRIPT = `location.replace('/');`;
+export const REDIRECT_SCRIPT = `location.replace('/');`;
 
-export function RedirectToRoot({ children }: Readonly<{ children?: React.ReactNode }>) {
+const REDIRECTING_TEXT: Record<Language, string> = {
+    en: 'Redirecting…',
+    nl: 'Omleiden…',
+};
+
+export function RedirectToRoot({ children, lang = 'en' }: Readonly<{ children?: React.ReactNode; lang?: Language }>) {
     return (
         <div className="mx-6 py-16 text-center">
             <script dangerouslySetInnerHTML={{ __html: REDIRECT_SCRIPT }} />
-            {children ?? <p className="text-app-text-muted">Redirecting…</p>}
+            {children ?? <p className="text-app-text-muted">{REDIRECTING_TEXT[lang]}</p>}
         </div>
     );
+}
+
+export function minimalModeRedirect(lang: Language = 'en') {
+    return isMinimalMode() ? <RedirectToRoot lang={lang} /> : null;
 }
