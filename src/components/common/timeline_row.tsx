@@ -24,7 +24,6 @@ export const TimelineRow: FC<{ id: string; header?: ReactNode; children?: ReactN
     return (
         <div
             data-timeline-row={id}
-            // eslint-disable-next-line tailwindcss/no-unnecessary-arbitrary-value
             className={`before:bg-app-accent before:border-app-surface relative before:absolute before:top-2 before:-left-5 before:size-3 before:rounded-full before:border-2 before:shadow-[0_0_0_1px_var(--app-accent)] before:transition-transform before:duration-200 before:content-[''] hover:before:scale-[1.15] ${className}`}
         >
             {header && <div className={children ? 'pr-8' : ''}>{header}</div>}

@@ -10,7 +10,7 @@ const Header: React.FC<{ minimalMode?: boolean }> = ({ minimalMode = false }) =>
 
     const photo = (
         <Image
-            className="border-app-surface-alt hover:scale-1.01 size-[200px] rounded-full border-[3px] object-cover shadow-[0_4px_16px_var(--app-shadow)] transition-[scale,box-shadow] duration-500 ease-out hover:shadow-[0_6px_24px_var(--app-shadow)]"
+            className="border-app-surface-alt size-[200px] rounded-full border-[3px] object-cover shadow-[0_4px_16px_var(--app-shadow)] transition-[scale,box-shadow] duration-500 ease-out hover:scale-[1.01] hover:shadow-[0_6px_24px_var(--app-shadow)]"
             src={profile.imageUrl}
             alt=""
             width={200}
