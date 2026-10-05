@@ -40,6 +40,7 @@ export function useCurrentYear(): {
     function fetchYearFromAPI() {
         const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
         setTimeZone(timeZone);
+        setYear(new Date().getFullYear());
 
         fetch(`${TIME_API_BASE_URL}?timeZone=${encodeURIComponent(timeZone)}`)
             .then((res) => {
@@ -57,8 +58,6 @@ export function useCurrentYear(): {
                 };
                 localStorage.setItem(YEAR_CACHE_KEY, JSON.stringify(cacheData));
             })
-            .catch(() => {
-                setYear(new Date().getFullYear());
-            });
+            .catch(() => {});
     }
 }

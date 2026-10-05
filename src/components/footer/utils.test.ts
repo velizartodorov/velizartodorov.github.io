@@ -67,6 +67,14 @@ describe('useCurrentYear', () => {
         expect(cached.year).toBe(2032);
     });
 
+    it('shows the local current year right away while the fetch is still pending', () => {
+        vi.mocked(fetch).mockReturnValue(new Promise(() => {}));
+
+        const { result } = renderHook(() => useCurrentYear());
+
+        expect(result.current.year).toBe(new Date().getFullYear());
+    });
+
     it.each([
         {
             name: 'the fetch response is not ok',
