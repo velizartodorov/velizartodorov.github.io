@@ -48,6 +48,8 @@ npm run serve
 
 That's it. Have fun! 😎 🎉
 
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the branch/commit workflow, local checks, and code style.
+
 ## Translation files 🔠
 
 The application uses YAML and Markdown files for translations located in the
