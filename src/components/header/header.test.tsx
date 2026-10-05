@@ -42,19 +42,19 @@ describe('Header in normal mode', () => {
 });
 
 describe('Header in minimal mode', () => {
-    it('keeps the name, email, GitHub, and blog links', async () => {
+    it('keeps the name, theme toggle, email, GitHub, and blog links', async () => {
         await renderHeader(true);
 
         expect(screen.getByRole('heading', { level: 2, name: 'Test User' })).toBeInTheDocument();
+        expect(screen.getByTestId('theme-toggle')).toBeInTheDocument();
         expect(screen.getByText('Email Label')).toBeInTheDocument();
         expect(screen.getByText('GitHub Label')).toBeInTheDocument();
         expect(screen.getByText('Blog Label')).toBeInTheDocument();
     });
 
-    it('hides the theme toggle, language selector, LinkedIn, and address links', async () => {
+    it('hides the language selector, LinkedIn, and address links', async () => {
         await renderHeader(true);
 
-        expect(screen.queryByTestId('theme-toggle')).not.toBeInTheDocument();
         expect(screen.queryByTestId('language-selector')).not.toBeInTheDocument();
         expect(screen.queryByText('LinkedIn Label')).not.toBeInTheDocument();
         expect(screen.queryByText('Gent')).not.toBeInTheDocument();

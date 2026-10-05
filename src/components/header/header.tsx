@@ -27,7 +27,10 @@ const Header: React.FC<{ minimalMode?: boolean }> = ({ minimalMode = false }) =>
                 <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:text-left">
                     {photo}
                     <div className="flex flex-col items-center gap-2 sm:items-start">
-                        {nameHeading}
+                        <div className="flex items-center gap-4">
+                            {nameHeading}
+                            <ThemeToggle />
+                        </div>
                         <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:justify-start">
                             <ProfileItem link={profile.email} />
                             <ProfileItem link={profile.gitHub} />
