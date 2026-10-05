@@ -90,5 +90,7 @@ describe('section page component', () => {
         const metadata = await generateMetadata({ params: params('employments') });
 
         expect(metadata.title).toBe(OG_TITLE);
+        expect(metadata.alternates).toEqual({ canonical: EN_URL });
+        expect(metadata.robots).toEqual({ index: false, follow: true });
     });
 });

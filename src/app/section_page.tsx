@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { PortfolioApp } from './App';
 import { loadResources } from './translations/resources';
 import { SECTION_RESOURCE_KEY, SECTIONS, type SectionSlug } from './sections';
-import { buildMetadata, OG_TITLE } from './metadata';
+import { buildMetadata, minimalModeRedirectMetadata } from './metadata';
 import { isMinimalMode } from './feature_flags';
 import { minimalModeRedirect } from './redirect_to_root';
 import type { Language } from './translations/i18n';
@@ -18,7 +18,7 @@ export interface SectionPageProps {
 export function sectionMetadata(lang: Language) {
     return async function generateMetadata({ params }: SectionPageProps): Promise<Metadata> {
         if (isMinimalMode()) {
-            return buildMetadata({ lang, profileName: OG_TITLE });
+            return minimalModeRedirectMetadata(lang);
         }
         const { section } = await params;
         const slug = section as SectionSlug;

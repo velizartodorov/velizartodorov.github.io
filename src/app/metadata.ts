@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import type { Language } from './translations/i18n';
 import type { SectionSlug } from './sections';
+import { isMinimalMode } from './feature_flags';
 
 export const SITE_URL = 'https://velizartodorov.github.io';
 export const SITE_DESCRIPTION = "Velizar's Portfolio";
@@ -31,10 +32,12 @@ export function buildMetadata({ lang, profileName, section, sectionTitle }: Buil
     return {
         title: profileName,
         description: SITE_DESCRIPTION,
-        alternates: {
-            canonical,
-            languages: { ...HREFLANG_ALTERNATES },
-        },
+        alternates: isMinimalMode()
+            ? { canonical: languageRoot('en') }
+            : {
+                  canonical,
+                  languages: { ...HREFLANG_ALTERNATES },
+              },
         openGraph: {
             title: ogTitle,
             description: OG_DESCRIPTION,
@@ -48,5 +51,12 @@ export function buildMetadata({ lang, profileName, section, sectionTitle }: Buil
             description: OG_DESCRIPTION,
             images: [OG_IMAGE.url],
         },
+    };
+}
+
+export function minimalModeRedirectMetadata(lang: Language): Metadata {
+    return {
+        ...buildMetadata({ lang, profileName: OG_TITLE }),
+        robots: { index: false, follow: true },
     };
 }

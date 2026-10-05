@@ -119,4 +119,22 @@ describe('minimal mode', () => {
 
         expect(metadata.title).toBe(OG_TITLE);
     });
+
+    it('drops the hreflang alternates from the English page, since /nl/ only redirects', async () => {
+        vi.stubEnv('MINIMAL_MODE', 'true');
+
+        const metadata = await generateEnMetadata();
+
+        expect(metadata.alternates).toEqual({ canonical: EN_URL });
+        expect(metadata.robots).toBeUndefined();
+    });
+
+    it('marks the Dutch redirect page noindex and canonicalizes it to the site root', async () => {
+        vi.stubEnv('MINIMAL_MODE', 'true');
+
+        const metadata = await generateNlMetadata();
+
+        expect(metadata.alternates).toEqual({ canonical: EN_URL });
+        expect(metadata.robots).toEqual({ index: false, follow: true });
+    });
 });

@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 import { PortfolioApp } from '../App';
 import { loadResources } from '../translations/resources';
-import { buildMetadata, OG_TITLE } from '../metadata';
+import { buildMetadata, minimalModeRedirectMetadata } from '../metadata';
 import { isMinimalMode } from '../feature_flags';
 import { minimalModeRedirect } from '../redirect_to_root';
 
 export async function generateMetadata(): Promise<Metadata> {
     if (isMinimalMode()) {
-        return buildMetadata({ lang: 'nl', profileName: OG_TITLE });
+        return minimalModeRedirectMetadata('nl');
     }
     const resources = await loadResources('nl');
     return buildMetadata({ lang: 'nl', profileName: resources.profile.name });
