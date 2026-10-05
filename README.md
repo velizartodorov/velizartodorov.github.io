@@ -170,3 +170,8 @@ behind a manual approval, which would block auto-merge. After merging at least o
 triggers a fresh `build-deploy.yml` run against `master` so the deployment picks up the update.
 
 This ensures dependencies are kept up-to-date automatically while maintaining code quality through automated testing.
+
+## License 📄
+
+The code in this repo is licensed under the [MIT License](LICENSE). The resume content and assets
+in the private `portfolio-resources` submodule are not covered by it.
