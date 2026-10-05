@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import NotFound from './not-found';
+import { REDIRECT_SCRIPT } from './redirect_to_root';
 
 describe('NotFound', () => {
     it('renders a synchronous redirect-to-root script', () => {
@@ -10,7 +11,7 @@ describe('NotFound', () => {
         // for its GA scripts.
         const { container } = render(<NotFound />);
 
-        expect(container.querySelector('script')).toHaveTextContent("location.replace('/');");
+        expect(container.querySelector('script')).toHaveTextContent(REDIRECT_SCRIPT);
     });
 
     it('renders a heading and a link back home as a no-JS fallback', () => {

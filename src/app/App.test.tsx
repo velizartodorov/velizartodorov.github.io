@@ -2,11 +2,14 @@ import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vite
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { PortfolioApp } from './App';
+import Nav from '../components/nav/nav';
+import Introduction from '../components/introduction/introduction';
 import { useLangSwitch } from './translations/lang-switch-context';
 import { LANGUAGE_LABEL } from './translations/language_selector';
 import type { Language } from './translations/languages';
 import { loadLanguage } from './translations/i18n';
 import { loadResources } from './translations/resources';
+import { YEAR_CACHE_KEY } from '../components/footer/utils';
 
 let enResources: Awaited<ReturnType<typeof loadResources>>;
 let nlResources: Awaited<ReturnType<typeof loadResources>>;
@@ -39,7 +42,7 @@ vi.mock('./translations/i18n', async (importOriginal) => {
     return { ...actual, loadLanguage: vi.fn(actual.loadLanguage) };
 });
 
-vi.mock('../components/introduction/introduction', () => ({ default: () => null }));
+vi.mock('../components/introduction/introduction', () => ({ default: vi.fn(() => null) }));
 vi.mock('../components/employments/employments', () => ({ default: () => null }));
 vi.mock('../components/licenses_certifications/licenses_certifications', () => ({
     default: () => null,
@@ -51,7 +54,7 @@ vi.mock('../components/education/education', () => ({ default: () => null }));
 vi.mock('../components/header/theme_toggle', () => ({ default: () => null }));
 // jsdom doesn't implement IntersectionObserver; Nav's scrollspy isn't under test here (see
 // src/components/nav/nav.test.tsx and use_active_section.test.ts).
-vi.mock('../components/nav/nav', () => ({ default: () => null }));
+vi.mock('../components/nav/nav', () => ({ default: vi.fn(() => null) }));
 
 afterEach(() => {
     document.documentElement.lang = 'en';
@@ -152,6 +155,11 @@ describe('language prefetching', () => {
         expect(loadLanguage).toHaveBeenCalledWith(expect.anything(), 'en');
     });
 
+    it('does not prefetch the other language in minimal mode, which has no language switcher', () => {
+        render(<PortfolioApp initialLang="en" initialResources={enResources} minimalMode />);
+        expect(loadLanguage).not.toHaveBeenCalled();
+    });
+
     it('logs an error when prefetching the other language fails, without crashing', async () => {
         const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
         vi.mocked(loadLanguage).mockRejectedValueOnce(new Error('network down'));
@@ -189,6 +197,14 @@ describe('?lang= URL parameter backward compat', () => {
         await waitFor(() => expect(document.documentElement.lang).toBe(to));
     });
 
+    it('ignores ?lang= in minimal mode, whose /nl/ page only redirects back to /', () => {
+        stubSearch('?lang=nl');
+
+        render(<PortfolioApp initialLang="en" initialResources={enResources} minimalMode />);
+
+        expect(loadLanguage).not.toHaveBeenCalled();
+    });
+
     it('ignores an unrelated query string', () => {
         stubSearch('?foo=bar');
 
@@ -203,6 +219,52 @@ describe('?lang= URL parameter backward compat', () => {
         render(<PortfolioApp initialLang="en" initialResources={enResources} />);
 
         expect(document.documentElement.lang).toBe('en');
+    });
+});
+
+describe('minimal mode', () => {
+    beforeEach(() => {
+        vi.mocked(Nav).mockClear();
+        vi.mocked(Introduction).mockClear();
+    });
+
+    afterEach(() => {
+        localStorage.removeItem(YEAR_CACHE_KEY);
+    });
+
+    it('skips Nav and page sections when minimalMode is true', () => {
+        render(<PortfolioApp initialLang="en" initialResources={enResources} minimalMode />);
+
+        expect(Nav).not.toHaveBeenCalled();
+        expect(Introduction).not.toHaveBeenCalled();
+    });
+
+    it('hides header chrome that minimalMode also disables, confirming the prop reaches Header', () => {
+        render(<PortfolioApp initialLang="en" initialResources={enResources} minimalMode />);
+
+        expect(screen.queryByRole('button', { name: LANGUAGE_LABEL.en })).not.toBeInTheDocument();
+    });
+
+    it('renders Nav and page sections when minimalMode is omitted', () => {
+        render(<PortfolioApp initialLang="en" initialResources={enResources} />);
+
+        expect(Nav).toHaveBeenCalled();
+        expect(Introduction).toHaveBeenCalled();
+    });
+
+    it('centers the header and footer together as one block on the viewport', () => {
+        localStorage.setItem(
+            YEAR_CACHE_KEY,
+            JSON.stringify({ year: new Date().getFullYear(), timeZone: 'UTC', fetchedAt: Date.now() }),
+        );
+
+        render(<PortfolioApp initialLang="en" initialResources={enResources} minimalMode />);
+
+        const heading = screen.getByRole('heading', { level: 2, name: enResources.profile.name });
+        const footer = screen.getByText(/Powered by/);
+
+        expect(heading.closest('header')?.parentElement).toBe(footer.parentElement);
+        expect(footer.parentElement).toHaveClass('items-center', 'justify-center');
     });
 });
 

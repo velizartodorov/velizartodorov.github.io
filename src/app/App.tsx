@@ -48,7 +48,10 @@ function PageContent({ lang }: Readonly<{ lang: Language }>) {
     );
 }
 
-function PortfolioAppInner({ initialSection }: Readonly<{ initialSection?: SectionSlug }>) {
+function PortfolioAppInner({
+    initialSection,
+    minimalMode = false,
+}: Readonly<{ initialSection?: SectionSlug; minimalMode?: boolean }>) {
     const { lang, switchTo } = useLangSwitch();
 
     useEffect(() => {
@@ -71,6 +74,7 @@ function PortfolioAppInner({ initialSection }: Readonly<{ initialSection?: Secti
     }, []);
 
     useEffect(() => {
+        if (minimalMode) return;
         const search = globalThis.location.search;
         if (!search) return;
         const langParam = new URLSearchParams(search).get('lang');
@@ -82,10 +86,19 @@ function PortfolioAppInner({ initialSection }: Readonly<{ initialSection?: Secti
     return (
         <>
             <EnvBanner />
-            <Header />
-            <Nav initialSection={initialSection} />
-            <PageContent lang={lang} />
-            <Footer />
+            {minimalMode ? (
+                <div className="flex min-h-dvh flex-col items-center justify-center gap-4 px-6">
+                    <Header minimalMode />
+                    <Footer />
+                </div>
+            ) : (
+                <>
+                    <Header />
+                    <Nav initialSection={initialSection} />
+                    <PageContent lang={lang} />
+                    <Footer />
+                </>
+            )}
         </>
     );
 }
@@ -94,15 +107,22 @@ interface PortfolioAppProps {
     initialLang: Language;
     initialResources: Parameters<typeof createLangInstance>[1];
     initialSection?: SectionSlug;
+    minimalMode?: boolean;
 }
 
-export function PortfolioApp({ initialLang, initialResources, initialSection }: Readonly<PortfolioAppProps>) {
+export function PortfolioApp({
+    initialLang,
+    initialResources,
+    initialSection,
+    minimalMode,
+}: Readonly<PortfolioAppProps>) {
     const [instance] = useState(() => createLangInstance(initialLang, initialResources));
     const [lang, setLang] = useState<Language>(initialLang);
     const targetLangRef = useRef<Language>(initialLang);
     const latestSwitchRef = useRef(0);
 
     useEffect(() => {
+        if (minimalMode) return;
         for (const other of otherLanguages(initialLang)) {
             loadLanguage(instance, other).catch((error: unknown) => {
                 console.error(`Failed to prefetch language "${other}":`, error);
@@ -145,7 +165,7 @@ export function PortfolioApp({ initialLang, initialResources, initialSection }: 
     return (
         <I18nextProvider i18n={instance}>
             <LangSwitchContext.Provider value={langSwitchValue}>
-                <PortfolioAppInner initialSection={initialSection} />
+                <PortfolioAppInner initialSection={initialSection} minimalMode={minimalMode} />
             </LangSwitchContext.Provider>
         </I18nextProvider>
     );

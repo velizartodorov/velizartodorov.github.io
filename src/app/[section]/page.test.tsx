@@ -7,6 +7,7 @@ import { mockIntersectionObserver } from '../../test-utils/mock-intersection-obs
 import { loadResources } from '../translations/resources';
 import { SECTION_RESOURCE_KEY, SECTIONS } from '../sections';
 import { HREFLANG_ALTERNATES, OG_TITLE } from '../metadata';
+import { REDIRECT_SCRIPT } from '../redirect_to_root';
 
 beforeEach(() => {
     mockMatchMedia();
@@ -15,6 +16,7 @@ beforeEach(() => {
 
 afterEach(() => {
     vi.unstubAllGlobals();
+    vi.unstubAllEnvs();
 });
 
 const { en: EN_URL } = HREFLANG_ALTERNATES;
@@ -73,4 +75,22 @@ describe('section page component', () => {
             }
         },
     );
+
+    it('redirects to the site root instead of rendering the app when minimal mode is on', async () => {
+        vi.stubEnv('MINIMAL_MODE', 'true');
+
+        const { container } = render(await SectionPage({ params: params('employments') }));
+
+        expect(container.querySelector('script')).toHaveTextContent(REDIRECT_SCRIPT);
+    });
+
+    it('uses a static title for section metadata without loading resources when minimal mode is on', async () => {
+        vi.stubEnv('MINIMAL_MODE', 'true');
+
+        const metadata = await generateMetadata({ params: params('employments') });
+
+        expect(metadata.title).toBe(OG_TITLE);
+        expect(metadata.alternates).toEqual({ canonical: EN_URL });
+        expect(metadata.robots).toEqual({ index: false, follow: true });
+    });
 });

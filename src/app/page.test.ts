@@ -9,6 +9,7 @@ import { mockIntersectionObserver } from '../test-utils/mock-intersection-observ
 import { loadResources } from './translations/resources';
 import { SECTIONS } from './sections';
 import { HREFLANG_ALTERNATES, OG_DESCRIPTION, OG_IMAGE, OG_TITLE } from './metadata';
+import { REDIRECT_SCRIPT } from './redirect_to_root';
 
 // The rendered page includes the real ThemeToggle, whose useTheme() hook needs
 // matchMedia — jsdom doesn't implement it. It also includes the real Nav, whose
@@ -83,5 +84,57 @@ describe('nav', () => {
     it('renders the sticky section nav', async () => {
         render(await EnPage());
         expect(screen.getByRole('navigation', { name: 'Sections' })).toBeInTheDocument();
+    });
+});
+
+describe('minimal mode', () => {
+    afterEach(() => {
+        vi.unstubAllEnvs();
+    });
+
+    it('renders the English page without Nav or any section anchors', async () => {
+        vi.stubEnv('MINIMAL_MODE', 'true');
+
+        render(await EnPage());
+
+        expect(screen.queryByRole('navigation', { name: 'Sections' })).not.toBeInTheDocument();
+        for (const id of ['introduction', ...SECTIONS]) {
+            expect(document.getElementById(id)).toBeNull();
+        }
+    });
+
+    it('redirects the Dutch page to the site root instead of rendering it', async () => {
+        vi.stubEnv('MINIMAL_MODE', 'true');
+
+        const { container } = render(await NlPage());
+
+        expect(container.querySelector('script')).toHaveTextContent(REDIRECT_SCRIPT);
+        expect(screen.getByText('Omleiden…')).toBeInTheDocument();
+    });
+
+    it('uses a static title for the Dutch page metadata without loading resources', async () => {
+        vi.stubEnv('MINIMAL_MODE', 'true');
+
+        const metadata = await generateNlMetadata();
+
+        expect(metadata.title).toBe(OG_TITLE);
+    });
+
+    it('drops the hreflang alternates from the English page, since /nl/ only redirects', async () => {
+        vi.stubEnv('MINIMAL_MODE', 'true');
+
+        const metadata = await generateEnMetadata();
+
+        expect(metadata.alternates).toEqual({ canonical: EN_URL });
+        expect(metadata.robots).toBeUndefined();
+    });
+
+    it('marks the Dutch redirect page noindex and canonicalizes it to the site root', async () => {
+        vi.stubEnv('MINIMAL_MODE', 'true');
+
+        const metadata = await generateNlMetadata();
+
+        expect(metadata.alternates).toEqual({ canonical: EN_URL });
+        expect(metadata.robots).toEqual({ index: false, follow: true });
     });
 });

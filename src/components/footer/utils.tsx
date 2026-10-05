@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 
 export const YEAR_CACHE_KEY = 'currentYearWithTZ';
 export const TIME_API_BASE_URL = 'https://timeapi.io/api/Time/current/zone';
+
+const useIsomorphicLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect;
 
 type CacheData = {
     year: number;
@@ -16,10 +18,10 @@ export function useCurrentYear(): {
     const [year, setYear] = useState<number | null>(null);
     const [timeZone, setTimeZone] = useState<string | null>(null);
 
-    useEffect(() => {
-        const cached = localStorage.getItem(YEAR_CACHE_KEY);
-        if (cached) {
-            try {
+    useIsomorphicLayoutEffect(() => {
+        try {
+            const cached = localStorage.getItem(YEAR_CACHE_KEY);
+            if (cached) {
                 const data: CacheData = JSON.parse(cached);
                 const now = new Date();
                 if (now.getFullYear() === data.year) {
@@ -27,8 +29,8 @@ export function useCurrentYear(): {
                     setTimeZone(data.timeZone);
                     return;
                 }
-            } catch {}
-        }
+            }
+        } catch {}
 
         fetchYearFromAPI();
     }, []);
@@ -38,6 +40,7 @@ export function useCurrentYear(): {
     function fetchYearFromAPI() {
         const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
         setTimeZone(timeZone);
+        setYear(new Date().getFullYear());
 
         fetch(`${TIME_API_BASE_URL}?timeZone=${encodeURIComponent(timeZone)}`)
             .then((res) => {
@@ -55,8 +58,6 @@ export function useCurrentYear(): {
                 };
                 localStorage.setItem(YEAR_CACHE_KEY, JSON.stringify(cacheData));
             })
-            .catch(() => {
-                setYear(new Date().getFullYear());
-            });
+            .catch(() => {});
     }
 }
