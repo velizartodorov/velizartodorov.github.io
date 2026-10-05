@@ -7,7 +7,13 @@
   "overrides": {
     "argparse": "^2.0.1",
     "postcss": "^8.5.18",
-    "sharp": "^0.35.5"
+    "sharp": "^0.35.5",
+    "typescript-eslint": {
+      "typescript": "$typescript"
+    },
+    "@typescript-eslint/parser": {
+      "typescript": "$typescript"
+    }
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
@@ -83,7 +89,7 @@
     "remark-parse": "^11.0.0",
     "tailwindcss": "^4.3.3",
     "tsx": "^4.23.15",
-    "typescript": "npm:@typescript/typescript6@^6.0.2",
+    "typescript": "^7.0.2",
     "typescript-eslint": "^8.72.0",
     "unified": "^11.0.5",
     "unist-util-visit": "^5.1.0",
