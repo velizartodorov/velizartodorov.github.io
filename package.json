@@ -3,6 +3,7 @@
   "homepage": "https://velizartodorov.github.io/",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "overrides": {
     "postcss": "^8.5.18",
     "sharp": "^0.35.4"

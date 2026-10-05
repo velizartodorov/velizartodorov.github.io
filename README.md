@@ -48,6 +48,8 @@ npm run serve
 
 That's it. Have fun! 😎 🎉
 
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the branch/commit workflow, local checks, and code style.
+
 ## Translation files 🔠
 
 The application uses YAML and Markdown files for translations located in the
@@ -61,10 +63,11 @@ The actual resume content (dates, employment/education text, employer/school nam
 identity-revealing static assets (employer/school logos, the certificate PDF, the personal photo)
 are personal data and don't live in this public repo - they live in the private
 `velizartodorov/portfolio-resources` repo, mounted here as a git submodule at
-`src/app/translations/data/`. `predev`/`prebuild` (see `scripts/prepare-resources.mjs`)
-initialize that submodule and copy its `assets/` subtree into `public/resources/` (gitignored,
-regenerated on every build) - the raw yml/md text is never copied anywhere under `public/`, so it
-never becomes part of the statically-served/exported site.
+`src/app/translations/data/`. That repo exists purely to keep this content out of the public
+repo; it isn't a standalone app and has no build of its own. `predev`/`prebuild` (see
+`scripts/prepare-resources.mjs`) initialize that submodule and copy its `assets/` subtree into
+`public/resources/` (gitignored, regenerated on every build) - the raw yml/md text is never
+copied anywhere under `public/`, so it never becomes part of the statically-served/exported site.
 
 ### Structure
 
@@ -100,6 +103,15 @@ Markdown frontmatter is parsed at build time by `loaders/markdown-frontmatter-lo
 (via `gray-matter`), which turns each `.md` file into a JS module exporting its frontmatter
 fields plus a `body` string.
 
+### Updating content
+
+Content changes are made in `portfolio-resources` only - commit and push to its `master`, and
+nothing needs to be done here. Its `sync-to-public.yml` workflow runs on every push and, if the
+submodule pointer recorded here actually changed, opens a `bump-resources-<short-sha>` PR against
+this repo's `master` (titled `chore: update resume content to portfolio-resources@<short-sha>`)
+with auto-merge enabled. It merges once the required `build` check passes - the same mechanism
+the Dependabot PRs use - and the merge to `master` deploys the new content.
+
 ## CI/CD 🚀
 
 ### Github Workflows 🏭
@@ -110,7 +122,10 @@ and the `sonarcloud` job in `sonarcloud.yml` each start with a "Fetch private re
 fine-grained PAT scoped to `portfolio-resources` with `Contents: Read-only`) before installing
 dependencies, since the test run itself exercises the private submodule's content. That PAT
 expires (fine-grained tokens max out around a year) and needs rotating before then, or every
-workflow that touches the submodule breaks.
+workflow that touches the submodule breaks. `portfolio-resources` holds a second, more-privileged
+PAT, `PORTFOLIO_REPO_TOKEN` (scoped to only this repo, `Contents` and `Pull requests: Read and
+write`), which its sync workflow uses to open the content-bump PRs described above; it expires
+on the same schedule and needs rotating too.
 
 - **`build-deploy.yml`** - on PR and on push to `master`: installs dependencies, checks for
   encoding corruption, lints, runs the Vitest suite (excluding the link-check/analytics tests,
@@ -155,3 +170,8 @@ behind a manual approval, which would block auto-merge. After merging at least o
 triggers a fresh `build-deploy.yml` run against `master` so the deployment picks up the update.
 
 This ensures dependencies are kept up-to-date automatically while maintaining code quality through automated testing.
+
+## License 📄
+
+The code in this repo is licensed under the [MIT License](LICENSE). The resume content and assets
+in the private `portfolio-resources` submodule are not covered by it.
