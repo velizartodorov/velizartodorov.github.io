@@ -74,6 +74,7 @@ function PortfolioAppInner({
     }, []);
 
     useEffect(() => {
+        if (minimalMode) return;
         const search = globalThis.location.search;
         if (!search) return;
         const langParam = new URLSearchParams(search).get('lang');

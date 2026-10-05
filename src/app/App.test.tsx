@@ -197,6 +197,14 @@ describe('?lang= URL parameter backward compat', () => {
         await waitFor(() => expect(document.documentElement.lang).toBe(to));
     });
 
+    it('ignores ?lang= in minimal mode, whose /nl/ page only redirects back to /', () => {
+        stubSearch('?lang=nl');
+
+        render(<PortfolioApp initialLang="en" initialResources={enResources} minimalMode />);
+
+        expect(loadLanguage).not.toHaveBeenCalled();
+    });
+
     it('ignores an unrelated query string', () => {
         stubSearch('?foo=bar');
 
