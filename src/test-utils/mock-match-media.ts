@@ -3,8 +3,8 @@ import { vi } from 'vitest';
 type Listener = (event: { matches: boolean }) => void;
 
 // Stubs window.matchMedia, which jsdom doesn't implement. `initialMatches`/the returned
-// `fireChange` are only needed by tests that exercise OS-preference-change behavior directly
-// (see theme.test.tsx); callers that just need real code depending on matchMedia to not crash
+// `fireChange` are only needed by tests that exercise media-query-change behavior directly
+// (see use_mobile_menu.test.ts); callers that just need real code depending on matchMedia to not crash
 // (e.g. rendering a real ThemeToggle) can ignore the return value.
 export function mockMatchMedia(initialMatches = false) {
     let matches = initialMatches;

@@ -5,14 +5,6 @@ export { THEME_ATTR, THEME_STORAGE_KEY, THEME_SWITCHING_CLASS, THEME_TRANSITION_
 
 export type Theme = 'light' | 'dark';
 
-function readStoredTheme(): Theme | null {
-    try {
-        const v = localStorage.getItem(THEME_STORAGE_KEY);
-        return v === 'light' || v === 'dark' ? v : null;
-    } catch {
-        return null;
-    }
-}
 function currentTheme(): Theme {
     if (typeof document === 'undefined') return 'light';
     return (document.documentElement.getAttribute(THEME_ATTR) as Theme) || 'light';
@@ -27,17 +19,6 @@ export function useTheme(): { theme: Theme; toggle: () => void } {
 
     useEffect(() => {
         setTheme(currentTheme());
-
-        if (readStoredTheme() !== null) return;
-        const mq = globalThis.matchMedia('(prefers-color-scheme: dark)');
-        const onChange = () => {
-            if (readStoredTheme() !== null) return;
-            const next: Theme = mq.matches ? 'dark' : 'light';
-            applyTheme(next);
-            setTheme(next);
-        };
-        mq.addEventListener('change', onChange);
-        return () => mq.removeEventListener('change', onChange);
     }, []);
 
     const toggle = useCallback(() => {
