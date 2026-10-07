@@ -6,7 +6,13 @@
   "license": "MIT",
   "overrides": {
     "postcss": "^8.5.18",
-    "sharp": "^0.35.4"
+    "sharp": "^0.35.4",
+    "typescript-eslint": {
+      "typescript": "$typescript"
+    },
+    "@typescript-eslint/parser": {
+      "typescript": "$typescript"
+    }
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
@@ -68,7 +74,6 @@
     "@types/react-dom": "^19.3.0",
     "@types/react-i18next": "^8.1.0",
     "@types/uuid": "^11.0.0",
-    "@typescript/native": "npm:typescript@^7.0.2",
     "@vitest/coverage-v8": "^5.0.3",
     "eslint": "^10.11.0",
     "eslint-plugin-tailwindcss": "^4.4.0",
@@ -82,7 +87,7 @@
     "remark-parse": "^11.0.0",
     "tailwindcss": "^4.3.3",
     "tsx": "^4.23.15",
-    "typescript": "npm:@typescript/typescript6@^6.0.2",
+    "typescript": "^7.0.2",
     "typescript-eslint": "^8.71.0",
     "unified": "^11.0.5",
     "unist-util-visit": "^5.1.0",
