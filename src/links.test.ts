@@ -113,7 +113,7 @@ const allLinks = [...collectEmploymentLinks(), ...collectEducationLinks()].filte
 // Hosts whose WAF blocks GitHub Actions' shared IP ranges outright (403) even though the
 // link works fine for real users. Verified manually. This is an IP/ASN-level block, not
 // rate limiting, so retries don't help — warn instead of failing the build.
-const UNCHECKABLE_IN_CI = new Set(['www.elo.com']);
+const UNCHECKABLE_IN_CI = new Set(['www.elo.com', 'outletpc.bg']);
 
 describe('external links', () => {
     it.concurrent.each(allLinks)(
