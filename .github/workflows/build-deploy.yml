@@ -48,6 +48,9 @@ jobs:
       - name: Check for encoding corruption (mojibake)
         run: npm run check:encoding
 
+      - name: Check TypeScript 7 typescript-eslint readiness
+        run: npm run check:typescript7-eslint
+
       - name: Lint
         run: npm run lint
 

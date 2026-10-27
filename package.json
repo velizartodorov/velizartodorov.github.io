@@ -7,7 +7,13 @@
   "overrides": {
     "argparse": "^2.0.1",
     "postcss": "^8.5.18",
-    "sharp": "^0.35.5"
+    "sharp": "^0.35.5",
+    "typescript-eslint": {
+      "typescript": "$typescript"
+    },
+    "@typescript-eslint/parser": {
+      "typescript": "$typescript"
+    }
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
@@ -27,6 +33,7 @@
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "lint": "eslint .",
+    "check:typescript7-eslint": "node scripts/check-typescript-eslint-typescript7.mjs",
     "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,css}\"",
     "check:encoding": "tsx scripts/check-mojibake.ts $(git ls-files 'src/**/*.{ts,tsx,css}')",
@@ -83,7 +90,7 @@
     "remark-parse": "^11.0.0",
     "tailwindcss": "^4.3.3",
     "tsx": "^4.23.15",
-    "typescript": "npm:@typescript/typescript6@^6.0.2",
+    "typescript": "^7.0.2",
     "typescript-eslint": "^8.72.0",
     "unified": "^11.0.5",
     "unist-util-visit": "^5.1.0",
