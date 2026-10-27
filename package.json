@@ -33,6 +33,7 @@
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "lint": "eslint .",
+    "check:typescript7-eslint": "node scripts/check-typescript-eslint-typescript7.mjs",
     "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,css}\"",
     "check:encoding": "tsx scripts/check-mojibake.ts $(git ls-files 'src/**/*.{ts,tsx,css}')",
