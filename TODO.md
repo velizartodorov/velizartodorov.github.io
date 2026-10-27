@@ -1,5 +1,6 @@
 # TO DO 📌
 
+* fix mobile app order icons alignment in a grid
 * check architecture for improvements
 * fix dimentions Surface Pro 7
 * create a structure where each `Employment` has a list of `Position` ✅
