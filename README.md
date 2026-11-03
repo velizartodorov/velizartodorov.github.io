@@ -16,9 +16,14 @@ Next.js (App Router, static export) web application representing Velizar's portf
 ## How to start locally? 🤔
 
 The resume content and identity-revealing assets (employer/school logos, the certificate PDF,
-the personal photo) live in a private submodule (see "Translation files" below), so building or
-running this app locally requires git access to that private repo - there's no fallback/mock
-content path. If you're not the maintainer, `npm run dev`/`npm run build` won't succeed.
+the personal photo) live in the private
+[`portfolio-resources`](https://github.com/velizartodorov/portfolio-resources) repo, mounted as a
+git submodule at `src/app/translations/data/`. Its `README.md` covers the content layout, how
+this app loads it, and how content updates reach this repo.
+
+Building or running this app locally therefore requires git access to that private repo - there's
+no fallback/mock content path. If you're not the maintainer, `npm run dev`/`npm run build` won't
+succeed.
 
 First, install the dependencies:
 
@@ -49,51 +54,6 @@ npm run serve
 That's it. Have fun! 😎 🎉
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the branch/commit workflow, local checks, and code style.
-
-## Translation files 🔠
-
-The application uses YAML and Markdown files for translations located in the
-`src/app/translations` directory. Each language (en, nl) has its own set of translation files.
-Rather than a static per-language bundle, each file is fetched on demand through a dynamic
-`import()` templated on the language, so a page only ever downloads the one language's content it
-actually renders; the results are then assembled into a single resources object for that
-language.
-
-The actual resume content (dates, employment/education text, employer/school names) and the
-identity-revealing static assets (employer/school logos, the certificate PDF, the personal photo)
-are personal data and don't live in this public repo - they live in the private
-`velizartodorov/portfolio-resources` repo, mounted here as a git submodule at
-`src/app/translations/data/`. That repo exists purely to keep this content out of the public
-repo; it isn't a standalone app and has no build of its own. `predev`/`prebuild` (see
-`scripts/prepare-resources.mjs`) initialize that submodule and copy its `assets/` subtree into
-`public/resources/` (gitignored, regenerated on every build) - the raw yml/md text is never
-copied anywhere under `public/`, so it never becomes part of the statically-served/exported site.
-
-### Structure
-
-- `src/app/translations/`
-  - `data/` - git submodule ([`portfolio-resources`](https://github.com/velizartodorov/portfolio-resources),
-    private): `dates.yml`, one `en/`/`nl/` folder of YAML namespaces and Markdown entries per
-    language, `resource-files.ts`, and `assets/`. Its own `README.md` documents the layout.
-  - `resources.ts` - `loadResources(lang)`, which dynamically imports every YAML/Markdown file for
-    a language and hands them to `build-resources.ts`
-  - `build-resources.ts` - `buildLanguageResources()` assembles the loaded index files plus their
-    Markdown entries into the final `{ title, list }` shape consumed by the app (splitting
-    multi-position employment bodies on the `<!-- position -->` marker along the way)
-  - `completeness.test.ts` - Vitest check that every key path present in `en`'s resources also
-    exists in `nl` (and vice versa), so a missing translation fails the build instead of silently
-    falling back
-
-Markdown frontmatter is parsed at build time by `loaders/markdown-frontmatter-loader.cjs`
-(via `gray-matter`), which turns each `.md` file into a JS module exporting its frontmatter
-fields plus a `body` string.
-
-### Updating content
-
-Content changes are made in `portfolio-resources` only - commit and push to its `master`, and
-nothing needs to be done here. Its sync workflow opens an auto-merging submodule-bump PR against
-this repo's `master`, and that merge deploys the new content. See `portfolio-resources`'
-`README.md` for how the sync works.
 
 ## CI/CD 🚀
 
