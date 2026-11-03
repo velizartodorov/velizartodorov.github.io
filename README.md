@@ -16,9 +16,14 @@ Next.js (App Router, static export) web application representing Velizar's portf
 ## How to start locally? 🤔
 
 The resume content and identity-revealing assets (employer/school logos, the certificate PDF,
-the personal photo) live in a private submodule (see "Translation files" below), so building or
-running this app locally requires git access to that private repo - there's no fallback/mock
-content path. If you're not the maintainer, `npm run dev`/`npm run build` won't succeed.
+the personal photo) live in the private
+[`portfolio-resources`](https://github.com/velizartodorov/portfolio-resources) repo, mounted as a
+git submodule at `src/app/translations/data/`. Its `README.md` covers the content layout, how
+this app loads it, and how content updates reach this repo.
+
+Building or running this app locally therefore requires git access to that private repo - there's
+no fallback/mock content path. If you're not the maintainer, `npm run dev`/`npm run build` won't
+succeed.
 
 First, install the dependencies:
 
@@ -50,68 +55,6 @@ That's it. Have fun! 😎 🎉
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the branch/commit workflow, local checks, and code style.
 
-## Translation files 🔠
-
-The application uses YAML and Markdown files for translations located in the
-`src/app/translations` directory. Each language (en, nl) has its own set of translation files.
-Rather than a static per-language bundle, each file is fetched on demand through a dynamic
-`import()` templated on the language, so a page only ever downloads the one language's content it
-actually renders; the results are then assembled into a single resources object for that
-language.
-
-The actual resume content (dates, employment/education text, employer/school names) and the
-identity-revealing static assets (employer/school logos, the certificate PDF, the personal photo)
-are personal data and don't live in this public repo - they live in the private
-`velizartodorov/portfolio-resources` repo, mounted here as a git submodule at
-`src/app/translations/data/`. That repo exists purely to keep this content out of the public
-repo; it isn't a standalone app and has no build of its own. `predev`/`prebuild` (see
-`scripts/prepare-resources.mjs`) initialize that submodule and copy its `assets/` subtree into
-`public/resources/` (gitignored, regenerated on every build) - the raw yml/md text is never
-copied anywhere under `public/`, so it never becomes part of the statically-served/exported site.
-
-### Structure
-
-- `src/app/translations/`
-  - `data/` - git submodule ([`portfolio-resources`](https://github.com/velizartodorov/portfolio-resources),
-    private), containing:
-    - `dates.yml` - shared date placeholders (e.g. `collibra_start`), referenced from content as
-      `{{dates:collibra_start}}` and resolved at runtime by `useEmployments()`
-    - `en/`, `nl/` - one folder per language, each containing:
-      - `common.yml`, `introduction.yml`, `languages.yml`, `licenses_certifications.yml`,
-        `presentations.yml`, `profile.yml` - simple key/value YAML namespaces
-      - `employments.yml`, `education.yml` - index files (`title` + ordered `list` of filenames)
-        defining which entries appear and in what order
-      - `employments/*.md`, `education/*.md` - one Markdown file per entry, with YAML frontmatter
-        (company/place/period, etc.) and the description as the Markdown body. Employment entries
-        with multiple positions separate each position's body with an `<!-- position -->` marker
-    - `resource-files.ts` - the single source of truth for which employment/education Markdown
-      files exist (`EMPLOYMENT_FILES` / `EDUCATION_FILES`), typed so a filename present in one
-      language's folder but missing (or misspelled) in the other fails to compile
-    - `assets/` - the employer/school logos, certificate PDF, and personal photo; `icon:`/`link:`/
-      `imageUrl:` fields in the yml/md above reference these under `/resources/...`, matching
-      where `prepare-resources.mjs` copies them under `public/`
-  - `resources.ts` - `loadResources(lang)`, which dynamically imports every YAML/Markdown file for
-    a language and hands them to `build-resources.ts`
-  - `build-resources.ts` - `buildLanguageResources()` assembles the loaded index files plus their
-    Markdown entries into the final `{ title, list }` shape consumed by the app (splitting
-    multi-position employment bodies on the `<!-- position -->` marker along the way)
-  - `completeness.test.ts` - Vitest check that every key path present in `en`'s resources also
-    exists in `nl` (and vice versa), so a missing translation fails the build instead of silently
-    falling back
-
-Markdown frontmatter is parsed at build time by `loaders/markdown-frontmatter-loader.cjs`
-(via `gray-matter`), which turns each `.md` file into a JS module exporting its frontmatter
-fields plus a `body` string.
-
-### Updating content
-
-Content changes are made in `portfolio-resources` only - commit and push to its `master`, and
-nothing needs to be done here. Its `sync-to-public.yml` workflow runs on every push and, if the
-submodule pointer recorded here actually changed, opens a `bump-resources-<short-sha>` PR against
-this repo's `master` (titled `chore: update resume content to portfolio-resources@<short-sha>`)
-with auto-merge enabled. It merges once the required `build` check passes - the same mechanism
-the Dependabot PRs use - and the merge to `master` deploys the new content.
-
 ## CI/CD 🚀
 
 ### Github Workflows 🏭
@@ -122,10 +65,8 @@ and the `sonarcloud` job in `sonarcloud.yml` each start with a "Fetch private re
 fine-grained PAT scoped to `portfolio-resources` with `Contents: Read-only`) before installing
 dependencies, since the test run itself exercises the private submodule's content. That PAT
 expires (fine-grained tokens max out around a year) and needs rotating before then, or every
-workflow that touches the submodule breaks. `portfolio-resources` holds a second, more-privileged
-PAT, `PORTFOLIO_REPO_TOKEN` (scoped to only this repo, `Contents` and `Pull requests: Read and
-write`), which its sync workflow uses to open the content-bump PRs described above; it expires
-on the same schedule and needs rotating too.
+workflow that touches the submodule breaks. `portfolio-resources` holds a second PAT for its sync
+workflow, documented in its own `README.md`.
 
 - **`build-deploy.yml`** - on PR and on push to `master`: installs dependencies, checks for
   encoding corruption, lints, runs the Vitest suite (excluding the link-check/analytics tests,
