@@ -60,8 +60,8 @@ const openMenu = () => userEvent.click(screen.getByRole('button', { name: OPEN_M
 const closeMenu = () => userEvent.click(screen.getByRole('button', { name: CLOSE_MENU }));
 const menuOverlay = () => document.querySelector('[data-state]') as HTMLElement;
 
-// The overlay's scroll-lock effect queries '(min-width: 768px)' to auto-close itself once the
-// viewport grows past `md`; `matches: false` is the narrow-viewport default the menu is used at.
+// The overlay's scroll-lock effect queries '(min-width: 1024px)' to auto-close itself once the
+// viewport grows past `lg`; `matches: false` is the narrow-viewport default the menu is used at.
 let viewport: ReturnType<typeof mockMatchMedia>;
 
 beforeEach(() => {
@@ -131,8 +131,8 @@ describe('Nav', () => {
     it('centers items and uses a larger font once there is room for all six on one line', () => {
         renderNav();
 
-        expect(screen.getByRole('list')).toHaveClass('md:justify-center');
-        expect(link(EMPLOYMENTS)).toHaveClass('md:text-base');
+        expect(screen.getByRole('list')).toHaveClass('lg:justify-center');
+        expect(link(EMPLOYMENTS)).toHaveClass('xl:text-base');
     });
 
     it('lets the wide row scroll horizontally, so six items at the larger font cannot overflow the page', () => {
@@ -214,7 +214,7 @@ describe('Nav — narrow-viewport menu', () => {
         act(() => viewport.fireChange(true));
 
         // Without this the wide row would stay unrendered (the overlay branch of the ternary won),
-        // the overlay itself hidden by `md:hidden`, and the body left scroll-locked.
+        // the overlay itself hidden by `lg:hidden`, and the body left scroll-locked.
         expect(screen.queryByRole('button', { name: CLOSE_MENU })).not.toBeInTheDocument();
         expect(screen.getByRole('list')).toBeInTheDocument();
         expect(document.body.style.overflow).toBe('');

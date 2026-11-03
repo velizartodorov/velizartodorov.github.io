@@ -20,7 +20,7 @@ export const OpenMenuButton: React.FC<OpenMenuButtonProps> = ({ menuOpen, onOpen
             aria-label={t('common:nav.openMenu')}
             aria-expanded={menuOpen}
             onClick={onOpenMenu}
-            className="flex size-9 flex-col items-center justify-center gap-1.5 md:hidden"
+            className="flex size-9 flex-col items-center justify-center gap-1.5 lg:hidden"
         >
             {['top', 'middle', 'bottom'].map((bar) => (
                 <span key={bar} aria-hidden="true" className={`${MENU_BAR_CLASS} block`} />

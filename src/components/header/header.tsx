@@ -44,29 +44,29 @@ const Header: React.FC<{ minimalMode?: boolean }> = ({ minimalMode = false }) =>
 
     return (
         <header className="mt-3 ml-0 md:ml-6">
-            <div className="mb-2 grid grid-cols-1 items-center justify-items-center gap-x-4 gap-y-2 text-center sm:grid-cols-[240px_repeat(3,1fr)] sm:justify-items-start sm:text-left">
-                <div className="row-start-1 sm:col-start-1 sm:row-span-3">{photo}</div>
-                <div className="row-start-2 flex items-center gap-4 sm:col-span-3 sm:col-start-2 sm:row-start-1">
+            <div className="mb-2 grid grid-cols-1 items-center justify-items-center gap-x-4 gap-y-2 text-center lg:grid-cols-[240px_repeat(3,1fr)] lg:justify-items-start lg:text-left">
+                <div className="row-start-1 lg:col-start-1 lg:row-span-3">{photo}</div>
+                <div className="row-start-2 flex items-center gap-4 lg:col-span-3 lg:col-start-2 lg:row-start-1">
                     {nameHeading}
                     <ThemeToggle />
                 </div>
-                <div className="sm:col-start-2 sm:row-start-2">
+                <div className="lg:col-start-2 lg:row-start-2">
                     <LanguageSelector />
                 </div>
-                <div className="flex w-fit flex-col items-start gap-y-2 sm:contents">
-                    <div className="sm:col-start-3 sm:row-start-2">
+                <div className="flex w-fit flex-col items-start gap-y-2 lg:contents">
+                    <div className="lg:col-start-3 lg:row-start-2">
                         <ProfileItem link={profile.email} />
                     </div>
-                    <div className="sm:col-start-4 sm:row-start-2">
+                    <div className="lg:col-start-4 lg:row-start-2">
                         <ProfileItem link={profile.linkedIn} />
                     </div>
-                    <div className="sm:col-start-2 sm:row-start-3">
+                    <div className="lg:col-start-2 lg:row-start-3">
                         <ProfileItem link={profile.gitHub} />
                     </div>
-                    <div className="sm:col-start-3 sm:row-start-3">
+                    <div className="lg:col-start-3 lg:row-start-3">
                         <ProfileItem link={profile.blog} />
                     </div>
-                    <div className="sm:col-start-4 sm:row-start-3">
+                    <div className="lg:col-start-4 lg:row-start-3">
                         <ProfileItem link={profile.address} />
                     </div>
                 </div>
