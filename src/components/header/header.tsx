@@ -31,7 +31,7 @@ const Header: React.FC<{ minimalMode?: boolean }> = ({ minimalMode = false }) =>
                             {nameHeading}
                             <ThemeToggle />
                         </div>
-                        <div className="flex w-fit flex-col items-start gap-y-2 min-[800px]:w-auto min-[800px]:flex-row min-[800px]:flex-wrap min-[800px]:items-center min-[800px]:justify-start min-[800px]:gap-x-4">
+                        <div className="tablet:w-auto tablet:flex-row tablet:flex-wrap tablet:items-center tablet:justify-start tablet:gap-x-4 flex w-fit flex-col items-start gap-y-2">
                             <ProfileItem link={profile.email} />
                             <ProfileItem link={profile.gitHub} />
                             <ProfileItem link={profile.blog} />
@@ -43,7 +43,7 @@ const Header: React.FC<{ minimalMode?: boolean }> = ({ minimalMode = false }) =>
     }
 
     return (
-        <header className="mt-3 ml-0 md:ml-6">
+        <header className="mt-3 ml-0 lg:ml-6">
             <div className="mb-2 grid grid-cols-1 items-center justify-items-center gap-x-4 gap-y-2 text-center lg:grid-cols-[240px_repeat(3,1fr)] lg:justify-items-start lg:text-left">
                 <div className="row-start-1 lg:col-start-1 lg:row-span-3">{photo}</div>
                 <div className="row-start-2 flex items-center gap-4 lg:col-span-3 lg:col-start-2 lg:row-start-1">
@@ -53,7 +53,7 @@ const Header: React.FC<{ minimalMode?: boolean }> = ({ minimalMode = false }) =>
                 <div className="lg:col-start-2 lg:row-start-2">
                     <LanguageSelector />
                 </div>
-                <div className="flex w-fit flex-col items-start gap-y-2 sm:w-full sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-10 lg:contents">
+                <div className="tablet:w-full tablet:flex-row tablet:flex-wrap tablet:justify-center tablet:gap-x-10 flex w-fit flex-col items-start gap-y-2 lg:contents">
                     <div className="lg:col-start-3 lg:row-start-2">
                         <ProfileItem link={profile.email} />
                     </div>

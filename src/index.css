@@ -7,6 +7,8 @@
     /* Match Bootstrap's grid breakpoints (kept from the pre-Tailwind layout) */
     --breakpoint-sm: 36rem;
     --breakpoint-md: 48rem;
+    /* Profile links stack below this: iPad mini portrait stacks, Surface Pro portrait gets a row */
+    --breakpoint-tablet: 50rem;
     --breakpoint-lg: 62rem;
     --breakpoint-xl: 75rem;
     --breakpoint-2xl: 87.5rem;
