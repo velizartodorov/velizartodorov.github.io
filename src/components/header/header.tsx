@@ -26,12 +26,12 @@ const Header: React.FC<{ minimalMode?: boolean }> = ({ minimalMode = false }) =>
             <header>
                 <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:text-left">
                     {photo}
-                    <div className="flex flex-col items-center gap-2 sm:items-start">
+                    <div className="flex w-full flex-col items-center gap-2 sm:w-auto sm:items-start">
                         <div className="flex items-center gap-4">
                             {nameHeading}
                             <ThemeToggle />
                         </div>
-                        <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:justify-start">
+                        <div className="flex w-fit flex-col items-start gap-y-2">
                             <ProfileItem link={profile.email} />
                             <ProfileItem link={profile.gitHub} />
                             <ProfileItem link={profile.blog} />
