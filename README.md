@@ -59,14 +59,16 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the branch/commit workflow, local che
 
 ### Github Workflows 🏭
 
-Three workflows run in `.github/workflows/`. The `build`/`link-check` jobs in `build-deploy.yml`
+Four workflows run in `.github/workflows/`. The `build`/`link-check` jobs in `build-deploy.yml`
 and the `sonarcloud` job in `sonarcloud.yml` each start with a "Fetch private resources" step
 (`node scripts/prepare-resources.mjs`, given the `RESOURCES_REPO_TOKEN` repo secret - a
 fine-grained PAT scoped to `portfolio-resources` with `Contents: Read-only`) before installing
 dependencies, since the test run itself exercises the private submodule's content. That PAT
 expires (fine-grained tokens max out around a year) and needs rotating before then, or every
 workflow that touches the submodule breaks. `portfolio-resources` holds a second PAT for its sync
-workflow, documented in its own `README.md`.
+workflow, documented in its own `README.md`. Every CI token - both PATs, `AUTO_REBASE_TOKEN` and
+`SONAR_TOKEN` - is managed from [`infra/`](infra/README.md): one local `terraform.tfvars`, one
+`tofu apply` to push a rotated token everywhere it lives.
 
 - **`build-deploy.yml`** - on PR and on push to `master`: installs dependencies, checks for
   encoding corruption, lints, runs the Vitest suite (excluding the link-check/analytics tests,
@@ -82,6 +84,12 @@ workflow, documented in its own `README.md`.
   percentage and a per-file breakdown (SonarCloud's own PR comment only covers new/changed
   lines). `sonar-project.properties` excludes `src/app/translations/data/**` (the private
   submodule) from the source scan, so its content is never uploaded to SonarCloud.
+- **`auto-rebase.yml`** - on push to `master`: rebases every open, same-repo PR labelled
+  `auto-rebase` onto the new `master`. It pushes with the `AUTO_REBASE_TOKEN` secret (a
+  fine-grained PAT with `Contents` and `Pull requests: Read and write` on this repo) instead of
+  `GITHUB_TOKEN`, since a push made with the workflow's own token doesn't trigger the PR's
+  required `build` check. When that PAT expires the workflow fails and labelled PRs stop being
+  rebased.
 - **`auto-merge-dependabot.yml`** - see below.
 
 Vercel also builds a preview deployment for every PR (`npm run build`, triggered by the Vercel
