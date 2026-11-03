@@ -1,2 +1,5 @@
 state_passphrase     = "at-least-16-characters-long"
 resources_repo_token = "github_pat_..."
+auto_rebase_token    = "github_pat_..."
+sonar_token          = "..."
+portfolio_repo_token = "github_pat_..."

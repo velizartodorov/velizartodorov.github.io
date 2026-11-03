@@ -15,6 +15,24 @@ variable "resources_repo_token" {
   description = "Fine-grained PAT with Contents: Read-only on portfolio-resources."
 }
 
+variable "auto_rebase_token" {
+  type        = string
+  sensitive   = true
+  description = "Fine-grained PAT with Contents and Pull requests: Read and write on velizartodorov.github.io."
+}
+
+variable "sonar_token" {
+  type        = string
+  sensitive   = true
+  description = "SonarCloud analysis token for velizartodorov_velizartodorov.github.io."
+}
+
+variable "portfolio_repo_token" {
+  type        = string
+  sensitive   = true
+  description = "Fine-grained PAT with Contents and Pull requests: Read and write on velizartodorov.github.io, stored in portfolio-resources."
+}
+
 variable "github_owner" {
   type    = string
   default = "velizartodorov"
@@ -23,6 +41,11 @@ variable "github_owner" {
 variable "github_repository" {
   type    = string
   default = "velizartodorov.github.io"
+}
+
+variable "github_resources_repository" {
+  type    = string
+  default = "portfolio-resources"
 }
 
 variable "vercel_team" {
