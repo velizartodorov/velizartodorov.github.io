@@ -1,0 +1,58 @@
+name: Auto-rebase labelled PRs
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch: # Allow manual trigger
+
+permissions:
+  contents: read
+
+concurrency:
+  group: auto-rebase
+  cancel-in-progress: false
+
+jobs:
+  rebase:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Rebase out-of-date PRs labelled auto-rebase
+        env:
+          # A personal access token, not GITHUB_TOKEN - pushes made with the workflow's own token
+          # either don't trigger the PR's CI at all or get gated behind a manual "Approve and run"
+          # click (conclusion: action_required), so the required `build` check would never report
+          # on the rebased head. Needs Contents: write and Pull requests: write on this repo.
+          GH_TOKEN: ${{ secrets.AUTO_REBASE_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::error::The AUTO_REBASE_TOKEN secret is not set."
+            exit 1
+          fi
+
+          prs=$(gh pr list --label auto-rebase --base master --state open \
+            --json number,headRefName,isCrossRepository \
+            --jq '.[] | select(.isCrossRepository | not) | "\(.number) \(.headRefName)"')
+
+          if [ -z "$prs" ]; then
+            echo "No open PRs labelled auto-rebase."
+            exit 0
+          fi
+
+          echo "$prs" | while read -r number branch; do
+            behind=$(gh api "repos/$GH_REPO/compare/master...$branch" --jq '.behind_by')
+            if [ "$behind" -eq 0 ]; then
+              echo "PR #$number is up to date with master."
+              continue
+            fi
+
+            echo "PR #$number is $behind commit(s) behind master, rebasing..."
+            if gh pr update-branch "$number" --rebase; then
+              echo "  Rebased PR #$number."
+            else
+              echo "::warning::Could not rebase PR #$number onto master."
+              gh pr comment "$number" --body "⚠️ Auto-rebase onto \`master\` failed (most likely a conflict). Please rebase manually." \
+                || echo "  Could not comment on PR #$number."
+            fi
+          done
