@@ -13,7 +13,7 @@ jobs:
     # Dependabot PRs run without repo secrets (GitHub withholds them even for same-repo PRs
     # opened by Dependabot), so SONAR_TOKEN is unavailable and the scan step always 403s.
     if: github.actor != 'dependabot[bot]'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     permissions:
       contents: read
       pull-requests: write # lets vitest-coverage-report-action post/update its PR comment

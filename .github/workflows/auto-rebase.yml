@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   rebase:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: Rebase out-of-date PRs labelled auto-rebase
         env:

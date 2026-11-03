@@ -19,7 +19,7 @@ jobs:
   auto-merge:
     # Skip workflow_run events that aren't for a Dependabot branch (e.g. regular PRs/pushes)
     if: github.event_name != 'workflow_run' || startsWith(github.event.workflow_run.head_branch, 'dependabot/')
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
