@@ -53,7 +53,7 @@ const Header: React.FC<{ minimalMode?: boolean }> = ({ minimalMode = false }) =>
                 <div className="lg:col-start-2 lg:row-start-2">
                     <LanguageSelector />
                 </div>
-                <div className="flex w-fit flex-col items-start gap-y-2 lg:contents">
+                <div className="flex w-fit flex-col items-start gap-y-2 sm:w-full sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-10 lg:contents">
                     <div className="lg:col-start-3 lg:row-start-2">
                         <ProfileItem link={profile.email} />
                     </div>
