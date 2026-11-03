@@ -65,7 +65,8 @@ and the `sonarcloud` job in `sonarcloud.yml` each start with a "Fetch private re
 fine-grained PAT scoped to `portfolio-resources` with `Contents: Read-only`) before installing
 dependencies, since the test run itself exercises the private submodule's content. That PAT
 expires (fine-grained tokens max out around a year) and needs rotating before then, or every
-workflow that touches the submodule breaks. `portfolio-resources` holds a second PAT for its sync
+workflow that touches the submodule breaks. [`infra/`](infra/README.md) pushes a rotated PAT to
+the Actions secret, the Dependabot secret, and Vercel with one `tofu apply`. `portfolio-resources` holds a second PAT for its sync
 workflow, documented in its own `README.md`.
 
 - **`build-deploy.yml`** - on PR and on push to `master`: installs dependencies, checks for
