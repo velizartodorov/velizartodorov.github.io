@@ -73,23 +73,8 @@ copied anywhere under `public/`, so it never becomes part of the statically-serv
 
 - `src/app/translations/`
   - `data/` - git submodule ([`portfolio-resources`](https://github.com/velizartodorov/portfolio-resources),
-    private), containing:
-    - `dates.yml` - shared date placeholders (e.g. `collibra_start`), referenced from content as
-      `{{dates:collibra_start}}` and resolved at runtime by `useEmployments()`
-    - `en/`, `nl/` - one folder per language, each containing:
-      - `common.yml`, `introduction.yml`, `languages.yml`, `licenses_certifications.yml`,
-        `presentations.yml`, `profile.yml` - simple key/value YAML namespaces
-      - `employments.yml`, `education.yml` - index files (`title` + ordered `list` of filenames)
-        defining which entries appear and in what order
-      - `employments/*.md`, `education/*.md` - one Markdown file per entry, with YAML frontmatter
-        (company/place/period, etc.) and the description as the Markdown body. Employment entries
-        with multiple positions separate each position's body with an `<!-- position -->` marker
-    - `resource-files.ts` - the single source of truth for which employment/education Markdown
-      files exist (`EMPLOYMENT_FILES` / `EDUCATION_FILES`), typed so a filename present in one
-      language's folder but missing (or misspelled) in the other fails to compile
-    - `assets/` - the employer/school logos, certificate PDF, and personal photo; `icon:`/`link:`/
-      `imageUrl:` fields in the yml/md above reference these under `/resources/...`, matching
-      where `prepare-resources.mjs` copies them under `public/`
+    private): `dates.yml`, one `en/`/`nl/` folder of YAML namespaces and Markdown entries per
+    language, `resource-files.ts`, and `assets/`. Its own `README.md` documents the layout.
   - `resources.ts` - `loadResources(lang)`, which dynamically imports every YAML/Markdown file for
     a language and hands them to `build-resources.ts`
   - `build-resources.ts` - `buildLanguageResources()` assembles the loaded index files plus their
@@ -106,11 +91,9 @@ fields plus a `body` string.
 ### Updating content
 
 Content changes are made in `portfolio-resources` only - commit and push to its `master`, and
-nothing needs to be done here. Its `sync-to-public.yml` workflow runs on every push and, if the
-submodule pointer recorded here actually changed, opens a `bump-resources-<short-sha>` PR against
-this repo's `master` (titled `chore: update resume content to portfolio-resources@<short-sha>`)
-with auto-merge enabled. It merges once the required `build` check passes - the same mechanism
-the Dependabot PRs use - and the merge to `master` deploys the new content.
+nothing needs to be done here. Its sync workflow opens an auto-merging submodule-bump PR against
+this repo's `master`, and that merge deploys the new content. See `portfolio-resources`'
+`README.md` for how the sync works.
 
 ## CI/CD 🚀
 
@@ -122,10 +105,8 @@ and the `sonarcloud` job in `sonarcloud.yml` each start with a "Fetch private re
 fine-grained PAT scoped to `portfolio-resources` with `Contents: Read-only`) before installing
 dependencies, since the test run itself exercises the private submodule's content. That PAT
 expires (fine-grained tokens max out around a year) and needs rotating before then, or every
-workflow that touches the submodule breaks. `portfolio-resources` holds a second, more-privileged
-PAT, `PORTFOLIO_REPO_TOKEN` (scoped to only this repo, `Contents` and `Pull requests: Read and
-write`), which its sync workflow uses to open the content-bump PRs described above; it expires
-on the same schedule and needs rotating too.
+workflow that touches the submodule breaks. `portfolio-resources` holds a second PAT for its sync
+workflow, documented in its own `README.md`.
 
 - **`build-deploy.yml`** - on PR and on push to `master`: installs dependencies, checks for
   encoding corruption, lints, runs the Vitest suite (excluding the link-check/analytics tests,
