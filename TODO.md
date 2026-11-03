@@ -1,8 +1,8 @@
 # TO DO 📌
 
-* fix mobile app order icons alignment in a grid
+* fix mobile app order icons alignment in a grid ✅
 * check architecture for improvements
-* fix dimentions Surface Pro 7
+* fix dimentions Surface Pro 7 ✅
 * create a structure where each `Employment` has a list of `Position` ✅
 * migrate project to Vite to resolve the `react-scripts` dependency ✅
 * create design for mobile interface ✅
