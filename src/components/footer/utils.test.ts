@@ -1,4 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { createElement } from 'react';
+import { renderToString } from 'react-dom/server';
 import { renderHook, waitFor } from '@testing-library/react';
 import { TIME_API_BASE_URL, YEAR_CACHE_KEY, useCurrentYear } from './utils';
 
@@ -8,6 +10,7 @@ beforeEach(() => {
 });
 
 afterEach(() => {
+    vi.unstubAllEnvs();
     vi.unstubAllGlobals();
     vi.restoreAllMocks();
 });
@@ -90,5 +93,28 @@ describe('useCurrentYear', () => {
         const { result } = renderHook(() => useCurrentYear());
 
         await waitFor(() => expect(result.current.year).toBe(new Date().getFullYear()));
+    });
+
+    // BUILD_YEAR is read from process.env at module load time, so each case needs a fresh module.
+    async function loadWithBuildYear(buildYear: string) {
+        vi.resetModules();
+        vi.stubEnv('NEXT_PUBLIC_BUILD_YEAR', buildYear);
+        return (await import('./utils')).useCurrentYear;
+    }
+
+    it('renders the build year on the server, so the prerendered HTML already has a year', async () => {
+        const useYear = await loadWithBuildYear('1999');
+        const YearProbe = () => String(useYear().year);
+
+        expect(renderToString(createElement(YearProbe))).toBe('1999');
+    });
+
+    it('replaces a stale build year with the local current year on the client', async () => {
+        vi.mocked(fetch).mockReturnValue(new Promise(() => {}));
+        const useYear = await loadWithBuildYear('1999');
+
+        const { result } = renderHook(() => useYear());
+
+        expect(result.current.year).toBe(new Date().getFullYear());
     });
 });

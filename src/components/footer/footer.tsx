@@ -10,10 +10,6 @@ const Footer = () => {
     const { t } = useTranslation();
     const profile = useProfile();
 
-    if (year === null) {
-        return null;
-    }
-
     return (
         <div className="my-2 text-center max-sm:text-[0.9rem]">
             {t('common:poweredBy')} {profile.name} ® {year} 😉 🚀

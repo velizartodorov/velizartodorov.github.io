@@ -19,9 +19,9 @@ const NavBar: React.FC<NavBarProps> = ({ menuOpen, onOpenMenu, openButtonRef, ac
     <div
         aria-hidden={menuOpen}
         inert={menuOpen}
-        className="bg-app-surface/90 border-app-border flex items-center justify-end border-b px-4 py-2 backdrop-blur sm:px-6 md:justify-center"
+        className="bg-app-surface/90 border-app-border flex items-center justify-end border-b px-4 py-2 backdrop-blur sm:px-6 lg:justify-center"
     >
-        <ul className="hidden items-center gap-1 overflow-x-auto md:flex md:justify-center md:gap-2">
+        <ul className="hidden items-center gap-1 overflow-x-auto lg:flex lg:justify-center xl:gap-2">
             {NAV_ITEMS.map((item) => (
                 <NavLink
                     key={item.titleKey}

@@ -11,7 +11,7 @@ const ACTIVE_LINK_CLASS = 'bg-app-accent-subtle text-app-accent';
 
 const LINK_VARIANT = {
     wide: {
-        base: 'block rounded-full px-3 py-1.5 text-sm font-medium whitespace-nowrap transition-colors md:text-base',
+        base: 'block rounded-full px-3 py-1.5 text-sm font-medium whitespace-nowrap transition-colors xl:text-base',
         inactive: 'text-app-text-muted hover:text-app-text',
     },
     overlay: {
