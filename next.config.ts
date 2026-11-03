@@ -25,6 +25,7 @@ const nextConfig: NextConfig = {
     },
     env: {
         NEXT_PUBLIC_COMMIT_SHA: commitSha,
+        NEXT_PUBLIC_BUILD_YEAR: String(new Date().getFullYear()),
     },
     // Translation data lives in src/app/translations/**/*.{yml,md} (see src/app/translations/i18n.ts); teach both
     // bundlers Next can use how to turn those into JS modules.

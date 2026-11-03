@@ -3,6 +3,8 @@ import { useEffect, useLayoutEffect, useState } from 'react';
 export const YEAR_CACHE_KEY = 'currentYearWithTZ';
 export const TIME_API_BASE_URL = 'https://timeapi.io/api/Time/current/zone';
 
+const BUILD_YEAR = Number(process.env.NEXT_PUBLIC_BUILD_YEAR) || new Date().getFullYear();
+
 const useIsomorphicLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect;
 
 type CacheData = {
@@ -15,7 +17,7 @@ export function useCurrentYear(): {
     year: number;
     timeZone: string | null;
 } {
-    const [year, setYear] = useState(() => new Date().getFullYear());
+    const [year, setYear] = useState(BUILD_YEAR);
     const [timeZone, setTimeZone] = useState<string | null>(null);
 
     useIsomorphicLayoutEffect(() => {
