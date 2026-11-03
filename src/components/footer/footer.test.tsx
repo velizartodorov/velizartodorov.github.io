@@ -48,9 +48,4 @@ describe('Footer', () => {
         const link = screen.getByRole('link', { name: sha.slice(0, 7) });
         expect(link).toHaveAttribute('href', `${REPO_URL}/commit/${sha}`);
     });
-
-    it('renders nothing while the year has not loaded yet, instead of the text without a year', async () => {
-        const { container } = await renderFooter('', { year: null, timeZone: null });
-        expect(container).toBeEmptyDOMElement();
-    });
 });

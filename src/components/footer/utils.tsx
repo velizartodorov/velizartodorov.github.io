@@ -12,10 +12,10 @@ type CacheData = {
 };
 
 export function useCurrentYear(): {
-    year: number | null;
+    year: number;
     timeZone: string | null;
 } {
-    const [year, setYear] = useState<number | null>(null);
+    const [year, setYear] = useState(() => new Date().getFullYear());
     const [timeZone, setTimeZone] = useState<string | null>(null);
 
     useIsomorphicLayoutEffect(() => {
