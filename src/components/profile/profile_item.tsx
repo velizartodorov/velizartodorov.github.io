@@ -4,7 +4,7 @@ import React from 'react';
 const ProfileItem: React.FC<{ link: Link }> = ({ link }) => {
     const content = (
         <span className="inline-flex items-center justify-start">
-            <span className="flex w-12 shrink-0 justify-center">
+            <span className="flex w-12 shrink-0 justify-center sm:w-auto">
                 <img
                     src={link.icon}
                     style={{ width: link.width }}

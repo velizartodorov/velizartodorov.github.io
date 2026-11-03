@@ -31,7 +31,7 @@ const Header: React.FC<{ minimalMode?: boolean }> = ({ minimalMode = false }) =>
                             {nameHeading}
                             <ThemeToggle />
                         </div>
-                        <div className="flex w-fit flex-col items-start gap-y-2">
+                        <div className="flex w-fit flex-col items-start gap-y-2 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:justify-start sm:gap-x-4">
                             <ProfileItem link={profile.email} />
                             <ProfileItem link={profile.gitHub} />
                             <ProfileItem link={profile.blog} />
