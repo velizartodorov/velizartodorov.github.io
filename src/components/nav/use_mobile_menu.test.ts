@@ -1,9 +1,18 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { act, renderHook } from '@testing-library/react';
 import { mockMatchMedia } from '../../test-utils/mock-match-media';
-import { useMobileMenu, type MobileMenu } from './use_mobile_menu';
+import { WIDE_VIEWPORT_QUERY, useMobileMenu, type MobileMenu } from './use_mobile_menu';
 
 let viewport: ReturnType<typeof mockMatchMedia>;
+
+// The menu button and overlay hide via Tailwind's `lg:hidden`, so the auto-close query must use
+// the same width the theme assigns to `lg`, read from the real stylesheet rather than re-declared.
+function themeBreakpoint(name: string): string {
+    const css = readFileSync(resolve('src/index.css'), 'utf8');
+    return new RegExp(String.raw`--breakpoint-${name}:\s*([^;]+);`).exec(css)![1].trim();
+}
 
 function attachButtons(menu: MobileMenu) {
     const openButton = document.createElement('button');
@@ -38,6 +47,10 @@ afterEach(() => {
 });
 
 describe('useMobileMenu', () => {
+    it('auto-closes at the same width the lg breakpoint hides the menu at', () => {
+        expect(WIDE_VIEWPORT_QUERY).toBe(`(min-width: ${themeBreakpoint('lg')})`);
+    });
+
     it('starts closed', () => {
         const { result } = renderMobileMenu();
 

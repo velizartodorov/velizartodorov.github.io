@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState, type RefObject } from 'react';
 
-const WIDE_VIEWPORT_QUERY = '(min-width: 1024px)';
+export const WIDE_VIEWPORT_QUERY = '(min-width: 62rem)';
 
 export interface MobileMenu {
     menuOpen: boolean;

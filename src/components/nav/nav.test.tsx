@@ -60,8 +60,8 @@ const openMenu = () => userEvent.click(screen.getByRole('button', { name: OPEN_M
 const closeMenu = () => userEvent.click(screen.getByRole('button', { name: CLOSE_MENU }));
 const menuOverlay = () => document.querySelector('[data-state]') as HTMLElement;
 
-// The overlay's scroll-lock effect queries '(min-width: 1024px)' to auto-close itself once the
-// viewport grows past `lg`; `matches: false` is the narrow-viewport default the menu is used at.
+// The overlay's scroll-lock effect queries WIDE_VIEWPORT_QUERY (the `lg` breakpoint) to auto-close
+// itself once the viewport grows past `lg`; `matches: false` is the narrow-viewport default the menu is used at.
 let viewport: ReturnType<typeof mockMatchMedia>;
 
 beforeEach(() => {
