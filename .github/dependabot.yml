@@ -12,3 +12,15 @@ updates:
       npm-dependencies:
         patterns:
           - "*"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "08:00"
+      timezone: "Europe/Brussels"
+    rebase-strategy: "auto"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
