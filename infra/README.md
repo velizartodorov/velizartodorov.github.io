@@ -17,10 +17,10 @@ It also manages the repo settings that otherwise only exist in GitHub's UI:
 
 | File | Resource | Setting |
 |---|---|---|
-| [repository.tf](repository.tf) | `github_repository.portfolio` | Description, homepage, features (issues/wiki/projects off), merge buttons, auto-merge, delete branch on merge, **secret scanning + push protection on**. `prevent_destroy` and `archive_on_destroy` make sure OpenTofu can never delete the repo. |
+| [repository.tf](repository.tf) | `github_repository.portfolio` | Description, homepage, features (issues/wiki/projects off), merge buttons (squash and rebase only — merge commits off), auto-merge, delete branch on merge, **secret scanning + push protection on**. `prevent_destroy` and `archive_on_destroy` make sure OpenTofu can never delete the repo. |
 | | `github_repository_vulnerability_alerts`, `github_repository_dependabot_security_updates` | Dependabot alerts and security-update PRs on |
 | | `github_repository_ruleset.require_build_on_master` | `build` must pass before merging to `master`, no bypass |
-| | `github_repository_ruleset.protect_master_from_deletion` | `master` can't be deleted, no bypass |
+| | `github_repository_ruleset.protect_master` | `master` can't be deleted or force-pushed, and only takes changes through PRs merged with **squash or rebase** (0 approvals required), no bypass |
 | | `github_issue_label.auto_rebase` | The label `auto-rebase.yml` selects PRs by |
 | [actions.tf](actions.tf) | `github_workflow_repository_permissions` | `GITHUB_TOKEN` defaults to **read**; every workflow declares the extra `permissions:` it needs |
 | | `github_actions_repository_permissions` | Actions on, any action allowed (`davelosert/vitest-coverage-report-action` isn't from a verified creator, so restricting would break `sonarcloud.yml`) |

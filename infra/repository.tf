@@ -16,7 +16,7 @@ resource "github_repository" "portfolio" {
   has_discussions = false
   allow_forking   = true
 
-  allow_merge_commit          = true
+  allow_merge_commit          = false
   allow_squash_merge          = true
   allow_rebase_merge          = true
   allow_auto_merge            = true
@@ -94,9 +94,9 @@ resource "github_repository_ruleset" "require_build_on_master" {
   }
 }
 
-resource "github_repository_ruleset" "protect_master_from_deletion" {
+resource "github_repository_ruleset" "protect_master" {
   repository  = github_repository.portfolio.name
-  name        = "Protect master from deletion"
+  name        = "Protect master"
   target      = "branch"
   enforcement = "active"
 
@@ -108,7 +108,13 @@ resource "github_repository_ruleset" "protect_master_from_deletion" {
   }
 
   rules {
-    deletion = true
+    deletion         = true
+    non_fast_forward = true
+
+    pull_request {
+      allowed_merge_methods           = ["squash", "rebase"]
+      required_approving_review_count = 0
+    }
   }
 }
 
