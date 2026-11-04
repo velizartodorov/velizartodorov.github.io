@@ -11,9 +11,7 @@ updates:
     directory: "/"
     patterns: ["*"]
     multi-ecosystem-group: "dependencies"
-    rebase-strategy: "auto"
   - package-ecosystem: "github-actions"
     directory: "/"
     patterns: ["*"]
     multi-ecosystem-group: "dependencies"
-    rebase-strategy: "auto"
