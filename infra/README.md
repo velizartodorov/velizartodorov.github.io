@@ -26,6 +26,12 @@ It also manages the repo settings that otherwise only exist in GitHub's UI:
 | [pages.tf](pages.tf) | `github_repository_pages` | Pages built by the `build-deploy.yml` workflow |
 | | `github_repository_environment.github_pages` + `..._deployment_policy.master` | Only `master` can deploy to the `github-pages` environment |
 
+For `portfolio-resources`, [resources_repository.tf](resources_repository.tf) manages the repo
+itself — chiefly to pin **`visibility = "private"`**, so a stray switch to public (which would
+expose the CV content) shows up as drift and is reverted — plus its read-only `GITHUB_TOKEN`
+default. It's a private repo on the free plan, so GitHub offers it no rulesets, branch
+protection or secret scanning to manage.
+
 All of these were adopted with `import` blocks, so the first apply takes them over instead of
 recreating them. Change them here, not in the UI — a UI edit shows up as drift on the next
 `tofu plan` and gets reverted by the next `tofu apply`.
