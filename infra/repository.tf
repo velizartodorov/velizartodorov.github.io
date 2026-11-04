@@ -1,4 +1,70 @@
 import {
+  to = github_repository.portfolio
+  id = var.github_repository
+}
+
+resource "github_repository" "portfolio" {
+  name         = var.github_repository
+  description  = ""
+  homepage_url = "https://${var.github_repository}/"
+  visibility   = "public"
+  topics       = []
+
+  has_issues      = false
+  has_projects    = false
+  has_wiki        = false
+  has_discussions = false
+  allow_forking   = true
+
+  allow_merge_commit          = true
+  allow_squash_merge          = true
+  allow_rebase_merge          = true
+  allow_auto_merge            = true
+  allow_update_branch         = true
+  delete_branch_on_merge      = true
+  merge_commit_title          = "MERGE_MESSAGE"
+  merge_commit_message        = "PR_TITLE"
+  squash_merge_commit_title   = "COMMIT_OR_PR_TITLE"
+  squash_merge_commit_message = "COMMIT_MESSAGES"
+  web_commit_signoff_required = false
+
+  archive_on_destroy = true
+
+  security_and_analysis {
+    secret_scanning {
+      status = "enabled"
+    }
+    secret_scanning_push_protection {
+      status = "enabled"
+    }
+  }
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+import {
+  to = github_repository_vulnerability_alerts.portfolio
+  id = var.github_repository
+}
+
+resource "github_repository_vulnerability_alerts" "portfolio" {
+  repository = github_repository.portfolio.name
+  enabled    = true
+}
+
+import {
+  to = github_repository_dependabot_security_updates.portfolio
+  id = var.github_repository
+}
+
+resource "github_repository_dependabot_security_updates" "portfolio" {
+  repository = github_repository.portfolio.name
+  enabled    = true
+}
+
+import {
   to = github_repository_ruleset.require_build_on_master
   id = "${var.github_repository}:18712903"
 }
