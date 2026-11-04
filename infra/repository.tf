@@ -94,6 +94,24 @@ resource "github_repository_ruleset" "require_build_on_master" {
   }
 }
 
+resource "github_repository_ruleset" "protect_master_from_deletion" {
+  repository  = github_repository.portfolio.name
+  name        = "Protect master from deletion"
+  target      = "branch"
+  enforcement = "active"
+
+  conditions {
+    ref_name {
+      include = ["refs/heads/master"]
+      exclude = []
+    }
+  }
+
+  rules {
+    deletion = true
+  }
+}
+
 import {
   to = github_issue_label.auto_rebase
   id = "${var.github_repository}:auto-rebase"
