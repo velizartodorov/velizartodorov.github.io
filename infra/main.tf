@@ -17,15 +17,15 @@ locals {
 resource "github_actions_secret" "this" {
   for_each = local.actions_secret_repositories
 
-  repository      = each.value
-  secret_name     = each.key
-  plaintext_value = local.actions_secret_values[each.key]
+  repository  = each.value
+  secret_name = each.key
+  value       = local.actions_secret_values[each.key]
 }
 
 resource "github_dependabot_secret" "resources_repo_token" {
-  repository      = var.github_repository
-  secret_name     = "RESOURCES_REPO_TOKEN"
-  plaintext_value = var.resources_repo_token
+  repository  = var.github_repository
+  secret_name = "RESOURCES_REPO_TOKEN"
+  value       = var.resources_repo_token
 }
 
 data "vercel_project" "portfolio" {
