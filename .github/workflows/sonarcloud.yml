@@ -19,7 +19,7 @@ jobs:
       pull-requests: write # lets vitest-coverage-report-action post/update its PR comment
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           # SonarCloud's blame-based analysis (new-code period, ownership) needs full history.
           fetch-depth: 0
@@ -30,12 +30,12 @@ jobs:
           RESOURCES_REPO_TOKEN: ${{ secrets.RESOURCES_REPO_TOKEN }}
 
       - name: Set up Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v7
         with:
           node-version: '24'
 
       - name: Cache node modules
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
@@ -49,7 +49,7 @@ jobs:
         run: npm run coverage -- --exclude src/links.test.ts --exclude src/analytics.test.ts
 
       - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@v6
+        uses: SonarSource/sonarqube-scan-action@v7
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
