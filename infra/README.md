@@ -13,6 +13,18 @@ and pushes each one to wherever it's needed:
 The tokens themselves are still created by hand — GitHub has no API for minting personal access
 tokens. Give each one an expiry you'll notice, and note the dates next to the passphrase.
 
+It also manages two repo settings that CI depends on but that otherwise only exist in GitHub's
+UI ([repository.tf](repository.tf)):
+
+| Resource | What breaks without it |
+|---|---|
+| Ruleset `Require build check on master` (`build` must pass, no bypass) | Anything could merge to `master` without a green build |
+| Label `auto-rebase` | `auto-rebase.yml` finds no PRs to rebase |
+
+Both were adopted with `import` blocks, so the first apply takes them over without changing
+anything on GitHub. Change them here, not in the UI — a UI edit shows up as drift on the next
+`tofu plan` and gets reverted by the next `tofu apply`.
+
 ## Prerequisites
 
 - OpenTofu `>= 1.8` (`winget install OpenTofu.Tofu`, `brew install opentofu`, …).
