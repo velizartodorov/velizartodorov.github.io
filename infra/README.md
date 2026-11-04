@@ -13,17 +13,26 @@ and pushes each one to wherever it's needed:
 The tokens themselves are still created by hand — GitHub has no API for minting personal access
 tokens. Give each one an expiry you'll notice, and note the dates next to the passphrase.
 
-It also manages two repo settings that CI depends on but that otherwise only exist in GitHub's
-UI ([repository.tf](repository.tf)):
+It also manages the repo settings that otherwise only exist in GitHub's UI:
 
-| Resource | What breaks without it |
-|---|---|
-| Ruleset `Require build check on master` (`build` must pass, no bypass) | Anything could merge to `master` without a green build |
-| Label `auto-rebase` | `auto-rebase.yml` finds no PRs to rebase |
+| File | Resource | Setting |
+|---|---|---|
+| [repository.tf](repository.tf) | `github_repository.portfolio` | Description, homepage, features (issues/wiki/projects off), merge buttons, auto-merge, delete branch on merge, **secret scanning + push protection on**. `prevent_destroy` and `archive_on_destroy` make sure OpenTofu can never delete the repo. |
+| | `github_repository_vulnerability_alerts`, `github_repository_dependabot_security_updates` | Dependabot alerts and security-update PRs on |
+| | `github_repository_ruleset.require_build_on_master` | `build` must pass before merging to `master`, no bypass |
+| | `github_issue_label.auto_rebase` | The label `auto-rebase.yml` selects PRs by |
+| [actions.tf](actions.tf) | `github_workflow_repository_permissions` | `GITHUB_TOKEN` defaults to **read**; every workflow declares the extra `permissions:` it needs |
+| | `github_actions_repository_permissions` | Actions on, any action allowed (`davelosert/vitest-coverage-report-action` isn't from a verified creator, so restricting would break `sonarcloud.yml`) |
+| [pages.tf](pages.tf) | `github_repository_pages` | Pages built by the `build-deploy.yml` workflow |
+| | `github_repository_environment.github_pages` + `..._deployment_policy.master` | Only `master` can deploy to the `github-pages` environment |
 
-Both were adopted with `import` blocks, so the first apply takes them over without changing
-anything on GitHub. Change them here, not in the UI — a UI edit shows up as drift on the next
+All of these were adopted with `import` blocks, so the first apply takes them over instead of
+recreating them. Change them here, not in the UI — a UI edit shows up as drift on the next
 `tofu plan` and gets reverted by the next `tofu apply`.
+
+Left out on purpose: the `Preview`/`Production` environments (created by Vercel's GitHub
+integration), the `copilot` environment (created by Copilot's coding agent), CodeQL default
+setup (no provider resource), and GitHub's default labels.
 
 ## Prerequisites
 
